@@ -14,11 +14,13 @@ const Index = () => {
     <div className="min-h-screen font-serif">
       <Header />
       <Hero />
-      <RegionsGrid />
-      <Explore />
-      <Featured />
-      <Vibes />
-      <AiPlanner />
+      <div id="explore"> {/* Added id here for scrolling */}
+        <RegionsGrid />
+        <Explore />
+        <Featured />
+        <Vibes />
+        <AiPlanner />
+      </div>
       <Footer />
     </div>
   );

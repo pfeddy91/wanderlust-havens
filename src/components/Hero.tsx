@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown } from "lucide-react";
 import { getBackgroundImages } from '@/services/backgroundService';
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Type for background images from database
 interface BackgroundImage {
@@ -16,6 +17,7 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const isMobile = useIsMobile();
 
   // Fetch background images from the database
   useEffect(() => {
@@ -84,8 +86,8 @@ const Hero = () => {
     return (
       <div className="relative w-full h-screen bg-gray-200 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-black leading-tight mb-8">
-            Plan the honeymoon of a lifetime
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-black leading-tight mb-8">
+            {isMobile ? "Vacation envy starts here" : "Plan the honeymoon of a lifetime"}
           </h1>
         </div>
       </div>
@@ -111,12 +113,12 @@ const Hero = () => {
       
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 sm:px-6 lg:px-8">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-center leading-tight mb-8 hero-text-animation">
-          Plan the honeymoon of a lifetime
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-center leading-tight mb-8 hero-text-animation">
+          {isMobile ? "Vacation envy starts here" : "Plan the honeymoon of a lifetime"}
         </h1>
       </div>
       
-      {/* Learn More button - with larger font */}
+      {/* Learn More button */}
       <div className="absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center">
         <p className="text-white uppercase text-base tracking-widest mb-2">LEARN MORE</p>
         <button 
