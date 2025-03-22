@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import DestinationsPopup from "./DestinationsPopup";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [destinationsOpen, setDestinationsOpen] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -22,32 +24,44 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleDestinations = () => {
+    setDestinationsOpen(!destinationsOpen);
+  };
+
+  const closeDestinations = () => {
+    setDestinationsOpen(false);
+  };
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || mobileMenuOpen 
-          ? 'py-2' 
-          : 'py-3'
+          ? 'py-0' 
+          : 'py-0'
       }`}
     >
-      <div className="bg-travel-light-brown/60 backdrop-blur-sm">
+      <div className="bg-[#F1F0FB] shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <a href="/" className="flex items-center">
-              <span className="font-serif text-2xl font-medium text-travel-green">Wanderlust</span>
+              <span className="font-serif text-2xl font-medium text-[#000000e6]">Wanderlust</span>
             </a>
 
             {/* Desktop Navigation */}
             {!isMobile && (
               <nav className="flex items-center space-x-10">
-                <a href="#destinations" className="nav-item font-medium text-travel-green hover:text-travel-gray transition-colors">
+                <button 
+                  onClick={toggleDestinations}
+                  className="nav-item font-medium text-[#000000e6] hover:text-travel-gray transition-colors flex items-center"
+                >
                   Destinations
-                </a>
-                <a href="#vibes" className="nav-item font-medium text-travel-green hover:text-travel-gray transition-colors">
+                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${destinationsOpen ? 'transform rotate-180' : ''}`} />
+                </button>
+                <a href="#vibes" className="nav-item font-medium text-[#000000e6] hover:text-travel-gray transition-colors">
                   Vibes
                 </a>
-                <a href="#planner" className="nav-item font-medium text-travel-green hover:text-travel-gray transition-colors">
+                <a href="#planner" className="nav-item font-medium text-[#000000e6] hover:text-travel-gray transition-colors">
                   AI Planner
                 </a>
               </nav>
@@ -79,6 +93,9 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Destinations Popup */}
+      {destinationsOpen && <DestinationsPopup onClose={closeDestinations} />}
     </header>
   );
 };
