@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import RegionsGrid from '@/components/RegionsGrid';
 import Explore from '@/components/Explore';
 import Featured from '@/components/Featured';
 import Vibes from '@/components/Vibes';
@@ -13,6 +14,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <RegionsGrid />
       <Explore />
       <Featured />
       <Vibes />

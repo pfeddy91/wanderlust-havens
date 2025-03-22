@@ -9,7 +9,335 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      countries: {
+        Row: {
+          created_at: string
+          description: string | null
+          featured_image: string | null
+          id: string
+          map_image: string | null
+          name: string
+          region_id: string | null
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          featured_image?: string | null
+          id?: string
+          map_image?: string | null
+          name: string
+          region_id?: string | null
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          featured_image?: string | null
+          id?: string
+          map_image?: string | null
+          name?: string
+          region_id?: string | null
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "countries_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      hotel_images: {
+        Row: {
+          alt_text: string | null
+          created_at: string
+          hotel_id: string | null
+          id: string
+          image_url: string
+          is_featured: boolean | null
+          updated_at: string
+        }
+        Insert: {
+          alt_text?: string | null
+          created_at?: string
+          hotel_id?: string | null
+          id?: string
+          image_url: string
+          is_featured?: boolean | null
+          updated_at?: string
+        }
+        Update: {
+          alt_text?: string | null
+          created_at?: string
+          hotel_id?: string | null
+          id?: string
+          image_url?: string
+          is_featured?: boolean | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "hotel_images_hotel_id_fkey"
+            columns: ["hotel_id"]
+            isOneToOne: false
+            referencedRelation: "hotels"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      hotels: {
+        Row: {
+          country_id: string | null
+          created_at: string
+          description: string | null
+          features: string[] | null
+          id: string
+          location: string
+          name: string
+          star_rating: number | null
+          updated_at: string
+        }
+        Insert: {
+          country_id?: string | null
+          created_at?: string
+          description?: string | null
+          features?: string[] | null
+          id?: string
+          location: string
+          name: string
+          star_rating?: number | null
+          updated_at?: string
+        }
+        Update: {
+          country_id?: string | null
+          created_at?: string
+          description?: string | null
+          features?: string[] | null
+          id?: string
+          location?: string
+          name?: string
+          star_rating?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "hotels_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      regions: {
+        Row: {
+          created_at: string
+          description: string | null
+          featured_image: string | null
+          id: string
+          name: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          featured_image?: string | null
+          id?: string
+          name: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          featured_image?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      tour_countries: {
+        Row: {
+          country_id: string | null
+          created_at: string
+          id: string
+          order: number
+          tour_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          country_id?: string | null
+          created_at?: string
+          id?: string
+          order: number
+          tour_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          country_id?: string | null
+          created_at?: string
+          id?: string
+          order?: number
+          tour_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_countries_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tour_countries_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tour_highlights: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image: string | null
+          order: number
+          title: string
+          tour_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image?: string | null
+          order: number
+          title: string
+          tour_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image?: string | null
+          order?: number
+          title?: string
+          tour_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_highlights_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tour_hotels: {
+        Row: {
+          created_at: string
+          hotel_id: string | null
+          id: string
+          nights: number
+          order: number
+          tour_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          hotel_id?: string | null
+          id?: string
+          nights: number
+          order: number
+          tour_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          hotel_id?: string | null
+          id?: string
+          nights?: number
+          order?: number
+          tour_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_hotels_hotel_id_fkey"
+            columns: ["hotel_id"]
+            isOneToOne: false
+            referencedRelation: "hotels"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tour_hotels_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tours: {
+        Row: {
+          created_at: string
+          description: string
+          duration: number
+          featured_image: string | null
+          guide_price: number
+          id: string
+          is_featured: boolean | null
+          name: string
+          slug: string
+          summary: string
+          updated_at: string
+          vibe_tags: Database["public"]["Enums"]["vibe_tag"][] | null
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          duration: number
+          featured_image?: string | null
+          guide_price: number
+          id?: string
+          is_featured?: boolean | null
+          name: string
+          slug: string
+          summary: string
+          updated_at?: string
+          vibe_tags?: Database["public"]["Enums"]["vibe_tag"][] | null
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          duration?: number
+          featured_image?: string | null
+          guide_price?: number
+          id?: string
+          is_featured?: boolean | null
+          name?: string
+          slug?: string
+          summary?: string
+          updated_at?: string
+          vibe_tags?: Database["public"]["Enums"]["vibe_tag"][] | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -18,7 +346,17 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      vibe_tag:
+        | "adventure"
+        | "luxury"
+        | "romantic"
+        | "cultural"
+        | "relaxation"
+        | "wildlife"
+        | "beach"
+        | "mountain"
+        | "city"
+        | "culinary"
     }
     CompositeTypes: {
       [_ in never]: never
