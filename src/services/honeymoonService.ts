@@ -169,3 +169,86 @@ export async function getHotelsByCountry(countryId: string) {
   
   return data || [];
 }
+
+// Vibe categories functions
+export async function getVibeCategories() {
+  // This query fetches distinct vibe tags from the tours table
+  const { data, error } = await supabase
+    .from('tours')
+    .select('vibe_tags')
+    .not('vibe_tags', 'is', null);
+  
+  if (error) {
+    console.error('Error fetching vibe categories:', error);
+    return [];
+  }
+  
+  // Process the data to get unique vibe tags
+  const allVibeTags = data.flatMap(tour => tour.vibe_tags || []);
+  const uniqueVibeTags = [...new Set(allVibeTags)];
+  
+  // Map vibe tags to their display information
+  const vibeCategories = uniqueVibeTags.map(tag => {
+    const vibeMappings: Record<string, { title: string, image: string, description: string }> = {
+      'adventure': {
+        title: "Adventure",
+        image: "https://images.unsplash.com/photo-1527631120902-378417754324?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "For thrill-seeking couples"
+      },
+      'relaxation': {
+        title: "Relaxation",
+        image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Serene escapes for unwinding"
+      },
+      'cultural': {
+        title: "Cultural",
+        image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2339&q=80",
+        description: "Immersive local experiences"
+      },
+      'luxury': {
+        title: "Luxury",
+        image: "https://images.unsplash.com/photo-1551918120-9739cb430c6d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Exclusive high-end getaways"
+      },
+      'romantic': {
+        title: "Romantic",
+        image: "https://images.unsplash.com/photo-1494469125874-2aa94d9cffb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Perfect for couples in love"
+      },
+      'wildlife': {
+        title: "Wildlife",
+        image: "https://images.unsplash.com/photo-1504173010664-32509aeebb62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Close encounters with nature"
+      },
+      'beach': {
+        title: "Beach",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Sun, sand and ocean views"
+      },
+      'mountain': {
+        title: "Mountain",
+        image: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Breathtaking highland escapes"
+      },
+      'city': {
+        title: "City",
+        image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Urban adventures and nightlife"
+      },
+      'culinary': {
+        title: "Culinary",
+        image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        description: "Gourmet experiences worldwide"
+      }
+    };
+
+    // Return default values if mapping is not found
+    return vibeMappings[tag] || {
+      title: tag.charAt(0).toUpperCase() + tag.slice(1),
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      description: "Explore this unique travel style"
+    };
+  });
+  
+  return vibeCategories;
+}

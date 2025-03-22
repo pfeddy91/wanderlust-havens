@@ -1,30 +1,14 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getVibeCategories } from '@/services/honeymoonService';
 
-const vibeCategories = [
-  {
-    title: "Adventure",
-    image: "https://images.unsplash.com/photo-1527631120902-378417754324?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-    description: "For thrill-seeking couples"
-  },
-  {
-    title: "Relaxation",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-    description: "Serene escapes for unwinding"
-  },
-  {
-    title: "Cultural",
-    image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2339&q=80",
-    description: "Immersive local experiences"
-  },
-  {
-    title: "Luxury",
-    image: "https://images.unsplash.com/photo-1551918120-9739cb430c6d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-    description: "Exclusive high-end getaways"
-  }
-];
+type VibeCategory = {
+  title: string;
+  image: string;
+  description: string;
+};
 
-const VibeCard = ({ vibe, index }: { vibe: typeof vibeCategories[0], index: number }) => {
+const VibeCard = ({ vibe, index }: { vibe: VibeCategory, index: number }) => {
   return (
     <div 
       className="relative group overflow-hidden rounded-md h-80 animate-slide-up opacity-0" 
@@ -44,6 +28,24 @@ const VibeCard = ({ vibe, index }: { vibe: typeof vibeCategories[0], index: numb
 };
 
 const Vibes = () => {
+  const [vibeCategories, setVibeCategories] = useState<VibeCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVibeCategories = async () => {
+      try {
+        const categories = await getVibeCategories();
+        setVibeCategories(categories);
+      } catch (error) {
+        console.error('Error fetching vibe categories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVibeCategories();
+  }, []);
+
   return (
     <section id="vibes" className="py-20 bg-travel-cream">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
@@ -55,11 +57,23 @@ const Vibes = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {vibeCategories.map((vibe, index) => (
-            <VibeCard key={vibe.title} vibe={vibe} index={index} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[...Array(4)].map((_, index) => (
+              <div key={index} className="h-80 bg-gray-200 animate-pulse rounded-md"></div>
+            ))}
+          </div>
+        ) : vibeCategories.length === 0 ? (
+          <div className="text-center text-travel-gray py-16">
+            <p>No categories available. Check back soon!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {vibeCategories.map((vibe, index) => (
+              <VibeCard key={vibe.title} vibe={vibe} index={index} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
