@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -72,6 +71,7 @@ export default {
 				'travel-cream': '#FCF8F3',
 				'travel-coral': '#F79489',
 				'travel-sand': '#E6DED3',
+				'travel-light-brown': '#D2BEA9',
 				'travel-gray': '#718096',
 			},
 			borderRadius: {
@@ -154,7 +154,7 @@ export default {
 			},
 			fontFamily: {
 				'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-				'serif': ['Playfair Display', 'ui-serif', 'Georgia', 'Cambria', 'serif'],
+				'serif': ['Cormorant Garamond', 'Playfair Display', 'ui-serif', 'Georgia', 'Cambria', 'serif'],
 				'mono': ['ui-monospace', 'SFMono-Regular', 'monospace']
 			}
 		}
