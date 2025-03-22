@@ -1,15 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 
-// Array of background images
+// Array of high-quality background images
 const backgrounds = [
-  "public/lovable-uploads/496c1439-8451-4174-991e-b025c565c709.png", // Use the uploaded image as the first background
-  "https://images.unsplash.com/photo-1586861644790-f7c7fb066a6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-  "https://images.unsplash.com/photo-1476673160081-cf065607f449?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-  "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-  "https://images.unsplash.com/photo-1602002418082-dd4a8d2d2f96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2274&q=80"
+  "public/lovable-uploads/54e12026-cd55-4e53-8a0b-79cbcd85b1ff.png", // Use the uploaded image as the first background
+  "https://images.unsplash.com/photo-1602002418082-dd4a8d2d2f96?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
+  "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000"
 ];
 
 const Hero = () => {
@@ -25,18 +23,18 @@ const Hero = () => {
     });
   }, []);
 
-  // Image rotation
+  // Image rotation - faster transition
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIsTransitioning(true);
       setNextImageIndex((currentImageIndex + 1) % backgrounds.length);
       
-      // After animation completes, update currentImageIndex
+      // After animation completes, update currentImageIndex - faster transition
       setTimeout(() => {
         setCurrentImageIndex(nextImageIndex);
         setIsTransitioning(false);
-      }, 1000);
-    }, 6000);
+      }, 700); // Reduced from 1000ms to 700ms
+    }, 5000); // Reduced from 6000ms to 5000ms
     
     return () => clearInterval(intervalId);
   }, [currentImageIndex, nextImageIndex]);
@@ -49,7 +47,7 @@ const Hero = () => {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Current background image */}
       <div
-        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out ${
           isTransitioning ? 'opacity-0' : 'opacity-100'
         }`}
         style={{ backgroundImage: `url(${backgrounds[currentImageIndex]})` }}
@@ -57,7 +55,7 @@ const Hero = () => {
       
       {/* Next background image (for smooth transition) */}
       <div
-        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out ${
           isTransitioning ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ backgroundImage: `url(${backgrounds[nextImageIndex]})` }}
@@ -68,41 +66,20 @@ const Hero = () => {
       
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 sm:px-6 lg:px-8">
-        <div className="animate-slide-up opacity-0" style={{ animationDelay: '300ms' }}>
-          <div className="luxury-badge mb-5 px-6 py-2">
-            <p className="text-center tracking-widest uppercase text-white text-sm">LUXURY HONEYMOON JOURNEYS</p>
-          </div>
-        </div>
-        <div className="animate-slide-up opacity-0" style={{ animationDelay: '600ms' }}>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-center max-w-5xl leading-tight mb-6">
-            Begin Your Forever<br />in Paradise
-          </h1>
-        </div>
-        <div className="animate-slide-up opacity-0" style={{ animationDelay: '900ms' }}>
-          <p className="text-center text-base md:text-lg mb-8 max-w-2xl text-white">
-            Curated honeymoon experiences designed for couples seeking<br />
-            unforgettable moments in the world's most beautiful destinations
-          </p>
-        </div>
-        <div className="animate-slide-up opacity-0" style={{ animationDelay: '1200ms' }}>
-          <Button 
-            className="bg-transparent hover:bg-white/20 text-white rounded-full border border-white px-10 py-6 text-lg font-medium transition-transform hover:scale-105"
-            onClick={scrollToExplore}
-          >
-            Discover Your Dream Honeymoon
-          </Button>
-        </div>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-center leading-tight mb-8">
+          Plan the trip of a lifetime
+        </h1>
       </div>
       
-      {/* Scroll down indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center">
-        <p className="text-white mb-2 text-sm">Explore</p>
+      {/* Learn More button */}
+      <div className="absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center">
+        <p className="text-white uppercase text-sm tracking-widest mb-2">LEARN MORE</p>
         <button 
           onClick={scrollToExplore}
-          aria-label="Scroll down" 
-          className="flex items-center justify-center w-10 h-10 rounded-full border border-white text-white transition-opacity hover:opacity-80"
+          aria-label="Learn more" 
+          className="flex items-center justify-center w-10 h-10 text-white transition-opacity hover:opacity-80"
         >
-          <ChevronDown className="h-5 w-5" />
+          <ChevronDown className="h-6 w-6" />
         </button>
       </div>
     </div>
