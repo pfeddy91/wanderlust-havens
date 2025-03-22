@@ -45,7 +45,7 @@ const MenuLink = ({
   return (
     <a 
       href={href} 
-      className="flex items-center justify-between px-6 py-4 border-b border-travel-sand text-black font-medium text-lg capitalize"
+      className="flex items-center justify-between px-6 py-4 border-b border-travel-sand text-black text-[1.15rem] capitalize"
     >
       {label}
       {hasChildren && <ChevronRight className="h-5 w-5" />}

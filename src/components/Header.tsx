@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 shadow-sm">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-2 sm:px-3 lg:px-4">
         <div className="flex justify-between items-center h-20">
           {/* Logo - Left aligned */}
           <a href="/" className="flex items-center">
@@ -33,15 +33,15 @@ const Header = () => {
             <nav className="flex items-center space-x-10">
               <button 
                 onClick={toggleDestinations}
-                className="nav-item font-bold text-black tracking-wide capitalize text-lg hover:text-travel-gray transition-colors flex items-center gap-1"
+                className="nav-item text-black tracking-wide capitalize text-[1.15rem] hover:text-travel-gray transition-colors flex items-center gap-1"
               >
                 Destinations
                 <ChevronDown className="h-4 w-4" />
               </button>
-              <a href="#vibes" className="nav-item font-bold text-black tracking-wide capitalize text-lg hover:text-travel-gray transition-colors">
+              <a href="#vibes" className="nav-item text-black tracking-wide capitalize text-[1.15rem] hover:text-travel-gray transition-colors">
                 Categories
               </a>
-              <a href="#planner" className="nav-item font-bold text-black tracking-wide capitalize text-lg hover:text-travel-gray transition-colors">
+              <a href="#planner" className="nav-item text-black tracking-wide capitalize text-[1.15rem] hover:text-travel-gray transition-colors">
                 Quiz
               </a>
             </nav>
