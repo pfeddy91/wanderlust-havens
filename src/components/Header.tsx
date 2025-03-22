@@ -23,7 +23,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <a href="/" className="flex items-center">
-            <span className="font-serif text-3xl font-medium text-black tracking-wider">WANDERLUST</span>
+            <span className="font-serif text-3xl font-medium text-black tracking-wider">MOONS</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -31,15 +31,15 @@ const Header = () => {
             <nav className="flex items-center space-x-10">
               <button 
                 onClick={toggleDestinations}
-                className="nav-item font-medium text-black tracking-wide uppercase text-sm hover:text-travel-gray transition-colors flex items-center"
+                className="nav-item font-bold text-black tracking-wide uppercase text-base hover:text-travel-gray transition-colors flex items-center"
               >
                 DESTINATIONS
               </button>
-              <a href="#vibes" className="nav-item font-medium text-black tracking-wide uppercase text-sm hover:text-travel-gray transition-colors">
-                VIBES
+              <a href="#vibes" className="nav-item font-bold text-black tracking-wide uppercase text-base hover:text-travel-gray transition-colors">
+                CATEGORIES
               </a>
-              <a href="#planner" className="nav-item font-medium text-black tracking-wide uppercase text-sm hover:text-travel-gray transition-colors">
-                AI PLANNER
+              <a href="#planner" className="nav-item font-bold text-black tracking-wide uppercase text-base hover:text-travel-gray transition-colors">
+                QUIZ
               </a>
             </nav>
           )}

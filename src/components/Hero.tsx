@@ -1,30 +1,66 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronDown } from "lucide-react";
+import { supabase } from '@/integrations/supabase/client';
 
-// Array of high-quality background images
-const backgrounds = [
-  "public/lovable-uploads/54e12026-cd55-4e53-8a0b-79cbcd85b1ff.png", // Use the uploaded image as the first background
-  "https://images.unsplash.com/photo-1602002418082-dd4a8d2d2f96?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
-  "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000",
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=2000"
-];
+// Type for background images from database
+interface BackgroundImage {
+  id: string;
+  image_url: string;
+  alt_text: string | null;
+  display_order: number;
+}
 
 const Hero = () => {
+  const [backgrounds, setBackgrounds] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [nextImageIndex, setNextImageIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch background images from the database
+  useEffect(() => {
+    const fetchBackgroundImages = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('background_images')
+          .select('*')
+          .order('display_order', { ascending: true });
+        
+        if (error) {
+          console.error('Error fetching background images:', error);
+          return;
+        }
+        
+        // Extract image URLs from the data
+        const imageUrls = (data as BackgroundImage[]).map(img => img.image_url);
+        if (imageUrls.length > 0) {
+          setBackgrounds(imageUrls);
+        }
+      } catch (error) {
+        console.error('Error in fetchBackgroundImages:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBackgroundImages();
+  }, []);
 
   // Preload images
   useEffect(() => {
-    backgrounds.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
+    if (backgrounds.length > 0) {
+      backgrounds.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+  }, [backgrounds]);
 
   // Image rotation - faster transition
   useEffect(() => {
+    if (backgrounds.length <= 1) return;
+    
     const intervalId = setInterval(() => {
       setIsTransitioning(true);
       setNextImageIndex((currentImageIndex + 1) % backgrounds.length);
@@ -33,15 +69,28 @@ const Hero = () => {
       setTimeout(() => {
         setCurrentImageIndex(nextImageIndex);
         setIsTransitioning(false);
-      }, 700); // Reduced from 1000ms to 700ms
-    }, 5000); // Reduced from 6000ms to 5000ms
+      }, 700); // 700ms transition
+    }, 3000); // 3 seconds interval
     
     return () => clearInterval(intervalId);
-  }, [currentImageIndex, nextImageIndex]);
+  }, [currentImageIndex, nextImageIndex, backgrounds.length]);
 
   const scrollToExplore = () => {
     document.getElementById('explore')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Fallback while loading
+  if (loading || backgrounds.length === 0) {
+    return (
+      <div className="relative w-full h-screen bg-gray-200 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-black leading-tight mb-8">
+            Plan the honeymoon of a lifetime
+          </h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -66,8 +115,8 @@ const Hero = () => {
       
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 sm:px-6 lg:px-8">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-center leading-tight mb-8">
-          Plan the trip of a lifetime
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-medium text-center leading-tight mb-8 hero-text-animation">
+          Plan the honeymoon of a lifetime
         </h1>
       </div>
       
