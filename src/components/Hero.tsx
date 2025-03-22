@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronDown } from "lucide-react";
-import { supabase } from '@/integrations/supabase/client';
+import { getBackgroundImages } from '@/services/backgroundService';
 
 // Type for background images from database
 interface BackgroundImage {
@@ -13,27 +13,18 @@ interface BackgroundImage {
 
 const Hero = () => {
   const [backgrounds, setBackgrounds] = useState<string[]>([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [nextImageIndex, setNextImageIndex] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   // Fetch background images from the database
   useEffect(() => {
     const fetchBackgroundImages = async () => {
       try {
-        const { data, error } = await supabase
-          .from('background_images')
-          .select('*')
-          .order('display_order', { ascending: true });
-        
-        if (error) {
-          console.error('Error fetching background images:', error);
-          return;
-        }
+        const backgroundData = await getBackgroundImages();
         
         // Extract image URLs from the data
-        const imageUrls = (data as BackgroundImage[]).map(img => img.image_url);
+        const imageUrls = backgroundData.map((img: BackgroundImage) => img.image_url);
         if (imageUrls.length > 0) {
           setBackgrounds(imageUrls);
         }
@@ -47,33 +38,42 @@ const Hero = () => {
     fetchBackgroundImages();
   }, []);
 
-  // Preload images
+  // Preload images to avoid flickering
   useEffect(() => {
-    if (backgrounds.length > 0) {
-      backgrounds.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
-    }
+    if (backgrounds.length === 0) return;
+    
+    let loadedCount = 0;
+    const totalImages = backgrounds.length;
+    
+    backgrounds.forEach((src) => {
+      const img = new Image();
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          setImagesLoaded(true);
+        }
+      };
+      img.onerror = () => {
+        console.error(`Failed to load image: ${src}`);
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          setImagesLoaded(true);
+        }
+      };
+      img.src = src;
+    });
   }, [backgrounds]);
 
-  // Image rotation - faster transition
+  // Rotate images on an interval
   useEffect(() => {
-    if (backgrounds.length <= 1) return;
+    if (!imagesLoaded || backgrounds.length <= 1) return;
     
     const intervalId = setInterval(() => {
-      setIsTransitioning(true);
-      setNextImageIndex((currentImageIndex + 1) % backgrounds.length);
-      
-      // After animation completes, update currentImageIndex - faster transition
-      setTimeout(() => {
-        setCurrentImageIndex(nextImageIndex);
-        setIsTransitioning(false);
-      }, 700); // 700ms transition
-    }, 3000); // 3 seconds interval
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % backgrounds.length);
+    }, 4000); // Change image every 4 seconds
     
     return () => clearInterval(intervalId);
-  }, [currentImageIndex, nextImageIndex, backgrounds.length]);
+  }, [imagesLoaded, backgrounds.length]);
 
   const scrollToExplore = () => {
     document.getElementById('explore')?.scrollIntoView({ behavior: 'smooth' });
@@ -94,21 +94,17 @@ const Hero = () => {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Current background image */}
-      <div
-        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out ${
-          isTransitioning ? 'opacity-0' : 'opacity-100'
-        }`}
-        style={{ backgroundImage: `url(${backgrounds[currentImageIndex]})` }}
-      />
-      
-      {/* Next background image (for smooth transition) */}
-      <div
-        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ease-in-out ${
-          isTransitioning ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ backgroundImage: `url(${backgrounds[nextImageIndex]})` }}
-      />
+      {/* Background images */}
+      {backgrounds.map((bg, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1500 ease-in-out ${
+            index === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ backgroundImage: `url(${bg})` }}
+          aria-hidden={index !== currentIndex}
+        />
+      ))}
       
       {/* Overlay */}
       <div className="absolute inset-0 hero-overlay"></div>
@@ -120,9 +116,9 @@ const Hero = () => {
         </h1>
       </div>
       
-      {/* Learn More button */}
+      {/* Learn More button - with larger font */}
       <div className="absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center">
-        <p className="text-white uppercase text-sm tracking-widest mb-2">LEARN MORE</p>
+        <p className="text-white uppercase text-base tracking-widest mb-2">LEARN MORE</p>
         <button 
           onClick={scrollToExplore}
           aria-label="Learn more" 

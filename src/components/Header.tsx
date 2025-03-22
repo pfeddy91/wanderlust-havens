@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import DestinationsPopup from "./DestinationsPopup";
 
@@ -21,9 +21,9 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+          {/* Logo - made 2pt bigger */}
           <a href="/" className="flex items-center">
-            <span className="font-serif text-3xl font-medium text-black tracking-wider">MOONS</span>
+            <span className="font-serif text-[2rem] font-medium text-black tracking-wider">MOONS</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -31,14 +31,15 @@ const Header = () => {
             <nav className="flex items-center space-x-10">
               <button 
                 onClick={toggleDestinations}
-                className="nav-item font-bold text-black tracking-wide uppercase text-base hover:text-travel-gray transition-colors flex items-center"
+                className="nav-item font-bold text-black tracking-wide uppercase text-lg hover:text-travel-gray transition-colors flex items-center gap-1"
               >
                 DESTINATIONS
+                <ChevronDown className="h-4 w-4" />
               </button>
-              <a href="#vibes" className="nav-item font-bold text-black tracking-wide uppercase text-base hover:text-travel-gray transition-colors">
+              <a href="#vibes" className="nav-item font-bold text-black tracking-wide uppercase text-lg hover:text-travel-gray transition-colors">
                 CATEGORIES
               </a>
-              <a href="#planner" className="nav-item font-bold text-black tracking-wide uppercase text-base hover:text-travel-gray transition-colors">
+              <a href="#planner" className="nav-item font-bold text-black tracking-wide uppercase text-lg hover:text-travel-gray transition-colors">
                 QUIZ
               </a>
             </nav>

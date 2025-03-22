@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -157,9 +158,14 @@ html {
   animation: fadeUp 0.8s ease-out forwards;
 }
 
-/* Faster transitions for background images */
-.bg-transition {
-  transition: opacity 0.7s ease-in-out;
+/* Longer transition for background images */
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-1500 {
+  transition-duration: 1500ms;
 }
 
 /* Aspect ratio utility for destination cards */
