@@ -18,15 +18,15 @@ const MobileMenu = () => {
       
       <div className="flex-1 overflow-auto py-6">
         <nav className="flex flex-col">
-          <MenuLink href="#destinations" label="DESTINATIONS" hasChildren />
-          <MenuLink href="#vibes" label="CATEGORIES" />
-          <MenuLink href="#planner" label="QUIZ" />
+          <MenuLink href="#destinations" label="Destinations" hasChildren />
+          <MenuLink href="#vibes" label="Categories" />
+          <MenuLink href="#planner" label="Quiz" />
         </nav>
       </div>
       
       <div className="p-4 border-t border-travel-sand space-y-3">
-        <Button className="w-full bg-black hover:bg-black/90 text-white rounded-none py-3 uppercase text-sm font-medium tracking-wide">
-          Enquire Now
+        <Button className="w-full bg-black hover:bg-black/90 text-white rounded-[10px] py-3 capitalize text-sm font-medium tracking-wide">
+          Enquire now
         </Button>
       </div>
     </div>
@@ -45,7 +45,7 @@ const MenuLink = ({
   return (
     <a 
       href={href} 
-      className="flex items-center justify-between px-6 py-4 border-b border-travel-sand text-black font-medium text-lg uppercase"
+      className="flex items-center justify-between px-6 py-4 border-b border-travel-sand text-black font-medium text-lg capitalize"
     >
       {label}
       {hasChildren && <ChevronRight className="h-5 w-5" />}

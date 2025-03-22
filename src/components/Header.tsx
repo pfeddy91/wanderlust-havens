@@ -20,38 +20,38 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+          {/* Logo - Left aligned */}
           <a href="/" className="flex items-center">
             <span className="font-serif text-[2rem] font-medium text-black tracking-wider">MOONS</span>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Center */}
           {!isMobile && (
             <nav className="flex items-center space-x-10">
               <button 
                 onClick={toggleDestinations}
-                className="nav-item font-bold text-black tracking-wide uppercase text-lg hover:text-travel-gray transition-colors flex items-center gap-1"
+                className="nav-item font-bold text-black tracking-wide capitalize text-lg hover:text-travel-gray transition-colors flex items-center gap-1"
               >
-                DESTINATIONS
+                Destinations
                 <ChevronDown className="h-4 w-4" />
               </button>
-              <a href="#vibes" className="nav-item font-bold text-black tracking-wide uppercase text-lg hover:text-travel-gray transition-colors">
-                CATEGORIES
+              <a href="#vibes" className="nav-item font-bold text-black tracking-wide capitalize text-lg hover:text-travel-gray transition-colors">
+                Categories
               </a>
-              <a href="#planner" className="nav-item font-bold text-black tracking-wide uppercase text-lg hover:text-travel-gray transition-colors">
-                QUIZ
+              <a href="#planner" className="nav-item font-bold text-black tracking-wide capitalize text-lg hover:text-travel-gray transition-colors">
+                Quiz
               </a>
             </nav>
           )}
 
-          {/* Desktop Actions */}
+          {/* Desktop Actions - Right aligned */}
           {!isMobile && (
             <div className="flex items-center space-x-4">
-              <Button className="bg-black hover:bg-black/90 text-white rounded-none px-6 uppercase text-sm font-medium tracking-wide">
-                Enquire Now
+              <Button className="bg-black hover:bg-black/90 text-white rounded-[10px] px-6 capitalize text-sm font-medium tracking-wide">
+                Enquire now
               </Button>
               <div className="flex items-center justify-center w-10 h-10 text-black hover:text-gray-700 transition-colors cursor-pointer">
                 <Search className="h-5 w-5" />
