@@ -20,18 +20,13 @@ const MobileMenu = () => {
         <nav className="flex flex-col">
           <MenuLink href="#destinations" label="DESTINATIONS" hasChildren />
           <MenuLink href="#vibes" label="CATEGORIES" />
-          <MenuLink href="#" label="PARTNERS" />
-          <MenuLink href="#" label="WHY MOONS" />
-          <MenuLink href="#" label="COMPANY" hasChildren />
+          <MenuLink href="#planner" label="QUIZ" />
         </nav>
       </div>
       
       <div className="p-4 border-t border-travel-sand space-y-3">
         <Button className="w-full bg-black hover:bg-black/90 text-white rounded-none py-3 uppercase text-sm font-medium tracking-wide">
-          Book with MOONS
-        </Button>
-        <Button variant="outline" className="w-full border-black text-black rounded-none py-3 uppercase text-sm font-medium tracking-wide">
-          Become an Advisor
+          Enquire Now
         </Button>
       </div>
     </div>
