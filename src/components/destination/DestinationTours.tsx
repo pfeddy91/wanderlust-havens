@@ -46,10 +46,10 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-1">
           <h2 className="text-3xl font-serif font-bold mb-4 uppercase">
-            EXAMPLE<br/>{country.name.toUpperCase()} TRIPS
+            EXAMPLE<br/>{country.name.toUpperCase()} HONEYMOONS
           </h2>
-          <p className="text-base text-gray-700 mb-6">
-            These luxury {country.name} tours are simply suggestions for the kind of holiday you might have. 
+          <p className="text-base text-gray-700 mb-6 font-serif">
+            These luxury {country.name} honeymoons are simply suggestions for the kind of holiday you might have. 
             Yours will be tailored, altered, and refined until it matches you completely.
           </p>
         </div>
@@ -58,25 +58,25 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {displayTours.map((tour) => (
               <div key={tour.id} className="relative group overflow-hidden">
-                <div className="aspect-w-2 aspect-h-3 bg-gray-200">
+                <div className="aspect-w-2 aspect-h-3 bg-gray-200 h-[500px] md:h-[600px]">
                   <img 
                     src={tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'} 
                     alt={tour.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                    <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                    <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 font-serif">
                       {tour.duration} NIGHTS
                     </div>
                     
-                    <div className="absolute bottom-0 left-0 p-6 text-white">
-                      <p className="uppercase text-sm mb-1">{country.name}</p>
-                      <h3 className="text-xl font-bold mb-2 uppercase">{tour.name}</h3>
-                      <p className="text-sm mb-4 line-clamp-2">{tour.summary}</p>
-                      <p className="text-sm mb-4">From £{tour.guide_price.toLocaleString()} per person excl. flights</p>
+                    <div className="absolute bottom-0 left-0 p-8 text-white">
+                      <p className="uppercase text-sm mb-2 font-sans">{country.name}</p>
+                      <h3 className="text-2xl font-bold mb-3 uppercase font-serif">{tour.name}</h3>
+                      <p className="text-sm mb-4 line-clamp-3 font-serif">{tour.summary}</p>
+                      <p className="text-sm mb-6 font-serif">From £{tour.guide_price.toLocaleString()} per person excl. flights</p>
                       
-                      <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
-                        EXPLORE TRIP
+                      <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black rounded-none w-full">
+                        EXPLORE HONEYMOON
                       </Button>
                     </div>
                   </div>

@@ -30,11 +30,8 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
       {/* Hero Content */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
         <h1 className="text-4xl md:text-6xl font-serif text-white font-bold tracking-wider mb-6">
-          LUXURY {country.name.toUpperCase()} TOURS & HOLIDAYS
+          HIGH-END HONEYMOONS IN {country.name.toUpperCase()}
         </h1>
-        <p className="text-xl text-white max-w-3xl">
-          Honeymoons in {country.name} tailored to your dreams
-        </p>
         
         {/* Scroll Down Indicator */}
         <button 
