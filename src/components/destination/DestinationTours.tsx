@@ -1,35 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-// Define interface for tour image
-interface TourImage {
-  id: string;
-  tour_id: string | null;
-  image_url: string;
-  alt_text: string | null;
-  is_featured: boolean | null;
-  display_order: number;
-  created_at: string;
-  updated_at: string;
-}
-
-// Define interface for tour with tour_images property
-interface Tour {
-  id: string;
-  name: string;
-  slug: string;
-  duration: number;
-  guide_price: number;
-  summary?: string;
-  description?: string;
-  featured_image: string | null;
-  is_featured?: boolean | null;
-  created_at?: string;
-  updated_at?: string;
-  vibe_tag?: any;
-  tour_images?: TourImage[];
-}
+import { Tour, TourImage } from '@/types/tour';
 
 interface DestinationToursProps {
   tours: Tour[];
@@ -71,7 +43,11 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
   const getTourImage = (tour: Tour) => {
     // Try to get featured image from tour_images
     if (tour.tour_images && tour.tour_images.length > 0) {
-      // First look for a featured image
+      // First check for a primary image
+      const primaryImage = tour.tour_images.find((img) => img.is_primary);
+      if (primaryImage) return primaryImage.image_url;
+      
+      // Then look for a featured image
       const featuredImage = tour.tour_images.find((img) => img.is_featured);
       if (featuredImage) return featuredImage.image_url;
       

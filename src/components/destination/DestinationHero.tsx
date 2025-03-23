@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { getToursByCountry } from '@/services/honeymoonService';
+import { Tour, TourImage } from '@/types/tour';
 
 interface DestinationHeroProps {
   country: {
@@ -9,35 +10,6 @@ interface DestinationHeroProps {
     featured_image: string | null;
     id: string;
   };
-}
-
-// Define interface for tour image
-interface TourImage {
-  id: string;
-  tour_id: string | null;
-  image_url: string;
-  alt_text: string | null;
-  is_featured: boolean | null;
-  display_order: number;
-  created_at: string;
-  updated_at: string;
-}
-
-// Define interface for tour with tour_images property
-interface Tour {
-  id: string;
-  name: string;
-  slug: string;
-  duration: number;
-  guide_price: number;
-  summary: string;
-  description: string;
-  featured_image: string | null;
-  is_featured: boolean | null;
-  created_at: string;
-  updated_at: string;
-  vibe_tag: any;
-  tour_images?: TourImage[];
 }
 
 const DestinationHero = ({ country }: DestinationHeroProps) => {
@@ -55,7 +27,14 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
           // Check for tour images
           for (const tour of countryTours as Tour[]) {
             if (tour.tour_images && tour.tour_images.length > 0) {
-              // First try to find a featured image
+              // First, try to find a primary image
+              const primaryImage = tour.tour_images.find((img) => img.is_primary);
+              if (primaryImage) {
+                setHeroImage(primaryImage.image_url);
+                return;
+              }
+              
+              // Next, try to find a featured image
               const featuredImage = tour.tour_images.find((img) => img.is_featured);
               if (featuredImage) {
                 setHeroImage(featuredImage.image_url);
