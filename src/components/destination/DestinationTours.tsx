@@ -38,6 +38,19 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
     }
   ];
 
+  // Function to get the best image for a tour
+  const getTourImage = (tour: any) => {
+    // Try to get featured image from tour_images
+    if (tour.tour_images && tour.tour_images.length > 0) {
+      const featuredImage = tour.tour_images.find((img: any) => img.is_featured);
+      if (featuredImage) return featuredImage.image_url;
+      // If no featured image found, use the first image
+      return tour.tour_images[0].image_url;
+    }
+    // Fallback to tour's featured_image or a placeholder
+    return tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80';
+  };
+
   return (
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -65,7 +78,7 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
                 
                 <div className="w-full h-full relative">
                   <img 
-                    src={tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'} 
+                    src={getTourImage(tour)} 
                     alt={tour.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />

@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 
 // Region-related functions
@@ -123,7 +122,17 @@ export async function getTourBySlug(slug: string) {
     return null;
   }
   
-  return data;
+  const { data: tourImages, error: imagesError } = await supabase
+    .from('tour_images')
+    .select('*')
+    .eq('tour_id', data.id)
+    .order('display_order');
+  
+  if (imagesError) {
+    console.error(`Error fetching images for tour ${data.id}:`, imagesError);
+  }
+  
+  return { ...data, tour_images: tourImages || [] };
 }
 
 export async function getToursByCountry(countryId: string) {
@@ -136,8 +145,41 @@ export async function getToursByCountry(countryId: string) {
     console.error(`Error fetching tours for country ${countryId}:`, error);
     return [];
   }
+
+  const tours = data?.map(tc => tc.tours) || [];
   
-  return data?.map(tc => tc.tours) || [];
+  for (const tour of tours) {
+    if (tour) {
+      const { data: images, error: imagesError } = await supabase
+        .from('tour_images')
+        .select('*')
+        .eq('tour_id', tour.id)
+        .order('display_order');
+      
+      if (imagesError) {
+        console.error(`Error fetching images for tour ${tour.id}:`, imagesError);
+      } else {
+        tour.tour_images = images || [];
+      }
+    }
+  }
+  
+  return tours;
+}
+
+export async function getTourImages(tourId: string) {
+  const { data, error } = await supabase
+    .from('tour_images')
+    .select('*')
+    .eq('tour_id', tourId)
+    .order('display_order');
+  
+  if (error) {
+    console.error(`Error fetching images for tour ${tourId}:`, error);
+    return [];
+  }
+  
+  return data || [];
 }
 
 // Hotel-related functions
@@ -172,7 +214,6 @@ export async function getHotelsByCountry(countryId: string) {
 
 // Vibe categories functions
 export async function getVibeCategories() {
-  // This query fetches distinct vibe tags from the tours table
   const { data, error } = await supabase
     .from('tours')
     .select('vibe_tag')
@@ -183,23 +224,19 @@ export async function getVibeCategories() {
     return [];
   }
   
-  // Process the data to get unique vibe tags
   const allVibeTags: string[] = data.flatMap(tour => {
-    // Check if vibe_tag is an array, a string, or in a different format
     if (typeof tour.vibe_tag === 'string') {
       return [tour.vibe_tag];
     } else if (Array.isArray(tour.vibe_tag)) {
-      // Filter out non-string values and convert everything to strings
       return tour.vibe_tag
         .filter(tag => tag !== null && tag !== undefined)
         .map(tag => String(tag));
     }
-    return []; // Return empty array for unsupported types
+    return [];
   });
   
   const uniqueVibeTags = [...new Set(allVibeTags)];
   
-  // Map vibe tags to their display information
   const vibeCategories = uniqueVibeTags.map(tag => {
     const vibeMappings: Record<string, { title: string, image: string, description: string }> = {
       'adventure': {
@@ -254,7 +291,6 @@ export async function getVibeCategories() {
       }
     };
 
-    // Return default values if mapping is not found
     return vibeMappings[tag] || {
       title: String(tag).charAt(0).toUpperCase() + String(tag).slice(1),
       image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
@@ -264,4 +300,3 @@ export async function getVibeCategories() {
   
   return vibeCategories;
 }
-

@@ -1,20 +1,60 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { getToursByCountry, getTourImages } from '@/services/honeymoonService';
 
 interface DestinationHeroProps {
   country: {
     name: string;
     featured_image: string | null;
+    id: string;
   };
 }
 
 const DestinationHero = ({ country }: DestinationHeroProps) => {
+  const [heroImage, setHeroImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchHeroImages = async () => {
+      if (!country.id) return;
+      
+      try {
+        // Get tours for the country
+        const countryTours = await getToursByCountry(country.id);
+        
+        if (countryTours.length > 0) {
+          // Check for tour images
+          for (const tour of countryTours) {
+            if (tour.tour_images && tour.tour_images.length > 0) {
+              const featuredImage = tour.tour_images.find((img: any) => img.is_featured);
+              if (featuredImage) {
+                setHeroImage(featuredImage.image_url);
+                return;
+              }
+              
+              // If no featured image, use the first one
+              setHeroImage(tour.tour_images[0].image_url);
+              return;
+            }
+          }
+        }
+        
+        // Fallback to country's featured image
+        setHeroImage(country.featured_image);
+      } catch (error) {
+        console.error("Error fetching tour images:", error);
+        setHeroImage(country.featured_image);
+      }
+    };
+    
+    fetchHeroImages();
+  }, [country.id, country.featured_image]);
+
   const scrollToOverview = () => {
     document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const heroImage = country.featured_image || 
+  const backgroundImage = heroImage || country.featured_image || 
     'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1500&q=80';
 
   return (
@@ -22,7 +62,7 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
       {/* Hero Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
