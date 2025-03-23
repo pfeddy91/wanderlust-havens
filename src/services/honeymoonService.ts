@@ -184,10 +184,17 @@ export async function getVibeCategories() {
   }
   
   // Process the data to get unique vibe tags
-  const allVibeTags = data.flatMap(tour => {
-    // Check if vibe_tag is an array, a single value, or in a different format
-    const vibeTags = Array.isArray(tour.vibe_tag) ? tour.vibe_tag : [tour.vibe_tag];
-    return vibeTags.filter(Boolean); // Filter out null/undefined values
+  const allVibeTags: string[] = data.flatMap(tour => {
+    // Check if vibe_tag is an array, a string, or in a different format
+    if (typeof tour.vibe_tag === 'string') {
+      return [tour.vibe_tag];
+    } else if (Array.isArray(tour.vibe_tag)) {
+      // Filter out non-string values and convert everything to strings
+      return tour.vibe_tag
+        .filter(tag => tag !== null && tag !== undefined)
+        .map(tag => String(tag));
+    }
+    return []; // Return empty array for unsupported types
   });
   
   const uniqueVibeTags = [...new Set(allVibeTags)];
@@ -249,7 +256,7 @@ export async function getVibeCategories() {
 
     // Return default values if mapping is not found
     return vibeMappings[tag] || {
-      title: tag.charAt(0).toUpperCase() + tag.slice(1),
+      title: String(tag).charAt(0).toUpperCase() + String(tag).slice(1),
       image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
       description: "Explore this unique travel style"
     };
@@ -257,3 +264,4 @@ export async function getVibeCategories() {
   
   return vibeCategories;
 }
+
