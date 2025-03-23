@@ -175,8 +175,8 @@ export async function getVibeCategories() {
   // This query fetches distinct vibe tags from the tours table
   const { data, error } = await supabase
     .from('tours')
-    .select('vibe_tags')
-    .not('vibe_tags', 'is', null);
+    .select('vibe_tag')
+    .not('vibe_tag', 'is', null);
   
   if (error) {
     console.error('Error fetching vibe categories:', error);
@@ -184,7 +184,12 @@ export async function getVibeCategories() {
   }
   
   // Process the data to get unique vibe tags
-  const allVibeTags = data.flatMap(tour => tour.vibe_tags || []);
+  const allVibeTags = data.flatMap(tour => {
+    // Check if vibe_tag is an array, a single value, or in a different format
+    const vibeTags = Array.isArray(tour.vibe_tag) ? tour.vibe_tag : [tour.vibe_tag];
+    return vibeTags.filter(Boolean); // Filter out null/undefined values
+  });
+  
   const uniqueVibeTags = [...new Set(allVibeTags)];
   
   // Map vibe tags to their display information
