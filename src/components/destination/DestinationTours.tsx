@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 interface DestinationToursProps {
   tours: any[];
@@ -14,30 +14,27 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
   const displayTours = tours.length > 0 ? tours : [
     {
       id: 'placeholder-1',
-      name: `A Journey into ${country.name}`,
+      name: `A JOURNEY INTO ${country.name.toUpperCase()}`,
       duration: 7,
       guide_price: 6000,
       featured_image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&q=80',
       slug: 'journey-into-morocco',
-      summary: `At the gateway to Africa, ${country.name} bears all the marks of...`
     },
     {
       id: 'placeholder-2',
-      name: `Best of ${country.name}: Berbers, Kasbahs & Camels`,
+      name: `BEST OF ${country.name.toUpperCase()}: BERBERS, KASBAHS & CAMELS`,
       duration: 13,
       guide_price: 8000,
       featured_image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80',
       slug: 'best-of-morocco',
-      summary: `Experience the rich cultural heritage and stunning landscapes...`
     },
     {
       id: 'placeholder-3',
-      name: `${country.name}: A Luxury Adventure in the Sahara Desert`,
+      name: `${country.name.toUpperCase()}: A LUXURY ADVENTURE IN THE SAHARA DESERT`,
       duration: 10,
       guide_price: 7500,
       featured_image: 'https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?w=800&q=80',
       slug: 'luxury-adventure-sahara',
-      summary: `Journey through the golden dunes and starlit skies...`
     }
   ];
 
@@ -55,33 +52,37 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
         </div>
         
         <div className="lg:col-span-3">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {displayTours.map((tour) => (
-              <div key={tour.id} className="relative group overflow-hidden">
-                <div className="aspect-w-2 aspect-h-3 bg-gray-200 h-[500px] md:h-[600px]">
+              <Link 
+                to={`/tours/${tour.slug}`} 
+                key={tour.id} 
+                className="block h-[600px] relative overflow-hidden group cursor-pointer"
+              >
+                <div className="absolute top-4 right-6 z-10 text-white font-serif tracking-wider text-lg">
+                  {tour.duration} NIGHTS
+                </div>
+                
+                <div className="w-full h-full relative">
                   <img 
                     src={tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'} 
                     alt={tour.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-                    <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 font-serif">
-                      {tour.duration} NIGHTS
-                    </div>
-                    
                     <div className="absolute bottom-0 left-0 p-8 text-white">
-                      <p className="uppercase text-sm mb-2 font-sans">{country.name}</p>
-                      <h3 className="text-2xl font-bold mb-3 uppercase font-serif">{tour.name}</h3>
-                      <p className="text-sm mb-4 line-clamp-3 font-serif">{tour.summary}</p>
-                      <p className="text-sm mb-6 font-serif">From £{tour.guide_price.toLocaleString()} per person excl. flights</p>
+                      <p className="uppercase text-sm tracking-wider mb-2 font-sans">{country.name}</p>
+                      <h3 className="text-2xl font-bold uppercase font-serif tracking-wide mb-6">{tour.name}</h3>
+                      <p className="text-sm mb-8 font-serif">From £{tour.guide_price.toLocaleString()} per person</p>
                       
-                      <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black rounded-none w-full">
-                        EXPLORE HONEYMOON
-                      </Button>
+                      <div className="inline-block border border-white px-8 py-3 uppercase tracking-wider text-sm font-sans backdrop-blur-sm bg-white/10 transition-colors group-hover:bg-white/20">
+                        EXPLORE MOON
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
