@@ -1,10 +1,12 @@
 
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getRegions } from '@/services/honeymoonService';
 import RegionCard from './RegionCard';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const RegionsGrid = () => {
+  const navigate = useNavigate();
   const [regions, setRegions] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedRegion, setSelectedRegion] = useState<any | null>(null);
@@ -27,8 +29,14 @@ const RegionsGrid = () => {
   }, []);
 
   const handleRegionClick = (region: any) => {
+    // For now, just open the dialog
     setSelectedRegion(region);
     setOpenDialog(true);
+  };
+
+  const navigateToDestination = (slug: string) => {
+    setOpenDialog(false);
+    navigate(`/destinations/${slug}`);
   };
 
   if (isLoading) {
@@ -74,11 +82,29 @@ const RegionsGrid = () => {
                 <p className="text-muted-foreground">
                   {selectedRegion.description || `Explore the beautiful region of ${selectedRegion.name}`}
                 </p>
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold mb-2">Countries in this region</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Coming soon: List of countries in {selectedRegion.name}
-                  </p>
+                <div className="mt-6 space-y-4">
+                  <h3 className="text-lg font-semibold">Select a destination</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {/* Sample destinations - in a real app, these would be fetched from API */}
+                    <button 
+                      onClick={() => navigateToDestination('morocco')}
+                      className="p-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left"
+                    >
+                      Morocco
+                    </button>
+                    <button 
+                      onClick={() => navigateToDestination('egypt')}
+                      className="p-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left"
+                    >
+                      Egypt
+                    </button>
+                    <button 
+                      onClick={() => navigateToDestination('south-africa')}
+                      className="p-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left"
+                    >
+                      South Africa
+                    </button>
+                  </div>
                 </div>
               </div>
             </>

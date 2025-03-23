@@ -333,7 +333,7 @@ export type Database = {
           slug: string
           summary: string
           updated_at: string
-          vibe_tags: Database["public"]["Enums"]["vibe_tag"][] | null
+          vibe_tag: Json | null
         }
         Insert: {
           created_at?: string
@@ -347,7 +347,7 @@ export type Database = {
           slug: string
           summary: string
           updated_at?: string
-          vibe_tags?: Database["public"]["Enums"]["vibe_tag"][] | null
+          vibe_tag?: Json | null
         }
         Update: {
           created_at?: string
@@ -361,7 +361,7 @@ export type Database = {
           slug?: string
           summary?: string
           updated_at?: string
-          vibe_tags?: Database["public"]["Enums"]["vibe_tag"][] | null
+          vibe_tag?: Json | null
         }
         Relationships: []
       }

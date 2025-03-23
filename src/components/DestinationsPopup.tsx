@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { X, ChevronRight } from 'lucide-react';
 import { getRegions, getCountries } from '@/services/honeymoonService';
 
@@ -8,6 +9,7 @@ interface DestinationsPopupProps {
 }
 
 const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
+  const navigate = useNavigate();
   const [regions, setRegions] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,6 +48,11 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
   // Get a few featured countries for "What's Hot" section
   const hotDestinations = countries.slice(0, 6);
 
+  const handleNavigate = (path: string) => {
+    onClose();
+    navigate(path);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center">
       <div className="destinations-popup bg-white w-full max-w-7xl shadow-lg mt-16 rounded-b-lg overflow-hidden">
@@ -67,12 +74,12 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
               ) : (
                 regions.map((region) => (
                   <li key={region.id}>
-                    <a 
-                      href={`/regions/${region.slug}`} 
+                    <button 
+                      onClick={() => handleNavigate(`/regions/${region.slug}`)}
                       className="font-serif text-lg uppercase font-medium hover:text-travel-coral flex items-center"
                     >
                       {region.name}
-                    </a>
+                    </button>
                   </li>
                 ))
               )}
@@ -89,23 +96,23 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                 ))
               ) : (
                 countries.slice(0, 20).map((country) => (
-                  <a 
+                  <button 
                     key={country.id} 
-                    href={`/countries/${country.slug}`}
-                    className="font-medium text-gray-700 hover:text-travel-coral flex items-center"
+                    onClick={() => handleNavigate(`/destinations/${country.slug}`)}
+                    className="font-medium text-gray-700 hover:text-travel-coral flex items-center text-left"
                   >
                     {country.name}
                     <ChevronRight className="ml-1 h-3 w-3" />
-                  </a>
+                  </button>
                 ))
               )}
             </div>
-            <a 
-              href="/countries"
+            <button 
+              onClick={() => handleNavigate('/destinations')}
               className="mt-4 inline-block font-medium text-travel-green hover:text-travel-coral"
             >
               View all countries
-            </a>
+            </button>
           </div>
           
           {/* What's Hot Section */}
@@ -118,9 +125,9 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                 ))
               ) : (
                 hotDestinations.map((destination) => (
-                  <a 
+                  <button 
                     key={destination.id}
-                    href={`/countries/${destination.slug}`}
+                    onClick={() => handleNavigate(`/destinations/${destination.slug}`)}
                     className="relative overflow-hidden rounded-md group"
                   >
                     <div className="aspect-w-16 aspect-h-10 bg-gray-200">
@@ -139,7 +146,7 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                         </span>
                       </div>
                     </div>
-                  </a>
+                  </button>
                 ))
               )}
             </div>
