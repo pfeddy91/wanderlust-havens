@@ -1,5 +1,5 @@
-
 import { supabase } from '@/integrations/supabase/client';
+import { Tour, TourImage } from '@/types/tour';
 
 // Region-related functions
 export async function getRegions() {
@@ -162,16 +162,13 @@ export async function getToursByCountry(countryId: string) {
       if (imagesError) {
         console.error(`Error fetching images for tour ${tours[i].id}:`, imagesError);
       } else {
-        // Explicitly add the tour_images property to the tour object
-        tours[i] = {
-          ...tours[i],
-          tour_images: images || []
-        };
+        // Cast the tours[i] to Tour to allow adding the tour_images property
+        (tours[i] as Tour).tour_images = images as TourImage[] || [];
       }
     }
   }
   
-  return tours;
+  return tours as Tour[];
 }
 
 export async function getTourImages(tourId: string) {
