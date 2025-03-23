@@ -11,6 +11,35 @@ interface DestinationHeroProps {
   };
 }
 
+// Define interface for tour image
+interface TourImage {
+  id: string;
+  tour_id: string | null;
+  image_url: string;
+  alt_text: string | null;
+  is_featured: boolean | null;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// Define interface for tour with tour_images property
+interface Tour {
+  id: string;
+  name: string;
+  slug: string;
+  duration: number;
+  guide_price: number;
+  summary: string;
+  description: string;
+  featured_image: string | null;
+  is_featured: boolean | null;
+  created_at: string;
+  updated_at: string;
+  vibe_tag: any;
+  tour_images?: TourImage[];
+}
+
 const DestinationHero = ({ country }: DestinationHeroProps) => {
   const [heroImage, setHeroImage] = useState<string | null>(null);
 
@@ -24,10 +53,10 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
         
         if (countryTours.length > 0) {
           // Check for tour images
-          for (const tour of countryTours) {
+          for (const tour of countryTours as Tour[]) {
             if (tour.tour_images && tour.tour_images.length > 0) {
               // First try to find a featured image
-              const featuredImage = tour.tour_images.find((img: any) => img.is_featured);
+              const featuredImage = tour.tour_images.find((img) => img.is_featured);
               if (featuredImage) {
                 setHeroImage(featuredImage.image_url);
                 return;

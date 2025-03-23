@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 
 // Region-related functions
@@ -146,20 +147,26 @@ export async function getToursByCountry(countryId: string) {
     return [];
   }
 
+  // Extract tour objects from the response
   const tours = data?.map(tc => tc.tours) || [];
   
-  for (const tour of tours) {
-    if (tour) {
+  // Fetch and add tour_images to each tour
+  for (let i = 0; i < tours.length; i++) {
+    if (tours[i]) {
       const { data: images, error: imagesError } = await supabase
         .from('tour_images')
         .select('*')
-        .eq('tour_id', tour.id)
+        .eq('tour_id', tours[i].id)
         .order('display_order');
       
       if (imagesError) {
-        console.error(`Error fetching images for tour ${tour.id}:`, imagesError);
+        console.error(`Error fetching images for tour ${tours[i].id}:`, imagesError);
       } else {
-        tour.tour_images = images || [];
+        // Explicitly add the tour_images property to the tour object
+        tours[i] = {
+          ...tours[i],
+          tour_images: images || []
+        };
       }
     }
   }
