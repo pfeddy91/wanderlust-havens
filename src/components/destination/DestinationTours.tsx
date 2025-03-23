@@ -42,10 +42,13 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
   const getTourImage = (tour: any) => {
     // Try to get featured image from tour_images
     if (tour.tour_images && tour.tour_images.length > 0) {
+      // First look for a featured image
       const featuredImage = tour.tour_images.find((img: any) => img.is_featured);
       if (featuredImage) return featuredImage.image_url;
-      // If no featured image found, use the first image
-      return tour.tour_images[0].image_url;
+      
+      // If no featured image, use the first one by display_order
+      const sortedImages = [...tour.tour_images].sort((a, b) => a.display_order - b.display_order);
+      if (sortedImages.length > 0) return sortedImages[0].image_url;
     }
     // Fallback to tour's featured_image or a placeholder
     return tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80';

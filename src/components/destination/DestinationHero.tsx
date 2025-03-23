@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { getToursByCountry, getTourImages } from '@/services/honeymoonService';
+import { getToursByCountry } from '@/services/honeymoonService';
 
 interface DestinationHeroProps {
   country: {
@@ -26,15 +26,19 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
           // Check for tour images
           for (const tour of countryTours) {
             if (tour.tour_images && tour.tour_images.length > 0) {
+              // First try to find a featured image
               const featuredImage = tour.tour_images.find((img: any) => img.is_featured);
               if (featuredImage) {
                 setHeroImage(featuredImage.image_url);
                 return;
               }
               
-              // If no featured image, use the first one
-              setHeroImage(tour.tour_images[0].image_url);
-              return;
+              // If no featured image, use the first one based on display_order
+              const sortedImages = [...tour.tour_images].sort((a, b) => a.display_order - b.display_order);
+              if (sortedImages.length > 0) {
+                setHeroImage(sortedImages[0].image_url);
+                return;
+              }
             }
           }
         }
