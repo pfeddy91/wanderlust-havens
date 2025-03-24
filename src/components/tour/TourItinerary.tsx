@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Tour } from '@/types/tour';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { MapPin, Hotel } from 'lucide-react';
 
 interface TourItineraryProps {
@@ -17,18 +16,12 @@ interface ItinerarySection {
 
 const TourItinerary = ({ tour }: TourItineraryProps) => {
   const [itinerarySections, setItinerarySections] = useState<ItinerarySection[]>([]);
-  const [expandedDays, setExpandedDays] = useState<string[]>([]);
 
   useEffect(() => {
     // Parse the description to extract itinerary sections
     if (tour.description) {
       const sections = parseItinerary(tour.description);
       setItinerarySections(sections);
-      
-      // Expand the first section by default
-      if (sections.length > 0) {
-        setExpandedDays([`section-0`]);
-      }
     }
   }, [tour.description]);
 
@@ -89,54 +82,42 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
         Itinerary idea in detail
       </h2>
       
-      <p className="mb-8 font-serif text-lg text-gray-700">
+      <p className="mb-12 font-serif text-lg text-gray-700">
         This itinerary is designed to inspire you with a range of exciting activities and experiences.
         Your journey will be tailored to your preferences and can be adjusted to create your perfect trip.
       </p>
       
-      <div className="mt-10">
-        <Accordion 
-          type="multiple" 
-          value={expandedDays}
-          onValueChange={setExpandedDays}
-          className="border-l border-gray-300"
-        >
-          {itinerarySections.map((section, index) => (
-            <AccordionItem 
-              key={`section-${index}`} 
-              value={`section-${index}`}
-              className="border-b-0"
-            >
-              <div className="relative">
-                <div className="absolute -left-4 top-5 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
-                  {index + 1}
-                </div>
+      <div className="space-y-16">
+        {itinerarySections.map((section, index) => (
+          <div 
+            key={`section-${index}`}
+            className={`grid gap-8 ${index % 2 === 0 ? 'md:grid-cols-[1fr_1.2fr]' : 'md:grid-cols-[1.2fr_1fr] md:flex-row-reverse'}`}
+          >
+            {/* Image Column */}
+            <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+              <div className="h-full overflow-hidden rounded-lg shadow-lg">
+                <img 
+                  src={section.image}
+                  alt={`Days ${section.days}: ${section.title}`}
+                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                />
               </div>
-              
-              <AccordionTrigger className="pl-8 py-4 font-serif text-xl font-medium">
-                Days {section.days}: {section.title}
-              </AccordionTrigger>
-              
-              <AccordionContent className="pl-8">
-                <div className="grid grid-cols-1 gap-6 pb-8 md:grid-cols-2">
-                  <div>
-                    <div className="mb-6 font-serif text-gray-700 whitespace-pre-line">
-                      {section.content}
-                    </div>
-                  </div>
-                  
-                  <div className="h-64 overflow-hidden rounded-lg shadow-md">
-                    <img
-                      src={section.image}
-                      alt={`Days ${section.days}: ${section.title}`}
-                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+            </div>
+            
+            {/* Content Column */}
+            <div className={`flex flex-col justify-center ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+              <div className="mb-2 text-primary font-medium tracking-wide">
+                DAY {section.days}
+              </div>
+              <h3 className="mb-4 font-serif text-2xl font-bold uppercase tracking-wide">
+                {section.title}
+              </h3>
+              <div className="prose prose-lg max-w-none font-serif text-gray-700 whitespace-pre-line">
+                {section.content}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
