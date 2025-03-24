@@ -329,14 +329,9 @@ export type Database = {
           image_url: string
           is_featured: boolean | null
           is_primary: boolean | null
-          luxury_score: number | null
           overall_score: number | null
-          quality_score: number | null
-          relevance_score: number | null
-          romantic_score: number | null
           search_term: string | null
           tour_id: string | null
-          uniqueness_score: number | null
           updated_at: string
         }
         Insert: {
@@ -347,14 +342,9 @@ export type Database = {
           image_url: string
           is_featured?: boolean | null
           is_primary?: boolean | null
-          luxury_score?: number | null
           overall_score?: number | null
-          quality_score?: number | null
-          relevance_score?: number | null
-          romantic_score?: number | null
           search_term?: string | null
           tour_id?: string | null
-          uniqueness_score?: number | null
           updated_at?: string
         }
         Update: {
@@ -365,14 +355,9 @@ export type Database = {
           image_url?: string
           is_featured?: boolean | null
           is_primary?: boolean | null
-          luxury_score?: number | null
           overall_score?: number | null
-          quality_score?: number | null
-          relevance_score?: number | null
-          romantic_score?: number | null
           search_term?: string | null
           tour_id?: string | null
-          uniqueness_score?: number | null
           updated_at?: string
         }
         Relationships: [

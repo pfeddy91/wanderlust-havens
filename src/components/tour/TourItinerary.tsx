@@ -5,6 +5,7 @@ import { MapPin, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/integrations/supabase/client';
+import MapView from './MapView';
 
 interface TourItineraryProps {
   tour: Tour;
@@ -97,11 +98,10 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
         {/* Map Column */}
         <div className="space-y-6">
           <div className="rounded-lg overflow-hidden shadow-lg h-[500px] bg-gray-100">
-            {tourMap && tourMap.static_map_url ? (
-              <img 
-                src={tourMap.static_map_url} 
-                alt="Tour route map" 
-                className="w-full h-full object-cover"
+            {tourMap ? (
+              <MapView 
+                tourMap={tourMap} 
+                className="w-full h-full"
               />
             ) : (
               <div className="flex items-center justify-center h-full bg-gray-100">
