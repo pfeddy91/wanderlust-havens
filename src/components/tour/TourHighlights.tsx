@@ -75,11 +75,7 @@ const TourHighlights = ({ tour }: TourHighlightsProps) => {
               {tourImages.map((image, index) => (
                 <CarouselItem 
                   key={image.id} 
-                  className={`${isMobile ? 'basis-full' : 'basis-1/2'} transition-opacity duration-1000 ${
-                    index === currentIndex || (!isMobile && index === (currentIndex + 1) % tourImages.length)
-                      ? 'opacity-100'
-                      : 'opacity-0'
-                  }`}
+                  className={isMobile ? "basis-full" : "basis-1/2"}
                 >
                   <div className="overflow-hidden rounded-lg">
                     <img 
