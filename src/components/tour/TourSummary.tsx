@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Tour } from '@/types/tour';
 import { Calendar, Clock, DollarSign, CheckCircle2 } from 'lucide-react';
@@ -24,9 +23,6 @@ const TourSummary = ({ tour }: TourSummaryProps) => {
         
         <div className="prose prose-lg max-w-none font-serif text-gray-700">
           <p className="text-xl leading-relaxed">{tour.summary}</p>
-          {tour.description && (
-            <div className="mt-8" dangerouslySetInnerHTML={{ __html: tour.description }} />
-          )}
         </div>
       </div>
       
