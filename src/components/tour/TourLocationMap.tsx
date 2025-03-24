@@ -96,7 +96,7 @@ const TourLocationMap: React.FC<TourLocationMapProps> = ({
         properties: {
           name: loc.name,
           description: loc.description || '',
-          order: loc.order,
+          order: loc.order_index, // Changed from order to order_index
           color: getLocationColor(index, locations.length)
         }
       }));
