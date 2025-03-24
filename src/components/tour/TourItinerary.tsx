@@ -91,7 +91,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
         {itinerarySections.map((section, index) => (
           <div 
             key={`section-${index}`}
-            className={`grid gap-8 ${index % 2 === 0 ? 'md:grid-cols-[1fr_1.2fr]' : 'md:grid-cols-[1.2fr_1fr] md:flex-row-reverse'}`}
+            className={`grid gap-8 ${index % 2 === 0 ? 'md:grid-cols-[1fr_1.2fr]' : 'md:grid-cols-[1.2fr_1fr]'}`}
           >
             {/* Image Column */}
             <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
@@ -107,7 +107,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
             {/* Content Column */}
             <div className={`flex flex-col justify-center ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
               <div className="mb-2 text-primary font-medium tracking-wide">
-                DAY {section.days}
+                DAYS {section.days}
               </div>
               <h3 className="mb-4 font-serif text-2xl font-bold uppercase tracking-wide">
                 {section.title}
