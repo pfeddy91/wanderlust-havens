@@ -370,6 +370,47 @@ export type Database = {
           },
         ]
       }
+      tour_itineraries: {
+        Row: {
+          content: string
+          created_at: string | null
+          day_range: string
+          id: number
+          order_index: number
+          title: string
+          tour_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          day_range: string
+          id?: number
+          order_index: number
+          title: string
+          tour_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          day_range?: string
+          id?: number
+          order_index?: number
+          title?: string
+          tour_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_itineraries_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tour_locations: {
         Row: {
           description: string | null
