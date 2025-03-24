@@ -385,6 +385,47 @@ export type Database = {
           },
         ]
       }
+      tour_maps: {
+        Row: {
+          created_at: string
+          distance: string | null
+          duration: string | null
+          id: string
+          route_geojson: Json | null
+          static_map_url: string | null
+          tour_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          distance?: string | null
+          duration?: string | null
+          id?: string
+          route_geojson?: Json | null
+          static_map_url?: string | null
+          tour_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          distance?: string | null
+          duration?: string | null
+          id?: string
+          route_geojson?: Json | null
+          static_map_url?: string | null
+          tour_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_maps_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tours: {
         Row: {
           created_at: string
