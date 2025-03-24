@@ -14,7 +14,6 @@ interface ItinerarySection {
   days: string;
   title: string;
   content: string;
-  image?: string;
 }
 
 interface TourMap {
@@ -71,8 +70,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
       sections.push({
         days,
         title,
-        content,
-        image: getImageForSection(sections.length)
+        content
       });
     }
     
@@ -82,30 +80,11 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
       sections.push({
         days: "Full Itinerary",
         title: "Complete Journey",
-        content: description,
-        image: getImageForSection(0)
+        content: description
       });
     }
     
     return sections;
-  };
-
-  const getImageForSection = (index: number): string => {
-    // Use tour images if available, otherwise use placeholder
-    if (tour.tour_images && tour.tour_images.length > 0) {
-      const imageIndex = index % tour.tour_images.length;
-      return tour.tour_images[imageIndex].image_url;
-    }
-    
-    // Placeholder images
-    const placeholders = [
-      'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80',
-      'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80',
-      'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80',
-      'https://images.unsplash.com/photo-1502301103665-0b95cc738daf?w=800&q=80',
-      'https://images.unsplash.com/photo-1520338801623-6b88fe7dd37f?w=800&q=80'
-    ];
-    return placeholders[index % placeholders.length];
   };
 
   return (
@@ -157,7 +136,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
             <Card key={`section-${index}`} className="overflow-hidden border-0 shadow-md">
               <div className="bg-primary/10 px-6 py-4">
                 <div className="flex items-center justify-between">
-                  <div className="text-primary font-serif text-xl font-bold uppercase tracking-wide">
+                  <div className="text-primary font-serif text-2xl font-bold uppercase tracking-wide">
                     Days {section.days}
                   </div>
                   {index > 0 && (
@@ -168,27 +147,15 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
                 </div>
               </div>
               
-              <CardContent className="p-6 space-y-4">
-                <div className="flex items-start gap-6">
-                  <div>
-                    <h3 className="font-serif text-xl font-bold uppercase tracking-wide mb-4">
-                      {section.title}
-                    </h3>
-                    <div className="prose prose-sm max-w-none font-serif text-gray-700 whitespace-pre-line">
-                      {section.content}
-                    </div>
+              <CardContent className="p-6">
+                <div>
+                  <h3 className="font-serif text-xl font-bold uppercase tracking-wide mb-4">
+                    {section.title}
+                  </h3>
+                  <div className="prose prose-sm max-w-none font-serif text-gray-700 whitespace-pre-line">
+                    {section.content}
                   </div>
                 </div>
-                
-                {section.image && (
-                  <div className="mt-6 rounded-lg overflow-hidden">
-                    <img 
-                      src={section.image}
-                      alt={`Days ${section.days}: ${section.title}`}
-                      className="w-full h-64 object-cover"
-                    />
-                  </div>
-                )}
               </CardContent>
               
               {index < itinerarySections.length - 1 && <Separator />}

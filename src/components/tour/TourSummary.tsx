@@ -28,39 +28,39 @@ const TourSummary = ({ tour }: TourSummaryProps) => {
       </div>
       
       <div className="lg:col-span-1">
-        <Card className="overflow-hidden border-0 shadow-xl">
+        <Card className="overflow-hidden border-0 shadow-xl max-w-[280px] mx-auto">
           <CardContent className="p-0">
-            <div className="bg-primary p-8 text-white">
-              <h3 className="text-2xl font-serif font-bold">Tour Details</h3>
+            <div className="bg-primary p-5 text-white">
+              <h3 className="text-xl font-serif font-bold">Tour Details</h3>
             </div>
             
-            <div className="space-y-8 p-8">
-              <div className="flex items-center space-x-4">
-                <Clock className="h-6 w-6 text-primary" />
+            <div className="space-y-5 p-5">
+              <div className="flex items-center space-x-3">
+                <Clock className="h-5 w-5 text-primary" />
                 <div>
-                  <p className="text-sm text-gray-500 uppercase tracking-wider">Duration</p>
-                  <p className="font-serif text-lg">{tour.duration} nights</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Duration</p>
+                  <p className="font-serif text-base">{tour.duration} nights</p>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <Calendar className="h-6 w-6 text-primary" />
+              <div className="flex items-center space-x-3">
+                <Calendar className="h-5 w-5 text-primary" />
                 <div>
-                  <p className="text-sm text-gray-500 uppercase tracking-wider">Best time to travel</p>
-                  <p className="font-serif text-lg">{idealMonths}</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Best time to travel</p>
+                  <p className="font-serif text-base">{idealMonths}</p>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <DollarSign className="h-6 w-6 text-primary" />
+              <div className="flex items-center space-x-3">
+                <DollarSign className="h-5 w-5 text-primary" />
                 <div>
-                  <p className="text-sm text-gray-500 uppercase tracking-wider">Guide price from</p>
-                  <p className="font-serif text-lg">£{formattedPrice} per person</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">Guide price from</p>
+                  <p className="font-serif text-base">£{formattedPrice} per person</p>
                 </div>
               </div>
               
-              <div className="mt-8 pt-4">
-                <button className="w-full rounded-none bg-primary py-4 text-white transition-colors hover:bg-primary/90 font-serif text-lg tracking-wider">
+              <div className="mt-5 pt-3">
+                <button className="w-full rounded-none bg-primary py-3 text-white transition-colors hover:bg-primary/90 font-serif text-base tracking-wider">
                   ENQUIRE NOW
                 </button>
               </div>
