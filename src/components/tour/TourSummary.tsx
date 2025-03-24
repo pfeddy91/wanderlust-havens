@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Tour } from '@/types/tour';
-import { Calendar, Clock, DollarSign } from 'lucide-react';
+import { Calendar, Clock, DollarSign, CheckCircle2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface TourSummaryProps {
