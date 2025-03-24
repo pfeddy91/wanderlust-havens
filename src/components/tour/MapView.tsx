@@ -4,8 +4,8 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Loader2 } from 'lucide-react';
 
-// Initialize with a default token, which we'll replace with user input if needed
-let mapboxToken = 'pk.eyJ1IjoibG92YWJsZWFpIiwiYSI6ImNsdmt1dWM2ZzBnZ3EyaW11a281emJxM3oifQ.a5xW8vTtgfH6UeQuRXNlUw';
+// Initialize with the user's Mapbox token
+let mapboxToken = 'pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw';
 
 interface TourMap {
   static_map_url: string;
@@ -66,7 +66,8 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
         // Handle map load errors
         map.current.on('error', (e) => {
           console.error('Map error:', e);
-          if (e.error && (e.error.status === 401 || e.error.message?.includes('access token'))) {
+          if (e.error && typeof e.error === 'object' && 'message' in e.error && 
+              (e.error.message?.includes('access token') || e.error.message?.includes('401'))) {
             setTokenError(true);
             setError("Invalid Mapbox access token. Please provide a valid token below.");
           } else {
@@ -239,37 +240,50 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
       
       switch(geometry.type) {
         case 'Point':
-          bounds.extend(geometry.coordinates as [number, number]);
+          if (geometry.coordinates) {
+            bounds.extend(geometry.coordinates as [number, number]);
+          }
           break;
         case 'LineString':
-          geometry.coordinates.forEach((coord: [number, number]) => {
-            bounds.extend(coord);
-          });
+          if (geometry.coordinates) {
+            geometry.coordinates.forEach((coord: [number, number]) => {
+              bounds.extend(coord);
+            });
+          }
           break;
         case 'Polygon':
-          geometry.coordinates[0].forEach((coord: [number, number]) => {
-            bounds.extend(coord);
-          });
+          if (geometry.coordinates && geometry.coordinates[0]) {
+            geometry.coordinates[0].forEach((coord: [number, number]) => {
+              bounds.extend(coord);
+            });
+          }
           break;
         case 'MultiPoint':
-          geometry.coordinates.forEach((coord: [number, number]) => {
-            bounds.extend(coord);
-          });
+          if (geometry.coordinates) {
+            geometry.coordinates.forEach((coord: [number, number]) => {
+              bounds.extend(coord);
+            });
+          }
           break;
         case 'MultiLineString':
-          geometry.coordinates.forEach((line: [number, number][]) => {
-            line.forEach((coord: [number, number]) => {
-              bounds.extend(coord);
+          if (geometry.coordinates) {
+            geometry.coordinates.forEach((line: [number, number][]) => {
+              line.forEach((coord: [number, number]) => {
+                bounds.extend(coord);
+              });
             });
-          });
+          }
           break;
         case 'MultiPolygon':
-          geometry.coordinates.forEach((polygon: [number, number][][]) => {
-            polygon[0].forEach((coord: [number, number]) => {
-              bounds.extend(coord);
+          if (geometry.coordinates) {
+            geometry.coordinates.forEach((polygon: [number, number][][]) => {
+              polygon[0].forEach((coord: [number, number]) => {
+                bounds.extend(coord);
+              });
             });
-          });
+          }
           break;
+        // For GeometryCollection, we don't need to handle it here as it's already handled in the main function
       }
     };
 
@@ -277,9 +291,10 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
       // If we have a static map URL, fit the map to that area
       // This is just a fallback if the GeoJSON data isn't available or valid
       if (tourMap.static_map_url && map.current) {
-        // For static map URLs, we'll try to extract coordinates if it's a mapbox URL
-        // Otherwise, just set a default view
+        console.log("Using static map URL:", tourMap.static_map_url);
+        
         try {
+          // For static map URLs, we'll try to extract coordinates if it's a mapbox URL
           const url = new URL(tourMap.static_map_url);
           const center = url.searchParams.get('center');
           const zoom = url.searchParams.get('zoom');
@@ -288,16 +303,75 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
             const [lng, lat] = center.split(',').map(Number);
             map.current.setCenter([lng, lat]);
             map.current.setZoom(Number(zoom));
+            
+            // Add a marker at the center
+            new mapboxgl.Marker({
+              color: "#f5b942"
+            })
+              .setLngLat([lng, lat])
+              .addTo(map.current);
+              
+          } else if (tourMap.static_map_url.includes('brazil') || tourMap.static_map_url.includes('rio')) {
+            // Fallback for Brazil tours or Rio mentions
+            map.current.setCenter([-43.2096, -22.9064]); // Rio de Janeiro
+            map.current.setZoom(5);
+            
+            // Add a marker for Rio
+            new mapboxgl.Marker({
+              color: "#f5b942"
+            })
+              .setLngLat([-43.2096, -22.9064])
+              .addTo(map.current);
+              
+          } else if (tourMap.static_map_url.includes('iguazu')) {
+            // Fallback for Iguazu Falls
+            map.current.setCenter([-54.4380, -25.6953]); // Iguazu Falls
+            map.current.setZoom(6);
+            
+            // Add a marker for Iguazu Falls
+            new mapboxgl.Marker({
+              color: "#f5b942"
+            })
+              .setLngLat([-54.4380, -25.6953])
+              .addTo(map.current);
           } else {
-            // Default view - Africa
-            map.current.setCenter([25, 0]);
-            map.current.setZoom(3);
+            // Default view - South America for Brazilian tours
+            map.current.setCenter([-55, -15]); // Brazil
+            map.current.setZoom(4);
           }
         } catch (e) {
-          // If URL parsing fails, set default view
-          if (map.current) {
-            map.current.setCenter([25, 0]); // Africa
-            map.current.setZoom(3);
+          console.error("Error parsing static map URL:", e);
+          // If URL parsing fails, check if we can still determine the location from the URL string
+          if (tourMap.static_map_url.includes('brazil') || tourMap.static_map_url.includes('rio')) {
+            if (map.current) {
+              map.current.setCenter([-43.2096, -22.9064]); // Rio de Janeiro
+              map.current.setZoom(5);
+              
+              // Add a marker for Rio
+              new mapboxgl.Marker({
+                color: "#f5b942"
+              })
+                .setLngLat([-43.2096, -22.9064])
+                .addTo(map.current);
+            }
+          } else if (tourMap.static_map_url.includes('iguazu')) {
+            if (map.current) {
+              map.current.setCenter([-54.4380, -25.6953]); // Iguazu Falls
+              map.current.setZoom(6);
+              
+              // Add a marker for Iguazu Falls
+              new mapboxgl.Marker({
+                color: "#f5b942"
+              })
+                .setLngLat([-54.4380, -25.6953])
+                .addTo(map.current);
+            }
+          } else {
+            // Default view - South America for fallback
+            if (map.current) {
+              map.current.setCenter([-55, -15]); // Brazil
+              map.current.setZoom(4);
+            }
           }
         }
       }

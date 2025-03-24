@@ -47,6 +47,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
           .single();
         
         if (data) {
+          console.log("Found tour map data:", data);
           // Ensure the GeoJSON is parsed if it's a string
           if (typeof data.route_geojson === 'string') {
             try {
@@ -59,6 +60,20 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
           setTourMap(data);
         } else if (error) {
           console.error('Error fetching tour map:', error);
+          // Set a basic fallback for this tour
+          if (tour.slug.includes('brazil') || tour.slug.includes('rio')) {
+            setTourMap({
+              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/outdoors-v12/static/-43.2096,-22.9064,5/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
+              distance: 'Approx. 1,500 km',
+              duration: '7-10 days'
+            });
+          } else if (tour.slug.includes('iguazu')) {
+            setTourMap({
+              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/outdoors-v12/static/-54.4380,-25.6953,6/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
+              distance: 'Approx. 1,200 km',
+              duration: '5-7 days'
+            });
+          }
         }
       } catch (error) {
         console.error('Failed to fetch tour map:', error);
@@ -68,7 +83,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
     };
 
     fetchTourMap();
-  }, [tour.description, tour.id]);
+  }, [tour.description, tour.id, tour.slug]);
 
   const parseItinerary = (description: string): ItinerarySection[] => {
     // Regular expression to match day ranges and their content
@@ -111,7 +126,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
         {/* Map Column */}
         <div className="space-y-6">
           <div className="rounded-lg overflow-hidden shadow-lg h-[500px] bg-gray-100">
-            {tourMap ? (
+            {!mapLoading && tourMap ? (
               <MapView 
                 tourMap={tourMap} 
                 className="w-full h-full"
