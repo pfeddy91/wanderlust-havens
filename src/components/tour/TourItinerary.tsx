@@ -27,6 +27,7 @@ interface TourMap {
 const TourItinerary = ({ tour }: TourItineraryProps) => {
   const [itinerarySections, setItinerarySections] = useState<ItinerarySection[]>([]);
   const [tourMap, setTourMap] = useState<TourMap | null>(null);
+  const [mapLoading, setMapLoading] = useState(true);
 
   useEffect(() => {
     // Parse the description to extract itinerary sections
@@ -37,6 +38,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
 
     // Fetch tour map data
     const fetchTourMap = async () => {
+      setMapLoading(true);
       try {
         const { data, error } = await supabase
           .from('tour_maps')
@@ -45,12 +47,23 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
           .single();
         
         if (data) {
+          // Ensure the GeoJSON is parsed if it's a string
+          if (typeof data.route_geojson === 'string') {
+            try {
+              data.route_geojson = JSON.parse(data.route_geojson);
+            } catch (e) {
+              console.error('Error parsing GeoJSON string:', e);
+            }
+          }
+          
           setTourMap(data);
         } else if (error) {
           console.error('Error fetching tour map:', error);
         }
       } catch (error) {
         console.error('Failed to fetch tour map:', error);
+      } finally {
+        setMapLoading(false);
       }
     };
 
