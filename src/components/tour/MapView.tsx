@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -106,17 +107,40 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
                 });
 
                 // Fit bounds to the route
-                const coordinates = geojsonData.features[0].geometry.coordinates;
+                // Check for the geometry type before extracting coordinates
                 const bounds = new mapboxgl.LngLatBounds();
                 
-                coordinates.forEach((coord: [number, number]) => {
-                  bounds.extend(coord);
+                // Handle different types of geometry
+                geojsonData.features.forEach((feature: any) => {
+                  if (feature.geometry) {
+                    if (feature.geometry.type === 'Point' && Array.isArray(feature.geometry.coordinates)) {
+                      bounds.extend(feature.geometry.coordinates as [number, number]);
+                    } else if (feature.geometry.type === 'LineString' && Array.isArray(feature.geometry.coordinates)) {
+                      feature.geometry.coordinates.forEach((coord: [number, number]) => {
+                        bounds.extend(coord);
+                      });
+                    } else if (feature.geometry.type === 'Polygon' && Array.isArray(feature.geometry.coordinates)) {
+                      feature.geometry.coordinates[0].forEach((coord: [number, number]) => {
+                        bounds.extend(coord);
+                      });
+                    } else if (feature.geometry.type === 'MultiPoint' && Array.isArray(feature.geometry.coordinates)) {
+                      feature.geometry.coordinates.forEach((coord: [number, number]) => {
+                        bounds.extend(coord);
+                      });
+                    }
+                  }
                 });
                 
-                map.current.fitBounds(bounds, {
-                  padding: 50,
-                  maxZoom: 10
-                });
+                // Only fit bounds if we have added coordinates
+                if (!bounds.isEmpty()) {
+                  map.current.fitBounds(bounds, {
+                    padding: 50,
+                    maxZoom: 10
+                  });
+                } else {
+                  // Set default view if no coordinates found
+                  handleStaticMapUrl();
+                }
 
                 // Add popups for points
                 map.current.on('click', 'route-points', (e) => {

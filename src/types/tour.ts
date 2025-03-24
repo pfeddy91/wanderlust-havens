@@ -1,4 +1,3 @@
-
 // Define interface for tour image
 export interface TourImage {
   id: string;
@@ -12,11 +11,11 @@ export interface TourImage {
   updated_at: string;
   search_term: string | null;
   overall_score: number | null;
-  relevance_score: number | null;
-  quality_score: number | null;
-  luxury_score: number | null;
-  romantic_score: number | null;
-  uniqueness_score: number | null;
+  relevance_score?: number | null;
+  quality_score?: number | null;
+  luxury_score?: number | null;
+  romantic_score?: number | null;
+  uniqueness_score?: number | null;
 }
 
 // Define interface for tour highlight
