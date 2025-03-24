@@ -47,7 +47,7 @@ const TourHero = ({ tour, countryNames }: TourHeroProps) => {
   };
 
   return (
-    <div className="relative h-[80vh] w-full">
+    <div className="relative h-[85vh] w-full">
       {/* Background image with gradient overlay */}
       <div className="absolute inset-0 z-0 bg-black">
         <div className="relative h-full w-full">
@@ -96,17 +96,12 @@ const TourHero = ({ tour, countryNames }: TourHeroProps) => {
       {/* Hero content */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center text-white">
         <div className="max-w-5xl">
-          <p className="mb-4 font-sans text-sm uppercase tracking-wider sm:text-base">
+          <p className="mb-6 font-sans text-sm uppercase tracking-wider sm:text-base">
             {countryString}
           </p>
-          <h1 className="font-serif text-4xl font-bold uppercase tracking-wide sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="font-serif text-5xl font-bold uppercase tracking-wide sm:text-6xl md:text-7xl lg:text-8xl">
             {tour.name}
           </h1>
-          {tour.summary && (
-            <p className="mx-auto mt-8 max-w-3xl font-serif text-lg italic sm:text-xl">
-              {tour.summary}
-            </p>
-          )}
         </div>
       </div>
     </div>

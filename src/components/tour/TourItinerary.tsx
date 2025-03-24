@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Tour } from '@/types/tour';
-import { MapPin, Hotel, Clock, Calendar } from 'lucide-react';
+import { MapPin, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/integrations/supabase/client';
@@ -114,11 +114,6 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
         Itinerary idea in detail
       </h2>
       
-      <p className="mb-12 font-serif text-lg text-gray-700">
-        This itinerary is designed to inspire you with a range of exciting activities and experiences.
-        Your journey will be tailored to your preferences and can be adjusted to create your perfect trip.
-      </p>
-      
       <div className="grid md:grid-cols-[1fr_1.2fr] gap-12">
         {/* Map Column */}
         <div className="space-y-6">
@@ -154,33 +149,15 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
               )}
             </div>
           )}
-          
-          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <h3 className="text-xl font-serif font-bold mb-4">Tour Overview</h3>
-            <div className="flex items-start mb-3">
-              <Calendar className="w-5 h-5 text-primary mr-3 mt-0.5" />
-              <div>
-                <p className="font-medium">Duration</p>
-                <p className="text-gray-600">{tour.duration} days</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <Hotel className="w-5 h-5 text-primary mr-3 mt-0.5" />
-              <div>
-                <p className="font-medium">Accommodations</p>
-                <p className="text-gray-600">{tour.tour_hotels?.length || 'Various'} hotels included</p>
-              </div>
-            </div>
-          </div>
         </div>
         
         {/* Itinerary Sections Column */}
         <div className="space-y-8">
           {itinerarySections.map((section, index) => (
-            <Card key={`section-${index}`} className="overflow-hidden">
-              <div className="bg-primary/5 px-6 py-3">
+            <Card key={`section-${index}`} className="overflow-hidden border-0 shadow-md">
+              <div className="bg-primary/10 px-6 py-4">
                 <div className="flex items-center justify-between">
-                  <div className="text-primary font-medium uppercase tracking-wide">
+                  <div className="text-primary font-serif text-xl font-bold uppercase tracking-wide">
                     Days {section.days}
                   </div>
                   {index > 0 && (
@@ -192,17 +169,9 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
               </div>
               
               <CardContent className="p-6 space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <span className="text-primary text-xl font-bold">
-                      {section.days.includes('-') 
-                        ? section.days.split('-')[0] 
-                        : section.days}
-                    </span>
-                  </div>
-                  
+                <div className="flex items-start gap-6">
                   <div>
-                    <h3 className="font-serif text-xl font-bold uppercase tracking-wide mb-2">
+                    <h3 className="font-serif text-xl font-bold uppercase tracking-wide mb-4">
                       {section.title}
                     </h3>
                     <div className="prose prose-sm max-w-none font-serif text-gray-700 whitespace-pre-line">
@@ -212,11 +181,11 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
                 </div>
                 
                 {section.image && (
-                  <div className="mt-4 rounded-lg overflow-hidden">
+                  <div className="mt-6 rounded-lg overflow-hidden">
                     <img 
                       src={section.image}
                       alt={`Days ${section.days}: ${section.title}`}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-64 object-cover"
                     />
                   </div>
                 )}

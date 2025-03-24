@@ -17,30 +17,32 @@ const TourHighlights = ({ tour }: TourHighlightsProps) => {
         { title: 'Explore vibrant markets', description: 'Immerse yourself in the colors and scents of local bazaars.' },
         { title: 'Stay in luxury accommodations', description: 'Unwind in handpicked, beautiful hotels and resorts.' },
         { title: 'Experience authentic culture', description: 'Connect with locals and discover traditional ways of life.' },
-        { title: 'Enjoy breathtaking landscapes', description: 'Witness some of the most stunning natural scenery in the world.' }
+        { title: 'Enjoy breathtaking landscapes', description: 'Witness some of the most stunning natural scenery in the world.' },
+        { title: 'Exclusive dining experiences', description: 'Savor the finest local cuisine in unique settings.' },
+        { title: 'Private guided tours', description: 'Expert guides reveal hidden gems and local secrets.' }
       ];
 
   return (
     <div>
-      <h2 className="mb-8 font-serif text-3xl font-bold uppercase tracking-wide">
+      <h2 className="mb-12 font-serif text-3xl font-bold uppercase tracking-wide">
         Tour Highlights
       </h2>
       
-      <ul className="space-y-5">
+      <div className="grid md:grid-cols-3 gap-x-8 gap-y-10">
         {highlights.map((highlight, index) => (
-          <li key={highlight.id || index} className="flex items-start">
-            <div className="mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-white">
-              •
+          <div key={highlight.id || index} className="flex items-start">
+            <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+              <span className="text-primary font-medium">{index + 1}</span>
             </div>
             <div>
-              <p className="font-medium">{highlight.title}</p>
+              <p className="font-serif font-medium text-lg">{highlight.title}</p>
               {highlight.description && (
-                <p className="text-gray-600">{highlight.description}</p>
+                <p className="text-gray-600 mt-1 font-serif">{highlight.description}</p>
               )}
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
