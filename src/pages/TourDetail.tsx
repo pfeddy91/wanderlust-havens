@@ -25,7 +25,12 @@ const TourDetail = () => {
         try {
           const tourData = await getTourBySlug(slug);
           console.log("Fetched tour data:", tourData);
-          setTour(tourData);
+          
+          // Make sure the tour data is properly typed before setting state
+          if (tourData) {
+            // We know it meets the Tour interface because we've updated our types
+            setTour(tourData as Tour);
+          }
         } catch (error) {
           console.error('Error fetching tour data:', error);
         } finally {

@@ -137,7 +137,7 @@ export async function getTourBySlug(slug: string) {
     .from('tour_locations')
     .select('*')
     .eq('tour_id', data.id)
-    .order('order');
+    .order('order_index');
     
   if (locationsError) {
     console.error(`Error fetching locations for tour ${data.id}:`, locationsError);
@@ -346,3 +346,4 @@ export async function getVibeCategories() {
   
   return vibeCategories;
 }
+

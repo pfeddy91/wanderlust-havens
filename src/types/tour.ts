@@ -94,17 +94,18 @@ export interface TourCountry {
 
 // Define interface for tour location
 export interface TourLocation {
-  id: string;
+  id: number; // Changed from string to number to match the database
   tour_id: string;
   name: string;
   description?: string | null;
   longitude: number;
   latitude: number;
-  order: number;
-  stay_duration?: number | null;
+  order_index: number; // Changed from order to order_index to match the database
   location_type?: string | null;
-  created_at: string;
-  updated_at: string;
+  stay_duration?: number | null;
+  // We'll make these optional since they don't appear in the API response
+  created_at?: string;
+  updated_at?: string;
 }
 
 // Define interface for tour map
