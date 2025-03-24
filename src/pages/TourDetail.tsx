@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getTourBySlug } from '@/services/honeymoonService';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Loader2, Calendar, Clock, DollarSign, MapPin, CheckCircle2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import TourHero from '@/components/tour/TourHero';
 import TourSummary from '@/components/tour/TourSummary';
 import TourItinerary from '@/components/tour/TourItinerary';
@@ -24,6 +24,7 @@ const TourDetail = () => {
       if (slug) {
         try {
           const tourData = await getTourBySlug(slug);
+          console.log("Fetched tour data:", tourData);
           setTour(tourData);
         } catch (error) {
           console.error('Error fetching tour data:', error);

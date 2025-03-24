@@ -370,6 +370,44 @@ export type Database = {
           },
         ]
       }
+      tour_locations: {
+        Row: {
+          description: string | null
+          id: number
+          latitude: number
+          longitude: number
+          name: string
+          order_index: number
+          tour_id: string
+        }
+        Insert: {
+          description?: string | null
+          id?: number
+          latitude: number
+          longitude: number
+          name: string
+          order_index: number
+          tour_id: string
+        }
+        Update: {
+          description?: string | null
+          id?: number
+          latitude?: number
+          longitude?: number
+          name?: string
+          order_index?: number
+          tour_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_tour"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tour_maps: {
         Row: {
           created_at: string

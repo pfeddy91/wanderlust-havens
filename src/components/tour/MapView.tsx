@@ -150,7 +150,9 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
                 map.current.on('click', 'route-points', (e) => {
                   if (!e.features || !e.features[0] || !e.features[0].properties) return;
                   
-                  const coordinates = e.features[0].geometry.coordinates.slice() as [number, number];
+                  if (!e.features[0].geometry || e.features[0].geometry.type !== 'Point') return;
+                  
+                  const coordinates = (e.features[0].geometry as GeoJSON.Point).coordinates.slice() as [number, number];
                   const { name, description } = e.features[0].properties;
                   
                   new mapboxgl.Popup()
@@ -193,39 +195,44 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
     };
 
     // Helper function to process different geometry types
-    const processGeometry = (geometry: any, bounds: mapboxgl.LngLatBounds) => {
+    const processGeometry = (geometry: GeoJSON.Geometry, bounds: mapboxgl.LngLatBounds) => {
       if (!geometry || !geometry.type) return;
       
       switch(geometry.type) {
         case 'Point':
-          if (geometry.coordinates) {
-            bounds.extend(geometry.coordinates as [number, number]);
+          const point = geometry as GeoJSON.Point;
+          if (point.coordinates) {
+            bounds.extend(point.coordinates as [number, number]);
           }
           break;
         case 'LineString':
-          if (geometry.coordinates) {
-            geometry.coordinates.forEach((coord: [number, number]) => {
+          const lineString = geometry as GeoJSON.LineString;
+          if (lineString.coordinates) {
+            lineString.coordinates.forEach((coord: [number, number]) => {
               bounds.extend(coord);
             });
           }
           break;
         case 'Polygon':
-          if (geometry.coordinates && geometry.coordinates[0]) {
-            geometry.coordinates[0].forEach((coord: [number, number]) => {
+          const polygon = geometry as GeoJSON.Polygon;
+          if (polygon.coordinates && polygon.coordinates[0]) {
+            polygon.coordinates[0].forEach((coord: [number, number]) => {
               bounds.extend(coord);
             });
           }
           break;
         case 'MultiPoint':
-          if (geometry.coordinates) {
-            geometry.coordinates.forEach((coord: [number, number]) => {
+          const multiPoint = geometry as GeoJSON.MultiPoint;
+          if (multiPoint.coordinates) {
+            multiPoint.coordinates.forEach((coord: [number, number]) => {
               bounds.extend(coord);
             });
           }
           break;
         case 'MultiLineString':
-          if (geometry.coordinates) {
-            geometry.coordinates.forEach((line: [number, number][]) => {
+          const multiLineString = geometry as GeoJSON.MultiLineString;
+          if (multiLineString.coordinates) {
+            multiLineString.coordinates.forEach((line: [number, number][]) => {
               line.forEach((coord: [number, number]) => {
                 bounds.extend(coord);
               });
@@ -233,8 +240,9 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
           }
           break;
         case 'MultiPolygon':
-          if (geometry.coordinates) {
-            geometry.coordinates.forEach((polygon: [number, number][][]) => {
+          const multiPolygon = geometry as GeoJSON.MultiPolygon;
+          if (multiPolygon.coordinates) {
+            multiPolygon.coordinates.forEach((polygon: [number, number][][]) => {
               polygon[0].forEach((coord: [number, number]) => {
                 bounds.extend(coord);
               });
@@ -242,8 +250,9 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
           }
           break;
         case 'GeometryCollection':
-          if (geometry.geometries) {
-            geometry.geometries.forEach((geom: any) => {
+          const collection = geometry as GeoJSON.GeometryCollection;
+          if (collection.geometries) {
+            collection.geometries.forEach((geom: GeoJSON.Geometry) => {
               // Recursively process each geometry in the collection
               processGeometry(geom, bounds);
             });

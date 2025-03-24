@@ -1,3 +1,4 @@
+
 // Define interface for tour image
 export interface TourImage {
   id: string;
@@ -91,6 +92,33 @@ export interface TourCountry {
   countries?: Country;
 }
 
+// Define interface for tour location
+export interface TourLocation {
+  id: string;
+  tour_id: string;
+  name: string;
+  description?: string | null;
+  longitude: number;
+  latitude: number;
+  order: number;
+  stay_duration?: number | null;
+  location_type?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Define interface for tour map
+export interface TourMap {
+  id?: string;
+  tour_id?: string;
+  static_map_url: string;
+  route_geojson?: any;
+  distance?: string;
+  duration?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 // Define interface for tour with tour_images property
 export interface Tour {
   id: string;
@@ -109,4 +137,5 @@ export interface Tour {
   tour_highlights?: TourHighlight[];
   tour_hotels?: TourHotel[];
   tour_countries?: TourCountry[];
+  tour_locations?: TourLocation[];
 }

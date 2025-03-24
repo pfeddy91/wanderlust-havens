@@ -5,7 +5,8 @@ import { MapPin, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/integrations/supabase/client';
-import MapView from './MapView';
+import TourLocationMap from './TourLocationMap';
+import { getTourLocations, getTourMap } from '@/services/honeymoonService';
 
 interface TourItineraryProps {
   tour: Tour;
@@ -17,16 +18,10 @@ interface ItinerarySection {
   content: string;
 }
 
-interface TourMap {
-  static_map_url: string;
-  route_geojson?: any;
-  distance?: string;
-  duration?: string;
-}
-
 const TourItinerary = ({ tour }: TourItineraryProps) => {
   const [itinerarySections, setItinerarySections] = useState<ItinerarySection[]>([]);
-  const [tourMap, setTourMap] = useState<TourMap | null>(null);
+  const [tourMap, setTourMap] = useState<any>(null);
+  const [tourLocations, setTourLocations] = useState<any[]>([]);
   const [mapLoading, setMapLoading] = useState(true);
 
   useEffect(() => {
@@ -36,54 +31,62 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
       setItinerarySections(sections);
     }
 
-    // Fetch tour map data
-    const fetchTourMap = async () => {
+    // Fetch tour locations and map data
+    const fetchTourData = async () => {
       setMapLoading(true);
       try {
-        const { data, error } = await supabase
-          .from('tour_maps')
-          .select('*')
-          .eq('tour_id', tour.id)
-          .single();
+        // Fetch tour locations
+        const locations = await getTourLocations(tour.id);
+        setTourLocations(locations);
         
-        if (data) {
-          console.log("Found tour map data:", data);
+        // Fetch tour map
+        const mapData = await getTourMap(tour.id);
+        
+        if (mapData) {
+          console.log("Found tour map data:", mapData);
           // Ensure the GeoJSON is parsed if it's a string
-          if (typeof data.route_geojson === 'string') {
+          if (typeof mapData.route_geojson === 'string') {
             try {
-              data.route_geojson = JSON.parse(data.route_geojson);
+              mapData.route_geojson = JSON.parse(mapData.route_geojson);
             } catch (e) {
               console.error('Error parsing GeoJSON string:', e);
             }
           }
           
-          setTourMap(data);
-        } else if (error) {
-          console.error('Error fetching tour map:', error);
+          setTourMap(mapData);
+        } else {
+          console.log("No tour map found, creating fallback based on the tour:", tour.slug);
           // Set a basic fallback for this tour
           if (tour.slug.includes('brazil') || tour.slug.includes('rio')) {
             setTourMap({
-              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/outdoors-v12/static/-43.2096,-22.9064,5/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
+              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-43.2096,-22.9064,5/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
               distance: 'Approx. 1,500 km',
               duration: '7-10 days'
             });
           } else if (tour.slug.includes('iguazu')) {
             setTourMap({
-              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/outdoors-v12/static/-54.4380,-25.6953,6/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
+              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-54.4380,-25.6953,6/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
               distance: 'Approx. 1,200 km',
               duration: '5-7 days'
+            });
+          } else {
+            // Default fallback
+            setTourMap({
+              static_map_url: `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/0,0,2/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw`,
+              distance: `Approx. ${tour.duration * 100} km`,
+              duration: `${tour.duration} days`
             });
           }
         }
       } catch (error) {
-        console.error('Failed to fetch tour map:', error);
+        console.error('Failed to fetch tour data:', error);
       } finally {
         setMapLoading(false);
       }
     };
 
-    fetchTourMap();
-  }, [tour.description, tour.id, tour.slug]);
+    fetchTourData();
+  }, [tour.description, tour.id, tour.slug, tour.duration]);
 
   const parseItinerary = (description: string): ItinerarySection[] => {
     // Regular expression to match day ranges and their content
@@ -126,8 +129,9 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
         {/* Map Column */}
         <div className="space-y-6">
           <div className="rounded-lg overflow-hidden shadow-lg h-[500px] bg-gray-100">
-            {!mapLoading && tourMap ? (
-              <MapView 
+            {!mapLoading ? (
+              <TourLocationMap 
+                tourLocations={tourLocations}
                 tourMap={tourMap} 
                 className="w-full h-full"
               />

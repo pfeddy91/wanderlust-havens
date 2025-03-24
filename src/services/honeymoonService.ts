@@ -1,5 +1,5 @@
 import { supabase } from '@/integrations/supabase/client';
-import { Tour, TourImage } from '@/types/tour';
+import { Tour, TourImage, TourLocation, TourMap } from '@/types/tour';
 
 // Region-related functions
 export async function getRegions() {
@@ -133,7 +133,21 @@ export async function getTourBySlug(slug: string) {
     console.error(`Error fetching images for tour ${data.id}:`, imagesError);
   }
   
-  return { ...data, tour_images: tourImages || [] };
+  const { data: tourLocations, error: locationsError } = await supabase
+    .from('tour_locations')
+    .select('*')
+    .eq('tour_id', data.id)
+    .order('order');
+    
+  if (locationsError) {
+    console.error(`Error fetching locations for tour ${data.id}:`, locationsError);
+  }
+  
+  return { 
+    ...data, 
+    tour_images: tourImages || [],
+    tour_locations: tourLocations || [] 
+  };
 }
 
 export async function getToursByCountry(countryId: string) {
@@ -147,10 +161,8 @@ export async function getToursByCountry(countryId: string) {
     return [];
   }
 
-  // Extract tour objects from the response
   const tours = data?.map(tc => tc.tours) || [];
   
-  // Fetch and add tour_images to each tour
   for (let i = 0; i < tours.length; i++) {
     if (tours[i]) {
       const { data: images, error: imagesError } = await supabase
@@ -162,7 +174,6 @@ export async function getToursByCountry(countryId: string) {
       if (imagesError) {
         console.error(`Error fetching images for tour ${tours[i].id}:`, imagesError);
       } else {
-        // Cast the tours[i] to Tour to allow adding the tour_images property
         (tours[i] as Tour).tour_images = images as TourImage[] || [];
       }
     }
@@ -184,6 +195,37 @@ export async function getTourImages(tourId: string) {
   }
   
   return data || [];
+}
+
+// Tour locations functions
+export async function getTourLocations(tourId: string) {
+  const { data, error } = await supabase
+    .from('tour_locations')
+    .select('*')
+    .eq('tour_id', tourId)
+    .order('order');
+  
+  if (error) {
+    console.error(`Error fetching locations for tour ${tourId}:`, error);
+    return [];
+  }
+  
+  return data || [];
+}
+
+export async function getTourMap(tourId: string): Promise<TourMap | null> {
+  const { data, error } = await supabase
+    .from('tour_maps')
+    .select('*')
+    .eq('tour_id', tourId)
+    .single();
+  
+  if (error) {
+    console.error(`Error fetching map for tour ${tourId}:`, error);
+    return null;
+  }
+  
+  return data;
 }
 
 // Hotel-related functions
