@@ -131,49 +131,7 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
                 geojsonData.features.forEach((feature: any) => {
                   if (feature.geometry) {
                     // Handle each geometry type properly
-                    switch(feature.geometry.type) {
-                      case 'Point':
-                        bounds.extend(feature.geometry.coordinates as [number, number]);
-                        break;
-                      case 'LineString':
-                        feature.geometry.coordinates.forEach((coord: [number, number]) => {
-                          bounds.extend(coord);
-                        });
-                        break;
-                      case 'Polygon':
-                        feature.geometry.coordinates[0].forEach((coord: [number, number]) => {
-                          bounds.extend(coord);
-                        });
-                        break;
-                      case 'MultiPoint':
-                        feature.geometry.coordinates.forEach((coord: [number, number]) => {
-                          bounds.extend(coord);
-                        });
-                        break;
-                      case 'MultiLineString':
-                        feature.geometry.coordinates.forEach((line: [number, number][]) => {
-                          line.forEach((coord: [number, number]) => {
-                            bounds.extend(coord);
-                          });
-                        });
-                        break;
-                      case 'MultiPolygon':
-                        feature.geometry.coordinates.forEach((polygon: [number, number][][]) => {
-                          polygon[0].forEach((coord: [number, number]) => {
-                            bounds.extend(coord);
-                          });
-                        });
-                        break;
-                      // For GeometryCollection, process each geometry inside it
-                      case 'GeometryCollection':
-                        if (feature.geometry.geometries) {
-                          feature.geometry.geometries.forEach((geometry: any) => {
-                            // Process each geometry based on its type
-                            processGeometry(geometry, bounds);
-                          });
-                        }
-                        break;
-                    }
+                    processGeometry(feature.geometry, bounds);
                   }
                 });
                 
@@ -283,7 +241,14 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
             });
           }
           break;
-        // For GeometryCollection, we don't need to handle it here as it's already handled in the main function
+        case 'GeometryCollection':
+          if (geometry.geometries) {
+            geometry.geometries.forEach((geom: any) => {
+              // Recursively process each geometry in the collection
+              processGeometry(geom, bounds);
+            });
+          }
+          break;
       }
     };
 
@@ -296,23 +261,36 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
         try {
           // For static map URLs, we'll try to extract coordinates if it's a mapbox URL
           const url = new URL(tourMap.static_map_url);
-          const center = url.searchParams.get('center');
-          const zoom = url.searchParams.get('zoom');
+          const pathSegments = url.pathname.split('/');
+          const coordinatesIndex = pathSegments.findIndex(segment => segment.includes(','));
           
-          if (center && zoom) {
-            const [lng, lat] = center.split(',').map(Number);
-            map.current.setCenter([lng, lat]);
-            map.current.setZoom(Number(zoom));
+          if (coordinatesIndex !== -1) {
+            const coordsWithZoom = pathSegments[coordinatesIndex];
+            const parts = coordsWithZoom.split(',');
             
-            // Add a marker at the center
-            new mapboxgl.Marker({
-              color: "#f5b942"
-            })
-              .setLngLat([lng, lat])
-              .addTo(map.current);
+            if (parts.length >= 2) {
+              const lng = parseFloat(parts[0]);
+              const lat = parseFloat(parts[1]);
+              const zoom = parts.length > 2 ? parseFloat(parts[2]) : 5;
               
-          } else if (tourMap.static_map_url.includes('brazil') || tourMap.static_map_url.includes('rio')) {
-            // Fallback for Brazil tours or Rio mentions
+              if (!isNaN(lng) && !isNaN(lat)) {
+                map.current.setCenter([lng, lat]);
+                map.current.setZoom(zoom);
+                
+                // Add a marker at the center
+                new mapboxgl.Marker({
+                  color: "#f5b942"
+                })
+                  .setLngLat([lng, lat])
+                  .addTo(map.current);
+                  
+                return;
+              }
+            }
+          }
+          
+          // Fallback for specific tours based on URL content
+          if (tourMap.static_map_url.includes('brazil') || tourMap.static_map_url.includes('rio')) {
             map.current.setCenter([-43.2096, -22.9064]); // Rio de Janeiro
             map.current.setZoom(5);
             
@@ -324,7 +302,6 @@ const MapView: React.FC<MapViewProps> = ({ tourMap, className = "" }) => {
               .addTo(map.current);
               
           } else if (tourMap.static_map_url.includes('iguazu')) {
-            // Fallback for Iguazu Falls
             map.current.setCenter([-54.4380, -25.6953]); // Iguazu Falls
             map.current.setZoom(6);
             
