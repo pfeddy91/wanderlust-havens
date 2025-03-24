@@ -1,0 +1,36 @@
+{
+  "tour_id": "5e28d7f8-22b5-4cfd-8137-2ab8014f5df0",
+  "tour_name": "East African Safari: Kenya & Tanzania Wildlife Adventure",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Nairobi Immersion & Amboseli's Elephant Kingdom",
+      "content": "Begin your romantic safari in Nairobi. Immerse yourselves in the city's curated cultural experiences. Then, escape to Amboseli National Park, a sanctuary famed for its majestic elephants and breathtaking views of Mount Kilimanjaro. Enjoy private guided game drives, champagne sundowners against the backdrop of the iconic mountain, and intimate moments observing these gentle giants in their natural habitat. In the evening, delight in a starlit dinner under the vast African sky, a truly unforgettable experience for honeymooners.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Lake Naivasha's Serenity & Masai Mara's Wildlife Spectacle",
+      "content": "Journey to the serene shores of Lake Naivasha. Experience a private boat ride, gliding past diverse birdlife and playful hippos. This tranquil setting provides a perfect respite before venturing into the legendary Masai Mara Game Reserve. Prepare for thrilling game drives, witnessing the Big Five and, depending on the season, the awe-inspiring Great Migration. Indulge in luxury bush breakfasts and romantic dinners under the acacia trees, savoring the flavors of Africa while surrounded by its unparalleled beauty. Enjoy an exclusive hot air balloon ride at dawn with champagne, to toast the sunrise.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Tanzania's Serengeti & Ngorongoro's Crater Paradise",
+      "content": "Cross the border into Tanzania and enter the vast Serengeti National Park, a land of endless plains and extraordinary wildlife. Experience thrilling game drives in search of predators and their prey. Enjoy private picnic lunches amidst the stunning scenery. Then, descend into the Ngorongoro Crater, a UNESCO World Heritage Site and a natural wonder teeming with life. Witness a remarkable concentration of animals in this unique ecosystem, enjoy a private lunch in the crater and witness the stunning sunset from the rim of the crater. In the evening, unwind with cocktails while savoring the breathtaking views and reminiscing about the day's adventures.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-14",
+      "title": "Zanzibar's Azure Waters & Pristine Sands",
+      "content": "Fly to the tropical paradise of Zanzibar and immerse yourselves in the island's laid-back atmosphere. Unwind on pristine beaches, fringed with swaying palm trees and crystal-clear turquoise waters. Spend your days snorkeling or diving in vibrant coral reefs, discovering the underwater wonders of the Indian Ocean. Indulge in romantic sunset walks along the shore, hand in hand, as the sky explodes with color. In the evenings, savor delicious seafood dinners under the stars, accompanied by the gentle sound of the waves.",
+      "order_index": 4
+    },
+    {
+      "day_range": "15-21",
+      "title": "Zanzibar's History, Romance & Rejuvenation",
+      "content": "Continue your Zanzibar escape with a deeper exploration of the island's rich culture and history. Wander through the narrow, winding streets of Stone Town, a UNESCO World Heritage Site, discovering its architectural gems and vibrant markets. Embark on a romantic sunset dhow cruise, gliding along the coastline as the sun dips below the horizon. Indulge in rejuvenating spa treatments, designed to soothe your body and soul. Conclude your honeymoon with a private beachside dinner, complete with candlelight and personalized service, creating memories to last a lifetime. Consider a private cooking class to learn local Zanzibar cuisines.",
+      "order_index": 5
+    }
+  ]
+}

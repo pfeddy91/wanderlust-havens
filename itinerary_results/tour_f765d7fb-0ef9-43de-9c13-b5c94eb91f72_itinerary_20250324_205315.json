@@ -1,0 +1,24 @@
+{
+  "tour_id": "f765d7fb-0ef9-43de-9c13-b5c94eb91f72",
+  "tour_name": "Thai Treasures: Bangkok, Chiang Mai & Koh Samui",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Bangkok: A Cosmopolitan Beginning",
+      "content": "Immerse yourselves in the vibrant energy of Bangkok. Explore the majestic Grand Palace and the iconic Wat Arun (Temple of Dawn), marvelling at their intricate architecture and historical significance. As evening descends, embark on a romantic dinner cruise along the Chao Phraya River, savouring exquisite Thai cuisine under the stars. Discover hidden gems and indulge in the city's electrifying nightlife, seeking out exclusive rooftop bars with breathtaking views. This is the perfect way to begin your luxurious honeymoon.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Chiang Mai: Cultural Immersion and Northern Charm",
+      "content": "Fly to Chiang Mai, the cultural heart of Northern Thailand. Explore ancient temples adorned with intricate carvings and wander through bustling local markets overflowing with vibrant colors and exotic aromas. Ascend Doi Suthep temple for panoramic vistas of the city and surrounding landscapes. Participate in a private Thai cooking class, learning the secrets of authentic dishes and enjoying the fruits of your labor in a romantic setting. Enjoy the serene atmosphere of this beautiful city. Perhaps enjoy an ethical encounter with elephants at a sanctuary dedicated to their well-being.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-12",
+      "title": "Koh Samui: A Luxurious Beachfront Escape",
+      "content": "Journey to the idyllic island of Koh Samui for a relaxing and luxurious beach retreat. Settle into exquisite accommodations with private pool villas overlooking the turquoise waters. Indulge in rejuvenating spa treatments designed to melt away any stress. Explore secluded beaches and crystal-clear waters, perfect for swimming, sunbathing, and creating unforgettable memories. Embark on a sunset cruise, sipping cocktails as you watch the sky ablaze with color. Alternatively, snorkel in the Gulf of Thailand, discovering the vibrant underwater world. Consider a private yacht trip to nearby islands for a truly exclusive experience.",
+      "order_index": 3
+    }
+  ]
+}

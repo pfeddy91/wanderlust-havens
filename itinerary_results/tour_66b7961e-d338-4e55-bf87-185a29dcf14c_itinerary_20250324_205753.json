@@ -1,0 +1,24 @@
+{
+  "tour_id": "66b7961e-d338-4e55-bf87-185a29dcf14c",
+  "tour_name": "Rocky Mountains to Red Rocks: Colorado Adventure",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Rocky Mountain Bliss in Vail",
+      "content": "Embark on a romantic escape to the majestic Rocky Mountains, settling into the luxurious Sonnenalp Hotel in Vail. Begin your adventure with scenic hikes amidst breathtaking alpine landscapes, discovering hidden trails and panoramic vistas perfect for capturing unforgettable moments. Explore the charming town of Vail, hand-in-hand, indulging in its upscale boutiques and cozy cafes. Treat yourselves to a rejuvenating couples' spa treatment, melting away any stress as you prepare for your journey together. A highlight of your time in Vail will be a scenic drive along Trail Ridge Road, the highest continuous paved road in the United States, where you'll be mesmerized by unparalleled views of the Rockies and the alpine tundra.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Aspen's Charm and Maroon Bells' Majesty",
+      "content": "Journey to the sophisticated haven of Aspen, residing in the lavish St. Regis Aspen, a sanctuary of comfort surrounded by world-class skiing and elegant amenities. Immerse yourselves in Aspen's historic downtown, browsing its art galleries and designer boutiques. Dedicate an evening to a romantic dinner at one of Aspen's Michelin-starred restaurants, savoring exquisite cuisine and impeccable service. Embrace the beauty of nature with a guided hike to the Maroon Bells, one of Colorado's most iconic and photographed landscapes. Capture stunning photographs and create lasting memories against the backdrop of these magnificent peaks. Conclude your Aspen adventure with a private wine tasting at a local vineyard, discovering the flavors of the region and toasting to your future.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Red Rocks Rhapsody and Denver's Urban Allure",
+      "content": "Venture to the captivating Red Rocks Amphitheatre area, where you'll be awestruck by the otherworldly formations sculpted by nature. Explore the trails surrounding the amphitheater, discovering hidden grottos and panoramic viewpoints. Transition to the vibrant city of Denver, checking into The Ramble Hotel, a stylish oasis in the heart of the action. Immerse yourselves in Denver's thriving arts and culture scene, starting with a visit to the Denver Art Museum, home to a diverse collection of masterpieces. Indulge in expertly crafted cocktails at Death & Co., a celebrated cocktail bar known for its innovative concoctions. Discover the trendy RiNo (River North) Art District, admiring its colorful murals, art galleries, and unique boutiques. For a truly special evening, arrange a private concert under the stars at Red Rocks, creating an unforgettable memory that will last a lifetime.",
+      "order_index": 3
+    }
+  ]
+}

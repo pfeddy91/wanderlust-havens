@@ -1,0 +1,30 @@
+{
+  "tour_id": "7fb89c90-f3a4-4fee-af1c-02cdb678621e",
+  "tour_name": "Barcelona & Balearic Islands: Catalan Coast Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Barcelona: Immersed in Catalan Culture",
+      "content": "Begin your journey in the vibrant city of Barcelona. Settle in to the city and explore iconic landmarks such as the Sagrada Familia, marveling at Gaudi's architectural genius. Wander hand-in-hand through the charming Gothic Quarter, getting lost in its narrow streets and discovering hidden squares. Indulge in the authentic flavors of Barcelona with a curated tapas tour, sampling local delicacies and exquisite wines. Cap off an evening with a private flamenco show, feeling the passion and artistry of this traditional Spanish dance.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Mallorca: Coastal Bliss and Timeless Charm",
+      "content": "Escape to the idyllic island of Mallorca, where turquoise waters meet breathtaking landscapes. Experience the beauty of the island with a private boat tour along the stunning coastline, discovering hidden coves and secluded beaches. Step back in time with a visit to the historic town of Valldemossa, exploring its picturesque streets and soaking in the romantic ambiance. Unwind and reconnect on the pristine beaches of Cala Mondrago, savoring the sun, sand, and sea.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Ibiza: A Symphony of Style and Seclusion",
+      "content": "Journey to the captivating island of Ibiza, known for its vibrant atmosphere and stunning natural beauty. Discover the island's hidden coves and pristine beaches, perfect for romantic strolls and secluded moments. Explore the ancient Dalt Vila, a UNESCO World Heritage Site, with its historical charm and panoramic views. Enjoy intimate dinners at elegant beachside restaurants, savoring fresh seafood and enchanting sunsets.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Barcelona: Farewell with Catalan Wines and Culinary Delights",
+      "content": "Return to Barcelona for a final chapter of discovery. Visit the enchanting Park G\u00fcell, another masterpiece by Gaudi, and admire its whimsical architecture and panoramic city views. Embark on a wine tasting tour in the Pened\u00e8s region, indulging in the exquisite flavors of Catalan wines and learning about the winemaking process. Conclude your journey with a memorable romantic dinner at a Michelin-starred restaurant, savoring the finest Catalan cuisine and raising a toast to your unforgettable adventure.",
+      "order_index": 4
+    }
+  ]
+}

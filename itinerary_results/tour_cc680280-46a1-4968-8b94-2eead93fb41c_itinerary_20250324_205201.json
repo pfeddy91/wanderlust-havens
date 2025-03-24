@@ -1,0 +1,30 @@
+{
+  "tour_id": "cc680280-46a1-4968-8b94-2eead93fb41c",
+  "tour_name": "Eternal Romance: Venice, Florence & Amalfi Coast",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Venice: A Floating Fairytale",
+      "content": "Immerse yourselves in the enchanting allure of Venice. Begin with a private gondola ride serenaded by a traditional singer, drifting along the Grand Canal's shimmering waters. Discover the opulent Doge's Palace, a testament to Venetian power, and marvel at the mosaics and grandeur of St. Mark's Basilica. Indulge in the authentic flavors of Venetian cuisine with a romantic dinner at a hidden trattoria, savoring fresh seafood paired with exquisite local wine. Lose yourselves in the labyrinthine streets, discovering hidden bridges and charming squares, creating unforgettable memories in this unique city.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Florence: Renaissance Romance",
+      "content": "Journey to Florence, the heart of the Renaissance. Stand in awe before Michelangelo's 'David' at the Accademia Gallery, a masterpiece of human form. Stroll hand-in-hand across the iconic Ponte Vecchio, admiring the shops and the Arno River flowing beneath. Partake in an exclusive Tuscan cooking class, learning the secrets of regional cuisine, followed by a delightful wine-tasting experience amidst rolling hills and vineyards. Enjoy a romantic dinner featuring classic Florentine steak at an upscale restaurant overlooking the city.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Amalfi Coast: Coastal Bliss",
+      "content": "Escape to the breathtaking Amalfi Coast. Embark on a private boat tour to the glamorous island of Capri, exploring the Blue Grotto and enjoying the sun-kissed scenery. Discover the ancient city of Pompeii, frozen in time, and learn about its rich history. Relax on the picturesque beaches of Positano, known for its colorful houses cascading down the cliffs. Indulge in a sensory journey at a winery nestled in the hills, with an exquisite wine and cheese pairing session, while enjoying the stunning views of the coast.",
+      "order_index": 3
+    },
+    {
+      "day_range": "11-14",
+      "title": "Rome: Eternal City Finale",
+      "content": "Conclude your romantic Italian adventure in Rome, the Eternal City. Explore the awe-inspiring Colosseum and the Roman Forum, imagining the grandeur of the Roman Empire. Immerse yourselves in the art and history of Vatican City, visiting St. Peter's Basilica and the Vatican Museums. Spend time in the charming Piazza Navona, admiring Bernini's Fountain of Four Rivers. Enjoy a farewell dinner at a Michelin-starred restaurant, savoring innovative Italian cuisine and reflecting on your unforgettable journey.",
+      "order_index": 4
+    }
+  ]
+}

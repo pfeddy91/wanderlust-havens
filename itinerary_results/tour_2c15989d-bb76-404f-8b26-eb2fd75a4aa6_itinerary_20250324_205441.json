@@ -1,0 +1,30 @@
+{
+  "tour_id": "2c15989d-bb76-404f-8b26-eb2fd75a4aa6",
+  "tour_name": "Alpine to Ocean: New Zealand's South Island Adventure",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Christchurch Charm and Queenstown Romance",
+      "content": "Begin your unforgettable journey in Christchurch, the 'Garden City.' Immerse yourselves in the beauty of its meticulously curated gardens and admire the city's resilient architecture, reborn after the earthquakes. Afterwards, embark on a scenic drive to Queenstown, the adventure capital nestled beside the stunning Lake Wakatipu. As evening descends, indulge in a romantic cruise on the lake, savoring gourmet canap\u00e9s and local wines while taking in the breathtaking mountain vistas. Conclude the experience with a private Central Otago wine tour, indulging in the region's acclaimed Pinot Noir and other varietals. Enjoy dinner at one of the local restaurants in Queenstown.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Milford Sound Majesty and Glacial Grandeur",
+      "content": "Today, journey to the heart of Fiordland National Park and prepare for an unforgettable overnight cruise on the iconic Milford Sound. Be captivated by towering cliffs, cascading waterfalls, and the sheer scale of this natural wonder. Choose to explore the serene waters by kayak or simply relax on deck, champagne in hand, while soaking in the scenery. After your cruise, return to Te Anau and enjoy its peaceful atmosphere. The next day, prepare for an extraordinary helicopter flight over Franz Josef Glacier. Experience the thrill of a snow landing, allowing you to stand amidst the pristine, icy landscape of the Southern Alps. Conclude the day with a gourmet dinner at a local restaurant specializing in South Island cuisine.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "West Coast Wonders and Abel Tasman Paradise",
+      "content": "Embark on a scenic drive along the rugged West Coast to Greymouth, taking in the dramatic coastline. From there, board the legendary TranzAlpine Train, a truly unforgettable journey through the Southern Alps back to Christchurch. Continue onwards to Abel Tasman National Park. Here, embark on a private guided kayaking tour, paddling through the park's pristine turquoise waters, exploring hidden coves, and basking on golden beaches. Enjoy a memorable beach dinner at a nearby restaurant.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Nelson's Artistic Flair and Farewell",
+      "content": "Your final days are dedicated to exploring the vibrant city of Nelson. Immerse yourselves in its thriving arts scene, visiting local galleries and studios. Enjoy a leisurely bicycle ride through the region's picturesque vineyards, stopping for tastings at boutique wineries. In the evening, savor a farewell dinner featuring fresh seafood and local produce. As your South Island adventure comes to a close, depart from Nelson, filled with cherished memories of your romantic escape.",
+      "order_index": 4
+    }
+  ]
+}

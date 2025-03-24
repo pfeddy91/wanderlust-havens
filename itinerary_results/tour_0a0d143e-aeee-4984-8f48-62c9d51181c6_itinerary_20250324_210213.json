@@ -1,0 +1,66 @@
+{
+  "tour_id": "0a0d143e-aeee-4984-8f48-62c9d51181c6",
+  "tour_name": "Global Romantic Odyssey: Seven Wonders Honeymoon Tour",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Egypt's Ancient Wonders",
+      "content": "Embark on your romantic odyssey in Egypt. Explore the majestic Pyramids of Giza and the enigmatic Great Sphinx, delving into the mysteries of the pharaohs. Indulge in a luxurious Nile River cruise, savoring candlelit dinners under the stars, with breathtaking views of the ancient landscapes gliding by. Enjoy luxurious accommodations in Cairo and Aswan.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "India's Cultural Tapestry",
+      "content": "Journey to India and immerse yourselves in the vibrant culture of Delhi and Agra. Witness the breathtaking Taj Mahal at sunrise, a symbol of eternal love. Enjoy a private, romantic dinner within the opulent setting of a Jaipur palace, experiencing the royal treatment and the rich heritage of India with personalized guides, creating unforgettable memories.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Vietnam's Natural Beauty",
+      "content": "Fly to Vietnam and discover the stunning landscapes of Ha Long Bay with a private boat tour, allowing you to explore hidden coves and tranquil waters. Indulge in a romantic dinner on the pristine beaches of Da Nang, followed by relaxation at a luxurious resort overlooking the South China Sea, surrounded by breathtaking natural beauty.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Brazil's Carnival Spirit",
+      "content": "Experience the vibrant energy of Rio de Janeiro. Watch the sunset from Sugarloaf Mountain, painting the sky with breathtaking colors. Immerse yourselves in the rhythm of Brazil with a private samba lesson in a local dance studio. Relax in luxury accommodations overlooking the iconic Copacabana Beach, soaking in the vibrant atmosphere.",
+      "order_index": 4
+    },
+    {
+      "day_range": "13-15",
+      "title": "Peru's Inca Legacy",
+      "content": "Travel to Peru and explore the ancient ruins of Machu Picchu, a testament to the ingenuity of the Inca civilization. Enjoy a scenic train ride to Aguas Calientes, winding through breathtaking landscapes. Share a romantic dinner at a traditional hacienda, savoring the flavors of Peru. Stay in a luxurious lodge with breathtaking views of the Andes Mountains, creating memories amidst stunning natural beauty.",
+      "order_index": 5
+    },
+    {
+      "day_range": "16-18",
+      "title": "South Africa's Wildlife Adventure",
+      "content": "Fly to South Africa and embark on an unforgettable safari adventure in Kruger National Park. Enjoy thrilling game drives in a private vehicle, seeking out the Big Five and other incredible wildlife. Relax in a luxurious safari lodge with stunning views of the savannah, savoring the sights and sounds of the African bush.",
+      "order_index": 6
+    },
+    {
+      "day_range": "19-21",
+      "title": "Greece's Island Paradise",
+      "content": "Travel to Greece and explore the picturesque islands of Santorini and Mykonos. Indulge in a private yacht tour around the islands, discovering hidden beaches and crystal-clear waters. Stay in a luxurious villa with breathtaking views of the Aegean Sea, enjoying the tranquility and beauty of the Greek islands.",
+      "order_index": 7
+    },
+    {
+      "day_range": "22-24",
+      "title": "Italy's Renaissance Charm",
+      "content": "Journey to Italy and immerse yourselves in the art and history of Florence and Venice. Take a private gondola ride through the romantic canals of Venice, serenaded by a gondolier. Indulge in a romantic dinner amidst the rolling hills of a Tuscan vineyard, savoring the flavors of Italy. Seek out the Michelin star restaurants for the finest dining in the region. ",
+      "order_index": 8
+    },
+    {
+      "day_range": "25-27",
+      "title": "Spain's Passionate Culture",
+      "content": "Travel to Spain and experience the vibrant culture of Barcelona and Madrid. Enjoy a private flamenco show, immersing yourselves in the passionate music and dance of Spain. Stay in a luxurious hotel overlooking the Mediterranean, and seek out the famous restaurants with the greatest paella.",
+      "order_index": 9
+    },
+    {
+      "day_range": "28-30",
+      "title": "France's Romantic Finale",
+      "content": "Conclude your journey in France, exploring the romantic city of Paris. Enjoy a private Seine River cruise, gliding past iconic landmarks under the city lights. Stay in a luxurious hotel with breathtaking views of the Eiffel Tower, creating a perfect ending to your global romantic odyssey. Enjoy a final romantic dinner at a Michelin-starred restaurant, savoring the exquisite cuisine of France.",
+      "order_index": 10
+    }
+  ]
+}

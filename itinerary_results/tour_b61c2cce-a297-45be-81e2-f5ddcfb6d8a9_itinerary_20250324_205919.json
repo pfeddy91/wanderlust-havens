@@ -1,0 +1,24 @@
+{
+  "tour_id": "b61c2cce-a297-45be-81e2-f5ddcfb6d8a9",
+  "tour_name": "Colombian Charm: Cartagena, Tayrona & Coffee Region",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Cartagena: Romance and Colonial Charm",
+      "content": "Immerse yourselves in the captivating city of Cartagena, a UNESCO World Heritage site brimming with romance and history. Wander hand-in-hand through the vibrant, colorful Old Town, discovering hidden plazas and architectural gems. Experience the city's magic with a private horse-drawn carriage ride along the cobblestone streets, followed by a memorable romantic dinner at one of Cartagena's finest dining establishments. Indulge in a private yacht excursion to the idyllic Rosario Islands. Snorkel in the turquoise waters, explore the coral reefs teeming with marine life, and savor a gourmet picnic on a secluded beach, creating unforgettable moments of serenity and bliss.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Coffee Region: A Sensory Journey",
+      "content": "Journey to the heart of Colombia's Coffee Triangle, a lush landscape of rolling hills and vibrant coffee plantations. Settle into a charming farmhouse, where you'll be immersed in the region's rich coffee culture. Embark on a private tour of a family-run coffee farm, learning about the meticulous process of coffee production from bean to cup. Enjoy a private coffee tasting session, awakening your senses to the nuanced flavors and aromas of premium Colombian coffee. Explore the picturesque towns of Salento and Filandia, known for their colorful architecture and breathtaking views. Hike through the majestic Cocora Valley, home to the towering wax palm trees, creating a surreal and unforgettable landscape. At the end of each day, enjoy a meal prepared by the farmhouse chef, using local ingredients.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-12",
+      "title": "Tayrona National Park: Paradise Found",
+      "content": "Escape to the breathtaking Tayrona National Park, a sanctuary where lush jungles meet pristine Caribbean beaches. Spend your days hiking through scenic trails, discovering hidden waterfalls, and encountering diverse wildlife. Snorkel in the crystal-clear waters of the Caribbean Sea, exploring the vibrant coral reefs teeming with marine life. Relax on secluded beaches, soaking up the sun and enjoying the tranquility of this natural paradise. Conclude each day with a romantic sunset dinner overlooking the Caribbean Sea, savoring exquisite cuisine while bathed in the golden light. Optional activities include private birdwatching tours, guided nature walks, or simply unwinding in a hammock with a captivating book.",
+      "order_index": 3
+    }
+  ]
+}

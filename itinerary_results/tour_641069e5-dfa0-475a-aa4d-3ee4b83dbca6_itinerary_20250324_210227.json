@@ -1,0 +1,36 @@
+{
+  "tour_id": "641069e5-dfa0-475a-aa4d-3ee4b83dbca6",
+  "tour_name": "World Capitals & Natural Wonders: London, Paris, Rome, Bangkok & Sydney",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "London Exploration: Royalty, History, and Thames Romance",
+      "content": "Begin your journey in London, the heart of British history and culture. Immerse yourselves in luxury and elegance. Explore iconic landmarks such as Buckingham Palace, witnessing the Changing of the Guard ceremony. Delve into history at the Tower of London, discovering its captivating stories and the allure of the Crown Jewels with a private viewing. Conclude your days with a romantic stroll along the South Bank of the Thames, culminating in a memorable sunset dinner cruise on the River Thames, savouring exquisite cuisine and breathtaking city views. Perhaps you will enjoy a private shopping experience in Mayfair.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Parisian Romance: Art, Elegance, and the City of Lights",
+      "content": "Travel to Paris via the Eurostar, experiencing seamless and luxurious transportation. Discover the City of Lights with a personalized guided tour of the Louvre, home to masterpieces that will ignite your artistic senses. Drift along the Seine River on a private cruise, admiring the city's iconic landmarks from a unique perspective. Ascend the Eiffel Tower at sunset, embracing the breathtaking panoramic views and the romantic ambiance. Indulge in a private wine tasting at a prestigious Parisian vineyard, sampling exquisite French wines. Conclude your Parisian nights with a dazzling cabaret show at the Moulin Rouge, a spectacle of music, dance, and artistry.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Roman Escapade: Ancient History, Culinary Delights, and Tuscan Relaxation",
+      "content": "Fly to Rome, the Eternal City, and step back in time. Explore the Vatican City, including the Sistine Chapel and St. Peter's Basilica, marveling at the architectural grandeur and artistic masterpieces. Immerse yourselves in the flavours of Italy with a private cooking class in Tuscany, creating authentic dishes with the finest local ingredients. Journey back in time with a guided tour of the Colosseum, imagining the gladiatorial contests and historical significance of this ancient amphitheater. Conclude your Roman adventure with a luxurious couples' spa treatment at a private villa, indulging in relaxation and rejuvenation.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-13",
+      "title": "Bangkok Adventure: Temples, Markets, and Rooftop Romance",
+      "content": "Travel to Bangkok, a city of vibrant culture and exotic charm. Explore the Grand Palace, a dazzling complex of temples and royal residences. Take a private boat ride along the Chao Phraya River, witnessing the city's bustling life from a unique perspective. Immerse yourselves in the vibrant atmosphere of the floating markets, sampling local delicacies and discovering unique crafts. Learn the art of Muay Thai boxing with a private lesson, experiencing the intensity and discipline of this ancient martial art. Conclude your Bangkok days with a romantic dinner at a rooftop restaurant, overlooking the dazzling cityscape and enjoying exquisite Thai cuisine.",
+      "order_index": 4
+    },
+    {
+      "day_range": "14-26",
+      "title": "Sydney and Beyond: Iconic Landmarks, Coastal Beauty, and Australian Delights",
+      "content": "Fly to Sydney, the gem of Australia, and embark on a final chapter of incredible experiences. Explore iconic landmarks such as the Sydney Opera House and Harbour Bridge, capturing stunning photos and creating lasting memories. Embrace the natural beauty of Australia with a scenic coastal walk from Bondi to Coogee, enjoying breathtaking ocean views and the vibrant beach culture. Celebrate your journey with a sunset cruise in Sydney Harbour, savoring delicious cuisine and admiring the iconic skyline as the sun dips below the horizon. Extend your stay with optional trips to the Blue Mountains, hiking through lush forests and admiring stunning rock formations, or indulge in a wine tour in the Hunter Valley, sampling world-class Australian wines.",
+      "order_index": 5
+    }
+  ]
+}

@@ -198,20 +198,37 @@ export async function getTourImages(tourId: string) {
 }
 
 // Tour locations functions
-export async function getTourLocations(tourId: string) {
-  const { data, error } = await supabase
-    .from('tour_locations')
-    .select('*')
-    .eq('tour_id', tourId)
-    .order('order');
-  
-  if (error) {
-    console.error(`Error fetching locations for tour ${tourId}:`, error);
+export const getTourLocations = async (tourId: string) => {
+  try {
+    console.log(`Fetching locations for tour: ${tourId}`);
+    
+    const { data, error } = await supabase
+      .from('tour_locations')
+      .select('*')
+      .eq('tour_id', tourId)
+      .order('order_index');
+      
+    if (error) {
+      console.error('Error fetching tour locations:', error);
+      return [];
+    }
+    
+    console.log(`Found ${data.length} locations for tour ${tourId}:`, data);
+    
+    // Ensure data is in the expected format
+    return data.map(location => ({
+      id: location.id,
+      name: location.name,
+      latitude: parseFloat(location.latitude),
+      longitude: parseFloat(location.longitude),
+      description: location.description || '',
+      order_index: location.order_index
+    }));
+  } catch (error) {
+    console.error('Failed to fetch tour locations:', error);
     return [];
   }
-  
-  return data || [];
-}
+};
 
 export async function getTourMap(tourId: string): Promise<TourMap | null> {
   const { data, error } = await supabase

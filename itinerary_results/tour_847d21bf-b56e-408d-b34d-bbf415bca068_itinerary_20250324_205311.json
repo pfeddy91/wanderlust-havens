@@ -1,0 +1,24 @@
+{
+  "tour_id": "847d21bf-b56e-408d-b34d-bbf415bca068",
+  "tour_name": "Cherry Blossoms & Ryokans: Tokyo to Kyoto Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Tokyo: Modern Marvels and Traditional Experiences",
+      "content": "Embark on your honeymoon in Tokyo, a city where cutting-edge modernity seamlessly blends with time-honored traditions. Ascend the Tokyo Skytree for panoramic city views, then dive into the vibrant energy of Shibuya Crossing. Explore the historic Asakusa Temple, immersing yourselves in the spiritual heart of Tokyo. Indulge in a private sushi-making class, crafting culinary masterpieces together. Escape the city bustle with a day trip to Hakone, enjoying a romantic cruise on Lake Ashi, surrounded by breathtaking scenery. Ascend the Hakone Ropeway, offering magnificent views of the iconic Mt. Fuji, creating unforgettable memories. Conclude each day by unwinding in the serene onsen (hot springs) of a luxurious ryokan, a traditional Japanese inn, indulging in the ultimate relaxation and cultural immersion. Expect world-class service and incredible dining throughout your stay.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Kyoto: Ancient Capital and Cultural Immersion",
+      "content": "Journey to Kyoto via the world-famous bullet train, experiencing Japan's efficient and comfortable rail system. Upon arrival, immerse yourselves in Kyoto's historic charm and serene beauty. Visit the dazzling Golden Pavilion (Kinkaku-ji), a Zen Buddhist temple covered in gold leaf, reflecting beautifully on the surrounding pond. Stroll hand-in-hand through the enchanting Arashiyama bamboo forest, a truly magical and unforgettable experience. Explore the vibrant Fushimi Inari Shrine, with its thousands of vermillion torii gates winding up the mountainside. Delight in a romantic and intimate dinner at a traditional kaiseki restaurant, savoring the exquisite flavors and artistry of Japanese cuisine. Enhance your cultural immersion with a stay in a luxurious ryokan, experiencing impeccable service, exquisite cuisine, and unparalleled relaxation in a tranquil setting. Your every need will be catered to, ensuring a seamless and unforgettable experience.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Nara, Osaka, and Countryside Retreat",
+      "content": "Venture to Nara, home to ancient temples and friendly wild deer roaming freely in Nara Park. Explore Todai-ji Temple, housing a giant bronze Buddha statue. Experience the vibrant energy of Osaka's Dotonbori area, famous for its dazzling lights and street food. Participate in a traditional tea ceremony, learning the art and grace of this ancient ritual. Indulge in a farewell dinner at a Michelin-starred restaurant, savoring a culinary experience that will tantalize your taste buds and create lasting memories. Conclude your journey with a tranquil retreat to a countryside ryokan, escaping the city bustle and enjoying the serenity of the Japanese landscape. Reflect on your unforgettable honeymoon as you prepare for your departure from Kansai Airport, filled with cherished memories of Japan's beauty, culture, and exquisite hospitality.",
+      "order_index": 3
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "tour_id": "bdd2f7b2-3e33-4be1-a8b6-8269bad101b0",
+  "tour_name": "Turkish Riviera & Ancient Ruins: Bodrum to Antalya",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Bodrum: Coastal Charm & Aegean Adventures",
+      "content": "Begin your unforgettable journey in Bodrum, a captivating coastal town brimming with vibrant energy and breathtaking beaches. Immerse yourselves in history at the majestic Bodrum Castle and delve into the underwater world at the Museum of Underwater Archaeology. As the sun dips below the horizon, indulge in a romantic sunset dinner at one of Bodrum's finest restaurants, savoring exquisite cuisine and breathtaking views. Elevate your experience with a private yacht charter, discovering secluded bays and snorkeling in the Aegean Sea's crystal-clear waters. Imagine toasting to your new beginning as you glide along the azure waters, creating memories that will last a lifetime.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Fethiye & \u00d6l\u00fcdeniz: Natural Beauty & Romantic Escapes",
+      "content": "Journey to Fethiye, a picturesque town nestled amidst unparalleled natural beauty. Explore the ancient city of Telmessos, uncovering its rich history and captivating stories. Discover the iconic \u00d6l\u00fcdeniz Beach, famed for its mesmerizing blue lagoon \u2013 a perfect backdrop for romantic strolls and sun-kissed moments. Embark on a scenic hike through the verdant mountains, rewarded with panoramic views, or opt for a leisurely boat tour to the enchanting Butterfly Valley, a haven of tranquility and natural wonder. End your days relaxing and enjoying the beautiful bay views.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Antalya & Perge: History, Waterfalls & Mediterranean Romance",
+      "content": "Arrive in Antalya, a city where history and natural beauty intertwine seamlessly. Step back in time as you explore the ancient city of Perge, marveling at its well-preserved ruins and architectural wonders. Witness the cascading beauty of the D\u00fcden Waterfalls, feeling the refreshing spray on your skin. Wander hand-in-hand through the historic Old Town (Kalei\u00e7i), soaking in its charming atmosphere and discovering hidden gems. Enjoy a romantic dinner at a cliffside restaurant, overlooking the dazzling Mediterranean Sea and creating unforgettable memories. Indulge in the luxury of a 5-star resort, complete with access to private beaches and world-class amenities, ensuring a truly pampered and blissful experience.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Antalya's Cultural Gems & Seaside Bliss: A Honeymoon Farewell",
+      "content": "Delve deeper into Antalya's rich cultural heritage, visiting the renowned Antalya Museum and embarking on a guided tour of the awe-inspiring ancient city of Aspendos, home to one of the best-preserved Roman theaters in the world. Relax and unwind on the pristine beaches of Konyaalt\u0131 or Lara, basking in the warm Mediterranean sun. Rejuvenate your senses with a couples spa day at your luxurious resort, indulging in pampering treatments and creating a sense of tranquility. Conclude your honeymoon with a memorable sunset cruise along the Turkish Riviera, savoring the breathtaking views and celebrating your love as you bid farewell to this magical destination. Optional: Consider a Michelin-starred dining experience to cap off the culinary adventure.",
+      "order_index": 4
+    }
+  ]
+}

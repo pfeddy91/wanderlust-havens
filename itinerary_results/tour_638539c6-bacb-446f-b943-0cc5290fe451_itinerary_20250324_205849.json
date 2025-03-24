@@ -1,0 +1,30 @@
+{
+  "tour_id": "638539c6-bacb-446f-b943-0cc5290fe451",
+  "tour_name": "Patagonian Romance: Perito Moreno Glacier & Los Glaciares",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "El Calafate Arrival & Perito Moreno Glacier Immersion",
+      "content": "Begin your romantic Patagonian escape in El Calafate, the charming gateway to Los Glaciares National Park. Settle in and prepare for breathtaking scenery. A private scenic boat ride awaits on Lago Argentino, bringing you face-to-face with the awe-inspiring Perito Moreno Glacier. Enhance your experience with a guided hike on the glacier itself (subject to age and physical condition suitability), an unforgettable adventure amidst the icy blue landscape. Evenings are yours to savor the local atmosphere and enjoy refined Patagonian cuisine.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "El Chalt\u00e9n: Mount Fitz Roy and Lakeside Serenity",
+      "content": "Journey to El Chalt\u00e9n, the trekking capital of Argentina, nestled at the foot of the majestic Mount Fitz Roy. Embark on a guided hike to the base of this iconic mountain, capturing breathtaking panoramic views. Discover the serene beauty of Lake Viedma, perhaps with a private boat excursion. As evening falls, indulge in a romantic dinner at a highly-rated restaurant, featuring regional specialties. Enjoy cozy lodging with picturesque views of the Patagonian landscape.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Torres del Paine National Park: Chilean Wilderness & Luxury",
+      "content": "Cross the border into Chile and enter the unparalleled beauty of Torres del Paine National Park. Experience unforgettable guided hikes to the iconic towers viewpoint, offering breathtaking panoramas of the Paine Massif. Explore the pristine shores of Sarmiento Lake, immersing yourselves in the park's diverse ecosystem. Enjoy evenings at a luxurious eco-lodge, indulging in world-class amenities and savoring gourmet cuisine amidst stunning park views. Consider a private stargazing experience in this exceptionally dark sky region for a truly memorable romantic touch.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Farewell Patagonia: El Calafate Delights & Departure",
+      "content": "Return to El Calafate for a leisurely final day. Explore the local artisan markets, searching for unique souvenirs to commemorate your Patagonian adventure. As a final culinary delight, enjoy a special farewell dinner, toasting to your unforgettable journey. Depart from El Calafate with cherished memories of your romantic Patagonian escapade.",
+      "order_index": 4
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "tour_id": "ba06ef90-c32f-4b1e-84bb-0d81a5fc2844",
+  "tour_name": "Sacred Valley & Machu Picchu: Incan Heritage Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Cusco & Sacred Valley: A Luxurious Immersion",
+      "content": "Begin your romantic journey in the heart of Cusco, a city steeped in history and vibrant culture. Explore the historic city center, hand-in-hand, discovering hidden gems in the charming San Blas neighborhood, known for its artisan workshops. Ascend to Sacsayhuaman, a majestic Inca fortress, and witness the breathtaking panoramic views of Cusco, all with your private guide offering insights into the Inca civilization. Journey through the picturesque Sacred Valley, a landscape of rolling hills and terraced farms. Discover the ancient Salt Mines of Maras, a fascinating testament to Incan ingenuity, and explore the imposing archaeological site of Ollantaytambo, a vital Inca fortress and temple. Indulge in a delightful, authentic Andean lunch, savouring the region's unique flavors and locally sourced ingredients. Enjoy the comforts of a first-class experience as you retire each evening.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Machu Picchu: Sunrise Spectacle & Andean Delights",
+      "content": "Embark on an unforgettable train journey to Aguas Calientes, the gateway to Machu Picchu. Prepare to be captivated by the awe-inspiring beauty of Machu Picchu as you experience a private sunrise tour. Witness the ancient city bathed in the golden light of dawn, a truly magical and unforgettable moment. Delve into the secrets of this lost city with your private guide, uncovering its rich history and significance. The adventure continues with a scenic train ride back to Cusco, offering breathtaking views of the Andean landscapes. Take time to explore the vibrant local markets, filled with colorful textiles and unique souvenirs. Savor the exquisite flavors of Peruvian cuisine, indulging in a special dining experience with stunning views of the majestic Andean mountains.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-8",
+      "title": "Rainbow Mountain: A Breathtaking Andean Vista",
+      "content": "Embark on a journey to the vibrant Rainbow Mountain, known for its stunning red, orange, and turquoise landscapes. Hike through breathtaking scenery, immersing yourselves in the raw beauty of the Andes. Experience the tranquility and serenity of a beautiful lodge, nestled amidst the mountains, where you can relax and rejuvenate after your adventure. Enjoy the serene atmosphere and revel in the peace and quiet of the surrounding nature. ",
+      "order_index": 3
+    },
+    {
+      "day_range": "9-11",
+      "title": "Cultural Immersion & Romantic Farewell",
+      "content": "Delve deeper into Cusco's cultural heritage with a visit to Qoricancha, the Temple of the Sun, a testament to the Inca's sophisticated architectural skills. Partake in a traditional Andean blessing ceremony, a spiritually enriching experience that connects you to the ancient traditions of the region. Celebrate your journey with a romantic farewell dinner at a top-rated restaurant, savoring the diverse and delicious flavors of Peruvian cuisine. Reflect on the unforgettable memories you've created during your Incan heritage adventure.",
+      "order_index": 4
+    }
+  ]
+}

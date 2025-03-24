@@ -1,0 +1,30 @@
+{
+  "tour_id": "c70fb39d-90d6-4315-9bb3-c35d8fd8e846",
+  "tour_name": "Cape Winelands & Garden Route Coastal Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Cape Town & Constantia Winelands Indulgence",
+      "content": "Begin your romantic adventure in the vibrant city of Cape Town, set against the iconic backdrop of Table Mountain. Immerse yourselves in the beauty and history of the Constantia wine region, celebrated for its award-winning vineyards and breathtaking landscapes. Savor exquisite wine tastings at prestigious estates, each offering a unique selection of varietals. Indulge in gourmet meals at acclaimed restaurants, some with Michelin stars, where world-class chefs showcase the region's finest ingredients with innovative flair. Consider a private helicopter tour over the Cape Peninsula for unforgettable views. Spend your evenings enjoying upscale nightlife and live music.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Hermanus Whale Watching & De Hoop's Natural Wonders",
+      "content": "Journey to Hermanus, renowned as one of the best whale-watching destinations in the world (seasonal). Indulge in this special experience by boat! Afterwards, escape to the serene De Hoop Nature Reserve. Explore its diverse landscapes through guided hikes, discovering hidden trails and unique flora. Delight in birdwatching, spotting rare and endemic species in their natural habitat. Discover the mesmerizing turquoise rock pools, perfect for snorkeling and refreshing dips. Enjoy romantic sunset walks along pristine beaches, followed by candlelit dinners under the stars.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Secluded Treetop Sanctuary & Forest Bliss",
+      "content": " Retreat to an exclusive treetop lodge nestled within an enchanting indigenous forest. Embrace the tranquility of your surroundings, enjoying the privacy of your secluded deck and the refreshing allure of your infinity pool. Immerse yourselves in the peaceful ambiance of the forest with leisurely hikes along winding trails. Rejuvenate your senses with couples' massages at the lodge's spa, followed by intimate dinners featuring local delicacies. Consider a private stargazing experience to enhance the romance.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Eastern Cape Safari: A Romantic Wildlife Encounter",
+      "content": " Conclude your journey with an unforgettable safari experience in the Eastern Cape. Stay at a family-run lodge offering unparalleled access to the region's diverse wildlife. Embark on guided game drives, venturing into the heart of the African bush in search of the Big Five and other fascinating creatures. Enjoy sundowner cocktails overlooking the vast landscapes, and share stories around a crackling bonfire under the starlit sky. Indulge in bush dinners, savoring traditional South African cuisine while immersing yourselves in the sights and sounds of the wild.",
+      "order_index": 4
+    }
+  ]
+}

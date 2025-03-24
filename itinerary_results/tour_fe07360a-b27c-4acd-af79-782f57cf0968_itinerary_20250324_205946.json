@@ -1,0 +1,42 @@
+{
+  "tour_id": "fe07360a-b27c-4acd-af79-782f57cf0968",
+  "tour_name": "Mediterranean Majesty: Italian & Greek Islands",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Venetian Romance & Florentine Flavors",
+      "content": "Begin your honeymoon in Venice with a private gondola ride through the enchanting canals, serenaded by a traditional musician. Savor exquisite Venetian cuisine at a hidden gem restaurant. Travel to Florence, the heart of Tuscany, where you'll participate in a private cooking class, mastering the art of regional dishes. Explore the Uffizi Gallery, home to Renaissance masterpieces, and stand in awe before Michelangelo's David in the Accademia Gallery. Enjoy a private tour of the secret passageways of Palazzo Vecchio for a glimpse into Florentine history.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Roman Grandeur & Amalfi Coast Splendor",
+      "content": "Journey to Rome and immerse yourselves in the city's ancient history. Explore the Colosseum and Roman Forum with a private historian, followed by a visit to Vatican City, including a private tour of the Sistine Chapel, avoiding the crowds. Then, escape to the breathtaking Amalfi Coast and settle into Positano or Amalfi, soaking in the stunning coastal views. Indulge in a private wine tasting tour amidst the picturesque vineyards of Tuscany, paired with a gourmet picnic lunch.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Athenian History & Mykonos Nights",
+      "content": "Fly to Athens and ascend to the Acropolis, exploring the Parthenon and other ancient wonders with an expert archaeologist. Delight in a traditional Greek cooking class followed by dinner at a Michelin-recommended restaurant. Then, whisk away to Mykonos, famed for its vibrant nightlife and stunning beaches. Embark on a sunset cruise around the island, offering unparalleled views of the Aegean Sea, complete with champagne and canap\u00e9s.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Santorini's Romantic Embrace",
+      "content": "Experience the unparalleled romance of Santorini, with its iconic whitewashed houses and blue-domed churches. Take a guided scenic hike from Fira to Oia, capturing the panoramic views of the caldera. Indulge in a private wine tasting tour at a local vineyard, followed by a truly unforgettable romantic dinner at a cliffside restaurant overlooking the Aegean Sea. Enjoy a couple's massage at a luxury spa with caldera views.",
+      "order_index": 4
+    },
+    {
+      "day_range": "13-15",
+      "title": "Cretan Culture & Coastal Bliss",
+      "content": "Visit Crete, the largest Greek island, and delve into its rich history and natural beauty. Explore the ancient Palace of Knossos, a testament to Minoan civilization, with a private historian. Spend a relaxing day at the idyllic Elafonisi Beach, known for its pink sand and turquoise waters. Enjoy a private yacht tour along the coast of Crete, discovering hidden coves and secluded beaches.",
+      "order_index": 5
+    },
+    {
+      "day_range": "16-21",
+      "title": "Cycladic Island Hopping & Athenian Farewell",
+      "content": "Embark on a bespoke island-hopping adventure through the Cyclades. Discover hidden gems like Naxos or Paros, known for their authentic charm and pristine beaches. Experience private sailing to secluded bays, enjoy gourmet picnics on the beach, and indulge in the local culinary scene. Return to Athens for a final evening of celebration. Enjoy a farewell dinner at a Michelin-starred restaurant in the historic Plaka district, savoring the flavors of Greece while reminiscing about your incredible journey.",
+      "order_index": 6
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "ea38d3ff-5ba1-4e19-93ad-60b79efb110c",
+  "tour_name": "Holy Land & Red Sea: Jerusalem to Eilat Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Jerusalem: A Journey Through History and Romance",
+      "content": "Begin your unforgettable honeymoon exploring the heart of Jerusalem. Immerse yourselves in the city's rich history with visits to the Western Wall, the sacred Church of the Holy Sepulcher, and a contemplative walk along the Via Dolorosa. As evening descends, discover the romantic allure of the Old City's hidden courtyards and candlelit restaurants. Savor exquisite dinners, perhaps discovering a hidden gem with a Michelin star-worthy experience, indulging in the diverse culinary delights that Jerusalem has to offer. Enjoy world-class accommodations.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Dead Sea Serenity and Masada's Majestic Views",
+      "content": "Journey to the extraordinary Dead Sea, the lowest point on Earth. Indulge in the unique sensation of effortlessly floating in its mineral-rich waters, a truly unforgettable experience. Embark on a captivating excursion to the ancient fortress of Masada, ascending by cable car to witness breathtaking panoramic views of the surrounding desert landscape. Spend unforgettable nights at a luxury Dead Sea resort, enjoying all-inclusive experiences and world-class pampering.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Eilat: Red Sea Relaxation and Underwater Wonders",
+      "content": "Escape to Eilat, a vibrant city nestled on the shores of the Red Sea. Discover the underwater paradise of the Coral Beach Nature Reserve with an unforgettable snorkeling or diving adventure amidst vibrant coral reefs and diverse marine life. Indulge in relaxation and rejuvenation, savoring fresh seafood at waterfront restaurants and toasting to your love as you watch the sunset over the Gulf of Aqaba. Enjoy premium accommodations with mesmerizing views of the azure waters. Conclude your romantic journey with unforgettable memories of the Holy Land and the Red Sea.",
+      "order_index": 3
+    }
+  ]
+}

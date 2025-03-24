@@ -1,0 +1,24 @@
+{
+  "tour_id": "bbe565f0-5bd4-4f88-8328-3b05ce327235",
+  "tour_name": "Ancient Wonders: Petra, Wadi Rum & Dead Sea Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Amman Arrival and Petra's Ancient Majesty",
+      "content": "Begin your Jordanian journey in the vibrant capital city of Amman. Immerse yourselves in the city's rich history and culture, perhaps exploring the Citadel with its Roman Temple of Hercules and the Umayyad Palace. Next, embark on a scenic drive to Petra, the lost city. Over the next two days, explore this breathtaking wonder, entering through the Siq, a narrow gorge leading to the iconic Treasury (Al-Khazneh). Discover other remarkable monuments, tombs, and temples carved into the sandstone cliffs. In the evening, enjoy a private, romantic candlelit dinner under the stars near Petra. Experience the magic of Petra by night, enhanced by the tranquility of the desert and your shared intimacy.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Wadi Rum's Romantic Desert Escape",
+      "content": "Journey to Wadi Rum, a protected desert wilderness of dramatic sandstone mountains and sweeping sandy valleys. Experience the thrill of a private jeep tour through this stunning landscape, discovering hidden canyons, ancient rock inscriptions, and breathtaking panoramic views. As the sun sets, retreat to a luxurious Bedouin-style camp, nestled amongst the dunes. Enjoy a traditional Zarb dinner cooked underground, savoring authentic Jordanian flavors under a blanket of stars. Spend the night stargazing together, far from the city lights, creating an unforgettable romantic experience.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Dead Sea Serenity and Cultural Immersion",
+      "content": "Indulge in the ultimate relaxation at the Dead Sea, the lowest point on earth. Float effortlessly in its mineral-rich waters, renowned for their therapeutic properties. Pamper yourselves with luxurious spa treatments, rejuvenating your bodies and minds. Take a break from the tranquility and embark on a day trip to Jerash, one of the best-preserved Roman cities outside of Italy. Explore its impressive colonnaded streets, temples, and theaters. Return to Amman for a final night. Savor a farewell dinner at one of Amman's finest establishments, reflecting on your unforgettable Jordanian honeymoon. Perhaps seek out Michelin Star concepts, depending on the restaurant type. Enjoy your final hours in Jordan, cherishing the memories created during your journey.",
+      "order_index": 3
+    }
+  ]
+}

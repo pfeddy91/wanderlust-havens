@@ -1,0 +1,48 @@
+{
+  "tour_id": "63a0c999-4c8f-459c-bae1-3c99e6d8e110",
+  "tour_name": "Southeast Asian Splendor: Thailand, Vietnam & Cambodia",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Bangkok & Ayutthaya: Cultural Immersion & Culinary Delights",
+      "content": "Begin your Southeast Asian adventure in the dynamic city of Bangkok. Immerse yourselves in the city's spiritual heart with visits to the magnificent Grand Palace and the sacred Wat Phra Kaew (Temple of the Emerald Buddha). Enjoy a romantic longtail boat ride along the Chao Phraya River, soaking in the vibrant cityscape. Journey to the ancient city of Ayutthaya, a UNESCO World Heritage Site, and explore its historical ruins, a window into Thailand's glorious past. Participate in a private hands-on cooking class, mastering the art of preparing authentic Thai dishes together, and savoring the fruits of your labor.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Phuket: Beach Bliss & Sunset Serenity",
+      "content": "Escape to the tropical paradise of Phuket and unwind in a private villa at a luxurious 5-star resort. Spend your days basking in the sun on pristine beaches and swimming in the turquoise waters of the Andaman Sea. Embark on a breathtaking sunset cruise around Phang Nga Bay, discovering hidden lagoons and dramatic limestone islands. Pamper yourselves with a rejuvenating couples' spa treatment at one of Phuket's premier wellness centers, melting away stress and embracing tranquility.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Hanoi & Halong Bay: Historical Charm & Natural Wonders",
+      "content": "Fly to Hanoi and delve into the city's rich history and cultural tapestry. Explore the charming Old Quarter, a maze of narrow streets brimming with traditional shops and vibrant street life. Indulge in a romantic dinner at an authentic local restaurant, savoring the flavors of Vietnamese cuisine. Embark on a scenic cruise through the breathtaking Halong Bay, a UNESCO World Heritage Site. Spend a night on a luxurious junk boat, surrounded by towering limestone karsts and emerald waters, creating unforgettable memories under the starlit sky.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Hoi An & Hue: Ancient Towns & Imperial Grandeur",
+      "content": "Journey to the enchanting town of Hoi An, renowned for its well-preserved ancient architecture and tailor shops. Wander through the vibrant local markets, filled with colorful textiles and handicrafts. Explore the Imperial City of Hue, a UNESCO World Heritage Site, and discover its majestic citadel, serene gardens, and intricate temples. Experience the countryside on a vintage Vespa tour, immersing yourselves in local life and savoring authentic Vietnamese cuisine along the way. Enjoy a private lantern making workshop to learn the beautiful craft.",
+      "order_index": 4
+    },
+    {
+      "day_range": "13-15",
+      "title": "Siem Reap & Angkor Wat: Ancient Wonders & Romantic Ruins",
+      "content": "Discover the awe-inspiring temples of Angkor Wat, a testament to Cambodia's rich history and architectural genius. Enjoy a private guided tour of the Angkor complex, including Angkor Thom and Ta Prohm, gaining insights into the Khmer civilization. Conclude your days with a romantic dinner amidst the ancient ruins, creating an unforgettable experience. Relax and unwind in a luxurious resort, surrounded by lush tropical gardens and serene landscapes. Optional: Enjoy a private blessing ceremony by a Buddhist monk for lasting love and happiness.",
+      "order_index": 5
+    },
+    {
+      "day_range": "16-18",
+      "title": "Phnom Penh: Royal Heritage & Riverside Charm",
+      "content": "Experience the vibrant city of Phnom Penh, exploring its historical landmarks and cultural treasures. Visit the Royal Palace, a symbol of Cambodia's monarchy, and the National Museum, home to an impressive collection of Khmer art. Take a leisurely sunset cruise along the Mekong River, enjoying panoramic views of the city skyline. Immerse yourselves in the local culture by sampling street food delights and exploring the bustling markets. Explore the silver pagoda, one of Phnom Penh's most beautiful sites.",
+      "order_index": 6
+    },
+    {
+      "day_range": "19-21",
+      "title": "Bangkok: Farewell Indulgence & Unforgettable Memories",
+      "content": "Return to Bangkok for a final few days of relaxation and reflection. Enjoy exploring anything you may have missed during the first visit like a rooftop bar with amazing views. Celebrate your unforgettable honeymoon with a memorable farewell dinner at a Michelin-starred restaurant, reminiscing about the incredible experiences and cherished moments shared during your Southeast Asian adventure.",
+      "order_index": 7
+    }
+  ]
+}

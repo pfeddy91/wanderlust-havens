@@ -1,0 +1,24 @@
+{
+  "tour_id": "fda6ba49-bf17-430e-b288-585c86963f9b",
+  "tour_name": "Safari & Sea: Kruger to Mozambique Beaches",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Kruger National Park: Luxurious Safari Adventure",
+      "content": "Immerse yourselves in the untamed beauty of Kruger National Park, South Africa's premier wildlife sanctuary. Embark on thrilling guided game drives in open-air vehicles, seeking out the iconic Big Five: lion, elephant, leopard, rhino, and buffalo. Elevate your safari experience with a romantic sunset game drive, complete with champagne and canap\u00e9s as you witness the African sunset. Add a heartwarming experience with a visit to a reputable elephant sanctuary for an ethical and unique interaction. Indulge in rejuvenating spa treatments inspired by local traditions, and savor gourmet candlelit dinners under the starlit African sky, accompanied by fine South African wines.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Journey to Mozambique: Coastal Paradise Awaits",
+      "content": "Embark on a scenic journey to the captivating coastline of Mozambique, where pristine beaches and turquoise waters await. Unwind and reconnect on secluded beaches overlooking the Indian Ocean. Discover the vibrant underwater world through snorkeling and diving excursions, encountering colorful coral reefs and diverse marine life. Immerse yourselves in local Mozambican culture with a guided visit to a nearby village, experiencing traditional customs and crafts. Relish the flavors of the ocean with unforgettable dining experiences at beachside restaurants, indulging in freshly caught seafood prepared with local spices and flair.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-14",
+      "title": "Mozambique Beach Bliss: Relaxation and Romance",
+      "content": "Settle into a luxurious beachfront villa and spend your days in blissful relaxation and romantic adventures. Glide through the calm waters with complimentary access to kayaks and paddleboards. Embark on a magical sunset cruise aboard a traditional dhow, sipping cocktails as you witness the sun dip below the horizon. Take a day to explore the historic town of Maputo, discovering its architectural gems and vibrant markets. Alternatively, simply luxuriate in the tranquility of your surroundings, enjoying private beach picnics prepared by your personal chef and intimate fine dining experiences. The staff are ready to pamper you with exceptional hospitality, ensuring every moment is unforgettable.",
+      "order_index": 3
+    }
+  ]
+}

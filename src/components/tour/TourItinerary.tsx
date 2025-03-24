@@ -1,12 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tour } from '@/types/tour';
-import { MapPin, Clock } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/integrations/supabase/client';
 import TourLocationMap from './TourLocationMap';
 import { getTourLocations, getTourMap } from '@/services/honeymoonService';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface TourItineraryProps {
   tour: Tour;
@@ -18,18 +18,83 @@ interface ItinerarySection {
   content: string;
 }
 
+interface DatabaseItinerarySection {
+  id: number;
+  tour_id: string;
+  day_range: string;
+  title: string;
+  content: string;
+  order_index: number;
+}
+
 const TourItinerary = ({ tour }: TourItineraryProps) => {
   const [itinerarySections, setItinerarySections] = useState<ItinerarySection[]>([]);
   const [tourMap, setTourMap] = useState<any>(null);
   const [tourLocations, setTourLocations] = useState<any[]>([]);
   const [mapLoading, setMapLoading] = useState(true);
+  const [itineraryLoading, setItineraryLoading] = useState(true);
+  const [expandedSection, setExpandedSection] = useState<number | null>(0); // First section expanded by default
 
   useEffect(() => {
-    // Parse the description to extract itinerary sections
-    if (tour.description) {
-      const sections = parseItinerary(tour.description);
-      setItinerarySections(sections);
-    }
+    // Fetch itinerary sections from database
+    const fetchItinerarySections = async () => {
+      setItineraryLoading(true);
+      try {
+        // First try to get sections from the tour_itineraries table
+        const { data, error } = await supabase
+          .from('tour_itineraries')
+          .select('*')
+          .eq('tour_id', tour.id)
+          .order('order_index');
+        
+        if (error) {
+          console.error('Error fetching tour itineraries:', error);
+          // Fall back to parsing from description
+          if (tour.description) {
+            const sections = parseItinerary(tour.description);
+            setItinerarySections(sections);
+          }
+        } else if (data && data.length > 0) {
+          // Convert database format to component format
+          const sections: ItinerarySection[] = data.map((section: DatabaseItinerarySection) => ({
+            days: section.day_range,
+            title: section.title,
+            content: section.content
+          }));
+          setItinerarySections(sections);
+          console.log(`Loaded ${sections.length} itinerary sections from database`);
+          
+          // Ensure the first section is expanded after loading
+          setExpandedSection(0);
+        } else {
+          // No data in database, fall back to parsing from description
+          console.log('No itinerary sections found in database, parsing from description');
+          if (tour.description) {
+            const sections = parseItinerary(tour.description);
+            setItinerarySections(sections);
+            
+            // Ensure the first section is expanded after parsing
+            if (sections.length > 0) {
+              setExpandedSection(0);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch itinerary sections:', error);
+        // Fall back to parsing from description
+        if (tour.description) {
+          const sections = parseItinerary(tour.description);
+          setItinerarySections(sections);
+          
+          // Ensure the first section is expanded after parsing
+          if (sections.length > 0) {
+            setExpandedSection(0);
+          }
+        }
+      } finally {
+        setItineraryLoading(false);
+      }
+    };
 
     // Fetch tour locations and map data
     const fetchTourData = async () => {
@@ -59,22 +124,16 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
           // Set a basic fallback for this tour
           if (tour.slug.includes('brazil') || tour.slug.includes('rio')) {
             setTourMap({
-              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-43.2096,-22.9064,5/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
-              distance: 'Approx. 1,500 km',
-              duration: '7-10 days'
+              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-43.2096,-22.9064,5/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw'
             });
           } else if (tour.slug.includes('iguazu')) {
             setTourMap({
-              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-54.4380,-25.6953,6/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw',
-              distance: 'Approx. 1,200 km',
-              duration: '5-7 days'
+              static_map_url: 'https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-54.4380,-25.6953,6/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw'
             });
           } else {
             // Default fallback
             setTourMap({
-              static_map_url: `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/0,0,2/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw`,
-              distance: `Approx. ${tour.duration * 100} km`,
-              duration: `${tour.duration} days`
+              static_map_url: `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/0,0,2/800x600?access_token=pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw`
             });
           }
         }
@@ -85,6 +144,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
       }
     };
 
+    fetchItinerarySections();
     fetchTourData();
   }, [tour.description, tour.id, tour.slug, tour.duration]);
 
@@ -119,16 +179,20 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
     return sections;
   };
 
+  const toggleSection = (index: number) => {
+    setExpandedSection(expandedSection === index ? null : index);
+  };
+
   return (
     <div>
       <h2 className="mb-8 font-serif text-3xl font-bold uppercase tracking-wide">
         Itinerary idea in detail
       </h2>
       
-      <div className="grid md:grid-cols-[1fr_1.2fr] gap-12">
+      <div className="grid md:grid-cols-2 gap-8">
         {/* Map Column */}
-        <div className="space-y-6">
-          <div className="rounded-lg overflow-hidden shadow-lg h-[500px] bg-gray-100">
+        <div className="h-[600px]">
+          <div className="rounded-lg overflow-hidden shadow-lg h-full bg-gray-100">
             {!mapLoading ? (
               <TourLocationMap 
                 tourLocations={tourLocations}
@@ -142,57 +206,66 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
               </div>
             )}
           </div>
-          
-          {tourMap && (
-            <div className="space-y-4">
-              {tourMap.distance && (
-                <div className="flex items-center">
-                  <MapPin className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-gray-700">Distance: {tourMap.distance}</span>
-                </div>
-              )}
-              
-              {tourMap.duration && (
-                <div className="flex items-center">
-                  <Clock className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-gray-700">Duration: {tourMap.duration}</span>
-                </div>
-              )}
-            </div>
-          )}
         </div>
         
         {/* Itinerary Sections Column */}
-        <div className="space-y-8">
-          {itinerarySections.map((section, index) => (
-            <Card key={`section-${index}`} className="overflow-hidden border-0 shadow-md">
-              <div className="bg-primary/10 px-6 py-4">
-                <div className="flex items-center justify-between">
-                  <div className="text-primary font-serif text-2xl font-bold uppercase tracking-wide">
-                    Days {section.days}
-                  </div>
-                  {index > 0 && (
-                    <div className="text-sm text-gray-500">
-                      Continue your journey
+        <div className="space-y-0 h-[600px] overflow-auto">
+          {itineraryLoading ? (
+            <div className="text-center py-8">
+              <p className="text-gray-500">Loading itinerary...</p>
+            </div>
+          ) : itinerarySections.length > 0 ? (
+            itinerarySections.map((section, index) => (
+              <Card 
+                key={`section-${index}`} 
+                className="overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-lg rounded-none"
+              >
+                <div 
+                  className={`px-6 py-4 cursor-pointer transition-colors duration-200 ${
+                    expandedSection === index ? 'bg-primary/20' : 'bg-primary/10 hover:bg-primary/15'
+                  }`}
+                  onClick={() => toggleSection(index)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1 overflow-hidden">
+                      <div className="flex items-baseline">
+                        <span className="text-primary font-serif text-lg font-bold uppercase tracking-wide whitespace-nowrap inline-block w-[110px] flex-shrink-0">
+                          Days {section.days}:
+                        </span>
+                        <span className="text-primary font-serif text-lg font-bold uppercase tracking-wide">
+                          {section.title}
+                        </span>
+                      </div>
                     </div>
-                  )}
-                </div>
-              </div>
-              
-              <CardContent className="p-6">
-                <div>
-                  <h3 className="font-serif text-xl font-bold uppercase tracking-wide mb-4">
-                    {section.title}
-                  </h3>
-                  <div className="prose prose-sm max-w-none font-serif text-gray-700 whitespace-pre-line">
-                    {section.content}
+                    <div className="ml-4 flex-shrink-0">
+                      {expandedSection === index ? 
+                        <ChevronUp className="w-5 h-5 text-primary" /> : 
+                        <ChevronDown className="w-5 h-5 text-primary" />
+                      }
+                    </div>
                   </div>
                 </div>
-              </CardContent>
-              
-              {index < itinerarySections.length - 1 && <Separator />}
-            </Card>
-          ))}
+                
+                <div 
+                  className={`transition-all duration-300 overflow-hidden ${
+                    expandedSection === index ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <CardContent className="p-8">
+                    <div className="prose prose-lg max-w-none font-serif text-gray-700 whitespace-pre-line">
+                      {section.content}
+                    </div>
+                  </CardContent>
+                </div>
+                
+                {index < itinerarySections.length - 1 && <Separator />}
+              </Card>
+            ))
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-gray-500">No itinerary information available for this tour.</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

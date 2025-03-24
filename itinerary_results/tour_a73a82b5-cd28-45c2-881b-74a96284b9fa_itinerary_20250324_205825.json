@@ -1,0 +1,30 @@
+{
+  "tour_id": "a73a82b5-cd28-45c2-881b-74a96284b9fa",
+  "tour_name": "Eastern Canada: Quebec's Old World Charm & Maritime Coast",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Montreal & Quebec City: A Romantic Prelude",
+      "content": "Begin your Eastern Canada honeymoon in vibrant Montreal. Explore the historic Old Town, hand-in-hand, discovering its charming cobblestone streets and unique boutiques. A private tour of Notre Dame Basilica reveals its stunning architecture and rich history. Indulge in a romantic dinner at one of Montreal's renowned Michelin-starred restaurants, savoring exquisite cuisine and fine wine. Then, journey to Quebec City, the only walled city in North America. Discover the historic Place d'Armes, a perfect spot for photos. Enjoy a special and intimate French dinner in Old Town, complete with exceptional wines and impeccable service to truly immerse yourselves in Quebec's romantic history.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Saguenay Fjord & Charlevoix: Natural Wonders and Artistic Charm",
+      "content": "Embark on a scenic drive to the majestic Saguenay Fjord, celebrated for its unparalleled natural beauty. Experience a private boat tour, witnessing the fjord's breathtaking cliffs and abundant wildlife. Keep an eye out for Beluga whales! Continue to Charlevoix, a region known for its artistic atmosphere and stunning sunsets. Spend time exploring local art galleries, discovering unique pieces to commemorate your honeymoon. Conclude each day with breathtaking views of the sunset over the St. Lawrence River while indulging in premium champagne and charcuterie.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Maritime Coast: Nova Scotia's Coastal Romance",
+      "content": "Travel to Nova Scotia and immerse yourselves in its picturesque coastline. Explore charming fishing villages, each with its unique character and local charm. Embark on a private sunset cruise along the coast, enjoying the tranquil waters and breathtaking views. Indulge in fresh, locally-sourced seafood paired with exceptional Nova Scotian wines, enjoying the regions culinary delights. Unwind at a luxurious coastal resort offering breathtaking ocean views, private beach access and world-class service.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Halifax & Farewell: History, Culture, and a Fond Farewell",
+      "content": "Your honeymoon journey concludes in Halifax, a city rich in history and culture. Explore its historic waterfront, discovering its maritime heritage and vibrant atmosphere. Visit the Maritime Museum of the Atlantic, delving into the region's seafaring past. Enjoy a farewell dinner at one of Halifax's top restaurants, savoring a final taste of Eastern Canada's culinary excellence. A private helicopter tour of the coastline will provide stunning views as your trip comes to an end.",
+      "order_index": 4
+    }
+  ]
+}

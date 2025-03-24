@@ -1,0 +1,24 @@
+{
+  "tour_id": "7e6f6e5a-bdad-4199-84a8-dbf72cdc66dc",
+  "tour_name": "Midnight Sun & Northern Lights: Iceland's Seasonal Magic",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Reykjavik & Golden Circle Indulgence",
+      "content": "Begin your Icelandic adventure immersed in the vibrant atmosphere of Reykjavik. Explore the city's charming streets, indulging in its unique design shops and enjoying curated culinary experiences. Embark on a private, luxurious tour of the iconic Golden Circle, including the historical \u00deingvellir National Park, the geothermal wonders of Geysir, and the majestic Gullfoss waterfall. Elevate your relaxation at the renowned Blue Lagoon with a private spa experience, followed by an unforgettable romantic dinner at one of Reykjavik's finest dining establishments, perhaps a tasting menu showcasing innovative Icelandic cuisine with stunning harbor views. Enjoy an exclusive private shopping experience in the city with an expert personal shopper and stylist.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "South Coast Majesty & Glacial Grandeur",
+      "content": "Journey along Iceland's breathtaking South Coast, where natural wonders unfold at every turn. Witness the captivating beauty of Seljalandsfoss and Sk\u00f3gafoss waterfalls, and explore the dramatic black sand beach of Reynisfjara with its basalt columns and towering sea stacks. Embark on a privately guided glacier hike on S\u00f3lheimaj\u00f6kull, equipped with top-of-the-line gear, offering unparalleled views of the surrounding icy landscapes. Enhance this experience with a helicopter ride over the glacier for an even more spectacular perspective, culminating in a champagne toast amidst the ice. The evenings are dedicated to enjoying the comfort and ambiance of carefully selected luxury accommodations and gourmet meals at restaurants which have spectacular views of the northern lights.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Sn\u00e6fellsnes Peninsula: Northern Lights & Whale Watching Escapade",
+      "content": "Venture to the captivating Sn\u00e6fellsnes Peninsula, a region steeped in mythology and renowned for its diverse landscapes. Embark on a thrilling whale watching tour from \u00d3lafsv\u00edk, seeking out orcas, humpback whales, or minke whales in the pristine waters. Enjoy a private helicopter tour around the peninsula, taking in the views of black sandy beaches and Sn\u00e6fellsj\u00f6kull glacier, which ends on top of a remote peak with a champagne and charcuterie board. Indulge in gourmet experiences at local seafood restaurants, savoring the freshest catches of the day. Your journey culminates with a dedicated Northern Lights hunt, guided by expert aurora forecasters, ensuring an optimal viewing experience, paired with premium hot chocolate and gourmet pastries under the captivating starry sky, as well as a professional photographer to capture this perfect experience and memory.",
+      "order_index": 3
+    }
+  ]
+}

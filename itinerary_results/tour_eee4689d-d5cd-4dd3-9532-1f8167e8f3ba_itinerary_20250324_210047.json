@@ -1,0 +1,42 @@
+{
+  "tour_id": "eee4689d-d5cd-4dd3-9532-1f8167e8f3ba",
+  "tour_name": "Iguazu & Beyond: Argentina & Brazil Natural Wonders",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Buenos Aires: A Tango-Infused Welcome",
+      "content": "Begin your romantic adventure in Buenos Aires, the city of passion. Explore the historic San Telmo, with its antique shops and tango dancers, and the elegant Recoleta, known for its stunning architecture and the poignant Recoleta Cemetery. Indulge in a private tango lesson, followed by a gourmet dinner and captivating tango show at one of the city's most prestigious venues. Enjoy personalized city tours via private car and time to explore this beautiful city at your own pace.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Iguazu Falls: Nature's Majestic Embrace",
+      "content": "Journey to the awe-inspiring Iguazu Falls. Over three days, you'll experience the falls from both the Argentine and Brazilian sides, providing unique and breathtaking perspectives. Take a thrilling 'Great Adventure' tour, combining a jungle exploration in a specialized vehicle with a boat trip navigating under the cascading waters for an unforgettable adrenaline rush. Enjoy exclusive access to quieter viewpoints for a more intimate experience of this natural wonder. Conclude the day with a romantic dinner overlooking the illuminated falls.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Amazon Rainforest: An Exclusive Eco-Escape",
+      "content": "Embark on an exclusive Amazon rainforest expedition. Settle into a luxurious eco-lodge, a haven of comfort amidst the untamed beauty. Engage in private guided jungle treks, accompanied by expert naturalists who will unveil the secrets of the rainforest's flora and fauna. Enjoy personalized wildlife spotting excursions, both on foot and by canoe, discovering hidden corners of this extraordinary ecosystem. Savor gourmet meals crafted from locally sourced ingredients, and unwind in the tranquility of your stunning surroundings. This is an immersion into nature without sacrificing comfort or luxury.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Rio de Janeiro: Coastal Romance & Iconic Views",
+      "content": "Fly to Rio de Janeiro, a city that exudes coastal charm and vibrant energy. Ascend to Christ the Redeemer for panoramic views of the city, and then take a cable car ride to the summit of Sugarloaf Mountain for another breathtaking perspective. Enjoy a romantic sunset stroll along Copacabana Beach, followed by dinner at one of Rio's top seafood restaurants. Enjoy private helicopter tours of the city to see all the sights from above.",
+      "order_index": 4
+    },
+    {
+      "day_range": "13-15",
+      "title": "Brazil's Wildlife & Coastal Paradises",
+      "content": "Explore Brazil's natural wonders beyond Rio. Discover hidden wildlife sanctuaries, home to diverse ecosystems and captivating creatures. Visit charming coastal towns known for their pristine beaches and local culture. Enjoy the freedom to explore at your own pace, with private transportation and expert guides available to enhance your experience. Enjoy a private yacht tour in Ilha Grande to see the best sights from the coast, with lunch and drinks provided.",
+      "order_index": 5
+    },
+    {
+      "day_range": "16-18",
+      "title": "Luxury Beachfront Retreat & Farewell",
+      "content": "Conclude your honeymoon with a relaxing stay at a luxurious beachfront resort. Bask in the sun, enjoy couples massages, and savor exquisite cuisine. Take advantage of the resort's amenities, including private beach access, infinity pools, and world-class spa treatments. This is the perfect place to unwind and create lasting memories of your romantic journey before your departure.",
+      "order_index": 6
+    }
+  ]
+}

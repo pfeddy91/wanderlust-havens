@@ -1,0 +1,36 @@
+{
+  "tour_id": "c6bbe521-f88e-4243-9b61-20f5872cb9be",
+  "tour_name": "Kilimanjaro Sunrise & Ngorongoro Safari Adventure",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Kilimanjaro Ascent: A Sunrise to Remember",
+      "content": "Embark on an unforgettable climb up Mount Kilimanjaro, Africa's majestic peak. These days are dedicated to acclimatization and ascending through diverse ecosystems, from lush rainforests to alpine deserts. You'll be treated to gourmet mountain meals prepared with fresh, local ingredients and provided with high-quality equipment for a comfortable and safe journey. The highlight will be reaching the summit in time to witness a breathtaking sunrise, painting the African sky with vibrant colors \u2013 a truly magical and romantic moment to share.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Serengeti Wildlife Odyssey: The Great Migration Unveiled",
+      "content": "Descend from Kilimanjaro and be whisked away to the legendary Serengeti. These days will be spent immersed in the endless plains, witnessing the spectacle of the Great Migration. Experience thrilling game drives, encountering iconic African wildlife, including lions, cheetahs, elephants, and giraffes, in their natural habitat. Enjoy the luxury of 4-star tented camps, offering unparalleled comfort and privacy. Evenings will be filled with romantic candlelit dinners under the vast African sky, accompanied by the sounds of the wilderness.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Ngorongoro Crater Exploration: A World Within a World",
+      "content": "Journey to the Ngorongoro Conservation Area, a UNESCO World Heritage Site. Descend into the breathtaking Ngorongoro Crater, a unique ecosystem teeming with diverse wildlife. Enjoy thrilling game drives, spotting everything from rhinos to flamingos within this natural wonder. These days will be punctuated with romantic bush dinners under the stars and sundowners at a location with panoramic views, offering moments of intimacy and awe. We will secure for you an unforgettable and exclusive dining experience.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Cultural Immersion: Connecting with Maasai Traditions",
+      "content": "Delve into the rich cultural heritage of Tanzania with immersive visits to local Maasai communities. Learn about their traditions, customs, and way of life, gaining a deeper understanding of the local culture. These encounters offer a unique opportunity to connect with the people and contribute to sustainable tourism initiatives. Experience authentic Maasai hospitality and gain insights into their vibrant traditions.",
+      "order_index": 4
+    },
+    {
+      "day_range": "13-15",
+      "title": "Zanzibar Relaxation: Pristine Beaches and Romantic Retreat",
+      "content": "Conclude your safari adventure with a relaxing escape to the pristine beaches of Zanzibar. Enjoy days of blissful relaxation, swimming in crystal-clear waters, and soaking up the sun. Indulge in snorkeling or diving excursions to explore the vibrant coral reefs and marine life. We have prepared an itinerary of romantic activities for you that include a romantic bubble bath with champagne, private beach strolls, and a magical farewell dinner under the stars, creating lasting memories of your honeymoon adventure. The island has several excellent restaurants offering seafood and many world cuisine options. The restaurants may be at beach resorts or independent places.",
+      "order_index": 5
+    }
+  ]
+}

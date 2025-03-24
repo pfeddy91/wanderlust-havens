@@ -1,0 +1,42 @@
+{
+  "tour_id": "970b2f0f-6f91-4d72-9dda-e6cc349659d7",
+  "tour_name": "Andean Explorer: Peru, Bolivia & Chile Highland Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Lima & Arequipa: A Peruvian Welcome",
+      "content": "Begin your romantic adventure in Lima, Peru's capital. Immerse yourselves in the historic center, a UNESCO World Heritage site, and indulge in a curated street food tour, discovering hidden culinary gems. Then, fly to Arequipa, the 'White City,' nestled amidst volcanoes. Explore its stunning colonial architecture with a private local guide. Savor gourmet Peruvian cuisine at a top-rated restaurant, setting the stage for your highland journey.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Colca Canyon & Lake Titicaca: Andean Majesty",
+      "content": "Embark on a scenic journey to Colca Canyon, one of the world's deepest canyons. Witness the awe-inspiring sight of Andean condors soaring against the backdrop of majestic landscapes. Continue to Lake Titicaca, the highest navigable lake, and visit the Uros floating islands, experiencing the unique culture of the local communities. Enjoy a private boat tour and a romantic sunset over the tranquil waters of the lake. Enjoy a candlelight dinner on a private pier with views of the stars.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Cusco & Machu Picchu: Inca Romance",
+      "content": "Arrive in Cusco, the heart of the Inca Empire, and immerse yourselves in its rich history and vibrant culture. Explore the city's ancient ruins and cobblestone streets. Take a breathtaking ride on the luxurious Belmond Hiram Bingham train to Machu Picchu, the 'Lost City of the Incas.' Explore the ruins with a private guide, then have a romantic dinner. Delve into the beauty of the Sacred Valley, exploring vibrant local markets and indulging in unique cultural experiences. Enjoy a private Pachamanca (traditional Andean feast) experience.",
+      "order_index": 3
+    },
+    {
+      "day_range": "11-14",
+      "title": "La Paz & Salar de Uyuni: Bolivian Wonders",
+      "content": "Cross the border into Bolivia and discover the unique cultural landscape of La Paz, nestled in a stunning valley. Journey to the Altiplano and witness the surreal beauty of the Salar de Uyuni, the world's largest salt flat. Enjoy a meticulously curated photography tour during sunset for stunning shots, followed by a gourmet picnic amidst the otherworldly scenery. Experience a romantic evening stargazing under the crystal-clear night sky, far from any light pollution.",
+      "order_index": 4
+    },
+    {
+      "day_range": "15-18",
+      "title": "Atacama Desert: Starlit Serenity",
+      "content": "Journey into Chile and immerse yourselves in the mesmerizing Atacama Desert, the driest place on Earth. Enjoy an exclusive stargazing experience under the exceptionally clear skies with a professional astronomer. Indulge in a couples spa treatment. Explore the region's copper-colored landscapes, otherworldly rock formations, and fascinating geothermal wonders. Dine under the stars, catered by a private chef.",
+      "order_index": 5
+    },
+    {
+      "day_range": "19-22",
+      "title": "Santiago: Chilean Charm",
+      "content": "Conclude your unforgettable journey in Santiago, Chile's vibrant capital. Enjoy a panoramic tour of the city, exploring its colonial architecture, modern amenities, and bustling markets. Indulge in a wine-tasting experience at a prestigious vineyard in the nearby Maipo Valley, sampling Chile's finest wines. Enjoy a farewell dinner at one of Santiago\u2019s finest restaurants with Michelin star concepts, savoring the city\u2019s culinary delights.",
+      "order_index": 6
+    }
+  ]
+}

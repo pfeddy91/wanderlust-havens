@@ -1,0 +1,24 @@
+{
+  "tour_id": "99f1b47f-53db-477d-ab28-00ce31a9748a",
+  "tour_name": "Blue Lagoon Paradise: Fiji's Private Island Escape",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Arrival & Island Relaxation",
+      "content": "Your Fijian honeymoon begins with a warm welcome at Nadi Airport, where you'll be whisked away in a private transfer to a luxurious beachfront resort nestled in the Mamanuca Islands. Spend these first days unwinding on pristine beaches, indulging in world-class cocktails, and exploring the turquoise waters through snorkeling adventures. As the sun dips below the horizon, enjoy a romantic sunset cruise, painting the sky with breathtaking colors. Immerse yourselves in Fijian culture with a traditional Kava ceremony, a symbol of welcome and connection, and a captivating visit to the Fiji Culture Village, showcasing the vibrant traditions of this island nation.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Underwater Adventures & Blue Lagoon Bliss",
+      "content": "Embark on an unforgettable diving adventure to discover Fiji's kaleidoscope of coral reefs and abundant marine life. Experienced divers will guide you through some of the world's most stunning underwater landscapes. A highlight of your honeymoon awaits with a day trip to the legendary Blue Lagoon, a sanctuary of breathtaking beauty and tranquil waters. Enjoy a leisurely sail around the islands, discovering secluded coves perfect for romantic picnics and refreshing swims. Consider an optional private beach setup for lunch, with gourmet delicacies and chilled champagne.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-8",
+      "title": "Exclusive Private Island Paradise",
+      "content": "Your Fijian fairytale continues with a private transfer to an exclusive island resort, offering unparalleled luxury and seclusion. Here, you'll discover a sanctuary where personalized service meets breathtaking natural beauty. Indulge in a couples' spa treatment, designed to rejuvenate your bodies and souls in a tranquil setting. Explore the island's verdant forests on a guided nature walk, discover hidden beaches, and bask in the serenity of your private paradise. Conclude your honeymoon with a romantic, multi-course dinner under the stars, a truly unforgettable moment curated just for you.",
+      "order_index": 3
+    }
+  ]
+}

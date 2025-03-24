@@ -1,0 +1,24 @@
+{
+  "tour_id": "10bb3432-046f-45d7-9a5b-8234a4008422",
+  "tour_name": "Grand Canyon, Antelope Canyon & Monument Valley Adventure",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Grand Canyon Immersion: Sunrise, Trails & Romantic Dinners",
+      "content": "Begin your honeymoon with an unforgettable exploration of the Grand Canyon. Witness breathtaking sunrise views from Yavapai Point, painting the canyon in vibrant hues. Embark on a guided hike down the Bright Angel Trail, experiencing the canyon's immense scale up close. Explore the scenic Desert View Drive, stopping at panoramic viewpoints. Evenings are reserved for relaxation and romance, including a Michelin-star dinner overlooking the majestic canyon.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Monument Valley & Antelope Canyon: Navajo Culture & Natural Wonders",
+      "content": "Journey to the iconic landscapes of Monument Valley. A private Navajo-guided tour will reveal the history and significance of these towering sandstone formations. Next, venture into the surreal beauty of Antelope Canyon, marveling at its vibrant colors and unique sculpted rock formations. Complete the experience with a breathtaking helicopter tour over the red rocks of Sedona, providing unparalleled aerial views. Romantic dining awaits at a highly-rated restaurant, offering a taste of Southwestern cuisine.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Sedona Serenity & Farewell to the Red Rocks",
+      "content": "Immerse yourselves in the artistic charm and spiritual energy of Sedona. Explore the vibrant art galleries and studios, discovering unique creations inspired by the surrounding landscape. Indulge in a romantic gourmet picnic amidst Sedona's stunning red rock formations, savoring delectable flavors and breathtaking views. As your honeymoon adventure draws to a close, enjoy a final, unforgettable sunset before returning to Flagstaff, cherishing the memories created on this remarkable journey.",
+      "order_index": 3
+    }
+  ]
+}

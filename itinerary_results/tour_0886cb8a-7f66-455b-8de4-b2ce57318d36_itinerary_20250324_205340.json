@@ -1,0 +1,24 @@
+{
+  "tour_id": "0886cb8a-7f66-455b-8de4-b2ce57318d36",
+  "tour_name": "Mekong Delta & Con Dao Islands: Vietnam's Water Wonders",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Ho Chi Minh City: Culture, History, and Culinary Delights",
+      "content": "Arrive in Ho Chi Minh City and be whisked away into a world of vibrant culture. Your exploration begins with a visit to the Independence Palace, a significant historical landmark. Afterwards, marvel at the stunning Saigon Notre Dame Cathedral and take a leisurely stroll along Nguyen Hue Street, absorbing the city's bustling energy. Delve into Vietnam's resilient past with a guided tour of the Cu Chi Tunnels, gaining insights into a remarkable feat of engineering. In the evenings, indulge in exquisite Vietnamese cuisine at local fine-dining establishments, experiencing the city's dynamic nightlife and Michelin star-worthy restaurants. Explore the local markets for authentic Vietnamese crafts, silk, and tailored clothing.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Mekong Delta: River Life, Gardens, and Culinary Immersion",
+      "content": "Embark on a captivating journey to the Mekong Delta, where you'll experience the unique rhythms of river life. Witness the vibrant energy of the Cai Rang floating market, a kaleidoscope of colors and commerce. Explore the serene beauty of lush fruit gardens, a sensory delight for your palate. Visit the Binh Thuy ancient house, renowned for its exquisite orchid garden and architectural charm. Enjoy a private cooking class with a renowned local chef, learning to prepare authentic Mekong Delta dishes. Dine in a traditional riverside setting, savoring the region's fresh flavors and enjoying private entertainment, such as traditional folk music performance.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-13",
+      "title": "Con Dao Islands: Seclusion, Serenity, and Romantic Escapes",
+      "content": "Fly to the Con Dao Islands, a hidden paradise of pristine beaches and tranquil beauty. Spend your days immersed in relaxation, whether lounging on the powdery sands, snorkeling in the crystal-clear waters, or indulging in spa treatments tailored to your preferences. Explore the island's intriguing history with a visit to the infamous Con Dao Prison turned museum, a poignant reminder of the past. Enjoy private sunset cruises along the coast, sipping cocktails and enjoying the breathtaking views. Savor romantic dinners at beachfront restaurants, indulging in fresh seafood and exquisite wines. Consider a private picnic on a secluded beach, creating unforgettable moments in this secluded paradise.",
+      "order_index": 3
+    }
+  ]
+}

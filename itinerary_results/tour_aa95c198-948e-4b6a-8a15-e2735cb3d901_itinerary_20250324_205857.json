@@ -1,0 +1,24 @@
+{
+  "tour_id": "aa95c198-948e-4b6a-8a15-e2735cb3d901",
+  "tour_name": "Wine & Wilderness: Santiago, Wine Valley & Lake District",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Santiago & Wine Valley Indulgence",
+      "content": "Begin your Chilean honeymoon with arrival in Santiago. Discover the city's historical heart, wandering through Plaza de Armas and ascending Santa Luc\u00eda Hill for panoramic views. Subsequently, immerse yourselves in the Wine Valley, a haven for wine connoisseurs. Delight in exclusive private tours and tastings at prestigious vineyards, indulging in world-class wines harmoniously paired with delectable local cuisine. Experience the romance of al fresco picnics amidst the vines and savor authentic Chilean barbecues. Explore the vineyards at your own pace, whether on horseback, by bicycle, or a scenic stroll.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Lake District Adventure & Relaxation",
+      "content": "Journey south to the breathtaking Lake District, Chile's 'Adventure Capital'. Immerse yourselves in the region's natural beauty. Here, the opportunities for adventure are endless: thrilling white-water rafting, invigorating trekking expeditions through ancient forests, or perhaps seasonal skiing on pristine slopes. Delve into the cultural heritage of the indigenous Mapuche people and discover their traditions. Enjoy wellness treatments, such as couples massage, or unwind in a romantic hot tub beneath a canopy of stars.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-11",
+      "title": "Puc\u00f3n Charm & Lakeside Serenity",
+      "content": "Conclude your honeymoon exploring the captivating town of Puc\u00f3n, with its charming boutiques and inviting cafes. Embark on a tranquil boat ride on the shimmering Lake Villarrica, surrounded by stunning volcanic landscapes. Pamper yourselves with a rejuvenating spa day, choosing from a range of luxurious treatments designed to enhance your well-being. These final days are intentionally flexible, allowing you to tailor your experiences to your preferences, ensuring a seamless blend of adventure and relaxation as you bid farewell to this enchanting land.",
+      "order_index": 3
+    }
+  ]
+}

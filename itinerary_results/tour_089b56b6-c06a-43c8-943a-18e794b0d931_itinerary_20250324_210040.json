@@ -1,0 +1,30 @@
+{
+  "tour_id": "089b56b6-c06a-43c8-943a-18e794b0d931",
+  "tour_name": "African Islands: Seychelles, Mauritius & Madagascar",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Madagascar Wildlife Adventure: Lemurs, Luxury, and Conservation",
+      "content": "Begin your honeymoon in Madagascar, a land of unparalleled biodiversity. Explore the island's diverse landscapes and encounter its unique wildlife. Venture into national parks, with expert guides, to spot lemurs and elusive fossa. Immerse yourselves in the mystery of nocturnal life with guided walks in the Kirindy Reserve, unveiling the secrets of Madagascar's nocturnal creatures. Engage with Malagasy tribes, gaining insight into their traditions and the crucial conservation efforts to protect this extraordinary ecosystem. Your accommodations will be exquisite 4-star and 5-star lodges, providing a blend of luxury, comfort, and a deep connection with nature.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Madagascar Highlands and Coastal Charms: Baobabs, Beaches, and Volcanic Legends",
+      "content": "Journey into the heart of Madagascar's highlands, exploring the captivating landscapes and ancient tales. Visit Lake Tritriva, a volcanic lake shrouded in local legends. Witness the breathtaking Avenue of the Baobabs at sunset, a truly magical experience. Then, unwind on the idyllic beaches of Morondava, famed for their stunning sunsets and tranquil atmosphere. Indulge in private beach dinners under the stars, creating unforgettable romantic moments.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Mauritius Beach Bliss: Romantic Retreat and Water Adventures",
+      "content": "Fly to Mauritius, a paradise island where relaxation and romance intertwine. Enjoy pristine beaches, crystal-clear waters, and luxurious experiences designed for honeymooners. Indulge in water sports, snorkeling in vibrant coral reefs, and romantic sunset cruises along the coastline. Savor exquisite dining experiences with panoramic ocean views, creating unforgettable memories in this tropical haven.",
+      "order_index": 3
+    },
+    {
+      "day_range": "11-23",
+      "title": "Seychelles Luxury Escape: Island Hopping, Underwater Wonders, and Untouched Beauty",
+      "content": "Conclude your unforgettable honeymoon in the Seychelles, spending 13 days immersed in its untouched beauty and ultimate luxury. Reside in a luxury resort on Mahe or Praslin. Explore the islands' diverse landscapes through diving, snorkeling, and island hopping adventures. Discover secluded beaches, lush tropical forests, and the vibrant Creole culture of this Indian Ocean paradise. Enjoy private catamaran tours to hidden coves, romantic picnics on pristine shores, and pampering spa treatments, ensuring a truly rejuvenating and romantic end to your journey.",
+      "order_index": 4
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "c0ecb07f-a6ef-4847-bd31-f27740ee62cc",
+  "tour_name": "Fire & Ice: Iceland's South Coast & Golden Circle",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Arrival in Reykjavik & Golden Circle Immersion",
+      "content": "Begin your Icelandic honeymoon in Reykjavik, the vibrant capital. Settle in and then embark on a curated Golden Circle experience. Explore the historical significance and geological wonders of \u00deingvellir National Park, witness the erupting hot springs at the Geysir geothermal area, and be captivated by the majestic Gullfoss waterfall. Each evening culminates in romantic dinners showcasing the best of Icelandic cuisine in Reykjavik, with a private tasting of Icelandic delicacies and traditional dishes. Consider a helicopter tour over the Golden Circle for a truly unforgettable experience.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "South Coast's Majestic Waterfalls and Glacier Adventure",
+      "content": "Embark on a breathtaking journey along Iceland's South Coast, a landscape sculpted by fire and ice. Witness the cascading beauty of Seljalandsfoss waterfall, where you can walk behind the curtain of water, and the powerful Sk\u00f3gafoss waterfall. Indulge in an exhilarating glacier hike with experienced guides, providing stunning panoramic views. Explore the dramatic black sand beach of Reynisfjara with its basalt columns and powerful waves. Each evening, enjoy cozy accommodations with exceptional views of the surrounding natural beauty and dine in charming local restaurants.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-8",
+      "title": "Reykjavik's Cultural Delights & Farewell Indulgence",
+      "content": "Return to Reykjavik and immerse yourselves in the city's rich culture. Explore art museums, designer boutiques, and charming cafes. Indulge in the ultimate relaxation experience at the Blue Lagoon, surrounded by mineral-rich waters and serene volcanic landscapes. Conclude your Icelandic honeymoon with a truly memorable farewell dinner at one of Iceland's finest Michelin-starred restaurants, savoring exquisite cuisine and raising a toast to your adventure together. Consider a private Northern Lights hunting tour (seasonal) from Reykjavik for a memorable and magical ending to the trip.",
+      "order_index": 3
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "0ec5ed8c-db4a-4b2d-9ad3-746d34e7eab4",
+  "tour_name": "Andaman Luxury: Phuket, Phi Phi & Krabi Islands",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Phuket: A Luxurious Welcome",
+      "content": "Begin your extraordinary journey in Phuket, settling into a 5-star haven of opulence. Immerse yourselves in the vibrant Sino-Portuguese architecture of Phuket Town, uncovering its hidden gems and rich history. Visit the sacred Chalong Temple, experiencing its spiritual serenity and intricate artistry. As the sun begins its descent, embark on a romantic sunset cruise through the breathtaking Phang Nga Bay. Indulge in gourmet Thai cuisine, complemented by champagne toasts, as you witness the sky ablaze with color. Return each evening to unwind in unparalleled luxury, preparing for the adventures that await.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Phi Phi Islands: Turquoise Dreams",
+      "content": "Embark on a boat excursion to the world-renowned Phi Phi Islands. Dive into the crystalline turquoise waters for an unforgettable snorkeling adventure, surrounded by vibrant marine life and coral reefs. Discover the iconic Maya Bay, made famous by 'The Beach,' and bask in its pristine beauty. Enjoy a delicious lunch on the island, savoring the local flavors. In the late afternoon, return to Phuket. Later indulge in a couples' spa treatment, designed to melt away any lingering tension and rejuvenate your senses.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Krabi: Serenity and Coastal Bliss",
+      "content": "Journey to Krabi, a sanctuary of natural beauty and tranquility. Embark on the Four Islands Tour, exploring the unique landscapes of Ko Poda, Chicken Island, and the pristine Pranang Beach. Discover hidden coves and secluded beaches, perfect for intimate moments. Immerse yourselves in the rejuvenating waters of the Emerald Pool and relax in the soothing natural hot springs, surrounded by lush rainforest. Conclude your unforgettable adventure with a private, romantic dinner overlooking Krabi's spectacular coastline, reflecting on your journey and the memories created.",
+      "order_index": 3
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "tour_id": "72fd59b5-5df0-427f-922e-ee28d85b9016",
+  "tour_name": "Botswana's Wildlife & Zambia's Victoria Falls",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Okavango Delta Immersion: Serenity and Wildlife",
+      "content": "Begin your Botswana honeymoon in Maun, the perfect launchpad for your Okavango Delta adventure. From here, a scenic flight transports you to the heart of the Delta, a UNESCO World Heritage Site and Africa's largest inland delta. Settle into your luxury tented camp, a sanctuary designed for intimate connection with nature. Spend your days exploring the serene waterways by mokoro (traditional wooden canoe), gliding past hippos, crocodiles, and a symphony of birdlife. Evenings are for savoring gourmet meals under the stars, accompanied by the sounds of the African bush.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Chobe National Park: Elephant Encounters & Sunset Splendor",
+      "content": "Journey to Chobe National Park, famed for its exceptional elephant population. Experience a captivating sunset cruise on the Chobe River, where you can witness wildlife congregating at the water's edge against the backdrop of a stunning African sunset. Embark on expertly guided game drives in open vehicles, seeking out lions, leopards, buffaloes, and the park's iconic elephants. Enjoy bespoke experiences tailored to your interests, whether it's tracking rare birds or focusing on wildlife photography.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Victoria Falls: Majesty and Zambezi Romance",
+      "content": "Cross the border into Zambia to witness the awe-inspiring Victoria Falls, one of the Seven Natural Wonders of the World. Indulge in a private, romantic sundowner cruise on the Zambezi River, complete with gourmet canap\u00e9s and premium drinks. For the adventurous couple, optional activities include thrilling white-water rafting or an exhilarating bungee jump over the Zambezi gorge. Return to your elegant riverside lodge and enjoy panoramic views of the falls while you relax and enjoy your time.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Lower Zambezi National Park: Wilderness & Intimate Moments",
+      "content": "Conclude your honeymoon in the remote Lower Zambezi National Park, a haven of unspoiled wilderness. Embark on a private guided canoe trip along the Zambezi River, spotting hippos and crocodiles in their natural habitat. Enjoy a luxurious bush camp experience, complete with gourmet dining and impeccable service. Your honeymoon culminates in a romantic, secluded dinner under the starlit African sky, creating memories to last a lifetime.",
+      "order_index": 4
+    }
+  ]
+}

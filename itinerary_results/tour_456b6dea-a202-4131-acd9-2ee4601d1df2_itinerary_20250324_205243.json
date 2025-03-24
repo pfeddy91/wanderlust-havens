@@ -1,0 +1,30 @@
+{
+  "tour_id": "456b6dea-a202-4131-acd9-2ee4601d1df2",
+  "tour_name": "Baobabs & Beaches: Madagascar's Hidden Treasures",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Antananarivo Arrival & Highland Immersion",
+      "content": "Upon arrival in Antananarivo, you'll be greeted with Malagasy warmth and whisked away to begin your adventure. Explore the city's vibrant culture with a visit to the Royal Hill of Ambohimanga, a UNESCO World Heritage site steeped in history and tradition. Immerse yourselves in the bustling atmosphere of the local markets, discovering unique crafts and experiencing the daily life of the Malagasy people. The adventure continues as you journey into the scenic highlands, where breathtaking landscapes and traditional villages await. Here, discover the serene beauty of the countryside, witnessing rolling hills and unique local architecture. Enjoy curated experiences, designed to enrich your understanding of Malagasy culture and heritage.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Avenue of the Baobabs & Coastal Romance in Morondava",
+      "content": "Embark on an unforgettable journey to Morondava, home to the iconic Avenue of the Baobabs. Witness these majestic trees in all their glory, particularly during the golden hour as the sun dips below the horizon. Indulge in a romantic sunset cruise on the Mozambique Channel, sipping cocktails as you admire the vibrant colors painting the sky. During the day, explore the local wildlife and immerse yourselves in the laid-back coastal lifestyle of Morondava. Enjoy specially curated excursions to less-travelled paths where the focus is on intimacy, discovery and the beauty of the surrounding landscape. You will explore the coast by private boat, making sure to stop at prime locations that show the local wildlife. Also, enjoy an amazing dinner by the beach with a bonfire.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Andasibe Rainforest: Lemurs & Enchanting Evenings",
+      "content": "Venture deep into the lush rainforests of Andasibe, a haven for a diverse array of lemurs and unique wildlife. Embark on guided forest walks, led by expert trackers, to spot these fascinating creatures in their natural habitat. Discover hidden waterfalls and experience the symphony of sounds that only the rainforest can offer. Return to your eco-lodge, surrounded by nature's embrace. In the evening, indulge in the romance of a candlelit dinner under the stars, creating an unforgettable memory in the heart of Madagascar's wilderness. Enjoy a private lunch at a panoramic location overlooking the rainforest, making for the perfect spot to enjoy a picnic with gourmet delicacies.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-14",
+      "title": "Sainte Marie Island: Beach Bliss & Whale Watching (Seasonal)",
+      "content": "Conclude your journey on the idyllic island of Sainte Marie, renowned for its pristine beaches and the spectacle of whale watching (seasonal). Indulge in a relaxing stay at a 5-star beach resort, designed to offer the ultimate in comfort and privacy. Partake in romantic activities, such as private beach picnics on secluded sands and sunset cruises along the turquoise waters. Pamper yourselves with spa treatments designed to rejuvenate your body and soul. For a truly unforgettable honeymoon experience, explore hidden coves, indulge in watersports, and revel in the serenity of this tropical paradise. Enjoy the romantic experience of dining at a Michelin Star restaurant.",
+      "order_index": 4
+    }
+  ]
+}

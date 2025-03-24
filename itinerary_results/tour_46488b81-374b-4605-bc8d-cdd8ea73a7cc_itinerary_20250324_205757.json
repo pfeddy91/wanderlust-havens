@@ -1,0 +1,30 @@
+{
+  "tour_id": "46488b81-374b-4605-bc8d-cdd8ea73a7cc",
+  "tour_name": "Riviera Maya & Yucatan Peninsula: Beaches & Mayan Ruins",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Riviera Maya Arrival and Luxurious Beach Bliss",
+      "content": "Begin your honeymoon in the idyllic Riviera Maya, settling into the rhythm of paradise. Enjoy the pristine beaches, indulge in gourmet dining experiences, and rejuvenate with spa treatments. Take time to explore Playa del Carmen's lively 5th Avenue, discovering unique shops and savoring the local culinary scene. Consider a private sunset cruise for an unforgettable romantic moment.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Tulum and Coba: Ancient Mayan Wonders",
+      "content": "Embark on a cultural journey to explore the awe-inspiring Tulum ruins, dramatically perched on a cliff overlooking the turquoise Caribbean Sea. Then, venture into the jungle to discover the ancient Mayan city of Coba. Bike through the lush landscape and ascend the Nohoch Mul pyramid for panoramic views. Conclude your days with a romantic dinner, enjoying authentic regional cuisine at a local restaurant in Tulum, perhaps seeking out a hidden gem with ocean views.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Valladolid, Ek Balam, and Cenote Exploration",
+      "content": "Journey to the charming colonial town of Valladolid, a gateway to cultural immersion and natural wonders. Explore the nearby Ek Balam ruins, known for their intricate stucco sculptures. Dive into the mesmerizing world of cenotes, swimming in the crystal-clear, refreshing waters of these natural sinkholes. Consider a private cenote experience for a more secluded and magical adventure. Return to your resort and have a private beach dinner under the stars, with personalized service and a curated menu.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-11",
+      "title": "Riviera Maya Leisure and Departure",
+      "content": "Spend your final days luxuriating on the beach, unwinding from your adventures. Snorkel in the vibrant coral reefs, teeming with marine life, or embark on a leisurely boat tour, exploring hidden coves and pristine coastlines. Enjoy one last romantic dinner at a restaurant with fine dining, before departing from Cancun, filled with cherished memories of your honeymoon.",
+      "order_index": 4
+    }
+  ]
+}

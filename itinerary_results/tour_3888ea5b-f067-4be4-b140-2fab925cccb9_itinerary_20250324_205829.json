@@ -1,0 +1,24 @@
+{
+  "tour_id": "3888ea5b-f067-4be4-b140-2fab925cccb9",
+  "tour_name": "Pura Vida Paradise: Arenal Volcano, Cloud Forest & Manuel Antonio",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Arenal Volcano Adventure: Romance in the Rainforest",
+      "content": "Embark on your honeymoon adventure in the heart of Costa Rica, beneath the majestic Arenal Volcano. Settle into a luxurious resort where you can enjoy stunning volcano views and soak in the therapeutic hot springs. Indulge in thrilling whitewater rafting excursions through the rainforest, followed by guided hikes unveiling the region's rich biodiversity. As the sun sets, savor a private, romantic dinner with breathtaking views of the illuminated volcano. Enjoy couples massages and spa treatments at your resort.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Cloud Forest Serenity: Monteverde's Mystical Embrace",
+      "content": "Journey to the enchanting cloud forests of Monteverde. Explore the canopy via thrilling suspension bridges, offering unparalleled views of this unique ecosystem. Delight in intimate birdwatching experiences, guided by expert naturalists, seeking out the Resplendent Quetzal and other exotic species. In the evening, indulge in local cuisine at a boutique restaurant offering Costa Rican food with a twist, and enjoy a private dinner setting. Enjoy a romantic evening walk through the trails and discover some hidden trails.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-12",
+      "title": "Manuel Antonio Beach Bliss: Sun, Sand, and Wildlife Encounters",
+      "content": "Conclude your unforgettable honeymoon in Manuel Antonio, a paradise renowned for its pristine beaches and vibrant wildlife. Enjoy surfing or kayaking along the turquoise waters. Embark on a guided tour of Manuel Antonio National Park, seeking out playful monkeys, elusive sloths, and other fascinating creatures. Dedicate time to relax and soak up the sun on the beach and refresh. Conclude your romantic escape with a private beach dinner under the stars, accompanied by the gentle sounds of the ocean, creating cherished memories that will last a lifetime.",
+      "order_index": 3
+    }
+  ]
+}

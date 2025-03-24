@@ -1,0 +1,24 @@
+{
+  "tour_id": "84ebb2fd-8911-4929-8c6e-d8b2be687855",
+  "tour_name": "Maldivian Overwater Paradise: Island-Hopping Luxury",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "North Mal\u00e9 Atoll Arrival and Overwater Indulgence",
+      "content": "Your Maldivian escape begins in North Mal\u00e9 Atoll. Settle into your stunning overwater villa at a chic beach resort. The next few days are dedicated to relaxation and aquatic adventures. Explore the vibrant underwater world with snorkeling and diving excursions to nearby extraordinary diving spots. As the sun dips below the horizon, embark on a romantic sunset cruise, champagne in hand, followed by exquisite fine dining experiences at the resort's exceptional restaurants, featuring the freshest seafood and international cuisine.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Island-Hopping: Reef Exploration and Seaplane Journey",
+      "content": "Embark on an island-hopping adventure! Your journey takes you to another stunning island where you can discover its mesmerizing house reef, perfect for snorkeling or diving. Indulge in a variety of water sports, from jet skiing to windsurfing. Savor diverse culinary delights at one of the island's many restaurants, offering everything from casual beachside fare to elegant dining experiences. Next, a scenic seaplane flight whisks you away to an all-inclusive paradise nestled amidst lush greenery. Enjoy the vibrant marine life surrounding the island, with opportunities for guided snorkeling tours and diving excursions.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-8",
+      "title": "South Ari Atoll: Luxury, Water Sports, and Starlit Dining",
+      "content": "Your journey concludes in the exquisite South Ari Atoll, home to a luxurious all-inclusive resort. Immerse yourself in a world of water sports, including windsurfing and canoeing in the turquoise waters. Enjoy complimentary traditional dhoni boat trips, allowing you to explore the hidden gems of the atoll. Conclude your days with unforgettable \u00e0 la carte dining experiences on the seafront, savoring gourmet cuisine under a blanket of stars while enjoying signature drinks crafted by expert mixologists. On your final day, indulge in a spa treatment to rejuvenate before your departure.",
+      "order_index": 3
+    }
+  ]
+}

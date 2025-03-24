@@ -1,0 +1,42 @@
+{
+  "tour_id": "eb1f9408-83e7-490e-91f9-354e07467286",
+  "tour_name": "Patagonia Explored: Chile & Argentina's Wilderness",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Santiago & Valparaiso: Chilean Capital Charm & Coastal Colors",
+      "content": "Begin your honeymoon in Santiago, Chile's dynamic capital. Explore the historic heart, including the Plaza de Armas, and ascend Santa Luc\u00eda Hill for breathtaking panoramic views. Indulge in an exclusive wine-tasting experience at a renowned local vineyard. A day trip to the vibrant coastal city of Valparaiso reveals its colorful streets, bohemian art scene, and unforgettable ocean views, a perfect backdrop for romantic strolls and capturing memorable moments. Enjoy a refined dinner at a Michelin-star restaurant in Santiago.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Torres del Paine: Patagonian Majesty & Luxury Retreat",
+      "content": "Journey to Torres del Paine National Park, a pristine wonderland of glaciers, mountains, and wildlife. Embark on guided hikes to iconic viewpoints, including the base of the majestic towers, offering unparalleled photo opportunities. Explore the turquoise waters of Sarmiento Lake and marvel at the Paine Massif from the Sierra del Toro. Enjoy luxury accommodations within the park, allowing you to immerse yourselves in the natural beauty while indulging in unparalleled comfort.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Perito Moreno Glacier: Ice, Awe, & Argentine Elegance",
+      "content": "Cross the border into Argentina and arrive in El Calafate, the gateway to the awe-inspiring Perito Moreno Glacier. Embark on a private boat cruise along Lago Argentino, getting close to the glacier's towering ice walls and witnessing the dramatic calving. Opt for a thrilling glacier trekking experience, walking on the ancient ice itself. Savor a gourmet Patagonian dinner with stunning views of the surrounding landscapes.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "El Chalt\u00e9n & Fitz Roy: Hiking, Romance & Unforgettable Vistas",
+      "content": "Discover El Chalt\u00e9n, a charming mountain village at the foot of Mount Fitz Roy. Embark on a guided hike to Laguna de los Tres for breathtaking views of the iconic peak. Enjoy the intimate atmosphere of El Chalten, exploring hidden trails and appreciating the rugged beauty of Los Glaciares National Park. A private picnic amidst the stunning scenery offers a truly romantic experience.",
+      "order_index": 4
+    },
+    {
+      "day_range": "13-15",
+      "title": "Ushuaia: Southernmost City & Beagle Channel Serenity",
+      "content": "Fly to Ushuaia, the world's southernmost city. Explore Tierra del Fuego National Park, with its unique landscapes and diverse wildlife. Embark on a scenic private yacht tour on the Beagle Channel, spotting sea lions, penguins, and other marine life. Enjoy a delicious seafood dinner at a waterfront restaurant, savoring the flavors of the region.",
+      "order_index": 5
+    },
+    {
+      "day_range": "16-21",
+      "title": "Buenos Aires: Tango, Culture, & Argentine Passion",
+      "content": "Conclude your honeymoon in Buenos Aires, immersing yourselves in the city's vibrant culture. Visit Plaza de Mayo, explore the historic San Telmo district, and experience the city's architectural splendor. Enjoy private tango lessons, learning the passionate steps of this iconic dance. Indulge in an unforgettable evening of dinner and traditional tango at Caf\u00e9 de los Angelitos, a legendary Buenos Aires institution. A private city tour in a classic car is the perfect way to explore this romantic capital.",
+      "order_index": 6
+    }
+  ]
+}

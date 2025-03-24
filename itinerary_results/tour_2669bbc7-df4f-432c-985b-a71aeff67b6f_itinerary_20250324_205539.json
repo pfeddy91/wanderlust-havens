@@ -1,0 +1,24 @@
+{
+  "tour_id": "2669bbc7-df4f-432c-985b-a71aeff67b6f",
+  "tour_name": "Lake Como & Italian Alps Elegance",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Lake Como Serenity & Lakeside Luxury",
+      "content": "Begin your honeymoon immersed in the beauty of Lake Como. Settle into your 5-star accommodation and embark on a private boat tour to explore the lake's most charming villages, including the iconic Bellagio and the picturesque Varenna. Discover the exquisite Villa Carlotta, renowned for its breathtaking gardens and impressive art collection. Enjoy romantic evenings with unforgettable dinners at refined lakeside restaurants, where local delicacies meet breathtaking views. Consider a sunset aperitivo at a stylish lakeside bar to soak in the magical ambiance.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Italian Alps Adventure & Mountain Escape",
+      "content": "Journey to the majestic Italian Alps for a blend of exhilarating adventure and serene relaxation. Check into a luxurious 4-star mountain resort nestled amidst stunning scenery. Spend your days exploring invigorating hiking trails that offer breathtaking panoramic views of the Alps. Indulge in a scenic drive along winding mountain roads or opt for an invigorating guided bike tour through the alpine landscape. As evening descends, unwind with rejuvenating spa treatments at your resort or enjoy a cozy dinner by a crackling fireplace, savoring regional specialties and fine wines. Consider a private helicopter tour for unparalleled views of the mountain range.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Cultural Como, Lakeside Villa & Farewell Romance",
+      "content": "Return to the enchanting shores of Lake Como to delve deeper into its cultural treasures. Explore the historic towns of Como and Lecco, discovering hidden gems and immersing yourselves in the local atmosphere. Partake in exclusive local wine tastings, sampling the region's finest vintages. Conclude your honeymoon with an unforgettable stay at a secluded lakeside villa, boasting a private pool and unparalleled views of the lake. Enjoy private chef services, creating bespoke dining experiences that celebrate Italian flavors. As a final indulgence, consider a private yacht cruise on Lake Como, complete with champagne and canap\u00e9s, as you bid farewell to this romantic paradise.",
+      "order_index": 3
+    }
+  ]
+}

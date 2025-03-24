@@ -1,0 +1,24 @@
+{
+  "tour_id": "cff85be1-c2bf-48b8-b3d8-9e2fc064242f",
+  "tour_name": "Uyuni Salt Flats & Lake Titicaca Adventure",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "La Paz & Lake Titicaca: Andean Culture and Island Romance",
+      "content": "Begin your honeymoon in La Paz, Bolivia's dynamic capital. Explore its vibrant streets, taking in the unique sights and sounds. Then, journey to the serene Lake Titicaca, the highest navigable lake in the world. Embark on a boat trip to the mystical Sun Island, birthplace of the Inca sun god. Here, discover ancient Inca ruins and indulge in a romantic llama trek along scenic trails, leading you to a secluded eco-lodge with breathtaking lake views. Spend time in Copacabana, a charming lakeside town, and delve into the local culture by visiting authentic villages, experiencing the traditions and hospitality of the Andean people. Enjoy a private sunset boat tour, complete with champagne and gourmet snacks, as you witness the magical colors reflecting on the lake's surface.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Uyuni Salt Flats: A Surreal and Romantic Adventure",
+      "content": "Fly from La Paz to Uyuni and prepare to be mesmerized by the otherworldly landscapes of the world's largest salt flats. Experience an overnight stay in a unique boutique 'salt hotel', constructed entirely of salt, offering a luxurious and unforgettable experience. Indulge in a gourmet picnic lunch amidst the vast, white expanse, catered with regional delicacies and fine wines. Journey to Incahuasi Island, a rocky outcrop covered in giant cacti, creating a striking contrast against the salt flat. Explore the Tunupa Volcano, ascending to breathtaking viewpoints for panoramic vistas of the surreal scenery. Enjoy stargazing one night in the middle of the salt flats as the stars are reflected in the ground, creating a very romantic landscape.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "La Paz Revisited: Cultural Delights and Honeymoon Reflections",
+      "content": "Return to La Paz for the final leg of your honeymoon. Spend these days delving deeper into the city's unique cultural attractions, including the bizarre and beautiful Moon Valley, a geological marvel. Immerse yourselves in the bustling atmosphere of the vibrant local markets, experiencing the colors, aromas, and energy of Bolivian commerce. Enjoy a private cooking class where you'll learn to prepare traditional Bolivian dishes. Indulge in a romantic farewell dinner at a top-rated restaurant, savoring the flavors of the Andes and reflecting on your incredible Bolivian adventure together. Consider a final evening at a rooftop bar overlooking the city, raising a toast to your unforgettable honeymoon.",
+      "order_index": 3
+    }
+  ]
+}

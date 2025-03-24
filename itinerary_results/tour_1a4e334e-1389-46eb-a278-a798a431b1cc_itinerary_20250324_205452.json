@@ -1,0 +1,30 @@
+{
+  "tour_id": "1a4e334e-1389-46eb-a278-a798a431b1cc",
+  "tour_name": "Bora Bora & Moorea: Tahitian Overwater Dream",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Arrival in Tahiti & Moorea's Lagoon Charms",
+      "content": "Your Tahitian escape begins! Upon arrival in Tahiti, enjoy a seamless transfer to your accommodations for a relaxing overnight stay. The following day, you'll be whisked away to the captivating island of Moorea. Settle into your luxurious beach resort, poised on the edge of a turquoise lagoon. Days are yours to fill with leisurely pursuits: snorkel amidst vibrant coral gardens, stroll along pristine beaches, or embark on optional excursions to discover Moorea's hidden treasures. Immerse yourselves in the local culture with a tantalizing foodie tour, sampling Polynesian delicacies, or venture inland on a thrilling 4x4 island safari, uncovering breathtaking panoramic views and lush valleys.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Bora Bora's Overwater Paradise",
+      "content": "Prepare to be mesmerized as you fly to Bora Bora, the jewel of the South Pacific. Check into your exquisite overwater bungalow, where the turquoise lagoon kisses your doorstep. Spend your days exploring the underwater world with snorkeling or diving adventures, or feel the exhilaration of gliding across the water on a jet ski. As the sun begins its descent, embark on a romantic sunset cruise, painting the sky with vibrant hues. In the evening, indulge in an unforgettable private beach dinner under the stars, savoring gourmet cuisine as the gentle waves provide a soothing soundtrack. Consider a guided island tour to discover Bora Bora's hidden gems and learn about its fascinating history and legends.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Extended Bora Bora Indulgence & Aquatic Adventures",
+      "content": "Extend your stay in Bora Bora and luxuriate in the serenity of your overwater haven. These days are dedicated to pure relaxation and indulging in optional activities. Embark on a thrilling shark and ray lagoon tour, getting up close and personal with these magnificent creatures in their natural habitat. Enhance your romantic experience with a delightful canoe breakfast delivered directly to your bungalow, a truly unforgettable way to start the day. With plenty of leisure time, enjoy a massage at a world-class spa, bask in the sun on your private deck, or simply savor the breathtaking views that surround you.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10",
+      "title": "Farewell to Paradise",
+      "content": "As your Tahitian dream draws to a close, savor one last breathtaking sunrise over the lagoon. Enjoy a final, leisurely breakfast before preparing for your departure. Before leaving this tropical utopia, enjoy a farewell dinner. Reflect on the cherished memories created during your honeymoon as you bid adieu to Bora Bora, carrying the magic of these islands with you forever.",
+      "order_index": 4
+    }
+  ]
+}

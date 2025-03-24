@@ -1,0 +1,24 @@
+{
+  "tour_id": "a4b584cb-382d-4c73-8817-911f6d1c273a",
+  "tour_name": "Amazonian Adventure & Fernando de Noronha Island Paradise",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Rio de Janeiro & Amazonian Introduction",
+      "content": "Your Brazilian honeymoon begins in vibrant Rio de Janeiro! Explore iconic landmarks such as Sugarloaf Mountain, ascending for breathtaking panoramic views. Immerse yourselves in the iconic Copacabana Beach atmosphere, perhaps enjoying a sunset cocktail. Next, a flight to Manaus marks the start of your Amazonian adventure. Board a private, luxuriously appointed houseboat for an exclusive cruise through the Anavilhanas archipelago, one of the world's largest river archipelagos. Keep an eye out for playful pink river dolphins and the stunning array of exotic birds. Each day will be tailored with expertly curated excursions to meet indigenous communities for a glimpse into their traditions and a guided exploration of the mysterious jungle.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Amazonian Wildlife & Cultural Immersion",
+      "content": "Delve deeper into the heart of the Amazon. Embark on invigorating jungle treks led by experienced guides, learning about the rainforest's incredible biodiversity and the medicinal properties of native plants. Cool off with refreshing swims in cascading waterfalls hidden within the lush vegetation. Immerse yourselves in the local culture by interacting with 'caboclos,' the people of mixed indigenous and European ancestry, understanding their unique way of life. As dusk settles, enjoy a truly magical and romantic dinner under the stars, surrounded by the sounds of the Amazonian rainforest. With your private houseboat, daily activities are completely flexible, allowing you to pursue your specific interests and passions.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-14",
+      "title": "Fernando de Noronha Island Paradise: A Romantic Escape",
+      "content": "A private flight whisks you away to Fernando de Noronha, a breathtaking volcanic archipelago and UNESCO World Heritage site, famed for its pristine beaches and incredible marine life. Spend your days snorkeling and diving in the crystal-clear turquoise waters, discovering vibrant coral reefs and an abundance of colorful fish. Explore the island's historical sites, remnants of its intriguing past. Of course, no trip to Noronha is complete without relaxing on the world-renowned beaches, including Ba\u00eda do Sancho, consistently ranked among the planet's best. Indulge in romantic dinners featuring fresh seafood with stunning ocean views and witness unforgettable sunsets painting the sky in brilliant hues. Enhance your experience with optional activities such as freediving lessons or a guided historical walking tour of the island. Each moment is designed for romance and relaxation in this unparalleled paradise.",
+      "order_index": 3
+    }
+  ]
+}

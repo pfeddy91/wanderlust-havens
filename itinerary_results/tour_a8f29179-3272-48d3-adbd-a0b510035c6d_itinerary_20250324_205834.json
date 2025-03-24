@@ -1,0 +1,24 @@
+{
+  "tour_id": "a8f29179-3272-48d3-adbd-a0b510035c6d",
+  "tour_name": "Platinum Coast & Tropical Gardens: Barbados Elegance",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Beachside Bliss and Romantic Beginnings",
+      "content": "Begin your honeymoon on the idyllic Maxwell Beach. Indulge in luxurious suites and gourmet dining, setting the stage for romance and relaxation. Experience the crystal-clear waters with snorkeling adventures, encountering graceful sea turtles. Enjoy breathtaking sunsets on a private cruise, followed by intimate candlelight dinners under the stars. Venture into the vibrant St. Lawrence Gap, immersing yourselves in the local culture and lively nightlife. Taste the authentic flavors of Barbados at local restaurants, sampling the freshest seafood and Caribbean spices.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Cultural Immersion and Tropical Garden Escape",
+      "content": "Journey to the west coast and immerse yourselves in tranquility with beachfront yoga sessions. Explore the subterranean wonders of Harrison's Cave, marveling at its stunning stalactites and stalagmites. Discover the rich history of Bridgetown, a UNESCO World Heritage site, and wander through its charming streets. Escape into the lush paradise of Andromeda Botanic Gardens, a kaleidoscope of exotic flowers and serene landscapes. Conclude each day with romantic dinners at exquisite local restaurants, savoring the island's unique culinary heritage.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-8",
+      "title": "Culinary Delights and Farewell",
+      "content": "Embark on a culinary adventure, starting with a visit to the famous Oistins Fish Fry, where you can sample the freshest catches of the day in a lively atmosphere. Indulge in a sophisticated wine-tasting tour, discovering the unique flavors of Caribbean wines. Spend your final moments basking in the sun, taking leisurely strolls along the pristine beaches, or simply relaxing and cherishing the memories created. Depart with hearts full of unforgettable moments from your luxury Barbados honeymoon.",
+      "order_index": 3
+    }
+  ]
+}

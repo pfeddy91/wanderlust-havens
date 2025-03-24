@@ -1,0 +1,30 @@
+{
+  "tour_id": "a2e141dc-4a70-4e79-89c0-8937b065526f",
+  "tour_name": "Society Islands Sailing: French Polynesian Paradise",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Arrival and Taha'a Indulgence",
+      "content": "Your French Polynesian honeymoon begins! Upon arrival in Tahiti, you'll be whisked away to Taha'a, the Vanilla Island. Settle in and prepare for three days of pure bliss. Explore the island's lush interior on a thrilling 4x4 safari, discovering hidden waterfalls and panoramic viewpoints. Immerse yourselves in the vibrant underwater world with private snorkeling tours, encountering colorful coral reefs and exotic marine life. As the sun dips below the horizon, savor a romantic private dinner on a secluded motu (islet), with gourmet cuisine and breathtaking ocean views. Your private sailing yacht awaits, ready to embark on the next leg of your island adventure.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Sailing to Raiatea's Sacred Shores and Bora Bora's Lagoon Paradise",
+      "content": "Set sail aboard your private yacht to Raiatea, the cradle of Polynesian civilization. Explore the island's ancient temples and uncover its rich cultural heritage. Afterwards, chart a course for Bora Bora, the jewel of the South Pacific. Anchor in its world-famous turquoise lagoon and plunge into its crystal-clear waters for unforgettable snorkeling sessions, swimming alongside vibrant fish and graceful manta rays. Experience the magic of a Bora Bora sunset with an exclusive cruise, champagne in hand, as the sky transforms into a canvas of vibrant colors. Conclude your days with a traditional Polynesian feast on a private motu, complete with mesmerizing fire dancers and enchanting music.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Bora Bora's Overwater Sanctuary and Aquatic Adventures",
+      "content": "Indulge in three days of unparalleled luxury in Bora Bora. Take advantage of some time at your hotel resort. Dive into adventure with an exhilarating shark and ray snorkeling tour, getting up close and personal with these magnificent creatures in their natural habitat. Rejuvenate your senses with a couples' massage, melting away any lingering stress in a tranquil spa setting. As the stars begin to twinkle, enjoy a romantic dinner under the Polynesian sky, with gourmet cuisine and personalized service, creating memories to last a lifetime.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Moorea's Majestic Beauty and Farewell to Paradise",
+      "content": "Embark on your final sailing journey to Moorea, an island of dramatic volcanic peaks and lush valleys. Spend your last days exploring the island's scenic wonders, from its iconic pineapple plantations to its hidden waterfalls. Indulge in thrilling water sports, such as jet skiing or paddleboarding, in the island's sheltered bays. As your honeymoon draws to a close, take time to reflect on your unforgettable adventure, savoring the memories of your French Polynesian paradise. Return to Tahiti for your departure, carrying the warmth and beauty of these islands in your hearts forever.",
+      "order_index": 4
+    }
+  ]
+}

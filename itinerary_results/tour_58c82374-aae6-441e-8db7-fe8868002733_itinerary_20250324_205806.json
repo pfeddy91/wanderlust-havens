@@ -1,0 +1,24 @@
+{
+  "tour_id": "58c82374-aae6-441e-8db7-fe8868002733",
+  "tour_name": "365 Beaches: Antigua's Island Paradise",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Arrival and Beachside Indulgence",
+      "content": "Welcome to Antigua! Begin your honeymoon with luxurious relaxation on the island's celebrated beaches. Settle into your beachfront resort and spend your days basking in the sun, snorkeling in the crystal-clear turquoise waters, and enjoying romantic, private dinners under the stars. Take a curated tour of Nelson's Dockyard and Shirley Heights, immersing yourselves in Antigua's rich naval history and enjoying panoramic views.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Sailing the Coastline and Barbuda Escape",
+      "content": "Embark on a private sailing adventure around Antigua's stunning coastline. Discover secluded coves, hidden bays, and pristine beaches accessible only by boat. On one of these days, set sail for a day trip to the unspoiled island of Barbuda. Explore its famous pink sand beaches, discover diverse birdlife at the Frigate Bird Sanctuary, and enjoy a picnic lunch on a deserted stretch of shoreline. Return to your private villa in Antigua for a romantic beach dinner prepared by a private chef and relax in the luxury of your private pool.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7",
+      "title": "Farewell Antigua: Relaxation and Departure",
+      "content": "Spend your final day at leisure, indulging in last-minute pleasures. Enjoy a rejuvenating couples spa treatment, take a leisurely stroll along the beach, or simply relax by the pool with a refreshing cocktail. Reflect on your incredible honeymoon as you prepare for your departure, carrying memories of Antigua's island paradise that will last a lifetime.",
+      "order_index": 3
+    }
+  ]
+}

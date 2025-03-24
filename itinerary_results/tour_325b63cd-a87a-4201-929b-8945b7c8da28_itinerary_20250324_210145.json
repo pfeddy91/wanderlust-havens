@@ -1,0 +1,42 @@
+{
+  "tour_id": "325b63cd-a87a-4201-929b-8945b7c8da28",
+  "tour_name": "South Pacific Paradise: Australia, New Zealand & Fiji",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Sydney & Blue Mountains Romance",
+      "content": "Begin your romantic adventure in Sydney, discovering its iconic landmarks and hidden gems with a private local guide. Enjoy personalized tours tailored to your interests. Embark on a day trip to the breathtaking Blue Mountains, where stunning scenic views and charming villages await. Indulge in a romantic dinner at one of Sydney's finest restaurants, savoring exquisite cuisine and impeccable service.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Great Barrier Reef & Daintree Rainforest Luxury",
+      "content": "Fly to Cairns and immerse yourselves in the wonders of the Great Barrier Reef with an exclusive snorkeling or diving excursion. Explore the pristine waters and vibrant marine life, creating unforgettable memories together. Journey into the lush Daintree Rainforest, the oldest continuously surviving rainforest on Earth, and retreat to a luxurious resort nestled amidst the tropical paradise, where you can unwind and reconnect in opulent comfort.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Uluru Outback Serenity",
+      "content": "Travel to Uluru for an unforgettable outback experience, where you can witness the majestic sunset over Ayers Rock, painting the landscape in breathtaking colors. Enjoy a guided tour to delve into the region's rich Aboriginal culture and traditions. Stay in a stylish desert lodge, offering unparalleled stargazing opportunities under the vast Australian sky. Embrace the serenity of the outback and create lasting memories together.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-12",
+      "title": "Queenstown Adventure & Fiordland Beauty",
+      "content": "Fly to Queenstown, New Zealand, and embark on a scenic flight over Milford Sound, soaring through breathtaking fjords and cascading waterfalls. Take a helicopter flight over Fox Glacier, landing for panoramic views of the pristine ice formations. Enjoy a romantic stay at a luxury lodge near Queenstown, with opportunities for kayaking or hiking in the nearby mountains. Experience the thrill of adventure and the serenity of nature in this stunning destination.",
+      "order_index": 4
+    },
+    {
+      "day_range": "13-15",
+      "title": "Abel Tasman & Rotorua Cultural Immersion",
+      "content": "Travel to Abel Tasman National Park for kayaking and hiking amidst stunning coastal scenery, discovering hidden beaches and turquoise waters. Then, head to Rotorua for a cultural experience, including an authentic Maori hangi concert and a scenic flight over the geothermal landscape. Relax in a luxurious spa resort, indulging in the region's renowned geothermal hot springs and rejuvenating treatments.",
+      "order_index": 5
+    },
+    {
+      "day_range": "16-25",
+      "title": "Fiji Island Paradise Escape",
+      "content": "Fly to Fiji and transfer to a luxurious private island resort in the Mamanuca Islands. Spend your days snorkeling, diving, or simply relaxing on pristine beaches with crystal-clear waters. Enjoy a romantic couples' spa treatment and indulge in sunset cocktails overlooking the Pacific Ocean. Embrace the ultimate island paradise experience, creating unforgettable memories of romance and relaxation.",
+      "order_index": 6
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "tour_id": "1be01115-cc63-4ac9-b21c-d7d1e0efa5fa",
+  "tour_name": "Golden Triangle & Himalayan Foothills Retreat",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Delhi & Agra: A Love Story in Stone",
+      "content": "Begin your romantic escape immersed in the heart of India. Explore the vibrant culture of Delhi, with private guided tours tailored to your interests. Transition to Agra, where you'll witness the Taj Mahal in all its glory, not just at sunrise, but also during a private evening viewing (if permitted and available), enjoying its serene beauty under the stars. Discover the architectural marvels of Agra Fort, a testament to Mughal power and artistry. Journey to Fatehpur Sikri, a perfectly preserved ghost city that offers a glimpse into the past. Indulge in authentic local cuisine, exploring the bustling markets together, and creating memories through shared experiences.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Jaipur & Shimla: Royal Grandeur and Himalayan Charm",
+      "content": "Embark on a journey to Jaipur, the Pink City, a testament to Rajputana royalty. Enjoy a regal experience with an elephant ride to Amer Fort, followed by a private tour of the City Palace, exploring its intricate courtyards and museums. As evening descends, witness a traditional Rajasthani performance with a romantic dinner under the stars. Then, ascend to Shimla, the Queen of the Hills, nestled in the majestic Himalayas. Stroll hand-in-hand along Mall Road, taking in the breathtaking views. Enjoy a panoramic vista from Kufri, a charming hill station, perfect for capturing unforgettable moments. Consider a couples massage in the mountains to rejuvenate yourself.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Himalayan Foothills: Serenity and Spiritual Exploration",
+      "content": "Delve deeper into the Himalayan Foothills with a more extended stay in Shimla. Enjoy leisurely walks through pine forests, discover hidden waterfalls, and take in the panoramic views. Visit Chandigarh, designed by Le Corbusier, and marvel at its modernist architecture, including the Rock Garden. Proceed to Amritsar, a city steeped in spirituality. Witness the mesmerizing Golden Temple, a symbol of peace and harmony, and experience the patriotic fervor of the Wagah Border Ceremony, a vibrant display of national pride. Reflect on the day\u2019s journey with a relaxing dinner after a massage. Consider a traditional Punjabi cooking class for a fun, shared experience.",
+      "order_index": 3
+    },
+    {
+      "day_range": "11-13",
+      "title": "Delhi: Farewell Embrace",
+      "content": "Return to Delhi, where you can spend time reflecting on your incredible journey. Enjoy a sophisticated farewell dinner at a Michelin-star recommended restaurant, savoring the flavors of India one last time. The final days are designed for relaxation and preparation for your departure, but also offer options for last-minute souvenir shopping or visiting any attractions you may have missed. Perhaps a private tour of a renowned art gallery or a bespoke tailoring experience to create a lasting memento of your trip. The opportunity for an evening rooftop bar hopping experience would be very fun!",
+      "order_index": 4
+    }
+  ]
+}

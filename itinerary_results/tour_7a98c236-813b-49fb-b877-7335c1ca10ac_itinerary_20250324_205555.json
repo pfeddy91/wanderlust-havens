@@ -1,0 +1,24 @@
+{
+  "tour_id": "7a98c236-813b-49fb-b877-7335c1ca10ac",
+  "tour_name": "Loire Valley Ch\u00e2teaux & Bordeaux Wine Country",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Romantic Paris & Arrival in the Loire Valley",
+      "content": "Begin your honeymoon in the enchanting city of Paris. Enjoy a romantic Seine River cruise, taking in the city's iconic landmarks from a unique perspective. Ascend the Eiffel Tower for breathtaking panoramic views of Paris, creating an unforgettable memory. Following your Parisian experience, embark on a luxurious journey to the Loire Valley, often referred to as the 'Garden of France'. This region is famed for its exquisite ch\u00e2teaux. Your exploration begins with majestic castles like Blois, Cheverny, and Chambord, immersing yourselves in the history and grandeur of the French aristocracy. Conclude your days with exquisite wine tastings in the region's renowned vineyards, savoring the flavors of the Loire Valley.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Loire Valley: Ch\u00e2teaux, River Cruises & Michelin-Starred Dining",
+      "content": "Delve deeper into the beauty and charm of the Loire Valley. Visit the captivating Ch\u00e2teau de Chenonceau, gracefully spanning the Cher River, offering a truly unique and romantic setting. Explore the delightful town of Amboise, soaking in its historical ambiance. Enjoy a leisurely and private boat ride along the Loire River, taking in the scenic beauty and creating a peaceful and intimate moment. Indulge in a culinary experience at a Michelin-starred restaurant, where you will savor the region's finest cuisine, complemented by exceptional local wines.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Bordeaux: Wine Capital Immersion & Historic Exploration",
+      "content": "Embark on a luxurious transfer to Bordeaux, the globally recognized wine capital. Immerse yourselves in its rich wine culture through exclusive private tours and tastings at prestigious vineyards in Saint-\u00c9milion and the M\u00e9doc region. Discover the nuances of world-class wines and the art of winemaking. Explore Bordeaux's historic center, a UNESCO World Heritage site, admiring its elegant architecture and vibrant atmosphere. Enjoy a romantic farewell dinner at a charming local bistro, savoring the flavors of Bordeaux and reflecting on your unforgettable honeymoon. The evenings are yours to explore the best restaurants and night life that Bordeaux has to offer.",
+      "order_index": 3
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "tour_id": "18e74d81-411f-4ccc-9fc5-e55dbcc08c91",
+  "tour_name": "Vietnam Unveiled: Hanoi, Halong Bay & Hoi An",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Hanoi: A Journey Through History and Romance",
+      "content": "Your Vietnamese honeymoon begins in the vibrant city of Hanoi. Immerse yourselves in the city's captivating history and culture with visits to iconic landmarks like the Ho Chi Minh Complex and the serene Temple of Literature. As evening descends, experience the enchanting Thang Long Water Puppet Show, followed by a romantic, candlelit dinner at a refined local restaurant known for its authentic Hanoian cuisine. Discover the bustling Old Quarter, a sensory feast of sights, sounds, and aromas, where you can indulge in the city's vibrant street food scene, sampling delicacies at hidden gems.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Halong Bay: A Luxurious Cruise Amidst Emerald Waters",
+      "content": "Embark on a luxurious journey to Halong Bay, a UNESCO World Heritage Site. Settle into your opulent overnight cruise, complete with gourmet dining and breathtaking views of towering limestone karsts rising from the emerald waters. Spend your days kayaking through hidden grottoes, swimming in secluded lagoons, or simply basking in the sun on deck. In the evening, savor a romantic dinner on the cruise, accompanied by unparalleled sunset views over the bay. This is the perfect setting for unforgettable moments.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "Hoi An: Ancient Town Charm and Culinary Delights",
+      "content": "Arrive in the enchanting ancient town of Hoi An, a UNESCO World Heritage Site, adorned with colorful lanterns and charming boutique shops. Experience the town's allure with a romantic Vespa ride through its picturesque streets, discovering hidden alleyways and local artisans. Immerse yourselves in Vietnamese culinary traditions with a private cooking class led by a renowned chef, where you'll learn to prepare authentic local dishes. Indulge in ultimate relaxation with a couples' spa treatment at a luxurious resort, surrounded by tranquility and serene landscapes.",
+      "order_index": 3
+    },
+    {
+      "day_range": "10-11",
+      "title": "Hoi An: Farewell to Paradise",
+      "content": "Spend your final days at leisure in Hoi An, exploring the pristine beaches, discovering hidden gems in the countryside, or indulging in some last-minute shopping for exquisite local handicrafts. Depart from Da Nang Airport, carrying cherished memories of your unforgettable Vietnamese honeymoon. Consider a final romantic dinner in a Michelin-recognized restaurant for a final goodbye.",
+      "order_index": 4
+    }
+  ]
+}

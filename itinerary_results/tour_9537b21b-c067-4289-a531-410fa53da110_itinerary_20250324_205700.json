@@ -1,0 +1,24 @@
+{
+  "tour_id": "9537b21b-c067-4289-a531-410fa53da110",
+  "tour_name": "Alaskan Wilderness & Glacier Bay Expedition",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Embarkation and Southeast Alaska's Fjords",
+      "content": "Begin your unforgettable honeymoon in Juneau, Alaska's enchanting capital. Settle into your luxurious cruise vessel, where impeccable service and gourmet dining await. Your adventure begins with an exploration of the breathtaking Tracy Arm-Fords Terror Wilderness. Marvel at the towering icebergs and granite cliffs that frame this pristine landscape. Immerse yourselves in the serenity with a romantic kayaking excursion in secluded bays. Discover the rich cultural heritage of a local Alaska Native village, gaining insights into their traditions and way of life. Enjoy a gourmet dinner on board as you set sail deeper into the Alaskan wilderness.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Glacier Bay National Park: A World of Ice and Wonder",
+      "content": "Journey into the heart of Glacier Bay National Park, a UNESCO World Heritage Site, an untouched paradise awaiting discovery. Embark on a guided hike across the outwash plains of glaciers, hand-in-hand, exploring the remarkable landscapes forged by ice. Paddle through the icy waters in a tandem kayak, feeling the profound silence and awe of this glacial wonderland. Prepare to be mesmerized by the dramatic calving displays of Margerie and John Hopkins Glaciers, where colossal icebergs plunge into the sea. As evening descends, settle into Bartlett Cove, where you can wander through a lush rainforest hand-in-hand and reflect on your journey. You'll also visit the Huna Tribal House, experiencing the unique culture of the local people. Enjoy a candlelight dinner on the deck of your vessel with a view of the bay.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Wildlife Encounters and Coastal Charms",
+      "content": "Continue your voyage through Southeast Alaska's wildlife-rich waters, including Frederick Sound and Icy Strait. Witness the awe-inspiring spectacle of humpback whales breaching the surface, sea lions basking in the sun, and majestic eagles soaring overhead. Keep your camera ready for unforgettable moments. Explore picturesque fishing towns, hand-in-hand, discovering their unique character and charm. In the evening, return to Juneau, where you can savor the city's vibrant culinary scene and experience some Michelein-Star restaurants. Enjoy a final toast to your incredible honeymoon adventure.",
+      "order_index": 3
+    }
+  ]
+}

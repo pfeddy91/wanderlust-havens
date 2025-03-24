@@ -1,0 +1,24 @@
+{
+  "tour_id": "09343320-4675-4dda-9366-b79071834be1",
+  "tour_name": "California Dreaming: Napa Valley to Big Sur Coastal Journey",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Napa Valley Romance and Wine Country Indulgence",
+      "content": "Immerse yourselves in the heart of Napa Valley, a sanctuary of romance and exquisite wine. Settle into the Four Seasons Napa Valley or similar luxurious resort, relishing a private cabana experience by the adults-only pool, complete with farm-fresh delicacies and your preferred beverages. Pamper yourselves with a couple's massage at Spa Elusa, where grape seeds and olive oil treatments provide unparalleled relaxation. Explore the on-site Elusa Winery and arrange exclusive visits to other prestigious vineyards, including private tastings of rare vintages. Culminate each day with gourmet meals at a Michelin-starred restaurant like Auro, offering breathtaking views and unforgettable culinary creations. Enhance your experience with a hot air balloon ride over the vineyards at sunrise.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Coastal Charms: Monterey and Carmel-by-the-Sea",
+      "content": "Journey to the captivating coastal towns of Monterey and Carmel-by-the-Sea, each offering its unique allure. Discover the wonders of marine life at the famous Monterey Bay Aquarium and lose yourselves in the enchanting streets of Carmel, filled with art galleries and boutiques. Enjoy a romantic dinner at one of the area's renowned seafood restaurants, accompanied by locally produced wines. Embark on a scenic drive along the legendary Pacific Coast Highway, stopping at iconic spots such as Point Lobos State Natural Reserve for breathtaking coastal views and wildlife spotting. Consider a private sailing excursion on Monterey Bay for a truly unforgettable experience.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-11",
+      "title": "Big Sur's Majestic Beauty: Adventure and Relaxation",
+      "content": "Venture into the breathtaking landscapes of Big Sur, where the dramatic coastline meets towering redwood forests. Find solace in a boutique hotel or luxury resort with stunning ocean views. Embark on a scenic hike through Pfeiffer Big Sur State Park, marveling at the majestic Pfeiffer Falls and the ancient redwoods. Relax with a sunset picnic at Pfeiffer Beach, renowned for its unique rock formations and vibrant purple sand. Elevate your adventure with a private helicopter tour over the rugged coastline, revealing hidden coves, pristine beaches, and the vast expanse of the Pacific Ocean. Conclude your journey with a rejuvenating couple's massage at a secluded spa, surrounded by the tranquil beauty of Big Sur. Optionally, consider a guided meditation session overlooking the ocean to further enhance your relaxation.",
+      "order_index": 3
+    }
+  ]
+}

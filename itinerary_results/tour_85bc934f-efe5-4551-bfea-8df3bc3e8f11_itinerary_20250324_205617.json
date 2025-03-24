@@ -1,0 +1,24 @@
+{
+  "tour_id": "85bc934f-efe5-4551-bfea-8df3bc3e8f11",
+  "tour_name": "Adriatic Jewels: Dubrovnik, Split & Hvar Island-Hopping",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Split's Roman Heritage & Bra\u010d Island Escape",
+      "content": "Begin your Adriatic adventure in the vibrant city of Split, a captivating blend of Roman history and modern Croatian life. Explore the magnificent Diocletian's Palace, a UNESCO World Heritage site, and lose yourselves in its labyrinthine streets. Embark on a private motorboat excursion to the breathtaking Krka Waterfalls National Park, a serene oasis of cascading water and lush greenery. Afterwards, escape to the idyllic island of Bra\u010d, famed for its pristine white stone, sprawling olive groves, and flourishing vineyards. Indulge in a private, romantic dinner with a local winemaker in the charming village of Nere\u017ei\u0161\u0107a, savouring authentic Croatian cuisine paired with exquisite local wines. Enjoy exploring the island at your leisure, discovering secluded coves and pristine beaches.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Hvar Island: Lavender Fields & Culinary Delights",
+      "content": "Embark on a luxurious sailing adventure to Hvar, often referred to as the 'Croatian Madeira,' a jewel of the Adriatic. Immerse yourselves in the island's intoxicating lavender fields, explore charming ancient villages steeped in history, and marvel at the elegant Venetian palaces. Embark on a full-day wine and culinary tour, sampling Hvar's renowned local wines, artisanal cheeses, and other gourmet delicacies. Retreat to the crystal-clear turquoise waters of the Pakleni archipelago, a haven for swimming, snorkeling, and basking in the Mediterranean sun. Perhaps indulge in a private beach picnic prepared by a local chef, complete with chilled champagne and fresh seafood.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-10",
+      "title": "Dubrovnik's Majesty & Elafiti Islands Serenity",
+      "content": "Journey to Dubrovnik, the 'Jewel of the Adriatic,' a city of unparalleled beauty and historical significance. Explore the iconic medieval walls that encircle the city, offering breathtaking panoramic views of the Adriatic Sea. Wander through the historic Old Town, a UNESCO World Heritage site, discovering hidden courtyards, magnificent churches, and elegant palaces. Take a leisurely, romantic cruise to the Elafiti Islands, once a tranquil retreat for Dubrovnik's aristocracy. Enjoy the pristine beauty and secluded bays. Conclude your journey with a romantic farewell dinner overlooking the shimmering Adriatic Sea, savoring the flavors of Dalmatian cuisine. Your final days are for relaxing and soaking in the picturesque surroundings, creating memories that will last a lifetime. Consider dining in a Michelin-star restaurant in Dubrovnik for an unforgettable culinary experience.",
+      "order_index": 3
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "tour_id": "01869191-bc37-49c2-882d-fba6487a9caf",
+    "tour_name": "Japan & South Korea: Ancient Traditions & Modern Marvels",
+    "success": true,
+    "sections_count": 7,
+    "sections": [
+      {
+        "day_range": "1-3",
+        "title": "Tokyo: Neon Lights and Imperial Grandeur",
+        "content": "Immerse yourselves in the vibrant energy of Tokyo! Experience the dazzling neon-lit streets of Shibuya and Shinjuku, perfect for romantic evening strolls. A private tour will take you to the serene Imperial Palace East Garden, offering a glimpse into Japan's rich history. Indulge in a hands-on sushi-making class, crafting your own delicious creations. Savor an unforgettable dining experience at a Sushi Michelin Star restaurant, known for its exquisite cuisine and romantic atmosphere. Enjoy your stay at a 5 Star hotel in Ginza, where luxury and elegance blend seamlessly.",
+        "order_index": 1
+      },
+      {
+        "day_range": "4-6",
+        "title": "Mt. Fuji & Hakone: Scenic Beauty and Relaxation",
+        "content": "Escape the city bustle and journey to the iconic Mt. Fuji. Enjoy breathtaking panoramic views of the majestic mountain and surrounding landscapes. Hakone awaits with its tranquil atmosphere, where you can unwind in a luxurious ryokan (traditional Japanese Inn) with private onsen (hot springs). Embark on a scenic cruise across Lake Ashi, surrounded by stunning natural beauty, creating unforgettable moments of serenity and romance.",
+        "order_index": 2
+      },
+      {
+        "day_range": "7-9",
+        "title": "Kyoto: Ancient Temples and Geisha Encounters",
+        "content": "Step back in time in Kyoto, the heart of traditional Japan. Explore the enchanting temples and meticulously manicured gardens, including the iconic Fushimi Inari Shrine with its thousands of vibrant red torii gates. Discover the secrets of Kyoto's Gion district with a private tour, known for its geishas and traditional teahouses. Indulge in an exquisite Kaiseki dinner (multi-course Japanese haute cuisine) accompanied by a captivating geisha performance, a truly unforgettable cultural experience. Your accommodation will be in a luxurious hotel offering stunning views of the city.",
+        "order_index": 3
+      },
+      {
+        "day_range": "10-12",
+        "title": "Osaka & Hiroshima: Culinary Delights and Historical Reflection",
+        "content": "Delve into the culinary delights of Osaka, known as Japan's kitchen. Explore Dotonbori's vibrant street food scene and savor local specialties. Take a poignant journey to Hiroshima's Peace Memorial Park, a place of remembrance and reflection. The journey continues with a stay at a luxury hotel, offering exceptional service and amenities. Enjoy a private sake tasting experience, where you can sample some of Japan's finest brews.",
+        "order_index": 4
+      },
+      {
+        "day_range": "13-15",
+        "title": "Seoul: Palaces, Street Food, and the DMZ",
+        "content": "Arrive in Seoul, South Korea's dynamic capital. Explore the grandeur of Gyeongbokgung Palace, the largest of Seoul's Five Grand Palaces. Immerse yourselves in the bustling street food scene of Myeongdong, sampling delectable Korean treats. Take a thought-provoking visit to the Demilitarized Zone (DMZ), the border between North and South Korea. This journey provides a fascinating insight into the Korean peninsula's history and current state. Stay at a 5-star luxury hotel, offering unparalleled comfort and service.",
+        "order_index": 5
+      },
+      {
+        "day_range": "16-18",
+        "title": "Busan & Gyeongju: Beaches, Seafood, and Ancient History",
+        "content": "Travel to Busan, a vibrant coastal city known for its stunning beaches and fresh seafood. Explore Jagalchi Fish Market, a bustling hub of culinary delights. Journey to Gyeongju, a city steeped in history, once the capital of the ancient Silla kingdom. Enjoy a unique temple stay experience at Golgulsa Temple, immersing yourselves in Korean Zen Buddhism and learning traditional martial arts. This provides an opportunity for reflection and spiritual renewal.",
+        "order_index": 6
+      },
+      {
+        "day_range": "19-20",
+        "title": "Jeju Island: Natural Beauty and Romantic Landscapes",
+        "content": "Conclude your unforgettable journey on Jeju Island, a volcanic paradise known for its breathtaking natural beauty. Explore the island's stunning landscapes, including Seongsan Ilchulbong (Sunrise Peak) and the picturesque Cheonjiyeon Waterfall. Enjoy romantic strolls along pristine beaches and savor a farewell dinner at a high-end Korean BBQ restaurant, celebrating your incredible journey together. The hotel here will boast views of the ocean.",
+        "order_index": 7
+      }
+    ]
+  }
+]

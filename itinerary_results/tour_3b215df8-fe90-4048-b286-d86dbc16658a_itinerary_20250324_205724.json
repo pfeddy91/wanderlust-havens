@@ -1,0 +1,24 @@
+{
+  "tour_id": "3b215df8-fe90-4048-b286-d86dbc16658a",
+  "tour_name": "Blue Mountain & Negril's Seven Mile Beach",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Blue Mountain Serenity: Coffee, Culture, and Panoramic Views",
+      "content": "Upon arrival in Kingston, you'll be whisked away to the tranquil Blue Mountains, a world away from the city's bustle. Settle in and prepare to be immersed in lush greenery. Explore the world-renowned coffee plantations, learning about the bean-to-cup process and indulging in tastings of the freshest Jamaican coffee. Embark on guided hikes to breathtaking scenic viewpoints, offering panoramic vistas of the island. Experience a romantic candlelit dinner at a charming local restaurant, savoring authentic Jamaican cuisine. A highlight will be a visit to the Bob Marley Museum in Kingston, a pilgrimage into Jamaica's rich musical heritage and the life of a legend.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Negril's Beachside Bliss: Sun, Sand, and Sensational Sunsets",
+      "content": "Journey to Negril, where you'll check into a luxurious beachfront resort, the perfect place to relax. Spend your days basking in the sun on the pristine sands of Seven Mile Beach, renowned for its crystal-clear waters. Dive into the turquoise sea for snorkeling adventures, discovering vibrant coral reefs and marine life. Set sail on a romantic sunset catamaran cruise, sipping cocktails as you watch the sun melt into the Caribbean. Enjoy a private, unforgettable candlelight dinner directly on the beach, serenaded by the gentle waves. Enhance your relaxation with a rejuvenating couples massage, designed to melt away any stress and enhance your connection.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-8",
+      "title": "Cultural Immersion and Cliffside Romance: Waterfalls and Farewell Views",
+      "content": "Embark on an adventurous excursion to the enchanting Mayfield Falls. Take a refreshing swim in the cascading waters and enjoy a unique rafting experience through the natural river pools. Immerse yourselves in the local culture with a visit to vibrant markets and craft shops, seeking out unique souvenirs and handcrafted treasures. Conclude your honeymoon with a truly unforgettable romantic evening at a renowned cliffside restaurant. Indulge in exquisite cuisine while gazing out over the breathtaking Caribbean Sea, creating a lasting memory of your Jamaican escape.",
+      "order_index": 3
+    }
+  ]
+}

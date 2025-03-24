@@ -1,0 +1,24 @@
+{
+  "tour_id": "f78606a2-9ee5-4838-80bd-cc967d3dcad4",
+  "tour_name": "Baja California & Sea of Cortez Marine Adventure",
+  "sections": [
+    {
+      "day_range": "1-3",
+      "title": "Cabo San Lucas Arrival & Marine Encounters",
+      "content": "Arrive in Cabo San Lucas and settle into your luxurious resort boasting panoramic Pacific Ocean views. Spend your days exploring the vibrant marina, indulging in a private yacht tour on the Sea of Cortez \u2013 complete with gourmet canap\u00e9s and chilled champagne. Witness the magic of the Pacific with a romantic sunset dinner directly on the beach. Embark on a guided whale-watching tour, witnessing the majestic humpback, gray, and blue whales as they grace the waters of Baja California during their seasonal migration. Consider a private helicopter tour of Land's End for an unforgettable perspective.",
+      "order_index": 1
+    },
+    {
+      "day_range": "4-6",
+      "title": "Sea of Cortez Marine Adventure & Relaxation",
+      "content": "Immerse yourselves in the Sea of Cortez, a UNESCO World Heritage Site teeming with marine life. Enjoy bespoke snorkeling or scuba diving excursions, guided by expert marine biologists, to discover vibrant coral reefs and encounter playful sea turtles, dolphins, and schools of radiant fish. Following your underwater adventures, unwind with a rejuvenating couples' spa treatment featuring local, organic ingredients. Indulge in an exquisite farm-to-table dinner at a secluded hacienda, savoring the freshest flavors of Baja California accompanied by award-winning regional wines. Consider a private cooking class focused on Baja Californian cuisine for a unique and romantic experience.",
+      "order_index": 2
+    },
+    {
+      "day_range": "7-9",
+      "title": "San Jose del Cabo Charm & Farewell Romance",
+      "content": "Journey to San Jose del Cabo, a picturesque colonial town characterized by its cobblestone streets and historic architecture. Explore the charming town center, browsing through exclusive art galleries showcasing local talent and handcrafted treasures. Experience the romance of Baja with a private horseback ride along the beach at sunset, followed by cocktails at a chic beach club. Conclude your unforgettable honeymoon with a special farewell dinner at one of San Jose del Cabo's most acclaimed restaurants, featuring innovative cuisine and impeccable service, departing with cherished memories of your luxurious Baja California adventure. Consider souvenir shopping for unique and handcrafted items in the Art District for an unforgettable souvenir.",
+      "order_index": 3
+    }
+  ]
+}
