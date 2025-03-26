@@ -1,132 +1,206 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Send, Loader2 } from 'lucide-react';
 
-import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+}
 
-const AiPlanner = () => {
+const AIPlanner = () => {
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: 'assistant',
+      content: 'Hello! I\'m your AI travel planner. Tell me about your dream honeymoon - where would you like to go, what activities do you enjoy, and how long you\'re planning to travel?'
+    }
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to bottom of messages
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSendMessage = async () => {
+    if (!input.trim()) return;
+    
+    // Add user message to chat
+    const userMessage: Message = { role: 'user', content: input };
+    setMessages(prev => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+    
+    try {
+      // In a real implementation, this would call the Gemini API
+      // For now, we'll simulate a response
+      setTimeout(() => {
+        const aiResponse: Message = {
+          role: 'assistant',
+          content: generateMockResponse(input)
+        };
+        setMessages(prev => [...prev, aiResponse]);
+        setIsLoading(false);
+      }, 1500);
+      
+      // TODO: Replace with actual Gemini API call
+      // const response = await fetch('/api/gemini', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ messages: [...messages, userMessage] })
+      // });
+      // const data = await response.json();
+      // setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
+      
+    } catch (error) {
+      console.error('Error calling AI service:', error);
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'Sorry, I encountered an error. Please try again later.'
+        }
+      ]);
+      setIsLoading(false);
+    }
+  };
+
+  // Mock response generator - replace with actual Gemini API
+  const generateMockResponse = (query: string) => {
+    const lowerQuery = query.toLowerCase();
+    
+    if (lowerQuery.includes('bali')) {
+      return `Bali would be a perfect honeymoon destination! Here's a 7-day itinerary:
+
+**Day 1-2: Ubud**
+- Stay at the Four Seasons Resort Bali at Sayan
+- Visit the Sacred Monkey Forest Sanctuary
+- Enjoy a couples spa treatment
+- Take a private Balinese cooking class
+
+**Day 3-4: Uluwatu**
+- Stay at Six Senses Uluwatu
+- Watch the Kecak Fire Dance at Uluwatu Temple
+- Relax at Padang Padang Beach
+- Romantic dinner at a cliff-top restaurant
+
+**Day 5-7: Seminyak**
+- Stay at The Legian Bali
+- Sunset cocktails at Potato Head Beach Club
+- Shopping in Seminyak's boutiques
+- Private beachfront dinner
+
+Would you like me to adjust this itinerary or suggest alternative activities?`;
+    } else if (lowerQuery.includes('italy') || lowerQuery.includes('amalfi')) {
+      return `An Italian honeymoon along the Amalfi Coast is incredibly romantic! Here's a 10-day itinerary:
+
+**Days 1-3: Rome**
+- Stay at Hotel de Russie
+- Visit the Colosseum and Vatican Museums
+- Evening stroll through Trastevere
+- Romantic dinner at a rooftop restaurant
+
+**Days 4-6: Positano**
+- Stay at Le Sirenuse
+- Boat trip to Capri
+- Beach day at Fornillo
+- Dinner at La Sponda
+
+**Days 7-10: Ravello**
+- Stay at Belmond Hotel Caruso
+- Visit Villa Rufolo and Villa Cimbrone
+- Day trip to Pompeii
+- Cooking class featuring local cuisine
+
+Would you like more specific recommendations for any part of this itinerary?`;
+    } else {
+      return `Thank you for sharing your travel preferences! Based on what you've told me, I'd recommend considering these honeymoon destinations:
+
+1. **Maldives** - Perfect for overwater bungalows and ultimate privacy
+2. **Santorini, Greece** - Stunning views, white-washed buildings, and romantic sunsets
+3. **Kyoto, Japan** - A blend of culture, history, and serene gardens
+4. **Bora Bora** - Crystal clear waters and luxury resorts
+5. **Amalfi Coast, Italy** - Charming coastal towns and incredible food
+
+Would you like me to create a detailed itinerary for any of these destinations? Just let me know which one appeals to you most and how long you're planning to stay!`;
+    }
+  };
+
   return (
-    <section id="planner" className="py-20 bg-travel-green text-white">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-slide-up opacity-0" style={{ animationDelay: '100ms' }}>
-            <span className="text-travel-coral font-medium tracking-wide uppercase text-sm">Smart Planning</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-medium mt-3 mb-6">
-              AI-Powered Honeymoon Planner
-            </h2>
-            <p className="text-travel-sand mb-8 text-lg">
-              Let our intelligent assistant craft the perfect itinerary based on your preferences, creating a truly personalized honeymoon experience.
-            </p>
-            
-            <div className="space-y-6 mb-8">
-              <div className="flex items-start">
-                <div className="bg-travel-coral/20 p-2 rounded-full mr-4 mt-1">
-                  <Sparkles className="h-5 w-5 text-travel-coral" />
+    <section id="planner" className="py-16 bg-travel-cream">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-serif font-bold mb-4 text-center">AI Honeymoon Planner</h2>
+          <p className="text-center text-travel-charcoal/80 mb-12 max-w-2xl mx-auto">
+            Tell our AI about your dream honeymoon, and we'll create a personalized itinerary just for you.
+          </p>
+          
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            {/* Chat messages */}
+            <div className="h-[500px] overflow-y-auto p-6 bg-white/50 backdrop-blur-sm">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`mb-4 ${
+                    message.role === 'user' ? 'text-right' : 'text-left'
+                  }`}
+                >
+                  <div
+                    className={`inline-block max-w-[80%] rounded-2xl px-4 py-3 ${
+                      message.role === 'user'
+                        ? 'bg-travel-green text-white'
+                        : 'bg-gray-100 text-travel-charcoal'
+                    }`}
+                  >
+                    <div className="whitespace-pre-line">{message.content}</div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium text-xl mb-2">Personalized Recommendations</h3>
-                  <p className="text-travel-sand">
-                    Our AI analyzes your preferences to suggest destinations and experiences that perfectly match your dream honeymoon.
-                  </p>
+              ))}
+              {isLoading && (
+                <div className="mb-4 text-left">
+                  <div className="inline-block rounded-2xl px-4 py-3 bg-gray-100">
+                    <Loader2 className="h-5 w-5 animate-spin text-travel-green" />
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="bg-travel-coral/20 p-2 rounded-full mr-4 mt-1">
-                  <Sparkles className="h-5 w-5 text-travel-coral" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-xl mb-2">Custom Itineraries</h3>
-                  <p className="text-travel-sand">
-                    Receive a day-by-day plan tailored to your interests, with the perfect balance of activities and relaxation.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="bg-travel-coral/20 p-2 rounded-full mr-4 mt-1">
-                  <Sparkles className="h-5 w-5 text-travel-coral" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-xl mb-2">Budget Optimization</h3>
-                  <p className="text-travel-sand">
-                    Our planner works within your budget to maximize value and create unforgettable experiences without financial stress.
-                  </p>
-                </div>
-              </div>
+              )}
+              <div ref={messagesEndRef} />
             </div>
             
-            <Button className="bg-travel-coral hover:bg-travel-coral/90 text-white rounded-sm px-8 py-6 text-lg transition-transform hover:scale-105">
-              Try AI Planner
-            </Button>
+            {/* Input area */}
+            <div className="p-4 border-t border-gray-200">
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Tell me about your dream honeymoon..."
+                  className="flex-1 border border-gray-300 rounded-l-full py-3 px-4 focus:outline-none focus:ring-2 focus:ring-travel-green focus:border-transparent"
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={isLoading || !input.trim()}
+                  className={`bg-travel-green text-white rounded-r-full p-3 ${
+                    isLoading || !input.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-travel-dark-green'
+                  }`}
+                >
+                  <Send className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
           </div>
           
-          <div className="animate-slide-up opacity-0" style={{ animationDelay: '300ms' }}>
-            <div className="bg-travel-green/50 backdrop-blur-md rounded-lg p-8 border border-white/10 shadow-xl">
-              <h3 className="font-serif text-2xl font-medium mb-6 text-center">
-                Start Your Journey
-              </h3>
-              
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-travel-sand text-sm mb-2">First Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full bg-white/10 border border-white/20 rounded-sm px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-travel-coral/50"
-                      placeholder="Your first name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-travel-sand text-sm mb-2">Last Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full bg-white/10 border border-white/20 rounded-sm px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-travel-coral/50"
-                      placeholder="Your last name"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-travel-sand text-sm mb-2">Email</label>
-                  <input 
-                    type="email" 
-                    className="w-full bg-white/10 border border-white/20 rounded-sm px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-travel-coral/50"
-                    placeholder="Your email address"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-travel-sand text-sm mb-2">Preferred Destination Type</label>
-                  <select className="w-full bg-white/10 border border-white/20 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-travel-coral/50">
-                    <option value="" className="bg-travel-green">Select a destination type</option>
-                    <option value="beach" className="bg-travel-green">Beach & Islands</option>
-                    <option value="mountains" className="bg-travel-green">Mountains & Nature</option>
-                    <option value="city" className="bg-travel-green">City & Culture</option>
-                    <option value="adventure" className="bg-travel-green">Adventure & Wildlife</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-travel-sand text-sm mb-2">Approximate Budget</label>
-                  <select className="w-full bg-white/10 border border-white/20 rounded-sm px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-travel-coral/50">
-                    <option value="" className="bg-travel-green">Select your budget range</option>
-                    <option value="budget" className="bg-travel-green">$2,000 - $5,000</option>
-                    <option value="mid" className="bg-travel-green">$5,000 - $10,000</option>
-                    <option value="luxury" className="bg-travel-green">$10,000 - $20,000</option>
-                    <option value="ultra" className="bg-travel-green">$20,000+</option>
-                  </select>
-                </div>
-                
-                <Button className="w-full bg-travel-coral hover:bg-travel-coral/90 text-white rounded-sm py-3 font-medium transition-all">
-                  Generate Honeymoon Plan
-                </Button>
-              </form>
-            </div>
-          </div>
+          <p className="text-center text-sm text-travel-charcoal/60 mt-4">
+            This AI planner provides suggestions based on your preferences. For a fully customized itinerary, please contact our travel specialists.
+          </p>
         </div>
       </div>
     </section>
   );
 };
 
-export default AiPlanner;
+export default AIPlanner;
