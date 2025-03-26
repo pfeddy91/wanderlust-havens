@@ -87,7 +87,7 @@ const Hero = () => {
       <div className="relative w-full h-screen bg-gray-200 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-black leading-tight mb-8">
-            {isMobile ? "Vacation envy starts here" : "PICCOLETTA"}
+            {isMobile ? "Plan the honeymoon of a lifetime" : "Plan the honeymoon of a lifetime"}
           </h1>
         </div>
       </div>
