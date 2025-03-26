@@ -1,13 +1,12 @@
-import csv
-import uuid
-from datetime import datetime
-from supabase import create_client, Client
-import re
-import unicodedata
 import argparse
+import csv
+import re
 import requests
+import unicodedata
 import time
 import json
+from datetime import datetime
+from supabase import create_client, Client
 
 # Supabase credentials
 SUPABASE_URL = "https://jeiuruhneitvfyjkmbvj.supabase.co"
@@ -238,7 +237,91 @@ def update_region_slugs(regions):
     
     return region_mapping
 
-def update_country_slugs(countries, region_mapping, generate_descriptions=False, override=False, model="perplexity"):
+def generate_country_attributes(country_name, model="gemini"):
+    """Generate detailed attributes for a country using the selected AI API"""
+    system_prompt = "You are a travel expert specializing in honeymoon destinations worldwide. You provide accurate, concise information about countries for travelers."
+    
+    user_prompt = f"""
+Provide detailed information about {country_name} as a honeymoon destination in JSON format. Include the following:
+
+1) description: 
+    A 125-word general introduction about {country_name} as a travel destination highlighting what makes it special.
+    The description should be written in the style of a travel magazine and not be banale. Keep in mind we cater to affluent young couples. 
+    Feel free to mention highlights of the country as a destination,natural wonders and even experiences (eg surfing or diving) that are not obvious.
+2) rationale:
+    A 100-word explanation of who would enjoy {country_name} as a honeymoon destination and things to look out for (e.g., comfort level, cultural considerations).
+    The rationale should be written in the style of a travel magazine and not be banale. Keep in mind we cater to affluent young couples. 
+3) distance: An estimated flight duration range (in hours) to travel to {country_name} from Europe. Format as text (e.g., "8-10 hours").
+4) best_period: The best periods of the year to visit {country_name} for a honeymoon. Keep it short (eg from March to May and October to December are the best months to visit {country_name})
+5) comfort: A rating from 1-5 (where 1 = very challenging infrastructure (eg places like Philippines or India) and 5 = extremely developed (Japan or Europe)). This should include quality of hotels, roads and infrastructure. Provide super brief explanation about the ease of travel in {country_name}. Format as text (e.g., "4 - Well-developed infrastructure with reliable transportation").
+
+Each section should be concise and factual. Format your response strictly as JSON with these fields as text values. No preamble or explanations outside the JSON structure.
+"""
+    
+    try:
+        response = call_ai_api(system_prompt, user_prompt, model)
+        
+        # Extract JSON from response (in case the AI includes any extra text)
+        json_match = re.search(r'```(?:json)?\s*([\s\S]*?)```', response)
+        if json_match:
+            response = json_match.group(1).strip()
+        else:
+            # Try to clean up response to get just the JSON part
+            response = re.sub(r'^[^{]*', '', response)
+            response = re.sub(r'[^}]*$', '', response)
+        
+        # Parse the JSON
+        country_data = json.loads(response)
+        print(f"Generated attributes for {country_name} using {model.capitalize()} API")
+        
+        # Ensure all values are strings
+        for key in country_data:
+            if not isinstance(country_data[key], str):
+                country_data[key] = str(country_data[key])
+                
+        return country_data
+    except Exception as e:
+        print(f"Failed to generate attributes for {country_name} using {model.capitalize()} API: {str(e)}")
+        return {}
+
+def update_country_attributes(country_name, country_id, override=False, model="gemini"):
+    """Update extended attributes for a specific country"""
+    if not override:
+        # Check if attributes already exist
+        country_data = supabase.table('countries').select('description, rationale, distance, best_period, comfort').eq('id', country_id).execute()
+        
+        if country_data.data and country_data.data[0].get('description') and country_data.data[0].get('rationale'):
+            print(f"Attributes already exist for country '{country_name}', skipping (use -override to replace)")
+            return False
+    
+    # Generate attributes
+    print(f"Generating attributes for country '{country_name}' using {model.capitalize()} API")
+    attributes = generate_country_attributes(country_name, model)
+    
+    if not attributes:
+        print(f"Failed to generate attributes for country '{country_name}'")
+        return False
+    
+    # Update country attributes - ensure all are text values
+    update_data = {
+        "description": str(attributes.get('description', '')),
+        "rationale": str(attributes.get('rationale', '')),
+        "distance": str(attributes.get('distance', '')),
+        "best_period": str(attributes.get('best_period', '')),
+        "comfort": str(attributes.get('comfort', '')),
+        "updated_at": datetime.now().isoformat()
+    }
+    
+    try:
+        # Only update the specific attributes, don't touch other fields
+        supabase.table('countries').update(update_data).eq('id', country_id).execute()
+        print(f"Updated attributes for country '{country_name}'")
+        return True
+    except Exception as e:
+        print(f"Error updating attributes for country '{country_name}': {str(e)}")
+        return False
+
+def update_country_slugs(countries, region_mapping, generate_attributes=False, override=False, model="gemini"):
     """Update country slugs for SEO and return a mapping of country names to IDs"""
     country_mapping = {}
     
@@ -253,7 +336,7 @@ def update_country_slugs(countries, region_mapping, generate_descriptions=False,
         seo_slug = seo_slugify(f"honeymoon-{region_name}-{country_name}")
         
         # Check if country already exists
-        existing_country = supabase.table('countries').select('id, description').eq('name', country_name).execute()
+        existing_country = supabase.table('countries').select('id').eq('name', country_name).execute()
         
         if existing_country.data:
             # Country exists, update its slug
@@ -265,35 +348,40 @@ def update_country_slugs(countries, region_mapping, generate_descriptions=False,
                 "updated_at": datetime.now().isoformat()
             }
             
-            # Generate description if requested and (not already present or override is True)
-            if generate_descriptions and (not existing_country.data[0]['description'] or existing_country.data[0]['description'] == "" or override):
-                print(f"Generating description for country '{country_name}' using {model.capitalize()} API")
-                description = generate_country_description(country_name, model)
-                if description:
-                    update_data["description"] = description
-            
             supabase.table('countries').update(update_data).eq('id', country_id).execute()
             print(f"Updated country '{country_name}' with SEO slug: {seo_slug}")
+            
+            # Update country attributes if requested
+            if generate_attributes:
+                update_country_attributes(country_name, country_id, override, model)
         else:
             # Create new country with SEO slug
             now = datetime.now().isoformat()
             
-            # Generate description if requested
-            description = ""
-            if generate_descriptions:
-                print(f"Generating description for new country '{country_name}' using {model.capitalize()} API")
-                description = generate_country_description(country_name, model)
-            
+            # Setup basic country data - DON'T MODIFY THESE FIELDS
             country_data = {
                 "region_id": region_id,
                 "name": country_name,
-                "description": description,
                 "featured_image": "",
                 "map_image": "",
                 "slug": seo_slug,
                 "created_at": now,
                 "updated_at": now
             }
+            
+            # Generate attributes if requested
+            if generate_attributes:
+                print(f"Generating attributes for new country '{country_name}' using {model.capitalize()} API")
+                attributes = generate_country_attributes(country_name, model)
+                if attributes:
+                    # Ensure all attributes are strings
+                    country_data.update({
+                        "description": str(attributes.get('description', '')),
+                        "rationale": str(attributes.get('rationale', '')),
+                        "distance": str(attributes.get('distance', '')),
+                        "best_period": str(attributes.get('best_period', '')),
+                        "comfort": str(attributes.get('comfort', ''))
+                    })
             
             response = supabase.table('countries').insert(country_data).execute()
             country_id = response.data[0]['id']
@@ -368,54 +456,27 @@ def link_tours_to_countries(tours_data, country_mapping):
     
     print(f"Completed linking tours to countries: {successful_links} successful, {failed_links} failed")
 
-def update_country_description(country_name, override=False, model="perplexity"):
-    """Update the description for a specific country"""
-    # Check if country exists
-    existing_country = supabase.table('countries').select('id, description').eq('name', country_name).execute()
-    
-    if not existing_country.data:
-        print(f"Country '{country_name}' not found in database")
-        return False
-    
-    country_id = existing_country.data[0]['id']
-    
-    # Check if description already exists and override flag is not set
-    if existing_country.data[0]['description'] and not override:
-        print(f"Description already exists for country '{country_name}', skipping (use -override to replace)")
-        return False
-    
-    # Generate description
-    print(f"Generating description for country '{country_name}' using {model.capitalize()} API")
-    description = generate_country_description(country_name, model)
-    
-    if not description:
-        print(f"Failed to generate description for country '{country_name}'")
-        return False
-    
-    # Update country description
-    update_data = {
-        "description": description,
-        "updated_at": datetime.now().isoformat()
-    }
-    
-    supabase.table('countries').update(update_data).eq('id', country_id).execute()
-    print(f"Updated description for country '{country_name}'")
-    return True
-
 def main():
     # Add argument parsing
     parser = argparse.ArgumentParser(description='Populate regions, countries, and tour_countries tables')
     parser.add_argument('-tour', type=str, help='Process specific tour by tour code (e.g., OCE002)')
-    parser.add_argument('-country', type=str, help='Update description for specific country')
-    parser.add_argument('-descriptions', action='store_true', help='Generate descriptions for countries')
-    parser.add_argument('-override', action='store_true', help='Override existing descriptions')
-    parser.add_argument('-model', type=str, choices=['perplexity', 'gemini'], default='perplexity', 
+    parser.add_argument('-country', type=str, help='Update attributes for specific country')
+    parser.add_argument('-attributes', action='store_true', help='Generate detailed attributes for countries')
+    parser.add_argument('-override', action='store_true', help='Override existing attributes')
+    parser.add_argument('-model', type=str, choices=['perplexity', 'gemini'], default='gemini', 
                         help='Select AI model to use (perplexity or gemini)')
     args = parser.parse_args()
     
-    # If updating a specific country description
+    # If updating a specific country attributes
     if args.country:
-        update_country_description(args.country, args.override, args.model)
+        # Get country ID
+        country_response = supabase.table('countries').select('id').eq('name', args.country).execute()
+        if not country_response.data:
+            print(f"Country '{args.country}' not found in database")
+            return
+            
+        country_id = country_response.data[0]['id']
+        update_country_attributes(args.country, country_id, args.override, args.model)
         return
     
     # Load tour data
@@ -439,8 +500,8 @@ def main():
     # Update region slugs and get mapping
     region_mapping = update_region_slugs(regions)
     
-    # Update country slugs and get mapping (pass override flag and model)
-    country_mapping = update_country_slugs(countries, region_mapping, args.descriptions, args.override, args.model)
+    # Update country slugs and get mapping (pass attributes flag, override flag and model)
+    country_mapping = update_country_slugs(countries, region_mapping, args.attributes, args.override, args.model)
     
     # Link tours to their main countries
     link_tours_to_countries(tours_data, country_mapping)

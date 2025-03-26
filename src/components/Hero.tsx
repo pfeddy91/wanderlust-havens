@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { getBackgroundImages } from '@/services/backgroundService';
 import { useIsMobile } from "@/hooks/use-mobile";
 
-// Type for background images from database
+// Type for background images from database   
 interface BackgroundImage {
   id: string;
   image_url: string;

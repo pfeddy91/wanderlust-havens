@@ -6,7 +6,7 @@ import random
 import json
 import base64
 from io import BytesIO
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageFilter
 import uuid
 import argparse
 from supabase import create_client, Client
@@ -26,21 +26,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Unsplash API credentials
-UNSPLASH_ACCESS_KEY = "x49l7PRQ_Du5MyKVvAK_Y4FTjcWXEzUgMtnp4SQeG8s"
-UNSPLASH_SECRET_KEY = "ERPUpyD7d2CB3iDoN3mpX0v4YuNi3WfeYOoVanht11Y"
-
-# Supabase credentials
+# Hardcoded credentials
 SUPABASE_URL = "https://jeiuruhneitvfyjkmbvj.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplaXVydWhuZWl0dmZ5amttYnZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2NjU5NzQsImV4cCI6MjA1ODI0MTk3NH0.iYBsdI4p7o7rKbrMHstzis4KZYV_ks2p09pmtj5-bTo"
-
-# Initialize Gemini API config
 GEMINI_API_KEY = 'AIzaSyBHQrWXW6ix1Me5ufjfc70b01W20hbgZKc'
-GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
-
-# Add Perplexity API configuration
-PERPLEXITY_API_KEY = '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'
-PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions'
+GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent'
+PEXELS_API_KEY = "2nTDyWqcjwBRUWzyi2mpWlbqKHAy4xxAHuRbSHtA38kCOfoNQbDeOoye"
 
 # Base directory for temporary local storage
 TEMP_DIR = "temp_images"
@@ -56,7 +47,6 @@ STORAGE_BUCKET = "tour-images"
 DB_TABLE_NAME = "tour_images"
 
 # Quality threshold for images (1-10 scale)
-# 7.5 is a good balance - it ensures high quality while not being too restrictive
 IMAGE_QUALITY_THRESHOLD = 7.5
 
 def call_gemini_api(prompt):
@@ -109,195 +99,97 @@ def call_gemini_api(prompt):
         logger.error(f"Gemini API Request Error: {str(e)}")
         return None
 
-def call_perplexity_api(prompt):
+def generate_search_terms_for_tour(tour_name, description=None, rejected_terms=None):
     """
-    Call the Perplexity API with a prompt
-    
-    Args:
-        prompt: The prompt to send to Perplexity
-    
-    Returns:
-        The response content from Perplexity
-    """
-    headers = {
-        "Authorization": f"Bearer {PERPLEXITY_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = {
-        "model": "sonar-pro",  # Changed from "sonar-medium-online" to "sonar-pro"
-        "messages": [
-            {"role": "system", "content": "You are a helpful travel photography expert."},
-            {"role": "user", "content": prompt}
-        ]
-    }
-    
-    try:
-        # Add a delay to avoid rate limiting
-        time.sleep(1)
-        
-        logger.info(f"Sending prompt to Perplexity API: {prompt[:100]}...")
-        response = requests.post(PERPLEXITY_API_URL, headers=headers, json=payload, timeout=30)
-        
-        if not response.ok:
-            logger.error(f"Perplexity API error: {response.status_code} - {response.text[:200]}...")
-            return None
-            
-        result = response.json()
-        
-        # Extract the content from Perplexity's response format
-        if 'choices' in result and result['choices'] and 'message' in result['choices'][0]:
-            content = result['choices'][0]['message']['content']
-            logger.info(f"Received response from Perplexity API: {content[:100]}...")
-            return content
-        else:
-            logger.error("Unexpected response format from Perplexity API")
-            return None
-        
-    except Exception as e:
-        logger.error(f"Perplexity API Request Error: {str(e)}")
-        return None
-
-def generate_search_terms_for_tour(tour_name, rejected_terms=None, model="gemini"):
-    """
-    Generate search terms for a tour using the specified AI model
+    Generate 10 high-level search terms for a tour using Gemini
     
     Args:
         tour_name: Name of the tour
+        description: Description of the tour (if available)
         rejected_terms: List of previously rejected search terms to avoid
-        model: AI model to use ("gemini" or "perplexity")
     
     Returns:
-        List of search terms
+        List of tuples with search terms and associated countries
     """
     if rejected_terms is None:
         rejected_terms = []
         
-    logger.info(f"Generating search terms for: '{tour_name}' using {model}")
+    logger.info(f"Generating search terms for: '{tour_name}' using Gemini")
+    
+    # Add description context if available
+    description_text = f"\nTour Description: {description}" if description else ""
     
     # Construct the prompt
     prompt = f"""
-    I need 5 specific Unsplash search terms for beautiful and stunning places that would make excellent images for a luxury honeymoon tour titled "{tour_name}".
+    I need 8 high-level search terms for stunning places that would make excellent images for a luxury honeymoon tour titled "{tour_name}".{description_text}
     
     Please provide search terms that:
-    1. Are specific enough to return high-quality, relevant images
-    2. Showcase the most beautiful and iconic aspects of the destinations
-    3. Would appeal to luxury travelers and honeymooners
-    4. Highlight natural beauty, luxury accommodations, or romantic settings
+    1. Are very broad and generic (e.g., "Barcelona", "Barcelona sunset", "Colosseum")
+    2. Never more than 3 words
+    3. Showcase iconic landmarks or views that are recognizable (like "Eiffel Tower" or "Taj Mahal")
+    4. Would appeal to luxury travelers and honeymooners
     5. Are diverse and represent different aspects of the tour
+    6. Directly relate to the destinations mentioned in the tour name and description
+    7. For places that are famous for food like Spain, Italy, France, Thailand, Greece, etc, include 1 search term for food in the search term.
+    8. For places that are famous for festivities, do include a search term for the festivities (like "Carnival" in Venice).
+    9. For places that are famous for beaches (jamaica, maldives or bali etc), include multiple search terms around beaches, sea life and water sports (like diving or surfing).
+    10. For places like Japan famous for sumo or geisha, include search terms for sumo and geisha.
+    11. For places like India famous for elephants, include search terms for elephants. Similar for sea turtles, lions, pandas etc.
+
+    For each search term, also provide the country it is associated with.
     
     Please avoid these previously rejected terms: {', '.join(rejected_terms) if rejected_terms else 'None'}
     
-    Format your response as a JSON array of strings, with each string being a search term.
-    Example: ["Santorini sunset view", "Maldives overwater bungalow", "Venice gondola canal", "Kyoto cherry blossoms", "Amalfi Coast cliffside"]
-    """
-    
-    # Call the appropriate API based on the model parameter
-    if model.lower() == "perplexity":
-        response = call_perplexity_api(prompt)
-    else:  # Default to Gemini
-        response = call_gemini_api(prompt)
-    
-    if not response:
-        logger.error(f"Failed to generate search terms")
-        return []
-    
-    # Extract search terms from response
-    try:
-        # Try to parse as JSON
-        search_terms = json.loads(response)
-        
-        # Validate that we got a list of strings
-        if not isinstance(search_terms, list):
-            logger.error(f"Invalid response format: not a list")
-            return []
-            
-        # Filter out any previously rejected terms
-        search_terms = [term for term in search_terms if term not in rejected_terms]
-        
-        return search_terms
-        
-    except json.JSONDecodeError:
-        # If not valid JSON, try to extract terms using regex
-        logger.warning(f"Failed to parse JSON, trying regex extraction")
-        
-        # Look for anything that might be a list of terms
-        match = re.search(r'\[(.*?)\]', response, re.DOTALL)
-        if match:
-            terms_str = match.group(1)
-            # Split by commas and clean up
-            terms = [term.strip().strip('"\'') for term in terms_str.split(',')]
-            # Filter out empty strings and previously rejected terms
-            terms = [term for term in terms if term and term not in rejected_terms]
-            return terms
-            
-        logger.error(f"Failed to extract search terms from response")
-        return []
-
-def call_gemini_api_for_image_validation(image_url, tour_name, search_term):
-    """
-    Call Gemini API to validate if an image is suitable for the tour
-    
-    Args:
-        image_url: URL of the image to validate
-        tour_name: Name of the tour
-        search_term: Search term used to find the image
-    
-    Returns:
-        Dictionary with validation results including score and feedback
-    """
-    # Construct the prompt for Gemini
-    prompt = f"""
-    Please evaluate this image for a luxury honeymoon website featuring a tour titled "{tour_name}".
-    
-    Image URL: {image_url}
-    Search term used: "{search_term}"
-    
-    Evaluate on a scale of 1-10 for each criterion:
-    1. Relevance: Does this image clearly relate to the search term "{search_term}"?
-    2. Quality: Is this a high-quality, professional-looking image?
-    3. Luxury Appeal: Does this image convey luxury and exclusivity?
-    4. Romantic Atmosphere: Is this image suitable for a honeymoon website?
-    5. Uniqueness: Does this image showcase something distinctive about the destination?
-    
-    For each criterion, provide a score (1-10) and brief explanation.
-    Then provide an overall score (1-10) and final recommendation (Accept/Reject).
-    
-    Format your response as JSON with the following structure:
-    {{
-        "relevance": {{ "score": X, "feedback": "..." }},
-        "quality": {{ "score": X, "feedback": "..." }},
-        "luxury_appeal": {{ "score": X, "feedback": "..." }},
-        "romantic_atmosphere": {{ "score": X, "feedback": "..." }},
-        "uniqueness": {{ "score": X, "feedback": "..." }},
-        "overall_score": X,
-        "recommendation": "Accept" or "Reject",
-        "summary": "Brief overall assessment"
-    }}
+    Format your response as a JSON array of objects, with each object containing a "term" and "country".
+    Example: [
+        {{"term": "Barcelona", "country": "Spain"}},
+        {{"term": "Santorini", "country": "Greece"}},
+        {{"term": "Venice canal", "country": "Italy"}}
+    ]    
     """
     
     # Call Gemini API
     response = call_gemini_api(prompt)
     
     if not response:
-        logger.error(f"Failed to get validation from Gemini API for image: {image_url}")
-        return None
+        logger.error(f"Failed to generate search terms")
+        return []
     
-    # Parse JSON response
+    # Extract search terms and countries from response
     try:
-        # Extract JSON from response (in case there's additional text)
-        json_match = re.search(r'({.*})', response, re.DOTALL)
-        if json_match:
-            json_str = json_match.group(1)
-            validation_result = json.loads(json_str)
-        else:
-            validation_result = json.loads(response)
+        # Clean up the response - remove markdown code blocks if present
+        if "```json" in response:
+            # Extract the JSON part from markdown code block
+            json_match = re.search(r'```json\s*([\s\S]*?)```', response)
+            if json_match:
+                response = json_match.group(1).strip()
+            else:
+                # If regex fails, try simple string replacement
+                response = response.replace("```json", "").replace("```", "").strip()
         
-        return validation_result
-    except Exception as e:
-        logger.error(f"Error parsing Gemini validation response: {e}")
-        logger.error(f"Raw response: {response}")
-        return None
+        # Try to parse as JSON
+        logger.debug(f"Cleaned JSON response: {response[:100]}...")
+        search_terms_data = json.loads(response)
+        
+        # Validate that we got a list of dictionaries
+        if not isinstance(search_terms_data, list):
+            logger.error(f"Invalid response format: not a list")
+            return []
+            
+        # Filter out any previously rejected terms
+        search_terms = [
+            (item['term'], item['country']) 
+            for item in search_terms_data 
+            if 'term' in item and 'country' in item and item['term'] not in rejected_terms
+        ]
+        
+        logger.info(f"Successfully extracted {len(search_terms)} search terms")
+        return search_terms
+        
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to parse JSON response: {e}")
+        logger.debug(f"Raw response: {response}")
+        return []
 
 def get_tours_from_supabase():
     """
@@ -307,7 +199,7 @@ def get_tours_from_supabase():
         List of tour objects
     """
     try:
-        response = supabase.table('tours').select('id, name').execute()
+        response = supabase.table('tours').select('id, name, description').execute()
         tours = response.data
         logger.info(f"Retrieved {len(tours)} tours from Supabase")
         return tours
@@ -355,7 +247,7 @@ def upload_to_supabase_storage(image_data, filename):
         logger.error(f"Exception during storage upload: {e}")
         return None
 
-def insert_to_tour_images(tour_id, image_url, alt_text, search_term, validation_result, is_primary=False, display_order=0):
+def insert_to_tour_images(tour_id, image_url, alt_text, search_term, validation_result, is_primary=False, is_featured=False, display_order=0, country_name=None, alt=None):
     """
     Insert image metadata into tour_images table
     
@@ -366,38 +258,32 @@ def insert_to_tour_images(tour_id, image_url, alt_text, search_term, validation_
         search_term: Search term used to find the image
         validation_result: Validation result from Gemini
         is_primary: Whether this is the primary image
+        is_featured: Whether this is a featured image
         display_order: Order to display the image (0 = first)
-    
-    Returns:
-        ID of the inserted record or None if failed
+        country_name: Name of the country
+        alt: Original alt description from Pexels
     """
     try:
         now = datetime.now().isoformat()
         
-        # Extract scores from validation result
-        overall_score = validation_result.get('overall_score', 0)
-        relevance_score = validation_result.get('relevance', {}).get('score', 0)
-        quality_score = validation_result.get('quality', {}).get('score', 0)
-        luxury_score = validation_result.get('luxury_appeal', {}).get('score', 0)
-        romantic_score = validation_result.get('romantic_atmosphere', {}).get('score', 0)
-        uniqueness_score = validation_result.get('uniqueness', {}).get('score', 0)
+        # Extract overall score from validation result
+        overall_score = validation_result.get('score', 0)
         
         # Create record
         record = {
+            "id": str(uuid.uuid4()),
             "tour_id": tour_id,
             "image_url": image_url,
             "alt_text": alt_text,
+            "alt": alt,  # Store the original Pexels alt description
             "search_term": search_term,
             "is_primary": is_primary,
+            "is_featured": is_featured,
             "overall_score": overall_score,
-            "relevance_score": relevance_score,
-            "quality_score": quality_score,
-            "luxury_score": luxury_score,
-            "romantic_score": romantic_score,
-            "uniqueness_score": uniqueness_score,
             "created_at": now,
             "updated_at": now,
-            "display_order": display_order
+            "display_order": display_order,
+            "country_name": country_name
         }
         
         # Insert record
@@ -439,30 +325,68 @@ def download_image(url):
         logger.error(f"Error downloading image: {e}")
         return None
 
-def optimize_image(image_data):
+def post_process_image(image):
+    """
+    Apply post-processing effects to beautify the image and make it visually consistent
+    
+    Args:
+        image: PIL Image object
+    
+    Returns:
+        Processed PIL Image object
+    """
+    try:
+        # 1. Enhance contrast slightly
+        enhancer = ImageEnhance.Contrast(image)
+        image = enhancer.enhance(1.2)  # Increase contrast by 20%
+        
+        # 2. Enhance color saturation
+        enhancer = ImageEnhance.Color(image)
+        image = enhancer.enhance(1.15)  # Increase saturation by 15%
+        
+        # 3. Enhance brightness slightly
+        enhancer = ImageEnhance.Brightness(image)
+        image = enhancer.enhance(1.05)  # Increase brightness by 5%
+        
+        # 4. Apply slight sharpening
+        image = image.filter(ImageFilter.SHARPEN)
+        
+        # 5. Apply subtle warming filter 
+        # (This creates a slight warm tone that works well for travel/luxury images)
+        r, g, b = image.split()
+        r = ImageEnhance.Brightness(r).enhance(1.06)  # Boost red channel slightly
+        g = ImageEnhance.Brightness(g).enhance(1.02)  # Boost green channel very slightly
+        # Blue channel left as is
+        image = Image.merge("RGB", (r, g, b))
+        
+        return image
+        
+    except Exception as e:
+        logger.error(f"Error in post-processing image: {e}")
+        return image  # Return original image if processing fails
+
+def optimize_image(image_data, target_width=1920, quality=90):
     """
     Optimize an image for web use
     
     Args:
         image_data: Image data as bytes
+        target_width: Maximum width for resized image
+        quality: JPEG compression quality (0-100)
     
     Returns:
-        Optimized PIL Image object or None if failed
+        Tuple of (optimized PIL Image, bytes for storage)
     """
     try:
         # Open the image with PIL
         image = Image.open(BytesIO(image_data))
         
-        # Resize if too large (max dimension 1920px)
-        max_size = 1920
-        if image.width > max_size or image.height > max_size:
+        # Resize if too large (max width target_width)
+        if image.width > target_width:
             # Calculate new dimensions while maintaining aspect ratio
-            if image.width > image.height:
-                new_width = max_size
-                new_height = int(image.height * (max_size / image.width))
-            else:
-                new_height = max_size
-                new_width = int(image.width * (max_size / image.height))
+            aspect_ratio = image.height / image.width
+            new_width = target_width
+            new_height = int(target_width * aspect_ratio)
                 
             # Resize the image
             image = image.resize((new_width, new_height), Image.LANCZOS)
@@ -472,530 +396,501 @@ def optimize_image(image_data):
         if image.mode != 'RGB':
             image = image.convert('RGB')
         
-        return image
+        # Apply post-processing to beautify the image
+        processed_image = post_process_image(image)
+        
+        # Convert the processed image to bytes
+        img_byte_arr = BytesIO()
+        processed_image.save(img_byte_arr, format='JPEG', quality=quality)
+        img_bytes = img_byte_arr.getvalue()
+        
+        return processed_image, img_bytes
         
     except Exception as e:
         logger.error(f"Error optimizing image: {e}")
-        return None
+        return None, None
 
-def search_unsplash(query, per_page=10):
+def search_pexels(query, per_page=4):
     """
-    Search Unsplash for images
+    Search Pexels API for images matching a query
     
     Args:
-        query: Search query
-        per_page: Number of images to return per page
+        query: Search term
+        per_page: Number of results to return (max 80)
     
     Returns:
-        List of image objects
+        List of photo objects from Pexels
     """
     try:
-        # Construct the URL
-        url = "https://api.unsplash.com/search/photos"
-        
-        # Set up parameters
-        params = {
-            "query": query,
-            "per_page": per_page,
-            "orientation": "landscape",  # Prefer landscape images for tours
-            "content_filter": "high"     # High quality content only
-        }
-        
-        # Set up headers
+        logger.info(f"Searching Pexels for term: {query}")
         headers = {
-            "Authorization": f"Client-ID {UNSPLASH_ACCESS_KEY}"
+            'Authorization': PEXELS_API_KEY
         }
+        
+        # Construct the URL with parameters
+        params = {
+            'query': query,
+            'per_page': per_page,
+            'orientation': 'landscape'  # Prefer landscape images for tour photos
+        }
+        
+        url = "https://api.pexels.com/v1/search"
         
         # Make the request
-        logger.info(f"Searching Unsplash for: {query}")
-        response = requests.get(url, params=params, headers=headers)
+        response = requests.get(url, headers=headers, params=params, timeout=30)
+        
+        # Implement rate limiting - pause for 15 seconds after each API call
+        logger.info(f"Rate limiting: sleeping for 15 seconds after Pexels API call")
+        time.sleep(15)
         
         if not response.ok:
-            logger.error(f"Unsplash API error: {response.status_code} - {response.text[:200]}...")
+            logger.error(f"Pexels API error: {response.status_code} - {response.text}")
             return []
             
-        result = response.json()
+        # Parse the response
+        data = response.json()
         
-        if 'results' not in result:
-            logger.error(f"Unexpected response format from Unsplash API")
+        if 'photos' not in data or not data['photos']:
+            logger.warning(f"No photos found for query: {query}")
             return []
             
-        images = result['results']
-        logger.info(f"Found {len(images)} images on Unsplash for query: {query}")
-        
-        return images
+        logger.info(f"Found {len(data['photos'])} photos for query: {query}")
+        return data['photos']
         
     except Exception as e:
-        logger.error(f"Error searching Unsplash: {e}")
+        logger.error(f"Error searching Pexels: {e}")
         return []
 
-def download_and_upload_images_for_tour(tour_id, tour_name, min_score=IMAGE_QUALITY_THRESHOLD, min_images=5, model="gemini"):
+def simple_image_validation(image_url, tour_name, search_term, description=None, alt_text=None):
     """
-    Download images from Unsplash and upload to Supabase for a tour
+    Simple validation of an image using Gemini
     
     Args:
-        tour_id: ID of the tour
+        image_url: URL of the image to validate
         tour_name: Name of the tour
-        min_score: Minimum validation score (1-10) required to accept an image
-        min_images: Minimum number of images to collect
-        model: AI model to use for generating search terms ("gemini" or "perplexity")
+        search_term: Search term used to find the image
+        description: Description of the tour (if available)
+        alt_text: Alt text description of the image from Pexels
     
     Returns:
-        List of uploaded image metadata
+        Tuple of (is_valid, score)
     """
-    # Check if tour already has images
-    existing_images = []
-    try:
-        response = supabase.table(DB_TABLE_NAME).select('id, image_url, display_order').eq('tour_id', tour_id).execute()
-        existing_images = response.data
-        
-        if existing_images:
-            logger.info(f"Tour '{tour_name}' already has {len(existing_images)} images")
-            
-            # Ask if we should continue
-            continue_input = input(f"Tour already has {len(existing_images)} images. Continue? (y/n): ")
-            if continue_input.lower() != 'y':
-                logger.info(f"Skipping tour as requested")
-                return []
-    except Exception as e:
-        logger.error(f"Error checking existing images: {e}")
+    # Add description context if available
+    description_text = f"\nTour Description: {description}" if description else ""
     
-    # Find the highest existing display_order
-    max_display_order = 0
-    if existing_images:
-        try:
-            max_display_order = max([img.get('display_order', 0) for img in existing_images])
-        except Exception as e:
-            logger.error(f"Error finding max display_order: {e}")
+    # Add alt text information if available
+    alt_text_info = f"\nImage description: {alt_text}" if alt_text else ""
     
-    # Temporary list to store validated images before uploading
-    validated_images = []
-    rejected_search_terms = []
+    prompt = f"""
+    I am building a luxury travel website and I am using Pexels API to retrieve images.
+    THe problem is that sometimes these images are not always of high quality.
+    Your job is to evaluate the relevance, quality and suitability of an image given the context. 
     
-    # Keep generating and validating images until we have enough high-quality ones
-    while len(validated_images) < min_images:
-        # Generate search terms, excluding previously rejected ones
-        search_terms = generate_search_terms_for_tour(tour_name, rejected_terms=rejected_search_terms, model=model)
-        
-        if not search_terms:
-            logger.error(f"Failed to generate search terms for tour: {tour_name}")
-            break
-            
-        logger.info(f"Generated search terms: {', '.join(search_terms)}")
-        
-        # Process each search term
-        for search_term in search_terms:
-            # Skip if we already have enough images
-            if len(validated_images) >= min_images:
-                break
-                
-            # Skip if this term was previously rejected
-            if search_term in rejected_search_terms:
-                continue
-                
-            logger.info(f"Searching for: '{search_term}'")
-            
-            # Search Unsplash for images
-            unsplash_images = search_unsplash(search_term, 1)
-            
-            if not unsplash_images:
-                logger.warning(f"No images found for: {search_term}")
-                rejected_search_terms.append(search_term)
-                continue
-            
-            # Process the image from Unsplash (just 1 per search term)
-            unsplash_image = unsplash_images[0]
-            image_url = unsplash_image['urls']['regular']
-            
-            # Validate image with Gemini
-            validation_result = call_gemini_api_for_image_validation(image_url, tour_name, search_term)
-            
-            if not validation_result:
-                logger.warning(f"Failed to validate: {search_term}")
-                rejected_search_terms.append(search_term)
-                continue
-            
-            # Check if image meets quality threshold
-            overall_score = validation_result.get('overall_score', 0)
-            recommendation = validation_result.get('recommendation', 'Reject')
-            
-            if overall_score < min_score or recommendation == 'Reject':
-                logger.warning(f"Rejected: '{search_term}' - Score: {overall_score}")
-                rejected_search_terms.append(search_term)
-                continue
-            
-            logger.info(f"Accepted: '{search_term}' - Score: {overall_score}")
-            
-            # Download image
-            image_data = download_image(image_url)
-            if not image_data:
-                logger.warning(f"Failed to download: {search_term}")
-                rejected_search_terms.append(search_term)
-                continue
-            
-            # Optimize image
-            optimized_image = optimize_image(image_data)
-            if not optimized_image:
-                logger.warning(f"Failed to optimize: {search_term}")
-                rejected_search_terms.append(search_term)
-                continue
-            
-            # Add to validated images list
-            validated_images.append({
-                'image_url': image_url,
-                'search_term': search_term,
-                'validation_result': validation_result,
-                'overall_score': overall_score,
-                'optimized_image': optimized_image
-            })
-            
-            logger.info(f"Progress: {len(validated_images)}/{min_images} images validated")
-    
-    # Sort validated images by overall score (highest first)
-    validated_images.sort(key=lambda x: x['overall_score'], reverse=True)
-    logger.info(f"Collected {len(validated_images)} validated images")
-    
-    # Upload images in order of score
-    uploaded_images = []
-    
-    for i, validated_image in enumerate(validated_images):
-        try:
-            search_term = validated_image['search_term']
-            
-            # Generate a unique filename
-            file_extension = 'jpg'
-            filename = f"{tour_id}_{search_term.replace(' ', '_')}_{uuid.uuid4()}.{file_extension}"
-            
-            # Calculate display_order - higher scores get lower numbers (1 is first)
-            display_order = max_display_order + i + 1
-            
-            # Upload to Supabase storage
-            storage_path = f"{tour_id}/{filename}"
-            
-            # Convert PIL Image to bytes
-            optimized_image = validated_image['optimized_image']
-            img_byte_arr = BytesIO()
-            optimized_image.save(img_byte_arr, format='JPEG')
-            img_byte_arr.seek(0)
-            
-            # Upload to storage
-            logger.info(f"Uploading: '{search_term}'")
-            storage_response = supabase.storage.from_(STORAGE_BUCKET).upload(
-                storage_path,
-                img_byte_arr.getvalue(),
-                file_options={"content-type": "image/jpeg"}
-            )
-            
-            if not storage_response:
-                logger.error(f"Failed to upload to storage: {search_term}")
-                continue
-            
-            # Get public URL
-            storage_url = supabase.storage.from_(STORAGE_BUCKET).get_public_url(storage_path)
-            
-            # Create alt text
-            alt_text = f"Beautiful view of {tour_name} - {search_term}"
-            
-            # Set the first image (highest score) as primary if no existing images
-            is_primary = (i == 0 and len(existing_images) == 0)
-            
-            # Insert into tour_images table
-            image_id = insert_to_tour_images(
-                tour_id=tour_id,
-                image_url=storage_url,
-                alt_text=alt_text,
-                search_term=search_term,
-                validation_result=validated_image['validation_result'],
-                is_primary=is_primary,
-                display_order=display_order
-            )
-            
-            if not image_id:
-                logger.error(f"Failed to insert into database: {search_term}")
-                # Delete the uploaded file
-                try:
-                    supabase.storage.from_(STORAGE_BUCKET).remove([storage_path])
-                    logger.warning(f"Deleted orphaned storage file: {storage_path}")
-                except Exception as e:
-                    logger.error(f"Failed to delete orphaned file: {e}")
-                
-                # Critical database error - stop processing
-                raise Exception("Database insert failed - stopping process")
-            
-            uploaded_images.append({
-                "id": image_id,
-                "image_url": storage_url,
-                "alt_text": alt_text,
-                "is_primary": is_primary,
-                "score": validated_image['overall_score'],
-                "search_term": search_term,
-                "display_order": display_order
-            })
-            logger.info(f"Uploaded: '{search_term}' (#{display_order}, Score: {validated_image['overall_score']})")
-        
-        except Exception as e:
-            logger.error(f"Error processing image: {e}")
-            if "Database insert failed" in str(e):
-                # Re-raise to stop processing
-                raise
-    
-    # If we have uploaded images, set the highest scoring one as primary
-    if uploaded_images:
-        try:
-            # Find the highest scoring image
-            highest_score_image = max(uploaded_images, key=lambda x: x['score'])
-            
-            # Update all images to not be primary
-            supabase.table(DB_TABLE_NAME).update({"is_primary": False}).eq('tour_id', tour_id).execute()
-            
-            # Set the highest scoring image as primary
-            supabase.table(DB_TABLE_NAME).update({"is_primary": True}).eq('id', highest_score_image['id']).execute()
-            
-            logger.info(f"Set primary image: '{highest_score_image['search_term']}' (Score: {highest_score_image['score']})")
-            
-            # Update our local record
-            for img in uploaded_images:
-                if img["id"] == highest_score_image["id"]:
-                    img["is_primary"] = True
-                else:
-                    img["is_primary"] = False
-        except Exception as e:
-            logger.error(f"Error setting primary image: {e}")
-    
-    # Clean up any orphaned records
-    try:
-        response = supabase.table(DB_TABLE_NAME).delete().eq('tour_id', tour_id).is_('image_url', 'null').execute()
-        if response.data and len(response.data) > 0:
-            logger.info(f"Cleaned up {len(response.data)} orphaned records")
-    except Exception as e:
-        logger.error(f"Error cleaning up orphaned records: {e}")
-    
-    logger.info(f"Completed: {len(uploaded_images)} images for '{tour_name}'")
-    return uploaded_images
+    Context includes: 
+    1) the tour titled "{tour_name}" 
+    2) the tour description:{description_text}
+    3) the search term we used to call Pexels's API: {search_term}
 
-def process_all_tours(min_score=IMAGE_QUALITY_THRESHOLD):
+    The output we have which you need to evaluate includes: 
+    1) Image URL: {image_url}
+    2) Image description: {alt_text_info}
+    
+    On a scale of 1-10, rate how suitable this image is for a luxury travel website based on these criteria:
+    1) Is the image relevant to the search term and the tour description? For example, if the search term is about Victoria Falls, the image should show Victoria Falls.
+    2) We don't want the image to focus on random people. However tourists in background and even more so characteristic locals like Sumo or Geisha in Japan are great.
+    3) Is the image in line what you would expect from a luxury travel website?
+    4) The image seems to come from the countries / places mentioned in {description_text} and not some other country or tour. Given the tour description, please ensure the image matches one of the destinations or activities mentioned.
+    5) If there are pictures of food, let's only keep them if they are authentic food from the countries mentioned in the tour. Eg generic breakfast or generic bottles are NOT OK. A pad thai on a bustling market for Thailand great.
+    6) Let's avoid black and white images.
+    7) Let's avoid images of specific hotels where the name is very clearly visible. Fine if it's a generic landmark.
+    8) Let's avoid generic images such as a generic INDOOR pool which could have been taken anywhere.
+
+    Consider image quality, composition, aesthetic appeal, and relevance to the tour and search term.
+    
+    Provide only a single score (1-10) and a brief one-sentence explanation. Pictures above 7 will be used.
+    Format your response as JSON: {{"score": X, "explanation": "..."}}
     """
-    Process all tours from Supabase
+    
+    # Call Gemini API
+    response = call_gemini_api(prompt)
+    
+    if not response:
+        logger.error(f"Failed to validate image")
+        return False, 0
+    
+    # Parse JSON response
+    try:
+        # Clean up the response - remove markdown code blocks if present
+        if "```json" in response:
+            json_match = re.search(r'```json\s*([\s\S]*?)```', response)
+            if json_match:
+                response = json_match.group(1).strip()
+            else:
+                response = response.replace("```json", "").replace("```", "").strip()
+        
+        validation_result = json.loads(response)
+        
+        # Extract score
+        score = float(validation_result.get('score', 0))
+        explanation = validation_result.get('explanation', '')
+        
+        logger.info(f"Image validation score: {score}/10 - {explanation}")
+        
+        # Image passes if score is 7 or higher
+        is_valid = score >= 7.0
+        
+        return is_valid, score
+    except Exception as e:
+        logger.error(f"Error parsing validation response: {e}")
+        return False, 0
+
+def check_redundancy(validated_images):
+    """
+    Check for redundancy in validated images using Gemini
     
     Args:
-        min_score: Minimum validation score (1-10) required to accept an image
+        validated_images: List of validated image data
+    
+    Returns:
+        List of non-redundant images (up to 13, sorted by score)
     """
-    # Get all tours
-    tours = get_tours_from_supabase()
+    # First sort by score (highest first)
+    validated_images.sort(key=lambda x: x.get('score', 0), reverse=True)
     
-    if not tours:
-        logger.error("No tours found in database")
-        return
+    # If we have 13 or fewer images, no need for redundancy check
+    if len(validated_images) <= 13:
+        return validated_images[:13]  # Return all images, up to 13
     
-    # Create a DataFrame to store search terms
-    search_terms_df = pd.DataFrame(columns=['tour_id', 'tour_name', 'search_terms'])
-    
-    # Process each tour
-    for i, tour in enumerate(tours):
-        tour_id = tour['id']
-        tour_name = tour['name']
+    # Try to use Gemini for redundancy check
+    try:
+        # Create prompt
+        image_descriptions = []
+        for i, img in enumerate(validated_images):
+            desc = f"Image {i+1}: {img['search_term']}, Description: {img.get('description', 'No description')}, Score: {img.get('score', 0)}"
+            image_descriptions.append(desc)
+            
+        descriptions_text = "\n".join(image_descriptions)
         
-        logger.info(f"\nProcessing tour {i+1}/{len(tours)}: {tour_name}")
+        prompt = f"""
+        I have a set of {len(validated_images)} images for a luxury travel website.
+        Please identify any redundant or very similar images that should be removed to ensure diversity.
         
-        # Generate search terms for the tour
-        search_terms = generate_search_terms_for_tour(tour_name)
+        {descriptions_text}
         
-        if not search_terms:
-            logger.error(f"Could not generate search terms for tour: {tour_name}")
-            continue
+        Return a JSON array with the indices of the images to KEEP (not the ones to remove).
+        Select up to 13 diverse images with the highest scores.
         
-        # Add to DataFrame
-        search_terms_df = pd.concat([
-            search_terms_df, 
-            pd.DataFrame([{
-                'tour_id': tour_id,
-                'tour_name': tour_name,
-                'search_terms': search_terms
-            }])
-        ], ignore_index=True)
+        Example response format:
+        [1, 2, 5, 7, 9, 10, 13, 15, 17, 20]
         
-        # Download and upload images
-        download_and_upload_images_for_tour(tour_id, tour_name, min_score)
+        IMPORTANT: Respond ONLY with the JSON array and nothing else.
+        """
         
-        # Sleep to avoid rate limiting
-        time.sleep(2)
-    
-    # Save search terms to CSV
-    search_terms_df.to_csv('tour_search_terms.csv', index=False)
-    
-    # Also save as JSON for easier parsing
-    search_terms_dict = {
-        row['tour_id']: {
-            'tour_name': row['tour_name'],
-            'search_terms': row['search_terms']
-        }
-        for _, row in search_terms_df.iterrows()
-    }
-    
-    with open('tour_search_terms.json', 'w') as f:
-        json.dump(search_terms_dict, f, indent=2)
-    
-    logger.info(f"Completed processing {len(tours)} tours")
-    logger.info(f"Search terms saved to tour_search_terms.csv and tour_search_terms.json")
+        # Call Gemini API
+        response = call_gemini_api(prompt)
+        
+        if not response:
+            logger.warning("No response from Gemini for redundancy check, falling back to top 13")
+            return validated_images[:13]
+            
+        # Clean up response - remove markdown code blocks if present
+        if "```" in response:
+            response = re.sub(r'```(?:json)?\s*([\s\S]*?)```', r'\1', response).strip()
+        
+        # Try to parse JSON
+        try:
+            indices = json.loads(response)
+            
+            # Validate that we got a list of indices
+            if not isinstance(indices, list):
+                logger.warning("Invalid response format for redundancy check, falling back to top 13")
+                return validated_images[:13]
+                
+            # Convert to 0-based indexing if necessary
+            if indices and min(indices) > 0:
+                indices = [i-1 for i in indices]
+                
+            # Filter out invalid indices and sort by original score
+            valid_indices = [i for i in indices if 0 <= i < len(validated_images)]
+            selected_images = [validated_images[i] for i in valid_indices]
+            
+            # Sort by score
+            selected_images.sort(key=lambda x: x.get('score', 0), reverse=True)
+            
+            # Limit to 13 images
+            selected_images = selected_images[:13]
+            
+            if not selected_images:
+                logger.warning("No valid images after redundancy check, falling back to top 13")
+                return validated_images[:13]
+                
+            logger.info(f"Successfully applied redundancy check, selected {len(selected_images)} images")
+            return selected_images
+            
+        except json.JSONDecodeError as e:
+            logger.error(f"Error parsing redundancy check response: {e}")
+            # Fall back to top 13 by score
+            return validated_images[:13]
+            
+    except Exception as e:
+        logger.error(f"Exception during redundancy check: {e}")
+        # Fall back to top 13 by score
+        return validated_images[:13]
 
-def process_single_tour(tour_id=None, tour_code=None, min_score=IMAGE_QUALITY_THRESHOLD):
+def process_tour(tour, override=False):
     """
-    Process a single tour by ID or code
+    Process a tour to generate and upload images
     
     Args:
-        tour_id: ID of the tour (optional)
-        tour_code: Code of the tour (optional) - Note: This won't work if there's no code column
-        min_score: Minimum validation score (1-10) required to accept an image
+        tour: Tour object with id, name, description
+        override: Whether to override existing entries
+    
+    Returns:
+        Number of successfully uploaded images
     """
-    # Get all tours
-    tours = get_tours_from_supabase()
-    
-    if not tours:
-        logger.error("No tours found in database")
-        return
-    
-    # Find the specific tour
-    tour = None
-    if tour_id:
-        tour = next((t for t in tours if t['id'] == tour_id), None)
-    elif tour_code:
-        # Since there's no code column, we can try to match against the name instead
-        logger.warning("Note: 'code' column doesn't exist in tours table. Trying to match against name instead.")
-        tour = next((t for t in tours if tour_code.lower() in t['name'].lower()), None)
-    
-    if not tour:
-        error_msg = f"No tour found with ID: {tour_id}"
-        if tour_code:
-            error_msg += f" or name containing: {tour_code}"
-        logger.error(error_msg)
-        return
-    
     tour_id = tour['id']
     tour_name = tour['name']
+    description = tour.get('description', '')
     
-    logger.info(f"Processing tour: {tour_name}")
+    logger.info(f"Processing tour: {tour_name} (ID: {tour_id})")
     
-    # Generate search terms for the tour
-    search_terms = generate_search_terms_for_tour(tour_name)
+    # Check if entries already exist for this tour
+    response = supabase.table(DB_TABLE_NAME).select('id').eq('tour_id', tour_id).execute()
+    existing_entries = response.data
     
-    if not search_terms:
-        logger.error(f"Could not generate search terms for tour: {tour_name}")
-        return
+    if existing_entries and not override:
+        logger.info(f"Entries already exist for tour {tour_id}. Skipping processing. Use --override to replace them.")
+        return 0
     
-    # Save search terms to JSON
-    search_terms_dict = {
-        tour_id: {
-            'tour_name': tour_name,
-            'search_terms': search_terms
+    if existing_entries and override:
+        # Delete existing entries
+        logger.info(f"Existing entries found for tour {tour_id}. Override flag is set, deleting existing entries.")
+        supabase.table(DB_TABLE_NAME).delete().eq('tour_id', tour_id).execute()
+        
+        # Try to delete existing images from storage if they exist
+        try:
+            # List files in the tour_id folder
+            files_response = supabase.storage.from_(STORAGE_BUCKET).list(tour_id)
+            if files_response:
+                logger.info(f"Deleting {len(files_response)} existing images from storage for tour {tour_id}")
+                # Delete each file
+                for file in files_response:
+                    supabase.storage.from_(STORAGE_BUCKET).remove([f"{tour_id}/{file['name']}"])
+                logger.info(f"Successfully deleted existing images from storage for tour {tour_id}")
+        except Exception as e:
+            logger.warning(f"Error while trying to delete existing images from storage: {e}")
+    
+    # Keep track of rejected search terms
+    rejected_terms = []
+    
+    # Keep track of validated images
+    validated_images = []
+    
+    # Get search terms for the tour, including description context
+    search_terms_with_countries = generate_search_terms_for_tour(tour_name, description, rejected_terms)
+    
+    if not search_terms_with_countries:
+        logger.error(f"Failed to generate search terms for tour: {tour_name}")
+        return 0
+    
+    # Number of search terms to try before getting new ones
+    max_search_attempts = 2
+    
+    for attempt in range(max_search_attempts):
+        # Check if we already have enough images
+        if len(validated_images) >= 15:  # Get more than needed for redundancy check
+            logger.info(f"Already have {len(validated_images)} validated images, proceeding to redundancy check.")
+            break
+            
+        logger.info(f"Attempt {attempt+1}: Processing search terms")
+        
+        # Process search terms
+        for term, country_name in search_terms_with_countries:
+            if len(validated_images) >= 20:  # Cap at 20 validated images before redundancy check
+                break
+                
+            logger.info(f"Searching Pexels for term: {term} (Country: {country_name})")
+            photos = search_pexels(term, per_page=4)
+            
+            if not photos:
+                logger.warning(f"No images found for term: {term}")
+                rejected_terms.append(term)
+                continue
+            
+            # Process individual images
+            valid_count = 0
+            for photo in photos:
+                image_url = photo['src']['original']
+                # Get the alt text/description from Pexels
+                image_description = photo.get('alt', '')
+                
+                logger.info(f"Validating image: {image_url}")
+                logger.debug(f"Image description: {image_description}")
+                
+                # Simple validation - now includes the Pexels description
+                is_valid, score = simple_image_validation(image_url, tour_name, term, description, image_description)
+                
+                if is_valid:
+                    # Download and process the image
+                    image_data = download_image(image_url)
+                    
+                    if not image_data:
+                        logger.warning(f"Failed to download image: {image_url}")
+                        continue
+                    
+                    # Optimize and post-process the image
+                    processed_image, optimized_data = optimize_image(image_data)
+                    
+                    if not processed_image or not optimized_data:
+                        logger.warning(f"Failed to process image: {image_url}")
+                        continue
+                    
+                    # Add to validated images - now including the description
+                    validated_images.append({
+                        'image_data': optimized_data,
+                        'url': image_url,
+                        'search_term': term,
+                        'country_name': country_name,
+                        'score': score,
+                        'description': image_description
+                    })
+                    
+                    valid_count += 1
+                    logger.info(f"Image validated successfully: {image_url} (Score: {score})")
+                    
+                    if valid_count >= 3:  # Limit to top 3 images per search term
+                        break
+        
+        # If we don't have enough images, get more search terms
+        if len(validated_images) < 8 and attempt < max_search_attempts - 1:
+            logger.warning(f"Only found {len(validated_images)} valid images, getting more search terms.")
+            new_terms = generate_search_terms_for_tour(tour_name, description, rejected_terms)
+            
+            if new_terms:
+                search_terms_with_countries = new_terms
+            else:
+                logger.error(f"Failed to generate more search terms.")
+                break
+    
+    # Check for redundancy
+    final_images = check_redundancy(validated_images)
+    
+    # Limit to 13 highest-rated images
+    if len(final_images) > 13:
+        logger.info(f"More than 13 images after redundancy check. Limiting to 13 highest-rated images.")
+        final_images = final_images[:13]  # Already sorted by score
+    
+    # Check if we have enough valid images (minimum 6)
+    if len(final_images) < 6:
+        logger.error(f"Not enough valid images found ({len(final_images)}/6). Aborting.")
+        return 0
+    
+    # Upload images to Supabase Storage and insert metadata
+    successful_uploads = 0
+    
+    for i, img_data in enumerate(final_images):
+        # Generate unique filename
+        filename = f"{tour_id}/{str(uuid.uuid4())}.jpg"
+        
+        # Upload to Supabase Storage
+        image_url = upload_to_supabase_storage(img_data['image_data'], filename)
+        
+        if not image_url:
+            logger.error(f"Failed to upload image {i+1} for tour: {tour_name}")
+            continue
+        
+        # Get the original Pexels description
+        original_alt = img_data.get('description', '')
+        
+        # Create alt text using the Pexels description if available
+        alt_text = original_alt if original_alt else f"{tour_name} - {img_data['search_term']}"
+        
+        # Determine if this is the primary or featured image
+        is_primary = (i == 0)
+        is_featured = (i <= 1)  # First two images are featured
+        
+        # Create simple validation result
+        validation_result = {
+            'score': img_data.get('score', 0)
         }
-    }
+        
+        # Insert metadata to tour_images table - now passing the original alt description
+        image_id = insert_to_tour_images(
+            tour_id=tour_id,
+            image_url=image_url,
+            alt_text=alt_text,
+            search_term=img_data['search_term'],
+            validation_result=validation_result,
+            is_primary=is_primary,
+            is_featured=is_featured,
+            display_order=i,
+            country_name=img_data['country_name'],
+            alt=original_alt  # Pass the original alt description
+        )
+        
+        if image_id:
+            successful_uploads += 1
+            logger.info(f"Successfully processed image {i+1} for tour: {tour_name}")
+        else:
+            logger.error(f"Failed to insert metadata for image {i+1} for tour: {tour_name}")
     
-    with open(f'tour_{tour_id}_search_terms.json', 'w') as f:
-        json.dump(search_terms_dict, f, indent=2)
+    logger.info(f"Completed processing tour: {tour_name}. Uploaded {successful_uploads}/{len(final_images)} images.")
     
-    # Download and upload images
-    download_and_upload_images_for_tour(tour_id, tour_name, min_score)
-    
-    logger.info(f"Completed processing tour: {tour_name}")
-    logger.info(f"Search terms saved to tour_{tour_id}_search_terms.json")
+    return successful_uploads
+
+# Test Supabase connection
+def test_supabase_connection():
+    try:
+        response = supabase.table('tours').select('id').limit(1).execute()
+        if response.data:
+            logger.info("Supabase connection successful.")
+        else:
+            logger.error("Supabase connection failed or no data found.")
+    except Exception as e:
+        logger.error(f"Supabase connection error: {e}")
 
 def main():
-    """
-    Main function
-    """
-    parser = argparse.ArgumentParser(description='Generate tour images')
-    parser.add_argument('--tour-id', help='ID of a specific tour to process')
-    parser.add_argument('--min-score', type=float, default=IMAGE_QUALITY_THRESHOLD, help='Minimum quality score (1-10)')
-    parser.add_argument('--min-images', type=int, default=5, help='Minimum number of images to collect')
-    parser.add_argument('--model', type=str, choices=['gemini', 'perplexity'], default='gemini', 
-                        help='AI model to use for generating search terms')
+    parser = argparse.ArgumentParser(description="Generate images for tours")
+    parser.add_argument('--tour_id', help='Process a specific tour by ID')
+    parser.add_argument('--all', action='store_true', help='Process all tours')
+    parser.add_argument('--override', action='store_true', help='Override existing entries in the table')
     args = parser.parse_args()
     
-    logger.info("=" * 80)
-    logger.info("Starting image generation script")
-    logger.info(f"Minimum quality score: {args.min_score}")
-    logger.info(f"Minimum images per tour: {args.min_images}")
-    logger.info(f"Using AI model: {args.model}")
+    logger.info("Starting the image generation process...")
     
-    # Process a single tour if specified
     if args.tour_id:
-        logger.info(f"Processing single tour by ID: {args.tour_id}")
-        
-        # Get tour details
+        logger.info(f"Processing tour with ID: {args.tour_id}")
         try:
-            response = supabase.table('tours').select('id, name').execute()
+            response = supabase.table('tours').select('id, name, description').eq('id', args.tour_id).execute()
             tours = response.data
             
-            # Find the tour with the specified ID
-            tour = next((t for t in tours if t['id'] == args.tour_id), None)
-            
-            if not tour:
-                logger.error(f"Tour not found with ID: {args.tour_id}")
+            if not tours:
+                logger.error(f"Tour with ID {args.tour_id} not found")
                 return
                 
-            logger.info(f"Processing tour: {tour['name']}")
-            
-            # Process the tour
-            images = download_and_upload_images_for_tour(
-                tour_id=tour['id'], 
-                tour_name=tour['name'],
-                min_score=args.min_score,
-                min_images=args.min_images,
-                model=args.model
-            )
-            
-            logger.info(f"Completed processing tour: {tour['name']}")
-            
-            # Save search terms to file for reference
-            with open(f"tour_{tour['id']}_search_terms.json", 'w') as f:
-                json.dump([img['search_term'] for img in images], f, indent=2)
-                
-            logger.info(f"Search terms saved to tour_{tour['id']}_search_terms.json")
+            tour = tours[0]
+            process_tour(tour, args.override)
             
         except Exception as e:
-            logger.error(f"Error processing tour: {e}")
-    
-    # Process all tours if no specific tour is specified
-    else:
+            logger.error(f"Error processing specific tour: {e}")
+            
+    elif args.all:
         logger.info("Processing all tours")
+        tours = get_tours_from_supabase()
         
-        # Get all tours
-        try:
-            response = supabase.table('tours').select('id, name').execute()
-            tours = response.data
+        if not tours:
+            logger.error("No tours found to process")
+            return
             
-            logger.info(f"Retrieved {len(tours)} tours from Supabase")
-            
-            # Process each tour
-            for tour in tours:
-                logger.info(f"Processing tour: {tour['name']}")
-                
-                try:
-                    images = download_and_upload_images_for_tour(
-                        tour_id=tour['id'], 
-                        tour_name=tour['name'],
-                        min_score=args.min_score,
-                        min_images=args.min_images,
-                        model=args.model
-                    )
-                    
-                    logger.info(f"Completed processing tour: {tour['name']}")
-                    
-                    # Save search terms to file for reference
-                    with open(f"tour_{tour['id']}_search_terms.json", 'w') as f:
-                        json.dump([img['search_term'] for img in images], f, indent=2)
-                        
-                    logger.info(f"Search terms saved to tour_{tour['id']}_search_terms.json")
-                    
-                except Exception as e:
-                    logger.error(f"Error processing tour {tour['name']}: {e}")
-                    continue
-                
-        except Exception as e:
-            logger.error(f"Error retrieving tours: {e}")
-    
-    logger.info("Image generation script completed")
-    logger.info("=" * 80)
+        for tour in tours:
+            try:
+                process_tour(tour, args.override)
+            except Exception as e:
+                logger.error(f"Error processing tour {tour['name']}: {e}")
+                continue
+    else:
+        logger.error("Please specify either --tour_id or --all")
 
 if __name__ == "__main__":
+    test_supabase_connection()
     main()

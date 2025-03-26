@@ -364,3 +364,19 @@ export async function getVibeCategories() {
   return vibeCategories;
 }
 
+export const getFeaturedCountries = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('countries')
+      .select('*')
+      .eq('is_featured', true)
+      .order('name');
+      
+    if (error) throw error;
+    return data || [];
+  } catch (error) {
+    console.error('Error fetching featured countries:', error);
+    return [];
+  }
+};
+

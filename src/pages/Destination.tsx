@@ -5,9 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getCountryBySlug, getToursByCountry } from '@/services/honeymoonService';
 import DestinationHero from '@/components/destination/DestinationHero';
-import DestinationOverview from '@/components/destination/DestinationOverview';
 import DestinationTours from '@/components/destination/DestinationTours';
-import DestinationNavigation from '@/components/destination/DestinationNavigation';
 import { Loader2 } from 'lucide-react';
 
 const Destination = () => {
@@ -65,14 +63,6 @@ const Destination = () => {
       <main className="pt-20">
         {/* Hero Section */}
         <DestinationHero country={country} />
-        
-        {/* Navigation */}
-        <DestinationNavigation />
-        
-        {/* Overview Section */}
-        <section id="overview">
-          <DestinationOverview country={country} />
-        </section>
         
         {/* Tours Section */}
         <section id="tours" className="bg-gray-50 py-16">

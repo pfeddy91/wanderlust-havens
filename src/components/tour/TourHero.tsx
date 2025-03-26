@@ -94,12 +94,11 @@ const TourHero = ({ tour, countryNames }: TourHeroProps) => {
       )}
 
       {/* Hero content */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center text-white">
-        <div className="max-w-5xl">
+      <div className="absolute bottom-10 left-1/2 z-10 flex flex-col items-center justify-center px-4 text-center text-white transform -translate-x-1/2">        <div className="max-w-5xl">
           <p className="mb-6 font-sans text-sm uppercase tracking-wider sm:text-base">
             {countryString}
           </p>
-          <h1 className="font-serif text-5xl font-bold uppercase tracking-wide sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="font-serif text-3xl font-bold tracking-wide sm:text-3xl md:text-3xl lg:text-5xl">
             {tour.name}
           </h1>
         </div>
