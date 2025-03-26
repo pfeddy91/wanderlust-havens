@@ -1,42 +1,43 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getRegions } from '@/services/honeymoonService';
+import { getCountries } from '@/services/honeymoonService';
 import RegionCard from './RegionCard';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const RegionsGrid = () => {
   const navigate = useNavigate();
-  const [regions, setRegions] = useState<any[]>([]);
+  const [favoriteCountries, setFavoriteCountries] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedRegion, setSelectedRegion] = useState<any | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<any | null>(null);
   const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
-    const fetchRegions = async () => {
+    const fetchFavoriteCountries = async () => {
       setIsLoading(true);
       try {
-        const regionsData = await getRegions();
-        setRegions(regionsData);
+        // Get all countries
+        const countriesData = await getCountries();
+        
+        // Filter to only include favorite destinations
+        const favorites = countriesData.filter(
+          (country: any) => country.favourite_destination === true
+        );
+        
+        console.log('Favorite countries:', favorites);
+        setFavoriteCountries(favorites);
       } catch (error) {
-        console.error('Failed to fetch regions:', error);
+        console.error('Failed to fetch favorite countries:', error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchRegions();
+    fetchFavoriteCountries();
   }, []);
 
-  const handleRegionClick = (region: any) => {
-    // For now, just open the dialog
-    setSelectedRegion(region);
-    setOpenDialog(true);
-  };
-
-  const navigateToDestination = (slug: string) => {
-    setOpenDialog(false);
-    navigate(`/destinations/${slug}`);
+  const handleCountryClick = (country: any) => {
+    // Navigate directly to the country page
+    navigate(`/destinations/${country.slug}`);
   };
 
   if (isLoading) {
@@ -51,67 +52,50 @@ const RegionsGrid = () => {
     );
   }
 
-  return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-6">Explore Regions</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {regions.map((region) => (
-          <RegionCard 
-            key={region.id} 
-            region={region} 
-            onClick={() => handleRegionClick(region)}
-          />
-        ))}
+  // If no favorite countries are found
+  if (favoriteCountries.length === 0) {
+    return (
+      <div className="container mx-auto p-12">
+        <h2 className="text-5xl md:text-5xl font-serif font-bold text-center mb-12">Our Favourite Destinations</h2>
+        <p className="text-center text-gray-600">No favorite destinations found. Please mark some countries as favorites.</p>
       </div>
+    );
+  }
 
-      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="max-w-4xl">
-          {selectedRegion && (
-            <>
-              <DialogHeader>
-                <DialogTitle>{selectedRegion.name}</DialogTitle>
-              </DialogHeader>
-              <div className="mt-4">
-                {selectedRegion.featured_image && (
+  return (
+    <section className="py-8 bg-travel-cream"> 
+      <div className="container mx-auto p-4">
+        <h2 className="text-4xl md:text-4xl font-serif font-bold text-center mb-8">Our Favourite Destinations</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {favoriteCountries.map((country) => (
+            <div 
+              key={country.id}
+              onClick={() => handleCountryClick(country)}
+              className="cursor-pointer group"
+            >
+              <div className="relative overflow-hidden rounded-lg shadow-md h-64">
+                {country.featured_image ? (
                   <img 
-                    src={selectedRegion.featured_image} 
-                    alt={selectedRegion.name} 
-                    className="w-full h-64 object-cover rounded-md mb-4"
+                    src={country.featured_image} 
+                    alt={country.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                )}
-                <p className="text-muted-foreground">
-                  {selectedRegion.description || `Explore the beautiful region of ${selectedRegion.name}`}
-                </p>
-                <div className="mt-6 space-y-4">
-                  <h3 className="text-lg font-semibold">Select a destination</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {/* Sample destinations - in a real app, these would be fetched from API */}
-                    <button 
-                      onClick={() => navigateToDestination('morocco')}
-                      className="p-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left"
-                    >
-                      Morocco
-                    </button>
-                    <button 
-                      onClick={() => navigateToDestination('egypt')}
-                      className="p-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left"
-                    >
-                      Egypt
-                    </button>
-                    <button 
-                      onClick={() => navigateToDestination('south-africa')}
-                      className="p-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left"
-                    >
-                      South Africa
-                    </button>
+                ) : (
+                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <span className="text-gray-500">No image available</span>
                   </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                  <h3 className="text-white text-2xl font-serif font-medium p-6 w-full">
+                    {country.name}
+                  </h3>
                 </div>
               </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
-    </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

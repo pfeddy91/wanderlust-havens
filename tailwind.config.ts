@@ -68,12 +68,18 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				// Custom colors for our travel agency
-				'travel-green': '#0A3A29',
 				'travel-cream': '#FCF8F3',
 				'travel-coral': '#F79489',
 				'travel-sand': '#E6DED3',
 				'travel-light-brown': '#D2BEA9',
 				'travel-gray': '#718096',
+				'travel-orange': '#FFA725',
+				'travel-torquoise': '#f0faf9',
+				'travel-green': '#C1D8C3',
+				'travel-dark-green': '#6A9C89',
+				'travel-burgundy': '#8c1818',
+				'travel-charcoal': '#333333',
+				'travel-brown': '#EDE7D9',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

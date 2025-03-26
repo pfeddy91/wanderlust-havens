@@ -1,0 +1,27 @@
+/* Add this to your CSS */
+.grid-container {
+  width: 100%;
+}
+
+/* For desktop grid layout */
+@media (min-width: 768px) {
+  .grid-container .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 1rem;
+  }
+}
+
+/* For mobile layout */
+@media (max-width: 767px) {
+  .grid-container .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .grid-container .grid > div {
+    aspect-ratio: 1/1;
+  }
+} 

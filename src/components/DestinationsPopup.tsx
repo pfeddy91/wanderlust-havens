@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, ChevronRight } from 'lucide-react';
-import { getRegions, getCountries, getFeaturedCountries } from '@/services/honeymoonService';
+import { getRegions, getCountries } from '@/services/honeymoonService';
 
 // Cache objects outside component to persist between renders
 let cachedRegions: any[] = [];
 let cachedCountries: any[] = [];
-let cachedFeaturedCountries: any[] = [];
+let cachedFavoriteCountries: any[] = [];
 let lastFetchTime = 0;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
@@ -18,7 +18,7 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
   const navigate = useNavigate();
   const [regions, setRegions] = useState<any[]>([]);
   const [countries, setCountries] = useState<any[]>([]);
-  const [featuredCountries, setFeaturedCountries] = useState<any[]>([]);
+  const [favoriteCountries, setFavoriteCountries] = useState<any[]>([]);
   const [activeRegion, setActiveRegion] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -34,28 +34,32 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
       if (isCacheValid && cachedRegions.length && cachedCountries.length) {
         setRegions(cachedRegions);
         setCountries(cachedCountries);
-        setFeaturedCountries(cachedFeaturedCountries);
+        setFavoriteCountries(cachedFavoriteCountries);
         setLoading(false);
       } else {
         // Fetch fresh data if cache is invalid or empty
         try {
-          const [regionsData, countriesData, featuredData] = await Promise.all([
+          const [regionsData, countriesData] = await Promise.all([
             getRegions(),
-            getCountries(),
-            getFeaturedCountries()
+            getCountries()
           ]);
           
-          console.log('Featured countries:', featuredData);
+          // Filter to get favorite destinations
+          const favorites = countriesData.filter(
+            (country: any) => country.favourite_destination === true
+          );
+          
+          console.log('Favorite countries in popup:', favorites);
           
           // Update state
           setRegions(regionsData);
           setCountries(countriesData);
-          setFeaturedCountries(featuredData);
+          setFavoriteCountries(favorites);
           
           // Update cache
           cachedRegions = regionsData;
           cachedCountries = countriesData;
-          cachedFeaturedCountries = featuredData;
+          cachedFavoriteCountries = favorites;
           lastFetchTime = now;
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -89,9 +93,6 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
     return countries.filter(country => country.region_id === regionId);
   };
 
-  // Get a few featured countries for "What's Hot" section
-  const hotDestinations = countries.slice(0, 6);
-
   const handleNavigate = (path: string) => {
     onClose();
     navigate(path);
@@ -100,18 +101,6 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
   const handleRegionHover = (region: any) => {
     setActiveRegion(region);
   };
-
-  console.log('Component state:', {
-    loading,
-    regionsCount: regions.length,
-    countriesCount: countries.length,
-    featuredCountriesCount: featuredCountries.length,
-    featuredCountries: featuredCountries
-  });
-
-  useEffect(() => {
-    console.log('featuredCountries state updated:', featuredCountries);
-  }, [featuredCountries]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center">
@@ -193,28 +182,28 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                 </div>
               </>
             ) : (
-              // Show What's Hot section by default
+              // Show Our Favourite Destinations section by default
               <>
                 <h3 className="text-xl font-serif font-bold mb-6 text-travel-green">
-                  What's Hot ({featuredCountries.length} countries)
+                  Our Favourite Destinations
                 </h3>
                 <div className="grid grid-cols-3 gap-6">
                   {loading ? (
                     Array(6).fill(0).map((_, index) => (
                       <div key={index} className="h-40 bg-gray-200 animate-pulse rounded"></div>
                     ))
-                  ) : (
-                    hotDestinations.map((destination) => (
+                  ) : favoriteCountries.length > 0 ? (
+                    favoriteCountries.map((country) => (
                       <button 
-                        key={destination.id}
-                        onClick={() => handleNavigate(`/destinations/${destination.slug}`)}
+                        key={country.id}
+                        onClick={() => handleNavigate(`/destinations/${country.slug}`)}
                         className="group"
                       >
                         <div className="relative overflow-hidden rounded-md mb-2 aspect-w-16 aspect-h-10">
-                          {destination.featured_image ? (
+                          {country.featured_image ? (
                             <img 
-                              src={destination.featured_image} 
-                              alt={destination.name}
+                              src={country.featured_image} 
+                              alt={country.name}
                               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                             />
                           ) : (
@@ -223,15 +212,16 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                           <div className="absolute inset-0 bg-black bg-opacity-20 transition-opacity group-hover:bg-opacity-10"></div>
                         </div>
                         <h4 className="font-serif font-medium text-lg group-hover:text-travel-coral transition-colors">
-                          {destination.name}
+                          {country.name}
                         </h4>
                       </button>
                     ))
+                  ) : (
+                    <p className="col-span-3 text-center text-gray-600">
+                      No favorite destinations found. Please mark some countries as favorites.
+                    </p>
                   )}
                 </div>
-                {!loading && featuredCountries.length === 0 && (
-                  <p>No featured countries found. Please mark some countries as featured.</p>
-                )}
               </>
             )}
           </div>
