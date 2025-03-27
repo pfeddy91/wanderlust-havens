@@ -40,52 +40,32 @@ const Collections = () => {
 
   return (
     <section id="collections" className="py-16 bg-travel-charcoal text-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-serif font-bold mb-6 text-center">Travel Collections</h2>
-        <p className="text-center text-white/80 max-w-2xl mx-auto mb-12">
-          Discover our curated collections of experiences tailored to your travel style and preferences.
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-4xl font-serif font-bold mb-6">We are still working on this one!</h2>
+        <p className="text-white/80 max-w-2xl mx-auto mb-12">
+          But we thought you'd like some puppies!
         </p>
-        
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, index) => (
-              <div key={index} className="animate-pulse">
-                <div className="h-64 bg-gray-700 rounded-lg mb-4"></div>
-                <div className="h-6 bg-gray-700 rounded w-1/2 mb-2"></div>
-                <div className="h-4 bg-gray-700 rounded w-3/4"></div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {vibes.map((vibe) => (
-              <Link
-                key={vibe.id}
-                to={`/collections/${vibe.slug}`}
-                className="group block"
-              >
-                <div className="relative overflow-hidden rounded-lg h-64 mb-4">
-                  <img
-                    src={vibe.image_url || `https://source.unsplash.com/featured/?${vibe.name},travel`}
-                    alt={vibe.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
-                    <div className="p-6">
-                      <h3 className="text-2xl font-serif font-medium mb-2">{vibe.name}</h3>
-                      {vibe.description && (
-                        <p className="text-white/80 line-clamp-2">{vibe.description}</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHNnbWZkY2huZ3N4OG9hZXY0NTlyc2VvaDRnbWQxaWxxMGpqNnI1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZFFVNwIbjsKtP3lHYK/giphy.gif",
+            "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdW51YW9lczY4dTc5N2trNGt5eHdubHVuanZ6Z3ViMjQ4Yjd6NHU3NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IdgY2UlsldmhsxHpec/giphy.gif",
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTJ2YjVmODdpZ203eHR3eGRmZGthY25sbzFyNmkzaWo2Nnh5djhidCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AOn4zIJcD4xLa/giphy.gif",
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2N2OGtxNmt0YTM1MnNyazdmeDdqNWQwZnM0amowMG82eWozcnE5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W4cOM0Qn41SSuUbaZF/giphy.gif",
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGFqZzUwaTlyODkydHEzNGQ1czMwNXN4MjY2bXF2bmhnNTU3enp1aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/v3dCRTCI1WwxgAnRzt/giphy.gif",
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2JrZWw3MHBmNTVvcG12anprOGpydDh5ZWtsNmpqbmx2bHQ1NzVkdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8J4w2i7kP7ceQ/giphy.gif" // Added new GIF here
+          ].map((gif, index) => (
+            <div key={index} className="overflow-hidden rounded-lg h-64 mb-4">
+              <img
+                src={gif}
+                alt={`Puppy GIF ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default Collections; 
+export default Collections;

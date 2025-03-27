@@ -83,11 +83,6 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="text-travel-gray hover:text-travel-green transition-colors">
-                  Our Story
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-travel-gray hover:text-travel-green transition-colors">
                   Travel Blog
                 </a>
               </li>
@@ -155,19 +150,19 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-travel-green mr-3 mt-0.5" />
                 <span className="text-travel-gray">
-                  123 Luxury Lane, Suite 500<br />New York, NY 10001
+                  83 Goswell Road / London, EC1V 7ER
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-travel-green mr-3" />
                 <a href="tel:+1234567890" className="text-travel-gray hover:text-travel-green transition-colors">
-                  +1 (234) 567-890
+                  +44 7733 952491
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-travel-green mr-3" />
                 <a href="mailto:info@wanderlusthavens.com" className="text-travel-gray hover:text-travel-green transition-colors">
-                  info@wanderlusthavens.com
+                  info@moons.com
                 </a>
               </li>
             </ul>

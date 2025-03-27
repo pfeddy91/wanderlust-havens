@@ -17,6 +17,11 @@ const ExploreCard = ({
 }) => {
   const navigate = useNavigate();
 
+  // Handle navigation with scroll to top
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <div 
       className="glass-card rounded-md p-8 shadow-lg flex flex-col items-center text-center animate-slide-up opacity-0" 
@@ -30,11 +35,11 @@ const ExploreCard = ({
       <button 
         onClick={() => {
           if (buttonText === "Browse Destinations") {
-            navigate('/destinations');
+            handleNavigation('/destinations');
           } else if (buttonText === "Browse Collections" || buttonText === "Discover Collections") {
-            navigate('/collections');
+            handleNavigation('/collections');
           } else if (buttonText === "Start Planning") {
-            navigate('/planner');
+            handleNavigation('/planner');
           }
         }}
         className="bg-travel-burgundy text-white py-3 px-6 text-xl font-medium rounded hover:bg-travel-burgundy/90 transition-colors"

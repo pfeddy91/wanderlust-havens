@@ -8,7 +8,6 @@ import Featured from '@/components/Featured';
 import Footer from '@/components/Footer';
 import AllDestinations from '@/components/AllDestinations';
 import Collections from '@/components/Collections';
-import AIPlanner from '@/components/AIPlanner';
 
 const Index = () => {
   return (

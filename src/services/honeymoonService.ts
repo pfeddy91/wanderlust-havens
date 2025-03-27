@@ -33,6 +33,7 @@ export async function getRegionBySlug(slug: string) {
 
 // Country-related functions
 export async function getCountries() {
+  console.log('Calling getCountries API');
   const { data, error } = await supabase
     .from('countries')
     .select('*, regions(*)')

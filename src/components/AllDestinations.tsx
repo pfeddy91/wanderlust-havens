@@ -55,6 +55,11 @@ const AllDestinations = () => {
   const handleRegionSelect = (region: Region) => {
     setSelectedRegion(region);
     setDropdownOpen(false);
+    
+    // Add navigation to the region page when a region is selected from dropdown
+    if (region.slug) {
+      navigate(`/destinations/regions/${region.slug}`);
+    }
   };
 
   const handleRegionClick = (region: Region) => {
@@ -88,7 +93,7 @@ const AllDestinations = () => {
         <div className="mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
             Plan your honeymoon in{" "}
-            <div className="relative inline-block text-travel-green">
+            <div className="relative inline-block text-travel-burgundy">
               <button
                 className="flex items-center gap-1 border-b-2 border-travel-green focus:outline-none"
                 onClick={() => setDropdownOpen(!dropdownOpen)}

@@ -7,7 +7,7 @@ const PlannerPage = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20">
+      <main>
         <AIPlanner />
       </main>
       <Footer />

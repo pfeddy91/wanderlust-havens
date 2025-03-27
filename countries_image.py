@@ -279,7 +279,7 @@ def process_country(country: Dict, attempt: int = 1, previous_terms: List[str] =
     if country_name == "Multi-Country":
         print(f"Skipping processing for {country_name}")
         return False
-    
+
     print(f"\n{'='*50}")
     print(f"Processing {country_name} (Attempt {attempt})")
     print(f"{'='*50}")
@@ -288,7 +288,7 @@ def process_country(country: Dict, attempt: int = 1, previous_terms: List[str] =
     if country.get("featured_image") and not FORCE_UPDATE:
         print(f"{country_name} already has an image. Skipping.")
         return False
-    
+
     # Step 1: Generate search term (excluding previous terms)
     search_term = generate_search_term(country_name, previous_terms)
     
@@ -304,8 +304,8 @@ def process_country(country: Dict, attempt: int = 1, previous_terms: List[str] =
             return process_country(country, attempt + 1, previous_terms)
         else:
             print(f"Reached maximum attempts for {country_name}. Giving up.")
-            return False
-    
+        return False
+
     # Step 3: Evaluate top images
     evaluated_photos = []
     for i, photo in enumerate(photos):  # Evaluate all 3 photos
@@ -332,8 +332,8 @@ def process_country(country: Dict, attempt: int = 1, previous_terms: List[str] =
             return process_country(country, attempt + 1, previous_terms)
         else:
             print(f"Reached maximum attempts for {country_name}. Giving up.")
-            return False
-    
+        return False
+
     # Get the best photo
     best_photo = high_quality_photos[0]["photo"]
     best_rating = high_quality_photos[0]["rating"]
@@ -348,7 +348,7 @@ def process_country(country: Dict, attempt: int = 1, previous_terms: List[str] =
     image_url = upload_image_to_storage(processed_image_data, country_name)
     if not image_url:
         return False
-    
+
     # Step 6: Update country record
     success = update_country_image(country_id, image_url)
     

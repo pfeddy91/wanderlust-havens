@@ -1,11 +1,11 @@
-
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.error(
@@ -26,7 +26,7 @@ const NotFound = () => {
         </p>
         <Button 
           className="bg-travel-coral hover:bg-travel-coral/90 text-white rounded-sm inline-flex items-center px-6 py-4"
-          onClick={() => window.location.href = '/'}
+          onClick={() => navigate('/')}
         >
           <Home className="h-5 w-5 mr-2" />
           Return Home

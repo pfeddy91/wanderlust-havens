@@ -74,7 +74,7 @@ def call_perplexity_api(system_prompt: str, user_prompt: str) -> dict:
             json_content = content.split("```json")[1].split("```")[0].strip()
         else:
             json_content = content
-        
+            
         # Clean the JSON string more thoroughly
         # Remove control characters, quotes around the entire JSON, and fix common issues
         json_content = re.sub(r'[\x00-\x1F\x7F]', '', json_content)
@@ -85,7 +85,7 @@ def call_perplexity_api(system_prompt: str, user_prompt: str) -> dict:
         print(json_content[:200] + "..." if len(json_content) > 200 else json_content)
         
         try:
-            return json.loads(json_content)
+        return json.loads(json_content)
         except json.JSONDecodeError as e:
             print(f"JSON decode error at position {e.pos}: {e.msg}")
             print(f"Character at position: '{json_content[e.pos-10:e.pos+10]}'")
