@@ -1,0 +1,36 @@
+{
+  "tour_id": "b9efebb8-ea9c-485e-a816-c20d7487326a",
+  "tour_name": "Ultimate Chile",
+  "locations": [
+    {
+      "name": "San Pedro de Atacama",
+      "latitude": -22.9081,
+      "longitude": -68.1997,
+      "description": "Primary base for exploring the Atacama Desert, known for its unique lunar landscapes, geysers, salt flats, and stargazing opportunities."
+    },
+    {
+      "name": "Santiago",
+      "latitude": -33.4489,
+      "longitude": -70.6693,
+      "description": "Chile's vibrant capital city, offering a mix of history, culture, culinary experiences, and views of the Andes."
+    },
+    {
+      "name": "Puerto Varas",
+      "latitude": -41.3193,
+      "longitude": -72.9852,
+      "description": "A key town in the scenic Lake District, located on Lake Llanquihue with views of Osorno and Calbuco volcanoes, serving as a base for exploring lakes and forests."
+    },
+    {
+      "name": "Torres del Paine National Park",
+      "latitude": -51.0888,
+      "longitude": -73.0435,
+      "description": "Iconic Patagonian wilderness destination famed for its dramatic granite peaks (the 'Towers'), glaciers, lakes, and diverse wildlife."
+    },
+    {
+      "name": "Santa Cruz",
+      "latitude": -34.6378,
+      "longitude": -71.3692,
+      "description": "Main town in the Colchagua Valley, one of Chile's premier wine regions, offering vineyard tours, wine tasting, and relaxation."
+    }
+  ]
+}

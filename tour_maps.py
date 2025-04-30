@@ -10,9 +10,9 @@ from supabase import create_client, Client
 # API credentials
 GEMINI_API_KEY = 'AIzaSyBHQrWXW6ix1Me5ufjfc70b01W20hbgZKc'
 
-# Supabase credentials
-SUPABASE_URL = "https://jeiuruhneitvfyjkmbvj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplaXVydWhuZWl0dmZ5amttYnZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2NjU5NzQsImV4cCI6MjA1ODI0MTk3NH0.iYBsdI4p7o7rKbrMHstzis4KZYV_ks2p09pmtj5-bTo"
+# Supabase credentials (ensure these are correct)
+SUPABASE_URL = "https://ydcggawwxohbcpcjyhdk.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkY2dnYXd3eG9oYmNwY2p5aGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNjk3NjUsImV4cCI6MjA1ODg0NTc2NX0.FHSkH2qML9w5Li6VfG8jWbcu-DV4HQCLTK0wu6J3VV0"
 
 # Initialize Supabase client
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -24,7 +24,7 @@ TOUR_LOCATIONS_TABLE = "tour_locations"
 # Create a directory for results if it doesn't exist
 os.makedirs("location_results", exist_ok=True)
 
-def call_gemini_api(prompt, model="gemini-1.5-flash"):
+def call_gemini_api(prompt, model="gemini-2.5-pro-exp-03-25"):
     """
     Call the Gemini API with a prompt
     
@@ -165,8 +165,8 @@ def get_tour_locations(tour_id, tour_name, tour_description):
     Tour Name: {tour_name}
     Tour Description: {tour_description}
 
-    Please identify 3-5 main overnight locations for this tour. For each location, provide:
-    1. The name of the location (city, town, or specific accommodation)
+    Please identify the main overnight locations for this tour. For each location, provide:
+    1. The name of the location (city, national park or similar but NOT a hotel or specific accommodation)
     2. The precise latitude and longitude coordinates
     3. A brief description of what makes this location special (optional)
 
@@ -190,7 +190,7 @@ def get_tour_locations(tour_id, tour_name, tour_description):
     - If the exact overnight locations aren't clear from the description, make educated guesses based on the tour's focus and region
     """
     
-    response = call_gemini_api(prompt, model="gemini-1.5-flash")
+    response = call_gemini_api(prompt, model="gemini-2.5-pro-exp-03-25")
     
     if not response:
         print(f"Failed to get locations from Gemini for tour: {tour_name}")
@@ -219,7 +219,7 @@ def get_tours_from_supabase(tour_id=None):
         List of tour dictionaries
     """
     try:
-        query = supabase.table(TOURS_TABLE).select("id, name, description")
+        query = supabase.table(TOURS_TABLE).select("id, title, description")
         
         if tour_id:
             query = query.eq("id", tour_id)
@@ -410,24 +410,24 @@ def main():
             existing_locations = check_existing_locations(tour['id'])
             
             if existing_locations and not args.override:
-                print(f"Tour {tour['name']} (ID: {tour['id']}) already has locations. Skipping.")
+                print(f"Tour {tour['title']} (ID: {tour['id']}) already has locations. Skipping.")
                 print(f"Use --override to process this tour anyway.")
                 continue
             
             # If override is set and there are existing locations, delete them
             if existing_locations and args.override:
-                print(f"Deleting existing locations for tour {tour['name']} (ID: {tour['id']})")
+                print(f"Deleting existing locations for tour {tour['title']} (ID: {tour['id']})")
                 delete_existing_locations(tour['id'])
             
             # Process the tour
             result = process_tour(
                 tour_id=tour['id'],
-                tour_name=tour['name'],
+                tour_name=tour['title'],
                 tour_description=tour.get('description', '')
             )
             all_results.append(result)
         except Exception as e:
-            print(f"Error processing tour {tour['name']}: {e}")
+            print(f"Error processing tour {tour['title']}: {e}")
             continue
     
     # Save all results to a file

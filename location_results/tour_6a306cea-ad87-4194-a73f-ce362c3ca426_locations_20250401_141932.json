@@ -1,0 +1,18 @@
+{
+  "tour_id": "6a306cea-ad87-4194-a73f-ce362c3ca426",
+  "tour_name": "Panama Canal & Rainforest",
+  "locations": [
+    {
+      "name": "Panama City",
+      "latitude": 8.983333,
+      "longitude": -79.516667,
+      "description": "The capital city, featuring the historic Casco Viejo district, modern amenities, and close proximity to the Panama Canal's Miraflores Locks."
+    },
+    {
+      "name": "Gamboa",
+      "latitude": 9.119722,
+      "longitude": -79.699444,
+      "description": "A small town located near Soberan\u00eda National Park and Gatun Lake, serving as a base for rainforest exploration and wildlife viewing."
+    }
+  ]
+}

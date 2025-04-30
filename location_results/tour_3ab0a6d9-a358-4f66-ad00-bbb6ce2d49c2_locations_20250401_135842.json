@@ -1,0 +1,18 @@
+{
+  "tour_id": "3ab0a6d9-a358-4f66-ad00-bbb6ce2d49c2",
+  "tour_name": "Parisian Chic & Champagne",
+  "locations": [
+    {
+      "name": "Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "description": "The capital of France, renowned for its iconic landmarks like the Eiffel Tower and Louvre Museum, romantic atmosphere, world-class museums, and vibrant cultural scene. The tour begins here."
+    },
+    {
+      "name": "\u00c9pernay",
+      "latitude": 49.0406,
+      "longitude": 3.9547,
+      "description": "Often called the 'Capital of Champagne', famous for the Avenue de Champagne where major houses are located, and extensive underground cellars (cray\u00e8res). While Reims is also mentioned as a possibility to explore, \u00c9pernay serves as a central hub in the Champagne region and fits the description of grand avenues and famous houses."
+    }
+  ]
+}

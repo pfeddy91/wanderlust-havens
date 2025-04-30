@@ -1,0 +1,24 @@
+{
+  "tour_id": "8d668e41-fe1f-49fd-ad18-ea3d853c7928",
+  "tour_name": "Wild Botswana",
+  "locations": [
+    {
+      "name": "Moremi Game Reserve",
+      "latitude": -19.15,
+      "longitude": 23.5,
+      "description": "Located in the Okavango Delta, renowned for diverse ecosystems combining wetlands and dry savannah, excellent wildlife viewing including the Big Five and wild dogs. Overnight stays are in mobile camps."
+    },
+    {
+      "name": "Khwai Community Concession",
+      "latitude": -19.15,
+      "longitude": 23.75,
+      "description": "Adjacent to Moremi, famous for predator sightings (lions, leopards, wild dogs) and abundant plains game along the Khwai River. Offers exclusive mobile camping experiences."
+    },
+    {
+      "name": "Chobe National Park",
+      "latitude": -17.82,
+      "longitude": 25.15,
+      "description": "Specifically focusing on the Chobe Riverfront area, known for having the highest concentration of elephants in the world, plus hippos, crocodiles, and diverse birdlife, often viewed via river cruises."
+    }
+  ]
+}

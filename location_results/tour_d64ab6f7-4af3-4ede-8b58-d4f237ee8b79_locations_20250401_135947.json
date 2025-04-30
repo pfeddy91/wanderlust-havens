@@ -1,0 +1,30 @@
+{
+  "tour_id": "d64ab6f7-4af3-4ede-8b58-d4f237ee8b79",
+  "tour_name": "Andalusian Dream",
+  "locations": [
+    {
+      "name": "Seville",
+      "latitude": 37.3891,
+      "longitude": -5.9845,
+      "description": "Capital of Andalusia, known for the Real Alc\u00e1zar palace, the Santa Cruz neighbourhood, and passionate flamenco shows."
+    },
+    {
+      "name": "Cordoba",
+      "latitude": 37.8882,
+      "longitude": -4.7794,
+      "description": "Historic city famed for the Mezquita-Cathedral with its unique arches and the charming patios of the Jewish Quarter (Juder\u00eda)."
+    },
+    {
+      "name": "Granada",
+      "latitude": 37.1773,
+      "longitude": -3.5986,
+      "description": "Home to the stunning Alhambra Palace and Generalife Gardens, as well as the historic Albaic\u00edn Arab quarter with views across to the Alhambra."
+    },
+    {
+      "name": "Ronda",
+      "latitude": 36.7374,
+      "longitude": -5.164,
+      "description": "A dramatic town set atop the El Tajo gorge, famous for the Puente Nuevo bridge, its historic bullring, and 'pueblo blanco' charm."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "1d392b30-7a89-4ca7-853e-24ee139bddeb",
+  "tour_name": "Ultimate New Zealand",
+  "locations": [
+    {
+      "name": "Auckland",
+      "latitude": -36.8485,
+      "longitude": 174.7633,
+      "description": "The starting point of the tour, known as the 'City of Sails'. Offers urban exploration, waterfront activities, and access to nearby islands."
+    },
+    {
+      "name": "Bay of Islands (Paihia)",
+      "latitude": -35.2825,
+      "longitude": 174.092,
+      "description": "A subtropical maritime region for relaxation and exploration. Paihia is a central hub commonly used as a base for activities like sailing and discovering beaches."
+    },
+    {
+      "name": "Queenstown",
+      "latitude": -45.0312,
+      "longitude": 168.6626,
+      "description": "Located in the Southern Alps on Lake Wakatipu, known as the 'Adventure Capital'. A base for adventure activities, scenic flights, and exploring the surrounding region including Fiordland."
+    }
+  ]
+}

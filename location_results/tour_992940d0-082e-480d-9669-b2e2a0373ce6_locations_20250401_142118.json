@@ -1,0 +1,24 @@
+{
+  "tour_id": "992940d0-082e-480d-9669-b2e2a0373ce6",
+  "tour_name": "Ecuadorian Highlands & Amazon",
+  "locations": [
+    {
+      "name": "Quito",
+      "latitude": -0.2252,
+      "longitude": -78.5243,
+      "description": "The world's first UNESCO World Heritage site, known for its colonial architecture set against an Andean backdrop. The tour commences here, implying overnight stays to explore the city."
+    },
+    {
+      "name": "Otavalo",
+      "latitude": 0.2298,
+      "longitude": -78.2622,
+      "description": "Home to one of South America\u2019s most famous indigenous markets. While not explicitly stated as overnight, the description 'immerse yourselves' suggests more than a brief day trip, making an overnight stay highly probable, especially following Quito and before heading to the Amazon."
+    },
+    {
+      "name": "Ecuadorian Amazon Rainforest",
+      "latitude": -0.95,
+      "longitude": -76.0,
+      "description": "The tour culminates here with descriptions of spending days exploring trails and experiencing evenings, clearly indicating multiple overnight stays in a jungle lodge setting within the Amazon basin."
+    }
+  ]
+}

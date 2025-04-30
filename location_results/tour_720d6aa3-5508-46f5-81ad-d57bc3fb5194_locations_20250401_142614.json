@@ -1,0 +1,18 @@
+{
+  "tour_id": "720d6aa3-5508-46f5-81ad-d57bc3fb5194",
+  "tour_name": "Finnish Lapland & Helsinki",
+  "locations": [
+    {
+      "name": "Helsinki",
+      "latitude": 60.1699,
+      "longitude": 24.9384,
+      "description": "Finland's vibrant capital city, offering a blend of neoclassical architecture, modern design, and coastal charm. The starting point for the tour."
+    },
+    {
+      "name": "Saariselk\u00e4",
+      "latitude": 68.4218,
+      "longitude": 27.4311,
+      "description": "A resort village deep within Finnish Lapland, famous for its Arctic wilderness experiences, Northern Lights viewing opportunities, husky sledding, reindeer encounters, and access to S\u00e1mi culture. Chosen as a representative location for the 'heart of Finnish Lapland' activities described."
+    }
+  ]
+}

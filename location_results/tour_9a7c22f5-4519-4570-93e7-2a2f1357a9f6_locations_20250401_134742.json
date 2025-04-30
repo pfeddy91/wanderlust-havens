@@ -1,0 +1,24 @@
+{
+  "tour_id": "9a7c22f5-4519-4570-93e7-2a2f1357a9f6",
+  "tour_name": "Highlights of Zambia, South Africa and Mozambique",
+  "locations": [
+    {
+      "name": "Victoria Falls",
+      "latitude": -17.9244,
+      "longitude": 25.8567,
+      "description": "Likely staying in Victoria Falls town (Zimbabwe) or Livingstone (Zambia), serving as the base for experiencing the immense power and beauty of the Falls and the Zambezi River."
+    },
+    {
+      "name": "Sabi Sands Game Reserve",
+      "latitude": -24.797,
+      "longitude": 31.495,
+      "description": "A private game reserve bordering Kruger National Park, South Africa, renowned for luxury lodges and exceptional wildlife viewing, particularly leopards. Stays are within one of the reserve's lodges."
+    },
+    {
+      "name": "Bazaruto Archipelago",
+      "latitude": -21.683,
+      "longitude": 35.45,
+      "description": "An idyllic group of islands off the coast of Mozambique, offering luxury beach lodges, white sands, turquoise waters, and excellent marine activities like snorkelling and diving."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tour_id": "5d6bb6c4-117d-404f-b78b-45e63045ab31",
+  "tour_name": "St. Lucia Luxury Hideaway",
+  "locations": [
+    {
+      "name": "Soufriere",
+      "latitude": 13.8563,
+      "longitude": -61.0589,
+      "description": "Located in the south, famous for its stunning natural beauty, proximity to the iconic Pitons, volcanic Sulphur Springs, and botanical gardens. Focuses on secluded, nature-rich luxury."
+    },
+    {
+      "name": "Gros Islet",
+      "latitude": 14.0785,
+      "longitude": -60.9533,
+      "description": "Situated in the north near the vibrant Rodney Bay area. Known for beautiful beaches like Reduit Beach, diverse dining, marinas, and offering chic relaxation with a gentle buzz."
+    }
+  ]
+}

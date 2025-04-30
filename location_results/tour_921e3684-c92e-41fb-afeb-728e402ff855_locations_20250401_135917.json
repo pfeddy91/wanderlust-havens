@@ -1,0 +1,24 @@
+{
+  "tour_id": "921e3684-c92e-41fb-afeb-728e402ff855",
+  "tour_name": "Spanish Coastal Romance",
+  "locations": [
+    {
+      "name": "Barcelona",
+      "latitude": 41.3851,
+      "longitude": 2.1734,
+      "description": "Catalan capital known for Gaud\u00ed's architecture, the Gothic Quarter, and vibrant Las Ramblas."
+    },
+    {
+      "name": "Valencia",
+      "latitude": 39.4699,
+      "longitude": -0.3763,
+      "description": "City blending historic sites like the Silk Exchange with modern marvels like the City of Arts and Sciences, and the birthplace of paella."
+    },
+    {
+      "name": "Palma",
+      "latitude": 39.5696,
+      "longitude": 2.6502,
+      "description": "Capital city of Mallorca, featuring a stunning cathedral and bustling marina, acting as a gateway to the island's beaches and the Serra de Tramuntana mountains."
+    }
+  ]
+}

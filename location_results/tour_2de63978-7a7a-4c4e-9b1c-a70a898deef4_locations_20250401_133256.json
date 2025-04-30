@@ -1,0 +1,24 @@
+{
+  "tour_id": "2de63978-7a7a-4c4e-9b1c-a70a898deef4",
+  "tour_name": "Provence & C\u00f4te d'Azur",
+  "locations": [
+    {
+      "name": "Aix-en-Provence",
+      "latitude": 43.5297,
+      "longitude": 5.4474,
+      "description": "The elegant heart of Provence, known for its shaded squares, historic architecture, bustling markets, and connection to C\u00e9zanne. The tour begins here, implying the first overnight stay."
+    },
+    {
+      "name": "Saint-Tropez",
+      "latitude": 43.2696,
+      "longitude": 6.6394,
+      "description": "Legendary C\u00f4te d'Azur town famous for its vibrant port, charming village core, beautiful beaches, and unique Riviera atmosphere. Visited after Aix-en-Provence, indicating the next overnight location."
+    },
+    {
+      "name": "Nice",
+      "latitude": 43.7102,
+      "longitude": 7.262,
+      "description": "Vibrant capital of the French Riviera, offering the charm of Vieux Nice, the famous Promenade des Anglais, art museums, and stunning sea views. The final destination mentioned, suggesting the last overnight stays."
+    }
+  ]
+}

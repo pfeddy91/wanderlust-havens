@@ -1,0 +1,36 @@
+{
+  "tour_id": "3fa0fffa-f4fc-4e5e-94d5-7920b296fca5",
+  "tour_name": "Peru & Galapagos Adventure (continued)",
+  "locations": [
+    {
+      "name": "Lima",
+      "latitude": -12.0464,
+      "longitude": -77.0428,
+      "description": "Peru's coastal capital, known for its colonial architecture and renowned culinary scene."
+    },
+    {
+      "name": "Sacred Valley",
+      "latitude": -13.3058,
+      "longitude": -72.1156,
+      "description": "Heart of the Inca Empire in the Andes, featuring markets, Inca sites, and mountain scenery, ideal for acclimatization."
+    },
+    {
+      "name": "Machu Picchu (Aguas Calientes/Machu Picchu Pueblo)",
+      "latitude": -13.1547,
+      "longitude": -72.5253,
+      "description": "Overnight location providing access to the iconic mountaintop citadel of Machu Picchu."
+    },
+    {
+      "name": "Quito",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "description": "Ecuador's high-altitude capital with a well-preserved UNESCO World Heritage historic center."
+    },
+    {
+      "name": "Galapagos Islands",
+      "latitude": -0.7447,
+      "longitude": -90.2628,
+      "description": "Volcanic archipelago famous for unique wildlife encounters, both on land and sea."
+    }
+  ]
+}

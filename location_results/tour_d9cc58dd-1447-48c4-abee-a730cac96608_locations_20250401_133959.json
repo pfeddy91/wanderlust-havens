@@ -1,0 +1,24 @@
+{
+  "tour_id": "d9cc58dd-1447-48c4-abee-a730cac96608",
+  "tour_name": "Japan's Timeless Beauty",
+  "locations": [
+    {
+      "name": "Tokyo",
+      "latitude": 35.6895,
+      "longitude": 139.6917,
+      "description": "Japan's bustling capital city, described as a dazzling metropolis balancing modernity (Shibuya, Shinjuku) with traditional tranquility (Yanaka, Imperial Gardens)."
+    },
+    {
+      "name": "Kyoto",
+      "latitude": 35.0116,
+      "longitude": 135.7681,
+      "description": "The cultural heart of Japan, renowned for its temples (Kinkaku-ji, Fushimi Inari), bamboo groves (Arashiyama), and the historic Gion district."
+    },
+    {
+      "name": "Hakone",
+      "latitude": 35.2338,
+      "longitude": 139.1085,
+      "description": "A mountain resort town in a volcanic national park, famous for its hot springs (onsen), Lake Ashi cruises, and potential views of Mt. Fuji."
+    }
+  ]
+}

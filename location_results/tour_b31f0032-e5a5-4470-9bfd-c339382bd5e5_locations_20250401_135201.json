@@ -1,0 +1,24 @@
+{
+  "tour_id": "b31f0032-e5a5-4470-9bfd-c339382bd5e5",
+  "tour_name": "Romantic Italian Journey",
+  "locations": [
+    {
+      "name": "Venice",
+      "latitude": 45.4408,
+      "longitude": 12.3155,
+      "description": "The unique starting city, built on water and famous for its canals, gondolas, historic architecture, and romantic ambiance."
+    },
+    {
+      "name": "Florence",
+      "latitude": 43.7696,
+      "longitude": 11.2558,
+      "description": "The heart of Tuscany, renowned as the birthplace of the Renaissance, home to masterpieces like Michelangelo's David and the Uffizi Gallery."
+    },
+    {
+      "name": "Rome",
+      "latitude": 41.9028,
+      "longitude": 12.4964,
+      "description": "The 'Eternal City' and final destination, Italy's capital, steeped in history with iconic landmarks like the Colosseum, Roman Forum, and Vatican City."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tour_id": "a122cbf7-08a5-46e9-a9a5-622544341dfe",
+  "tour_name": "French Riviera Romance",
+  "locations": [
+    {
+      "name": "Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "description": "The starting point of the tour, known as the City of Love, featuring iconic landmarks like the Eiffel Tower, Louvre, and Montmartre."
+    },
+    {
+      "name": "Cannes",
+      "latitude": 43.5528,
+      "longitude": 7.0174,
+      "description": "Indicated as a likely base on the French Riviera ('Base yourselves near the heart of the Riviera, perhaps exploring... Cannes'). Famous for its film festival and the Croisette, serving as a hub for exploring nearby Antibes, Saint-Paul de Vence, and Monaco."
+    }
+  ]
+}

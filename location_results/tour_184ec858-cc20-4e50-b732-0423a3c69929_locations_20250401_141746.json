@@ -1,0 +1,36 @@
+{
+  "tour_id": "184ec858-cc20-4e50-b732-0423a3c69929",
+  "tour_name": "Ultimate Colombia & Galapagos",
+  "locations": [
+    {
+      "name": "Bogota",
+      "latitude": 4.711,
+      "longitude": -74.0721,
+      "description": "Colombia's high-altitude capital, featuring the historic La Candelaria district and rich cultural attractions."
+    },
+    {
+      "name": "Medellin",
+      "latitude": 6.2476,
+      "longitude": -75.5658,
+      "description": "Known as the 'City of Eternal Spring,' celebrated for its urban transformation and proximity to coffee regions."
+    },
+    {
+      "name": "Cartagena",
+      "latitude": 10.391,
+      "longitude": -75.4794,
+      "description": "A vibrant port city on Colombia's Caribbean coast with a UNESCO-listed walled Old Town."
+    },
+    {
+      "name": "Quito",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "description": "Ecuador's capital high in the Andes, boasting a well-preserved colonial center (UNESCO World Heritage site)."
+    },
+    {
+      "name": "Galapagos Islands",
+      "latitude": -0.7352,
+      "longitude": -90.3103,
+      "description": "A unique volcanic archipelago famous for its fearless wildlife and contribution to the theory of evolution. Coordinates represent a central point near Santa Cruz Island."
+    }
+  ]
+}

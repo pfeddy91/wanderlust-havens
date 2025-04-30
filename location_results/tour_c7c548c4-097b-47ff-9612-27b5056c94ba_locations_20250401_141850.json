@@ -1,0 +1,12 @@
+{
+  "tour_id": "c7c548c4-097b-47ff-9612-27b5056c94ba",
+  "tour_name": "Turks & Caicos Tranquility",
+  "locations": [
+    {
+      "name": "Providenciales",
+      "latitude": 21.7932,
+      "longitude": -72.2515,
+      "description": "The main tourist hub of the Turks & Caicos Islands, renowned for the stunning Grace Bay beach, luxury resorts, fine dining, and proximity to the barrier reef for snorkeling and diving."
+    }
+  ]
+}

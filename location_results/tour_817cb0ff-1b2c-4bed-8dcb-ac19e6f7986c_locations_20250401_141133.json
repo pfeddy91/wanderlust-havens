@@ -1,0 +1,30 @@
+{
+  "tour_id": "817cb0ff-1b2c-4bed-8dcb-ac19e6f7986c",
+  "tour_name": "Botswana and South Africa Luxury Honeymoon",
+  "locations": [
+    {
+      "name": "Okavango Delta",
+      "latitude": -19.4,
+      "longitude": 23.2,
+      "description": "UNESCO World Heritage site known for its unique inland delta ecosystem, mokoro excursions, and remote wildlife viewing."
+    },
+    {
+      "name": "Chobe National Park",
+      "latitude": -17.85,
+      "longitude": 25.05,
+      "description": "Famous for its massive elephant herds, especially along the Chobe River, offering spectacular sunset cruises."
+    },
+    {
+      "name": "Cape Town",
+      "latitude": -33.9249,
+      "longitude": 18.4241,
+      "description": "Iconic South African city nestled beneath Table Mountain, offering a blend of vibrant culture, history, and stunning natural beauty."
+    },
+    {
+      "name": "Cape Winelands",
+      "latitude": -33.9333,
+      "longitude": 18.8667,
+      "description": "Picturesque region near Cape Town known for its charming towns (like Stellenbosch or Franschhoek), rolling vineyards, mountain scenery, world-class wines, and gourmet cuisine."
+    }
+  ]
+}

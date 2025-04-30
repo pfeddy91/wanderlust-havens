@@ -1,0 +1,30 @@
+{
+  "tour_id": "817cb0ff-1b2c-4bed-8dcb-ac19e6f7986c",
+  "tour_name": "Botswana and South Africa Luxury Honeymoon",
+  "locations": [
+    {
+      "name": "Okavango Delta",
+      "latitude": -19.4,
+      "longitude": 23.2,
+      "description": "A vast inland river delta in northern Botswana, known for its sprawling grassy plains, which flood seasonally, becoming a lush animal habitat. Staying here often involves luxury lodges or camps deep within the wilderness, offering mokoro rides and game drives."
+    },
+    {
+      "name": "Chobe National Park",
+      "latitude": -18.2,
+      "longitude": 24.5,
+      "description": "Located in northern Botswana near the borders with Zambia, Zimbabwe, and Namibia. It's renowned for having one of the largest concentrations of game in Africa, particularly elephants, often viewed from lodges near the Chobe River or via river cruises, typically accessed via Kasane (-17.80, 25.15)."
+    },
+    {
+      "name": "Cape Town",
+      "latitude": -33.9249,
+      "longitude": 18.4241,
+      "description": "South Africa's stunning port city, dramatically located beneath Table Mountain. It's a hub for culture, history (Robben Island), natural beauty (Cape Peninsula, Kirstenbosch), and offers sophisticated urban amenities."
+    },
+    {
+      "name": "Cape Winelands (Stellenbosch/Franschhoek area)",
+      "latitude": -33.9333,
+      "longitude": 18.8667,
+      "description": "A picturesque region east of Cape Town, characterized by historic towns like Stellenbosch (coordinates provided) and Franschhoek, surrounded by mountains and vineyards. It's celebrated for wine estates, fine dining, and charming accommodations."
+    }
+  ]
+}

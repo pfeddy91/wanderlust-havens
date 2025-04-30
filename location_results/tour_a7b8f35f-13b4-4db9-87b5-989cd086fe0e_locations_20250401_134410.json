@@ -1,0 +1,18 @@
+{
+  "tour_id": "a7b8f35f-13b4-4db9-87b5-989cd086fe0e",
+  "tour_name": "Bhutanese Himalayan Retreat",
+  "locations": [
+    {
+      "name": "Paro",
+      "latitude": 27.4287,
+      "longitude": 89.4164,
+      "description": "A valley town renowned for its dramatic scenery, the iconic Taktsang Monastery (Tiger's Nest), and the historic Paro Rinpung Dzong."
+    },
+    {
+      "name": "Thimphu",
+      "latitude": 27.4712,
+      "longitude": 89.6389,
+      "description": "The charming capital city of Bhutan, known for blending tradition with modernity, home to sights like the Buddha Dordenma and the National Memorial Chorten."
+    }
+  ]
+}

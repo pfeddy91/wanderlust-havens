@@ -1,0 +1,24 @@
+{
+  "tour_id": "bed31a2b-9d7a-41b0-bac4-67b5a77bbe5b",
+  "tour_name": "Limitless Brazil",
+  "locations": [
+    {
+      "name": "Rio de Janeiro",
+      "latitude": -22.9068,
+      "longitude": -43.1729,
+      "description": "Iconic Brazilian city famed for its Christ the Redeemer statue, Sugarloaf Mountain, vibrant beaches like Copacabana and Ipanema, and lively samba culture."
+    },
+    {
+      "name": "Amazon Rainforest",
+      "latitude": -3.4653,
+      "longitude": -62.2159,
+      "description": "A vast region of dense tropical rainforest known for unparalleled biodiversity, river exploration, and immersive jungle experiences often based out of remote lodges."
+    },
+    {
+      "name": "Trancoso",
+      "latitude": -16.5925,
+      "longitude": -39.0975,
+      "description": "A chic coastal town in Bahia, known for its beautiful beaches, colourful historic Quadrado (town square), and a blend of rustic charm and understated luxury."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tour_id": "6272281d-58cc-4b27-a07e-79efb53a114a",
+  "tour_name": "Twin Centre Seychelles",
+  "locations": [
+    {
+      "name": "Denis Private Island",
+      "latitude": -3.8043,
+      "longitude": 55.6708,
+      "description": "An exclusive private coral island offering barefoot luxury, a strong conservation focus, disconnection due to limited connectivity, and a chance to experience a protected ecosystem in 'Robinson Crusoe-style bliss'."
+    },
+    {
+      "name": "Praslin Island",
+      "latitude": -4.3218,
+      "longitude": 55.7316,
+      "description": "A larger granitic island known for its lush landscapes, the legendary Vall\u00e9e de Mai (home of the Coco de Mer), world-renowned beaches like Anse Lazio, and offering more opportunities for exploration and cultural interaction."
+    }
+  ]
+}

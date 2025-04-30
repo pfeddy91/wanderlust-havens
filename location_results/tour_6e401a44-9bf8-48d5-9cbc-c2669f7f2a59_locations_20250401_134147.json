@@ -1,0 +1,30 @@
+{
+  "tour_id": "6e401a44-9bf8-48d5-9cbc-c2669f7f2a59",
+  "tour_name": "Treasures of the Tropics: Sri Lanka and the Maldives",
+  "locations": [
+    {
+      "name": "Sigiriya",
+      "latitude": 7.9569,
+      "longitude": 80.7583,
+      "description": "Likely base in Sri Lanka's Cultural Triangle for exploring ancient cities and climbing the iconic Sigiriya Rock Fortress, especially for sunrise views."
+    },
+    {
+      "name": "Nuwara Eliya",
+      "latitude": 6.9686,
+      "longitude": 80.7839,
+      "description": "Colonial-era hill station in Sri Lanka's cool highlands, famous for its scenic tea plantations and 'Little England' charm."
+    },
+    {
+      "name": "Yala National Park Area",
+      "latitude": 6.28,
+      "longitude": 81.29,
+      "description": "Area adjacent to Yala National Park (coordinates often centered near Tissamaharama town), serving as a base for wildlife safaris to spot leopards, elephants, and other fauna."
+    },
+    {
+      "name": "Maldives Resort Island",
+      "latitude": 3.95,
+      "longitude": 73.45,
+      "description": "Represents a typical private resort island in the Maldives (coordinates are representative, e.g., South Mal\u00e9 Atoll), offering seclusion, beaches, lagoons, and water activities for relaxation."
+    }
+  ]
+}

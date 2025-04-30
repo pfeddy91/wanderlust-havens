@@ -1,0 +1,18 @@
+{
+  "tour_id": "098e5a2e-8a66-45c3-8467-8ac8cfb3a5e6",
+  "tour_name": "Luxury Hawaii Honeymoon",
+  "locations": [
+    {
+      "name": "Poipu",
+      "latitude": 21.8769,
+      "longitude": -159.4644,
+      "description": "Located on Kauai's sunny south shore, known for its beautiful beaches, snorkeling spots, and resort accommodations, aligning with the tour's mention of relaxing on Poipu Beach."
+    },
+    {
+      "name": "Kapalua",
+      "latitude": 21.0,
+      "longitude": -156.6619,
+      "description": "A prestigious resort area on Maui's northwestern coast, explicitly mentioned as the area to 'settle into', renowned for luxury resorts, golf, and stunning shorelines like Kapalua Bay."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "tour_id": "3cfdfbf0-378f-4a31-b7b8-1aeb8c2dda53",
+  "tour_name": "Active China",
+  "locations": [
+    {
+      "name": "Shanghai",
+      "latitude": 31.2304,
+      "longitude": 121.4737,
+      "description": "A dazzling metropolis blending futuristic skyscrapers with colonial charm, serving as the tour's starting point."
+    },
+    {
+      "name": "Lijiang",
+      "latitude": 26.8738,
+      "longitude": 100.2345,
+      "description": "UNESCO-listed ancient town in Yunnan province, known for its Naxi culture, cobbled streets, and canals."
+    },
+    {
+      "name": "Shangri-La",
+      "latitude": 27.8258,
+      "longitude": 99.7078,
+      "description": "Located near Himalayan foothills in Yunnan, known for Tibetan monasteries, stunning scenery, and profound tranquility."
+    },
+    {
+      "name": "Guilin",
+      "latitude": 25.282,
+      "longitude": 110.2861,
+      "description": "City famed for its otherworldly karst landscape and serving as a base for exploring the Li River region and nearby Longji Rice Terraces."
+    },
+    {
+      "name": "Hong Kong",
+      "latitude": 22.3193,
+      "longitude": 114.1694,
+      "description": "A dynamic metropolis where East meets West, offering iconic views, vibrant markets, and world-class dining, serving as the tour's culmination point."
+    }
+  ]
+}

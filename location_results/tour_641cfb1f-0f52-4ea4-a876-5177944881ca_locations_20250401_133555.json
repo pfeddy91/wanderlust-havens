@@ -1,0 +1,24 @@
+{
+  "tour_id": "641cfb1f-0f52-4ea4-a876-5177944881ca",
+  "tour_name": "British Isles Adventure",
+  "locations": [
+    {
+      "name": "London",
+      "latitude": 51.5074,
+      "longitude": -0.1278,
+      "description": "The vibrant capital of the UK, serving as the starting point. Known for its history, royal parks, West End shows, museums, and diverse neighbourhoods."
+    },
+    {
+      "name": "Scottish Highlands (representative location: Fort William)",
+      "latitude": 56.819,
+      "longitude": -5.11,
+      "description": "A vast mountainous region in northern Scotland. While the exact location isn't specified, a town like Fort William serves as a common base for exploring the dramatic landscapes, lochs (like nearby Loch Linnhe), and mountains (like Ben Nevis) described."
+    },
+    {
+      "name": "The Cotswolds (representative location: Stow-on-the-Wold)",
+      "latitude": 51.929,
+      "longitude": -1.724,
+      "description": "An Area of Outstanding Natural Beauty in south-central England. The description points to staying within this region known for charming villages. Stow-on-the-Wold is a quintessential, centrally located Cotswold market town fitting the description of honey-coloured stone, antique shops, and old pubs."
+    }
+  ]
+}

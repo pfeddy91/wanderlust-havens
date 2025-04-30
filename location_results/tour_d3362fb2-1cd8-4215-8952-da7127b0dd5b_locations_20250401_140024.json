@@ -1,0 +1,18 @@
+{
+  "tour_id": "d3362fb2-1cd8-4215-8952-da7127b0dd5b",
+  "tour_name": "Epic Portugal",
+  "locations": [
+    {
+      "name": "Lisbon",
+      "latitude": 38.7223,
+      "longitude": -9.1393,
+      "description": "Portugal's vibrant capital, known for its historic neighborhoods (Alfama, Chiado), colorful tiles, Fado music, 'miradouros' (viewpoints), and culinary scene."
+    },
+    {
+      "name": "Comporta",
+      "latitude": 38.3817,
+      "longitude": -8.785,
+      "description": "A chic, laid-back coastal enclave south of Lisbon, famed for its protected coastline, golden beaches, dunes, pine forests, rice paddies, and relaxed luxury."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "3c978f27-1a70-4aae-9212-2250ce4c03d9",
+  "tour_name": "Alpine Elegance",
+  "locations": [
+    {
+      "name": "Como",
+      "latitude": 45.8094,
+      "longitude": 9.0855,
+      "description": "The starting point on the shores of Lake Como, known for its elegant atmosphere, beautiful villas, and access to charming lakeside villages like Bellagio and Varenna."
+    },
+    {
+      "name": "Interlaken",
+      "latitude": 46.6863,
+      "longitude": 7.8632,
+      "description": "An educated guess for the 'heart of Switzerland' stay. Interlaken is a popular base nestled between two lakes, offering access to the dramatic peaks, valleys, and iconic mountain railways of the Bernese Oberland region."
+    },
+    {
+      "name": "Lucerne",
+      "latitude": 47.0502,
+      "longitude": 8.3093,
+      "description": "The concluding city on the shores of Lake Lucerne, famous for its charming Old Town, the iconic Chapel Bridge, and stunning lake and mountain scenery including Pilatus and Rigi."
+    }
+  ]
+}

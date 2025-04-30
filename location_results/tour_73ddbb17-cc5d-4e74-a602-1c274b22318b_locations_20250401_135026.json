@@ -1,0 +1,12 @@
+{
+  "tour_id": "73ddbb17-cc5d-4e74-a602-1c274b22318b",
+  "tour_name": "Galapagos Islands Cruise",
+  "locations": [
+    {
+      "name": "Exclusive Expedition Vessel (Galapagos Islands)",
+      "latitude": -0.74,
+      "longitude": -90.26,
+      "description": "The primary accommodation throughout the tour is an expedition cruise ship. Travelers sleep onboard the vessel each night as it navigates between different islands within the Galapagos Archipelago. The coordinates provided are approximate for the central Galapagos region (near Santa Cruz Island) as the vessel's exact overnight location will vary depending on the specific itinerary."
+    }
+  ]
+}

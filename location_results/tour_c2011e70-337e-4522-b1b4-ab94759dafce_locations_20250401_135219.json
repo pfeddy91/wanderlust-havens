@@ -1,0 +1,24 @@
+{
+  "tour_id": "c2011e70-337e-4522-b1b4-ab94759dafce",
+  "tour_name": "Amalfi Coast Splendor",
+  "locations": [
+    {
+      "name": "Positano",
+      "latitude": 40.6285,
+      "longitude": 14.485,
+      "description": "The tour begins here, described as the Amalfi Coast's postcard-perfect jewel where travelers spend days exploring, relaxing, and soaking in views, implying overnight stays."
+    },
+    {
+      "name": "Capri",
+      "latitude": 40.551,
+      "longitude": 14.237,
+      "description": "Travelers are taken to this enchanting island to discover its magic, explore the town, visit gardens, and take boat tours, suggesting sufficient time that includes overnight accommodation."
+    },
+    {
+      "name": "Ravello",
+      "latitude": 40.6498,
+      "longitude": 14.6122,
+      "description": "The journey concludes in this tranquil town, known for stunning views, villas, and gardens. Activities like quiet strolls and intimate dinners indicate this is the final overnight base."
+    }
+  ]
+}

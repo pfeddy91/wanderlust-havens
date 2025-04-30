@@ -1,0 +1,24 @@
+{
+  "tour_id": "17e044b1-4db3-4d4d-9b4a-5195074e9909",
+  "tour_name": "Bali Serenity",
+  "locations": [
+    {
+      "name": "Ubud",
+      "latitude": -8.506879,
+      "longitude": 115.262482,
+      "description": "Bali's artistic and spiritual centre, known for lush rice paddies, traditional crafts, temples, and a focus on wellness and culture."
+    },
+    {
+      "name": "Munduk",
+      "latitude": -8.266667,
+      "longitude": 115.116667,
+      "description": "A tranquil highland village area offering cool air, stunning views of lakes and mountains, coffee/clove plantations, and numerous waterfalls."
+    },
+    {
+      "name": "Manggis",
+      "latitude": -8.5,
+      "longitude": 115.533333,
+      "description": "A peaceful village on Bali's East Coast, providing a serene atmosphere with quiet beaches, views towards Lombok, and access to snorkeling spots."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "b727315d-00c5-40f9-b364-0bd2c4aec025",
+  "tour_name": "Ultimate Peloponnese",
+  "locations": [
+    {
+      "name": "Mani Peninsula (likely Areopoli or similar)",
+      "latitude": 36.665,
+      "longitude": 22.3819,
+      "description": "The tour begins here, focusing on its stark beauty, stone tower houses, hidden beaches, and rugged coastline. Areopoli is a central town often used as a base."
+    },
+    {
+      "name": "Monemvasia",
+      "latitude": 36.6872,
+      "longitude": 23.0553,
+      "description": "The second stop is this extraordinary Byzantine rock fortress, known for its romantic, car-free alleys and panoramic sea views."
+    },
+    {
+      "name": "Porto Heli",
+      "latitude": 37.3251,
+      "longitude": 23.145,
+      "description": "The concluding destination, a sophisticated harbour town on the 'Greek Riviera' offering seaside relaxation and access to nearby islands."
+    }
+  ]
+}

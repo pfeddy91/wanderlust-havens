@@ -1,0 +1,24 @@
+{
+  "tour_id": "b727315d-00c5-40f9-b364-0bd2c4aec025",
+  "tour_name": "Ultimate Peloponnese",
+  "locations": [
+    {
+      "name": "Mani Peninsula",
+      "latitude": 36.663,
+      "longitude": 22.382,
+      "description": "A rugged region in the southern Peloponnese known for its distinctive stone tower houses, wild beauty, and history of independence. The exact town/village isn't specified, but the stay is within this peninsula (using Areopoli coordinates as a central reference)."
+    },
+    {
+      "name": "Monemvasia",
+      "latitude": 36.687,
+      "longitude": 23.055,
+      "description": "A stunning medieval fortress town built on a small island rock connected to the mainland by a causeway, famed for its romantic atmosphere and historical significance."
+    },
+    {
+      "name": "Porto Heli",
+      "latitude": 37.325,
+      "longitude": 23.145,
+      "description": "A cosmopolitan harbour town on the eastern Peloponnese coast, known as part of the 'Greek Riviera', offering upscale relaxation and access to islands like Spetses and Hydra."
+    }
+  ]
+}

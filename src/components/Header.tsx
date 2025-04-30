@@ -26,16 +26,15 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-91 shadow-sm">
-      <div className="container mx-auto px-0 sm:px-1">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo - Extreme Left aligned */}
-          <Link 
-            to="/" 
-            className="flex items-center pl-2 md:pl-4"
-          >
-            <span className="font-serif text-[2rem] font-medium text-black tracking-wider">MOONS</span>
-          </Link>
+  <header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-91 shadow-sm px-0">
+    <div className="w-full mx-0 px-0">
+      <div className="flex justify-between items-center h-20 px-12">
+        <Link 
+          to="/" 
+          className="pl-0 ml-0"
+        >
+          <span className="font-serif text-[2rem] font-medium text-black tracking-wider">MOONS</span>
+        </Link>
 
           {/* Desktop Navigation - Center */}
           {!isMobile && (
@@ -64,14 +63,14 @@ const Header = () => {
 
           {/* Desktop Actions - Extreme Right aligned */}
           {!isMobile && (
-            <div className="flex items-center space-x-4 pr-2 md:pr-4">
+            <div className="flex items-center space-x-4 pr-0">
               <Button 
-                className="travel-burgundy hover:travel-burgundy/90 text-white font-serif rounded-[10px] px-6 capitalize text-lg font-medium tracking-wide"
+                className="bg-travel-charcoal hover:bg-travel-charcoal/90 text-white font-serif rounded-[10px] px-8 h-12 capitalize text-lg font-medium tracking-wide"
                 onClick={() => handleNavigation('/contact')}
               >
-                GET IN TOUCH
+                Get in Touch
               </Button>
-              <div className="flex items-center justify-center w-10 h-10 text-black hover:text-gray-700 transition-colors cursor-pointer">
+              <div className="flex items-center justify-center w-12 h-12 text-black hover:text-gray-700 transition-colors cursor-pointer">
                 <Search className="h-5 w-5" />
               </div>
             </div>
@@ -79,7 +78,7 @@ const Header = () => {
 
           {/* Mobile header actions */}
           {isMobile && (
-            <div className="flex items-center space-x-3 pr-2">
+            <div className="flex items-center space-x-3 pr-0">
               <div className="flex items-center justify-center w-8 h-8 text-black">
                 <Search className="h-5 w-5" />
               </div>

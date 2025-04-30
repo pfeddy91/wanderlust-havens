@@ -1,0 +1,18 @@
+{
+  "tour_id": "c6662803-277b-4137-a06e-b1937ddc1f76",
+  "tour_name": "Nayara Tented Camp",
+  "locations": [
+    {
+      "name": "Arenal Volcano Area",
+      "latitude": 10.463,
+      "longitude": -84.703,
+      "description": "Region surrounding the Arenal Volcano, known for its rainforests, abundant wildlife, adventure activities like zip-lining and hanging bridges, and natural hot springs."
+    },
+    {
+      "name": "Papagayo Peninsula",
+      "latitude": 10.58,
+      "longitude": -85.66,
+      "description": "An exclusive peninsula on Costa Rica's northern Pacific coast, celebrated for its luxury resorts, calm beaches, clear waters, and focus on relaxation and water sports."
+    }
+  ]
+}

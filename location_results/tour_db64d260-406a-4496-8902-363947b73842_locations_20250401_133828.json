@@ -1,0 +1,24 @@
+{
+  "tour_id": "db64d260-406a-4496-8902-363947b73842",
+  "tour_name": "Epic Bali and Lombok",
+  "locations": [
+    {
+      "name": "Ubud",
+      "latitude": -8.5069,
+      "longitude": 115.2625,
+      "description": "The spiritual and cultural heart of Bali, known for its lush rice paddies, traditional crafts, ancient temples, and focus on wellness."
+    },
+    {
+      "name": "Uluwatu",
+      "latitude": -8.8292,
+      "longitude": 115.0874,
+      "description": "Located on Bali's southern Bukit Peninsula, famous for its dramatic cliff-top temple, stunning ocean views, world-class surf breaks, and spectacular sunsets."
+    },
+    {
+      "name": "Lombok",
+      "latitude": -8.4885,
+      "longitude": 116.0408,
+      "description": "An island east of Bali offering a more tranquil atmosphere, beautiful beaches (like Senggigi, represented by these coordinates), clear waters, and access to the Gili Islands. The coordinates point towards the Senggigi area, a popular tourist hub fitting the description."
+    }
+  ]
+}

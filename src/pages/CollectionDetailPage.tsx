@@ -4,98 +4,81 @@ import { supabase } from '@/utils/supabaseClient';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Loader2 } from 'lucide-react';
+import { Tour } from '@/types/tour';
 
-interface Vibe {
-  id: string;
-  name: string;
-  description?: string;
-  image_url?: string;
-}
-
-interface Tour {
+// Interface for the dedicated collections table data
+interface CollectionDetails {
   id: string;
   name: string;
   slug: string;
-  duration: number;
-  guide_price: number;
+  description?: string;
   featured_image?: string;
-  country_name1?: string;
-  country_name2?: string;
 }
 
 const CollectionDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [vibe, setVibe] = useState<Vibe | null>(null);
+  const [collectionDetails, setCollectionDetails] = useState<CollectionDetails | null>(null);
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchVibeAndTours = async () => {
+    const fetchCollectionData = async () => {
+      if (!slug) return;
+
+      setLoading(true);
+      setError(null);
+      setCollectionDetails(null); // Reset on slug change
+      setTours([]); // Reset on slug change
+
       try {
-        setLoading(true);
-        
-        // Fetch vibe details
-        const { data: vibeData, error: vibeError } = await supabase
-          .from('vibes')
-          .select('id, name, description, image_url')
+        // 1. Fetch Collection Details from the new 'collections' table using the slug
+        const { data: collectionData, error: collectionError } = await supabase
+          .from('collections') // *** ASSUMES you created a 'collections' table ***
+          .select('*')
           .eq('slug', slug)
           .single();
 
-        if (vibeError) {
-          console.error('Error fetching vibe:', vibeError);
-          return;
+        if (collectionError || !collectionData) {
+          console.error('Error fetching collection details:', collectionError);
+          throw new Error(`Collection with slug "${slug}" not found.`);
         }
 
-        setVibe(vibeData);
+        setCollectionDetails(collectionData);
+        const collectionName = collectionData.name; // Get the actual name
 
-        // Fetch tours with this vibe
+        // 2. Fetch Tours matching the collection name
         const { data: toursData, error: toursError } = await supabase
-          .from('tour_vibes')
-          .select(`
-            tour_id,
-            tours:tour_id(
-              id, 
-              name, 
-              slug, 
-              duration, 
-              guide_price,
-              featured_image,
-              country_name1,
-              country_name2
-            )
-          `)
-          .eq('vibe_id', vibeData.id);
+          .from('tours')
+          .select('*') // Select fields needed for the tour cards
+          .eq('collection', collectionName); // Filter by the collection name
 
         if (toursError) {
-          console.error('Error fetching tours:', toursError);
-          return;
+          console.error('Error fetching tours for collection:', toursError);
+          throw new Error('Failed to fetch tours for this collection.');
         }
 
-        // Extract tour data from the nested structure
-        const formattedTours = toursData
-          .map(item => item.tours)
-          .filter(tour => tour !== null);
+        // 3. Optionally fetch related images/countries for each tour if needed for cards
+        // (Similar to getToursByCountry, loop and enrich tour objects)
+        // For simplicity, assuming basic tour data is sufficient for the card here
 
-        setTours(formattedTours);
-      } catch (error) {
-        console.error('Error in fetchVibeAndTours:', error);
+        setTours(toursData || []);
+
+      } catch (err: any) {
+        console.error('Error in fetchCollectionData:', err);
+        setError(err.message || 'Failed to load collection data.');
       } finally {
         setLoading(false);
       }
     };
 
-    if (slug) {
-      fetchVibeAndTours();
-    }
+    fetchCollectionData();
   }, [slug]);
 
-  // Format country names
-  const formatCountryName = (tour: Tour) => {
-    if (tour.country_name1 && tour.country_name2) {
-      return `${tour.country_name1} & ${tour.country_name2}`;
-    }
-    return tour.country_name1 || 'Multiple Countries';
-  };
+  // Simple function to get tour image for the card (can be enhanced)
+  const getTourImage = (tour: Tour) => {
+    return tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80';
+  }
 
   if (loading) {
     return (
@@ -105,85 +88,68 @@ const CollectionDetailPage = () => {
     );
   }
 
-  if (!vibe) {
+  if (error || !collectionDetails) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-2xl font-bold">Collection not found</h1>
-        <p className="mt-2 text-muted-foreground">We couldn't find the collection you're looking for.</p>
-        <Link to="/" className="mt-4 text-primary hover:underline">Go back home</Link>
+        <h1 className="text-2xl font-bold mb-4">Collection Not Found</h1>
+        <p className="mt-2 text-muted-foreground mb-6">{error || "We couldn't find the collection you're looking for."}</p>
+        <Link to="/collections" className="bg-travel-green text-white px-6 py-3 rounded-md hover:bg-travel-dark-green transition-colors">
+          Explore Other Collections
+        </Link>
       </div>
     );
   }
 
+
   return (
     <div className="min-h-screen">
       <Header />
-      
       <main className="pt-20">
-        {/* Hero section */}
-        <div 
-          className="relative h-[40vh] bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url(${vibe.image_url || `https://source.unsplash.com/featured/?${vibe.name},travel`})` 
-          }}
-        >
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="absolute inset-0 flex items-center justify-center text-center text-white px-4">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">{vibe.name}</h1>
-              {vibe.description && (
-                <p className="max-w-2xl mx-auto text-lg">{vibe.description}</p>
-              )}
+        {/* Collection Hero Section (Example) */}
+        <section className="py-16 bg-gray-100 text-center">
+            <div className="container mx-auto px-4">
+                <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">{collectionDetails.name}</h1>
+                {collectionDetails.description && (
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">{collectionDetails.description}</p>
+                )}
             </div>
-          </div>
-        </div>
+        </section>
 
-        {/* Tours grid */}
+        {/* Tours Grid Section */}
         <div className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl font-serif font-bold mb-12 text-center">
-            {tours.length > 0 
-              ? `Discover Our ${vibe.name} Experiences` 
-              : `No ${vibe.name} Experiences Available Yet`}
-          </h2>
-          
-          {tours.length > 0 ? (
+          {tours && tours.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* --- Tour Card Rendering (Adapt from DestinationTours if needed) --- */}
               {tours.map((tour) => (
-                <Link 
-                  key={tour.id} 
-                  to={`/tours/${tour.slug}`}
-                  className="block h-[600px] relative overflow-hidden group cursor-pointer"
+                <Link
+                  to={`/tours/${tour.slug}`} // Link to the specific tour detail page
+                  key={tour.id}
+                  className="block border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group"
                 >
-                  <div className="absolute top-4 right-6 z-10 text-white font-serif tracking-wider text-lg">
-                    {tour.duration} NIGHTS
-                  </div>
-                  
-                  <div className="w-full h-full relative">
-                    <img 
-                      src={tour.featured_image || `https://source.unsplash.com/featured/?${tour.name},travel`}
-                      alt={tour.name}
+                  <div className="w-full h-64 relative overflow-hidden">
+                    <img
+                      src={getTourImage(tour)}
+                      alt={tour.title} // Use title
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'; }}
                     />
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-                      <div className="absolute bottom-0 left-0 p-8 text-white">
-                        <p className="uppercase text-sm tracking-wider mb-2 font-sans">{formatCountryName(tour)}</p>
-                        <h3 className="text-2xl font-bold uppercase font-serif tracking-wide mb-6">{tour.name}</h3>
-                        <p className="text-sm mb-8 font-serif">From £{tour.guide_price.toLocaleString()} per person</p>
-                        
-                        <div className="inline-block border border-white px-8 py-3 uppercase tracking-wider text-sm font-sans backdrop-blur-sm bg-white/10 transition-colors group-hover:bg-white/20">
-                          EXPLORE MOON
-                        </div>
-                      </div>
+                     <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm px-2 py-1 rounded text-white text-sm font-medium">
+                      {tour.duration} NIGHTS
                     </div>
+                  </div>
+                  <div className="p-4 bg-white">
+                     {/* You might need country names here - requires fetching countries based on tour.countries */}
+                    {/* <p className="uppercase text-xs tracking-wider mb-1 text-gray-500">{formatCountryName(tour)}</p> */}
+                    <h3 className="text-lg font-semibold font-serif mb-2 text-gray-800 group-hover:text-travel-burgundy transition-colors">{tour.title}</h3>
+                    <p className="text-sm text-gray-600">From £{tour.guide_price?.toLocaleString() || 'N/A'} per person</p>
                   </div>
                 </Link>
               ))}
             </div>
           ) : (
             <div className="text-center py-8">
-              <p className="text-travel-charcoal/70 mb-8">
-                We're currently developing new experiences for this collection. 
+              <p className="text-gray-600 mb-8">
+                We're currently developing new experiences for the "{collectionDetails.name}" collection.
                 Check back soon or contact us for custom travel planning.
               </p>
               <Link to="/collections" className="bg-travel-green text-white px-6 py-3 rounded-md hover:bg-travel-dark-green transition-colors">
@@ -193,7 +159,7 @@ const CollectionDetailPage = () => {
           )}
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

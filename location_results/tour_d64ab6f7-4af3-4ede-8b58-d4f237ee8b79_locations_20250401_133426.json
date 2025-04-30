@@ -1,0 +1,30 @@
+{
+  "tour_id": "d64ab6f7-4af3-4ede-8b58-d4f237ee8b79",
+  "tour_name": "Andalusian Dream",
+  "locations": [
+    {
+      "name": "Seville",
+      "latitude": 37.3891,
+      "longitude": -5.9845,
+      "description": "The starting point and capital of Andalusia, known for the Real Alc\u00e1zar, flamenco, and the Santa Cruz neighbourhood. The description implies at least one overnight stay here."
+    },
+    {
+      "name": "Cordoba",
+      "latitude": 37.8882,
+      "longitude": -4.7794,
+      "description": "Visited after Seville, famous for the Mezquita-Cathedral and the historic Jewish Quarter. The itinerary suggests moving here for an overnight stay."
+    },
+    {
+      "name": "Granada",
+      "latitude": 37.1773,
+      "longitude": -3.5986,
+      "description": "Visited after Cordoba, home to the Alhambra Palace and the Albaic\u00edn quarter. The description implies spending time here, suggesting an overnight stay."
+    },
+    {
+      "name": "Ronda",
+      "latitude": 36.7376,
+      "longitude": -5.1613,
+      "description": "The final location described, known for the Puente Nuevo bridge over the El Tajo gorge. While not explicitly stated as overnight, its position as the 'final' destination visited and explored suggests it is likely the last overnight stop in this itinerary segment."
+    }
+  ]
+}

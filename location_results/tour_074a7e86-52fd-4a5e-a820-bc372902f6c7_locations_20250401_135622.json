@@ -1,0 +1,24 @@
+{
+  "tour_id": "074a7e86-52fd-4a5e-a820-bc372902f6c7",
+  "tour_name": "Tuscan Countryside Retreat",
+  "locations": [
+    {
+      "name": "Florence",
+      "latitude": 43.7696,
+      "longitude": 11.2558,
+      "description": "The starting point of the tour, renowned as the cradle of the Renaissance, famous for its art, architecture, and historical significance."
+    },
+    {
+      "name": "Chianti Region",
+      "latitude": 43.5875,
+      "longitude": 11.3175,
+      "description": "The heart of the trip, characterized by rolling hills, vineyards, olive groves, and rustic accommodations like farmhouses or villas. Known for Chianti Classico wine. (Coordinates are approximate, representing a central point like Greve in Chianti)."
+    },
+    {
+      "name": "Siena",
+      "latitude": 43.3188,
+      "longitude": 11.3308,
+      "description": "The concluding city of the retreat, a stunning medieval Gothic city famous for the Piazza del Campo and the Palio horse race."
+    }
+  ]
+}

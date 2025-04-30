@@ -6,12 +6,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Tour {
   id: string;
-  name: string;
+  title: string;
   duration: number;
   slug: string;
   featured_image: string;
   country_name1: string;
-  country_name2?: string;
+  country_name2: string;
 }
 
 const Featured = () => {
@@ -34,7 +34,7 @@ const Featured = () => {
           .from('tours')
           .select(`
             id, 
-            name, 
+            title, 
             duration,
             slug,
             featured_image,
@@ -277,7 +277,7 @@ const Featured = () => {
                           <div className="relative w-full h-full">
                             <img 
                               src={tour.featured_image} 
-                              alt={tour.name}
+                              alt={tour.title}
                               className="w-full h-full object-cover"
                               onError={(e) => {
                                 (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80';
@@ -301,7 +301,7 @@ const Featured = () => {
                           </div>
                           
                           <h3 className="text-xl font-serif font-bold mb-2">
-                            {tour.name}
+                            {tour.title}
                           </h3>
                           
                           <h4 className="text-lg font-medium mb-4">

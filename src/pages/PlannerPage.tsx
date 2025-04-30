@@ -1,18 +1,11 @@
 import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import AIPlanner from '@/components/AIPlanner';
+// import Header from '@/components/Header';
+// import Footer from '@/components/Footer';
+// import AIPlanner from '@/components/AIPlanner';
+import AiPlannerContainer from '@/components/ai-planner/AiPlannerContainer';
 
 const PlannerPage = () => {
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <AIPlanner />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <AiPlannerContainer />; 
 };
 
 export default PlannerPage; 

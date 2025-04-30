@@ -1,0 +1,24 @@
+{
+  "tour_id": "e11e9730-8a1b-479c-a4a3-8c76f4b09758",
+  "tour_name": "Romantic Oahu, Maui and Kauai",
+  "locations": [
+    {
+      "name": "Honolulu",
+      "latitude": 21.3069,
+      "longitude": -157.8583,
+      "description": "The vibrant capital of Hawaii on Oahu, serving as the primary base for exploring Waikiki Beach, Pearl Harbor, and the North Shore."
+    },
+    {
+      "name": "Kihei",
+      "latitude": 20.7899,
+      "longitude": -156.4544,
+      "description": "A likely base on Maui's sunny south shore, offering convenient access to beaches, snorkeling, the Road to Hana, and Haleakala National Park. Chosen for its central location and accommodation options."
+    },
+    {
+      "name": "Poipu",
+      "latitude": 21.8812,
+      "longitude": -159.4633,
+      "description": "A resort area on Kauai's sunny South Shore, serving as a probable base for exploring Waimea Canyon and accessing tours for the Napali Coast, known for its beaches and resorts."
+    }
+  ]
+}

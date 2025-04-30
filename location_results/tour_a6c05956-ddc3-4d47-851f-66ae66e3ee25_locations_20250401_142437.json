@@ -1,0 +1,12 @@
+{
+  "tour_id": "a6c05956-ddc3-4d47-851f-66ae66e3ee25",
+  "tour_name": "Romantic All-Inclusive Cabo",
+  "locations": [
+    {
+      "name": "Cabo San Lucas",
+      "latitude": 22.8905,
+      "longitude": -109.9167,
+      "description": "A resort city on the southern tip of Mexico's Baja California peninsula, known for its stunning beaches, water-based activities, luxury resorts, and vibrant nightlife, overlooking the Sea of Cortez and the Pacific Ocean."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tour_id": "b7d368e8-6bef-4f61-a266-711d4a1c474e",
+  "tour_name": "Tanzania Uncovered",
+  "locations": [
+    {
+      "name": "Ruaha National Park",
+      "latitude": -7.67,
+      "longitude": 34.83,
+      "description": "One of Tanzania's largest and least-visited protected areas, known for its wild, remote safari experience, dramatic landscapes with baobabs, large lion prides, significant elephant populations, and a sense of vast seclusion."
+    },
+    {
+      "name": "Pemba Island",
+      "latitude": -5.17,
+      "longitude": 39.75,
+      "description": "A lush, green island north of Zanzibar, offering a more authentic and peaceful escape with turquoise waters, spectacular coral reefs for diving/snorkelling, secluded beaches, and spice plantations."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "641cfb1f-0f52-4ea4-a876-5177944881ca",
+  "tour_name": "British Isles Adventure",
+  "locations": [
+    {
+      "name": "London",
+      "latitude": 51.5074,
+      "longitude": -0.1278,
+      "description": "England's vibrant capital city, known for its rich history, royal landmarks, world-class museums, theatre, and diverse neighbourhoods."
+    },
+    {
+      "name": "Scottish Highlands",
+      "latitude": 57.144,
+      "longitude": -4.6802,
+      "description": "A vast and sparsely populated region in northern Scotland characterized by dramatic mountain ranges, deep lochs (lakes), ancient castles, and wild beauty."
+    },
+    {
+      "name": "The Cotswolds",
+      "latitude": 51.9288,
+      "longitude": -1.7241,
+      "description": "An Area of Outstanding Natural Beauty in south-central England, famous for its rolling hills, picturesque honey-coloured stone villages, and charming countryside."
+    }
+  ]
+}

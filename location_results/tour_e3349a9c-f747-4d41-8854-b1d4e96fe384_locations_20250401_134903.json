@@ -1,0 +1,18 @@
+{
+  "tour_id": "e3349a9c-f747-4d41-8854-b1d4e96fe384",
+  "tour_name": "Namibian Desert & Dunes",
+  "locations": [
+    {
+      "name": "Sossusvlei Area (near Sesriem)",
+      "latitude": -24.4881,
+      "longitude": 15.8005,
+      "description": "The gateway area for exploring the high red dunes of Sossusvlei, Deadvlei, and Dune 45 within the Namib-Naukluft National Park. Accommodation is typically in lodges or campsites near the Sesriem park gate."
+    },
+    {
+      "name": "Etosha National Park Area",
+      "latitude": -19.1806,
+      "longitude": 15.9223,
+      "description": "A major wildlife sanctuary in Northern Namibia, centered around the Etosha salt pan. Overnight stays are usually in camps inside the park (like Okaukuejo, Halali, Namutoni) or lodges just outside the park gates, offering access to game drives and waterhole viewing. (Coordinates provided are near Okaukuejo Camp, a central and popular location)."
+    }
+  ]
+}

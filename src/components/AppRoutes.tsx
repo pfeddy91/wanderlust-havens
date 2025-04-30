@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import Layout from "./Layout"; // Import the new Layout component
 import Index from "../pages/Index";
 import Destination from "../pages/Destination";
 import TourDetail from "../pages/TourDetail";
@@ -7,8 +8,8 @@ import NotFound from "../pages/NotFound";
 import AllDestinationsPage from "../pages/AllDestinationsPage";
 import CollectionsPage from "../pages/CollectionsPage";
 import CollectionDetailPage from "../pages/CollectionDetailPage";
-import PlannerPage from "../pages/PlannerPage";
 import RegionCountriesPage from "../pages/RegionCountriesPage";
+import AiPlannerContainer from "./ai-planner/AiPlannerContainer";
 
 // Simple scroll restoration function
 function ScrollRestoration() {
@@ -33,8 +34,11 @@ export const AppRoutes = () => {
         
         // Only handle internal links (those starting with / or #)
         if (href && (href.startsWith('/') || href.startsWith('#'))) {
-          e.preventDefault();
-          navigate(href);
+          // Exclude links specifically meant to open in new tabs or external links
+          if (link.target !== '_blank' && !href.startsWith('http')) {
+            e.preventDefault();
+            navigate(href);
+          }
         }
       }
     };
@@ -46,18 +50,28 @@ export const AppRoutes = () => {
   return (
     <>
       <ScrollRestoration />
+      {/* Define Routes */}
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/destinations" element={<AllDestinationsPage />} />
-        <Route path="/destinations/:slug" element={<Destination />} />
-        <Route path="/tours/:slug" element={<TourDetail />} />
-        <Route path="/collections" element={<CollectionsPage />} />
-        <Route path="/collections/:slug" element={<CollectionDetailPage />} />
-        <Route path="/planner" element={<PlannerPage />} />
-        <Route path="/about" element={<NotFound />} />
-        <Route path="/destinations/regions/:slug" element={<RegionCountriesPage />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
+        {/* Routes WITH the main Layout (Header/Footer) */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Index />} />
+          <Route path="/destinations" element={<AllDestinationsPage />} />
+          <Route path="/destinations/:slug" element={<Destination />} />
+          <Route path="/tours/:slug" element={<TourDetail />} />
+          <Route path="/collections" element={<CollectionsPage />} />
+          <Route path="/collections/:slug" element={<CollectionDetailPage />} />
+          <Route path="/about" element={<NotFound />} />
+          <Route path="/destinations/regions/:slug" element={<RegionCountriesPage />} />
+          {/* Catch-all for routes within Layout */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+
+        {/* Routes WITHOUT the main Layout (Full Screen) */}
+        <Route path="/planner/*" element={<AiPlannerContainer />} />
+
+        {/* If you had other full-screen routes, they would go here */}
+        {/* Example: <Route path="/login" element={<LoginPage />} /> */}
+
       </Routes>
     </>
   );

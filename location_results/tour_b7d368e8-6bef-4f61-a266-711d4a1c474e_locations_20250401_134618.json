@@ -1,0 +1,18 @@
+{
+  "tour_id": "b7d368e8-6bef-4f61-a266-711d4a1c474e",
+  "tour_name": "Tanzania Uncovered",
+  "locations": [
+    {
+      "name": "Ruaha National Park",
+      "latitude": -7.67,
+      "longitude": 34.93,
+      "description": "Overnight stays will be within or near this vast, remote park, likely at a safari lodge or camp, offering an immersive wildlife experience with large elephant herds and lion prides away from typical tourist crowds."
+    },
+    {
+      "name": "Pemba Island",
+      "latitude": -5.24,
+      "longitude": 39.77,
+      "description": "Overnight stays will be on this tranquil island, likely at a beach resort or lodge, known for its lush landscape, pristine beaches, excellent diving/snorkelling, and a more authentic feel than Zanzibar."
+    }
+  ]
+}

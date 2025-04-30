@@ -5,25 +5,54 @@ from datetime import datetime
 import argparse
 from supabase import create_client, Client
 import time
+import csv
 
 # Supabase credentials
-SUPABASE_URL = "https://jeiuruhneitvfyjkmbvj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplaXVydWhuZWl0dmZ5amttYnZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2NjU5NzQsImV4cCI6MjA1ODI0MTk3NH0.iYBsdI4p7o7rKbrMHstzis4KZYV_ks2p09pmtj5-bTo"
+SUPABASE_URL = "https://ydcggawwxohbcpcjyhdk.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkY2dnYXd3eG9oYmNwY2p5aGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNjk3NjUsImV4cCI6MjA1ODg0NTc2NX0.FHSkH2qML9w5Li6VfG8jWbcu-DV4HQCLTK0wu6J3VV0"
 
-# Initialize Perplexity API config
-PERPLEXITY_API_KEY = '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'
-PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions'
+# Gemini API credentials
+GEMINI_API_KEY = 'AIzaSyBHQrWXW6ix1Me5ufjfc70b01W20hbgZKc'
+GEMINI_API_MODEL = "gemini-2.5-pro-exp-03-25"
 
 # Initialize Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def extract_highlights_from_text(content):
     """Extract highlights from text content using various methods"""
-    # Print the first extraction attempt
     print("Attempting to extract highlights from API response...")
     
+    # First try to parse the content as JSON directly
+    try:
+        # Clean the content first
+        content = content.strip()
+        # Remove any markdown code block markers if present
+        content = re.sub(r'```(?:json)?\s*', '', content)
+        content = re.sub(r'\s*```', '', content)
+        
+        # Try to parse as JSON
+        highlights = json.loads(content)
+        
+        # Validate the structure
+        if isinstance(highlights, list):
+            # Ensure each item has the required fields
+            valid_highlights = []
+            for item in highlights:
+                if isinstance(item, dict) and 'title' in item and 'description' in item:
+                    valid_highlights.append({
+                        'title': item['title'].strip(),
+                        'description': item['description'].strip()
+                    })
+            
+            if valid_highlights:
+                print(f"Successfully extracted {len(valid_highlights)} highlights from JSON")
+                return valid_highlights[:6]  # Limit to 6 highlights
+    
+    except json.JSONDecodeError:
+        print("Could not parse content as JSON, trying alternative methods...")
+    
+    # If JSON parsing failed, try other extraction methods
     # First, try to extract numbered items with title and description
-    # This pattern looks for numbered items (1., 2., etc.) followed by a title and description
     numbered_pattern = re.compile(r'(\d+)\.\s+(.*?):\s+(.*?)(?=\n\d+\.|\n\n|$)', re.DOTALL)
     matches = numbered_pattern.findall(content)
     
@@ -35,10 +64,8 @@ def extract_highlights_from_text(content):
             if '...' in title:
                 print(f"WARNING: Title contains ellipses: '{title}'")
                 # Try to find the complete title in the original content
-                # Look for similar text before the ellipses
                 title_prefix = title.split('...')[0].strip()
                 if len(title_prefix) > 5:  # Only if we have enough prefix to search
-                    # Look for a more complete version in the original text
                     full_title_match = re.search(f"{re.escape(title_prefix)}[^:\n]+", content)
                     if full_title_match:
                         complete_title = full_title_match.group(0).strip()
@@ -53,170 +80,141 @@ def extract_highlights_from_text(content):
         if highlights:
             return highlights[:6]  # Limit to 6 highlights
     
-    # If the above didn't work, try other patterns
-    # ... (rest of the existing extraction methods)
-    
-    # Try to find JSON array in the content
-    json_pattern = re.search(r'\[\s*{.*}\s*\]', content, re.DOTALL)
-    if json_pattern:
-        try:
-            return json.loads(json_pattern.group(0))
-        except json.JSONDecodeError:
-            print("Found JSON-like pattern but couldn't parse it")
-    
-    # Try to extract from markdown code block
-    if "```json" in content and "```" in content.split("```json", 1)[1]:
-        try:
-            json_block = content.split("```json", 1)[1].split("```", 1)[0].strip()
-            return json.loads(json_block)
-        except json.JSONDecodeError:
-            print("Found code block but couldn't parse it as JSON")
-    
-    # Pattern for numbered or bulleted highlights with titles and descriptions
-    patterns = [
-        # Look for numbered highlights with titles
-        r'(?:\d+\.\s+)([^:]+):\s+([^\n]+)',
-        # Look for "Title:" followed by description
-        r'"title":\s*"([^"]+)"[^"]*"description":\s*"([^"]+)"',
-        # Look for **Title** followed by description
-        r'\*\*([^*]+)\*\*\s*[-–]\s*([^\n]+)',
-    ]
-    
-    highlights = []
-    for pattern in patterns:
-        matches = re.findall(pattern, content)
-        if matches:
-            for title, description in matches:
-                highlights.append({
-                    "title": title.strip(),
-                    "description": description.strip()
-                })
-            
-            # If we found at least 4 highlights, consider it a success
-            if len(highlights) >= 4:
-                print(f"Successfully extracted {len(highlights)} highlights using pattern: {pattern}")
-                # Limit to 6 highlights
-                return highlights[:6]
-    
     # If we still don't have highlights, create generic ones
-    if not highlights:
-        print("Could not extract highlights, creating generic ones")
-        return [
-            {"title": "Scenic Landscapes", "description": "Experience breathtaking natural beauty throughout your journey."},
-            {"title": "Cultural Immersion", "description": "Engage with local traditions and historical sites."},
-            {"title": "Culinary Delights", "description": "Savor authentic local cuisine and fine dining experiences."},
-            {"title": "Luxury Accommodations", "description": "Relax in carefully selected premium hotels and resorts."},
-            {"title": "Seamless Travel", "description": "Enjoy comfortable transportation and well-planned logistics."},
-            {"title": "Personalized Experience", "description": "Benefit from customized activities suited to your preferences."}
-        ]
-    
-    return highlights[:6]  # Limit to 6 highlights
+    print("Could not extract highlights, creating generic ones")
+    return [
+        {"title": "Scenic Landscapes", "description": "Experience breathtaking natural beauty throughout your journey."},
+        {"title": "Cultural Immersion", "description": "Engage with local traditions and historical sites."},
+        {"title": "Culinary Delights", "description": "Savor authentic local cuisine and fine dining experiences."},
+        {"title": "Luxury Accommodations", "description": "Relax in carefully selected premium hotels and resorts."},
+        {"title": "Seamless Travel", "description": "Enjoy comfortable transportation and well-planned logistics."},
+        {"title": "Personalized Experience", "description": "Benefit from customized activities suited to your preferences."}
+    ]
 
-def call_perplexity_api(system_prompt: str, user_prompt: str) -> list:
-    """Call the Perplexity API and extract highlights from the response"""
-    headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {PERPLEXITY_API_KEY}'
-    }
-    
-    payload = {
-        "model": "sonar-pro",
-        "messages": [
-            {"role": "system", "content": system_prompt.strip()},
-            {"role": "user", "content": user_prompt.strip()}
-        ]
-    }
-    
+def call_gemini_api(prompt: str) -> dict:
+    """Call the Gemini API with a prompt and return the parsed JSON response."""
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_API_MODEL}:generateContent?key={GEMINI_API_KEY}"
+    headers = {'Content-Type': 'application/json'}
+    payload = {"contents": [{"parts": [{"text": prompt.strip()}]}]}
+
     try:
-        # Add a delay to avoid rate limiting
-        time.sleep(1)
-        
-        response = requests.post(PERPLEXITY_API_URL, headers=headers, json=payload, timeout=30)
-        
+        # Optional: Add a small delay if needed for rate limiting
+        # time.sleep(1)
+
+        print(f"Sending prompt to Gemini API ({GEMINI_API_MODEL})...")
+        response = requests.post(url, headers=headers, json=payload, timeout=60) # Increased timeout
+
         if not response.ok:
-            print(f"API error: {response.status_code} - {response.text}")
-            raise Exception(f"API returned status code {response.status_code}: {response.text}")
-            
+            raise Exception(f"Gemini API returned status code {response.status_code}: {response.text}")
+
         result = response.json()
-        if 'choices' not in result or not result['choices']:
-            raise Exception("No choices in API response")
-            
-        content = result['choices'][0]['message']['content']
-        
-        # Print the FULL content for debugging
-        print("========== FULL API RESPONSE ==========")
-        print(content)
-        print("=======================================")
-        
-        # Extract highlights using our robust extraction function
-        highlights = extract_highlights_from_text(content)
-        
-        if not highlights or len(highlights) == 0:
-            raise Exception("Could not extract any highlights from the API response")
-            
-        return highlights
-        
+
+        if 'candidates' not in result or not result['candidates'] or 'content' not in result['candidates'][0]:
+            raise Exception("Invalid response format from Gemini API")
+
+        content_parts = result['candidates'][0]['content']['parts']
+        content = ''.join([part.get('text', '') for part in content_parts if 'text' in part])
+
+        print("Raw Gemini API response content (first 200 chars):")
+        print(content[:200] + "..." if len(content) > 200 else content)
+
+        # Extract JSON content (assuming it's wrapped in ```json ... ``` or is the whole content)
+        json_match = re.search(r'```(?:json)?\s*(.*?)\s*```', content, re.DOTALL)
+        if json_match:
+            json_content = json_match.group(1).strip()
+        else:
+            # If no markdown code block, assume the whole response might be JSON
+            json_content = content.strip()
+
+        # Clean the JSON string
+        json_content = re.sub(r'[\x00-\x1F\x7F]', '', json_content) # Remove control characters
+        json_content = json_content.strip('"\'') # Remove potential wrapping quotes
+
+        print("Cleaned JSON content (first 200 chars):")
+        print(json_content[:200] + "..." if len(json_content) > 200 else json_content)
+
+        try:
+            return json.loads(json_content)
+        except json.JSONDecodeError as e:
+            print(f"JSON decode error at position {e.pos}: {e.msg}")
+            # Attempt more aggressive cleaning if needed, or raise the error
+            raise Exception(f"Failed to parse JSON from Gemini response: {e}") from e
+
     except Exception as e:
-        print(f"API Request Error: {str(e)}")
+        print(f"Gemini API Request Error: {str(e)}")
         raise
 
 def generate_highlights_prompt(tour_name, description):
-    """Generate a prompt for the Perplexity API to extract highlights"""
+    """Generate a prompt for the Gemini API to extract highlights"""
     return f"""
 Based on the following tour description for "{tour_name}", please create exactly 6 specific highlights that travelers can expect from this tour.
 
 Tour Description:
 {description}
 
-For each highlight, provide:
-1. A COMPLETE title (4-5 words maximum, NO ELLIPSES)
-2. A brief 1-2 sentence description
-
-Format your response as a numbered list like this:
-1. Venetian Gondola Ride: Glide through Venice's picturesque canals on a private gondola ride accompanied by a professional singer.
-2. Florence Art Galleries: Explore world-renowned art collections featuring Renaissance masterpieces by Michelangelo, Leonardo da Vinci, and Botticelli.
+Please provide your response in the following JSON format:
+[
+  {{
+    "title": "Venetian Gondola Ride",
+    "description": "Glide through Venice's picturesque canals on a private gondola ride accompanied by a professional singer."
+  }},
+  {{
+    "title": "Visit the Colosseum",
+    "description": "Explore the ancient history of Rome and the Colosseum, one of the most iconic landmarks in the world."
+  }}
+]
 
 IMPORTANT RULES:
-- DO NOT truncate titles with ellipses (...)
+- Each highlight MUST have exactly two fields: "title" and "description"
+- Titles should be 4-5 words maximum, NO ELLIPSES
 - DO NOT use "Highlight X:" prefix in titles
-- Keep titles COMPLETE and CONCISE (4-5 words maximum)
+- Keep titles COMPLETE and CONCISE
 - NO emojis anywhere
 - Focus on luxury experiences, cultural encounters, and memorable activities
 - Provide exactly 6 highlights
-- YOu are a high end travel planner and our clients are honeymooners
+- You are a high end travel planner and our clients are honeymooners
+- The response MUST be valid JSON that can be parsed directly
+- Do not include any text before or after the JSON array
+- Do not include any markdown formatting or code blocks
 
-Remember this is for a luxury travel website, so focus on sophisticated, exclusive experiences.
+Remember this is for a honeymoon website, so focus on sophisticated, exclusive experiences.
 """
 
 def get_all_tours():
     """Get all tours from the database"""
-    response = supabase.table('tours').select('id, name, description').execute()
+    response = supabase.table('tours').select('id, title, description').execute()
     return response.data
 
 def get_tour_by_id(tour_id):
     """Get a specific tour by ID"""
-    response = supabase.table('tours').select('id, name, description').eq('id', tour_id).execute()
+    response = supabase.table('tours').select('id, title, description').eq('id', tour_id).execute()
     if response.data:
         return response.data[0]
     return None
 
 def get_tour_by_code(tour_code):
-    """Get a tour by its code from tours_incipit.txt"""
+    """Get a tour by its code from tours_input.csv"""
     # First, load the tour code to name mapping
     tour_mapping = {}
-    with open('tours_incipit.txt', 'r', encoding='utf-8') as file:
-        import csv
-        reader = csv.DictReader(file)
-        for row in reader:
-            tour_mapping[row['tour_code']] = row['tour_name']
+    try:
+        with open('tours_input.csv', 'r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                # Use the tour number as the code
+                tour_mapping[row['0) Number']] = row['2) Name of the tour']
+    except FileNotFoundError:
+        print("Error: tours_input.csv not found")
+        return None
+    except Exception as e:
+        print(f"Error reading tours_input.csv: {e}")
+        return None
     
     if tour_code not in tour_mapping:
         print(f"No tour found with code {tour_code}")
         return None
     
     tour_name = tour_mapping[tour_code]
-    response = supabase.table('tours').select('id, name, description').eq('name', tour_name).execute()
+    response = supabase.table('tours').select('id, title, description').eq('title', tour_name).execute()
     if response.data:
         return response.data[0]
     
@@ -272,7 +270,7 @@ def clean_highlight_title(title):
 def generate_and_store_highlights(tour, override=False):
     """Generate highlights for a tour and store them in the database"""
     tour_id = tour['id']
-    tour_name = tour['name']
+    tour_name = tour['title']  # Changed from 'name' to 'title' to match schema
     description = tour['description']
     
     # Check if highlights already exist for this tour
@@ -288,16 +286,29 @@ def generate_and_store_highlights(tour, override=False):
     
     print(f"Generating highlights for tour: {tour_name}")
     
-    # Generate highlights using Perplexity API
-    system_prompt = "You are a travel expert specializing in creating elegant, sophisticated content for luxury travel experiences."
+    # Generate highlights using Gemini API
     user_prompt = generate_highlights_prompt(tour_name, description)
     
     try:
-        highlights = call_perplexity_api(system_prompt, user_prompt)
+        # Call Gemini API - it returns the parsed JSON (list of highlight dicts)
+        highlights = call_gemini_api(user_prompt)
         
+        # Validate the response is a list
+        if not isinstance(highlights, list):
+             print(f"Error: API did not return a list of highlights for {tour_name}. Response: {highlights}")
+             return False
+        
+        # Limit to 6 highlights just in case API returns more
+        highlights = highlights[:6]
+
         # Store each highlight in the database
         now = datetime.now().isoformat()
         for i, highlight in enumerate(highlights):
+            # Validate highlight structure
+            if not isinstance(highlight, dict) or 'title' not in highlight or 'description' not in highlight:
+                print(f"Warning: Skipping invalid highlight format: {highlight}")
+                continue
+
             # Clean the title to remove prefixes and emojis
             original_title = highlight.get('title', f"Highlight {i+1}")
             cleaned_title = clean_highlight_title(original_title)
@@ -324,7 +335,7 @@ def generate_and_store_highlights(tour, override=False):
 
 def main():
     parser = argparse.ArgumentParser(description='Generate tour highlights')
-    parser.add_argument('-tour', type=str, help='Process specific tour by tour code (e.g., OCE002)')
+    parser.add_argument('-tour', type=str, help='Process specific tour by tour number (e.g., 1)')
     parser.add_argument('-id', type=str, help='Process specific tour by tour ID (UUID)')
     parser.add_argument('-override', action='store_true', help='Override existing highlights')
     args = parser.parse_args()
@@ -337,7 +348,7 @@ def main():
         else:
             print(f"No tour found with ID {args.id}")
     elif args.tour:
-        # Process a single tour by code
+        # Process a single tour by number
         tour = get_tour_by_code(args.tour)
         if tour:
             generate_and_store_highlights(tour, args.override)
@@ -352,7 +363,7 @@ def main():
                 if generate_and_store_highlights(tour, args.override):
                     successful += 1
             except Exception as e:
-                print(f"Failed to process tour {tour['name']}: {str(e)}")
+                print(f"Failed to process tour {tour['title']}: {str(e)}")
         
         print(f"Completed processing {successful} of {len(tours)} tours successfully.")
 

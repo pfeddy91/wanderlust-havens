@@ -1,0 +1,24 @@
+{
+  "tour_id": "e0427b6c-9a3a-48f2-b01e-1ecb05d1caa0",
+  "tour_name": "Balearic Island Bliss",
+  "locations": [
+    {
+      "name": "Palma, Mallorca",
+      "latitude": 39.5696,
+      "longitude": 2.6502,
+      "description": "The sophisticated capital of Mallorca, featuring a stunning Gothic cathedral and serving as a gateway to the Serra de Tramuntana mountains and charming port towns. Likely the main base for the Mallorca portion."
+    },
+    {
+      "name": "Ibiza Town (Eivissa), Ibiza",
+      "latitude": 38.9088,
+      "longitude": 1.4329,
+      "description": "The main hub of Ibiza, known for its historic Dalt Vila (UNESCO site), bohemian markets, and proximity to both vibrant nightlife and secluded 'calas'. A likely base for exploring Ibiza."
+    },
+    {
+      "name": "Formentera",
+      "latitude": 38.7049,
+      "longitude": 1.4284,
+      "description": "A tranquil island paradise south of Ibiza, renowned for its Caribbean-like white-sand beaches (like Ses Illetes) and crystal-clear waters. The coordinates point to Sant Francesc Xavier, the capital, representing the stay on the island."
+    }
+  ]
+}

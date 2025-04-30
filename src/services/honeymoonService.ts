@@ -1,5 +1,8 @@
 import { supabase } from '@/integrations/supabase/client';
 import { Tour, TourImage, TourLocation, TourMap } from '@/types/tour';
+import { Country } from '@/types/country';
+import { TourHighlight } from '@/types/tourHighlight';
+import { TourItinerary } from '@/types/tourItinerary';
 
 // Region-related functions
 export async function getRegions() {
@@ -107,80 +110,170 @@ export async function getFeaturedTours() {
   return data || [];
 }
 
-export async function getTourBySlug(slug: string) {
-  const { data, error } = await supabase
-    .from('tours')
-    .select(`
-      *,
-      tour_countries(*, countries(*)),
-      tour_highlights(*),
-      tour_hotels(*, hotels(*, hotel_images(*)))
-    `)
-    .eq('slug', slug)
-    .single();
-  
-  if (error) {
-    console.error(`Error fetching tour with slug ${slug}:`, error);
+export async function getTourBySlug(slug: string): Promise<Tour | null> {
+  if (!slug) {
+    console.error("getTourBySlug called with no slug");
     return null;
   }
-  
-  const { data: tourImages, error: imagesError } = await supabase
+  console.log(`Fetching tour with slug: ${slug}`);
+
+  // 1. Fetch the main tour data
+  const { data: tourData, error: tourError } = await supabase
+    .from('tours')
+    .select('*') // Select all fields from the tours table
+    .eq('slug', slug)
+    .single(); // Expect only one tour or null
+
+  // Handle initial fetch error or no data found
+  if (tourError) {
+    console.error(`Supabase error fetching tour by slug ${slug}:`, tourError.message);
+    return null; // Return null if there's a DB error
+  }
+  if (!tourData) {
+    console.log(`No tour found with slug: ${slug}`);
+    return null; // Return null if no tour matches the slug
+  }
+
+  // We have tourData, proceed to fetch related details
+  const tourId = tourData.id;
+
+  // 2. Fetch associated tour images
+  const { data: imagesData, error: imagesError } = await supabase
     .from('tour_images')
     .select('*')
-    .eq('tour_id', data.id)
+    .eq('tour_id', tourId)
     .order('display_order');
-  
+
   if (imagesError) {
-    console.error(`Error fetching images for tour ${data.id}:`, imagesError);
+    console.error(`Error fetching images for tour ${tourId}:`, imagesError);
+    // Continue, but assign empty array
   }
-  
-  const { data: tourLocations, error: locationsError } = await supabase
+
+  // 3. Fetch associated tour locations
+  const { data: locationsData, error: locationsError } = await supabase
     .from('tour_locations')
     .select('*')
-    .eq('tour_id', data.id)
+    .eq('tour_id', tourId)
     .order('order_index');
-    
+
   if (locationsError) {
-    console.error(`Error fetching locations for tour ${data.id}:`, locationsError);
+    console.error(`Error fetching locations for tour ${tourId}:`, locationsError);
+    // Continue, but assign empty array
   }
-  
-  return { 
-    ...data, 
-    tour_images: tourImages || [],
-    tour_locations: tourLocations || [] 
+
+  // 4. Fetch associated tour highlights
+  const { data: highlightsData, error: highlightsError } = await supabase
+    .from('tour_highlights')
+    .select('*')
+    .eq('tour_id', tourId)
+    .order('order'); // Assuming 'order' is the column name
+
+   if (highlightsError) {
+     console.error(`Error fetching highlights for tour ${tourId}:`, highlightsError);
+     // Continue, but assign empty array
+   }
+
+   // 5. Fetch associated tour itineraries (including nested hotel data)
+   const { data: itinerariesData, error: itinerariesError } = await supabase
+     .from('tour_itineraries')
+     .select(`
+       *,
+       hotels (
+         *,
+         hotel_images (*)
+       )
+     `)
+     .eq('tour_id', tourId)
+     .order('order_index');
+
+   if (itinerariesError) {
+     console.error(`Error fetching itineraries for tour ${tourId}:`, itinerariesError);
+     // Continue, but assign empty array
+   }
+
+
+  // 6. Fetch associated countries based on UUIDs in tourData.countries
+  let fetchedCountries: Country[] = [];
+  if (tourData.countries && tourData.countries.length > 0) {
+     const { data: countriesData, error: countriesError } = await supabase
+       .from('countries')
+       .select('*') // Select needed country fields (id, name, slug, etc.)
+       .in('id', tourData.countries); // Filter countries whose ID is in the tour's array
+
+     if (countriesError) {
+       console.error(`Error fetching countries for tour ${tourId}:`, countriesError);
+       // Assign empty array if countries fail
+     } else {
+       fetchedCountries = (countriesData as Country[] || []);
+     }
+  }
+
+  // 7. Combine all data into a single Tour object
+  //    Ensure your `Tour` type definition includes fields for these relations
+  const combinedTourData: Tour = {
+    ...tourData,
+    tour_images: (imagesData as TourImage[] || []),
+    tour_locations: (locationsData as TourLocation[] || []),
+    tour_highlights: (highlightsData as TourHighlight[] || []), // Add highlights
+    tour_itineraries: (itinerariesData as TourItinerary[] || []), // Add itineraries
+    // Add a field for the fetched country details, e.g., country_details
+    // You'll need to add `country_details?: Country[]` to your Tour type definition
+    country_details: fetchedCountries,
+    // Remove the old tour_countries field if it's still in your type
+    // tour_countries: undefined,
   };
+
+  console.log(`Successfully fetched tour and related data for slug: ${slug}`);
+  return combinedTourData;
 }
 
-export async function getToursByCountry(countryId: string) {
-  const { data, error } = await supabase
-    .from('tour_countries')
-    .select('*, tours(*)')
-    .eq('country_id', countryId);
-  
-  if (error) {
-    console.error(`Error fetching tours for country ${countryId}:`, error);
+export async function getToursByCountry(countryId: string): Promise<Tour[]> {
+  if (!countryId) {
+    console.error("getToursByCountry called with no countryId");
     return [];
   }
 
-  const tours = data?.map(tc => tc.tours) || [];
-  
-  for (let i = 0; i < tours.length; i++) {
-    if (tours[i]) {
+  // Fetch tours directly where the 'countries' array contains the countryId
+  const { data: toursData, error: toursError } = await supabase
+    .from('tours') // Query the 'tours' table directly
+    .select('*')    // Select all tour fields
+    .contains('countries', [countryId]); // Filter: 'countries' array must contain countryId
+
+  if (toursError) {
+    console.error(`Error fetching tours for country ${countryId}:`, toursError);
+    return [];
+  }
+
+  if (!toursData || toursData.length === 0) {
+     console.log(`No tours found containing country ID: ${countryId}`);
+     return [];
+  }
+
+  // Now, fetch associated images for each fetched tour
+  // (This part remains similar, but operates on the tours fetched above)
+  const toursWithImages: Tour[] = [];
+  for (const tour of toursData) {
+    if (tour) {
       const { data: images, error: imagesError } = await supabase
         .from('tour_images')
         .select('*')
-        .eq('tour_id', tours[i].id)
+        .eq('tour_id', tour.id)
         .order('display_order');
-      
+
       if (imagesError) {
-        console.error(`Error fetching images for tour ${tours[i].id}:`, imagesError);
+        console.error(`Error fetching images for tour ${tour.id}:`, imagesError);
+        // Add tour even if images fail to load? Or skip? Depends on desired behavior.
+        // Let's add it but with empty images for now.
+        toursWithImages.push({ ...tour, tour_images: [] });
       } else {
-        (tours[i] as Tour).tour_images = images as TourImage[] || [];
+        // Assign images to the tour object
+        toursWithImages.push({ ...tour, tour_images: (images as TourImage[] || []) });
       }
     }
   }
-  
-  return tours as Tour[];
+
+  console.log(`Returning ${toursWithImages.length} tours for country ${countryId}`);
+  return toursWithImages; // Return the processed list of tours with their images
 }
 
 export async function getTourImages(tourId: string) {

@@ -1,0 +1,18 @@
+{
+  "tour_id": "ec3807ac-b70e-45ad-afcd-b25685e35095",
+  "tour_name": "Caribbean All-Inclusive Luxury",
+  "locations": [
+    {
+      "name": "Soufri\u00e8re",
+      "latitude": 13.856,
+      "longitude": -61.059,
+      "description": "The first part of the tour is based in a hillside retreat near the iconic Pitons, strongly suggesting the Soufri\u00e8re area, known for its dramatic volcanic scenery and luxury boutique resorts offering such views."
+    },
+    {
+      "name": "Rodney Bay",
+      "latitude": 14.076,
+      "longitude": -60.953,
+      "description": "The second part involves moving to a larger, all-inclusive beachfront resort. Rodney Bay is the most prominent area in St. Lucia matching this description, known for its extensive bay, beaches, marina, and concentration of larger resorts and amenities."
+    }
+  ]
+}

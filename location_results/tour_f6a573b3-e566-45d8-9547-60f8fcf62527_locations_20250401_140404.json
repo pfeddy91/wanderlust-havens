@@ -1,0 +1,24 @@
+{
+  "tour_id": "f6a573b3-e566-45d8-9547-60f8fcf62527",
+  "tour_name": "Thailand Treasures",
+  "locations": [
+    {
+      "name": "Bangkok",
+      "latitude": 13.7563,
+      "longitude": 100.5018,
+      "description": "Thailand's vibrant capital, known for its dazzling temples like the Grand Palace and Wat Pho, bustling markets, and lively atmosphere along the Chao Phraya River."
+    },
+    {
+      "name": "Chiang Mai",
+      "latitude": 18.7883,
+      "longitude": 98.9853,
+      "description": "The cultural heart of Northern Thailand, situated amidst hills, famous for its ancient temples within the Old City, ethical elephant sanctuaries, and Doi Suthep temple."
+    },
+    {
+      "name": "Koh Samui",
+      "latitude": 9.5232,
+      "longitude": 100.0307,
+      "description": "A tropical island paradise in the Gulf of Thailand, renowned for its beautiful beaches, clear waters, coconut groves, and proximity to Ang Thong Marine Park."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tour_id": "c8cdd915-91e0-42cc-ad1d-a99b25dd6cea",
+  "tour_name": "Swiss Alps Winter Romance",
+  "locations": [
+    {
+      "name": "Zermatt",
+      "latitude": 46.0207,
+      "longitude": 7.7491,
+      "description": "A picturesque, car-free village dramatically set against the backdrop of the awe-inspiring Matterhorn, known for its traditional charm and extensive ski terrain."
+    },
+    {
+      "name": "St. Moritz",
+      "latitude": 46.4984,
+      "longitude": 9.8391,
+      "description": "A chic and sun-blessed resort in the Engadin valley, famous for its 'champagne climate', vibrant atmosphere, luxury boutiques, and unique winter activities like events on the frozen lake."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "ecd530db-e1d7-4afd-bc0d-28163257a68f",
+  "tour_name": "Vietnam Heritage & Beach",
+  "locations": [
+    {
+      "name": "Hanoi",
+      "latitude": 21.0285,
+      "longitude": 105.8542,
+      "description": "Vietnam's captivating capital, the starting point of the tour, known for its Old Quarter, Hoan Kiem Lake, and rich cultural heritage."
+    },
+    {
+      "name": "Hoi An",
+      "latitude": 15.8801,
+      "longitude": 108.338,
+      "description": "A magical UNESCO World Heritage town in Central Vietnam, famed for its preserved ancient town, lanterns, and riverside charm."
+    },
+    {
+      "name": "Con Dao",
+      "latitude": 8.6875,
+      "longitude": 106.611,
+      "description": "A remote archipelago and protected national park known for its pristine beaches, clear waters, and tranquil, off-the-beaten-path atmosphere."
+    }
+  ]
+}

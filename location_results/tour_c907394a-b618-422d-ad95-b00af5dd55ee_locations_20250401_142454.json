@@ -1,0 +1,18 @@
+{
+  "tour_id": "c907394a-b618-422d-ad95-b00af5dd55ee",
+  "tour_name": "Mexico City & Riviera Maya",
+  "locations": [
+    {
+      "name": "Mexico City",
+      "latitude": 19.4326,
+      "longitude": -99.1332,
+      "description": "The vibrant capital of Mexico, offering a blend of rich history, colonial architecture, world-class museums (like Frida Kahlo's home in Coyoac\u00e1n), bustling markets, and sophisticated dining, serving as a base for exploring nearby sites like Teotihuacan."
+    },
+    {
+      "name": "Tulum",
+      "latitude": 20.2114,
+      "longitude": -87.4654,
+      "description": "A stylish town on the Riviera Maya famed for its well-preserved Mayan ruins perched above turquoise waters, stunning white-sand beaches, nearby cenotes (natural swimming holes), and a chic, bohemian atmosphere."
+    }
+  ]
+}

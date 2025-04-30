@@ -1,0 +1,24 @@
+{
+  "tour_id": "84b2b41d-b436-447a-9f1a-c1f878508df9",
+  "tour_name": "Exceptional Kenya and Tanzania",
+  "locations": [
+    {
+      "name": "Maasai Mara National Reserve",
+      "latitude": -1.5,
+      "longitude": 35.1,
+      "description": "Kenya's premier wildlife reserve, renowned for its abundant wildlife, dramatic landscapes, and the seasonal Great Migration river crossings."
+    },
+    {
+      "name": "Serengeti National Park",
+      "latitude": -2.45,
+      "longitude": 34.83,
+      "description": "Tanzania's vast national park, synonymous with the classic African safari, featuring endless plains and massive herds of wildlife."
+    },
+    {
+      "name": "Ngorongoro Conservation Area",
+      "latitude": -3.2,
+      "longitude": 35.55,
+      "description": "Area encompassing the Ngorongoro Crater, a UNESCO World Heritage site known as 'Africa's Eden' due to its high concentration of wildlife within the caldera."
+    }
+  ]
+}

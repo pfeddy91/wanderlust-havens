@@ -1,0 +1,24 @@
+{
+  "tour_id": "1d392b30-7a89-4ca7-853e-24ee139bddeb",
+  "tour_name": "Ultimate New Zealand",
+  "locations": [
+    {
+      "name": "Auckland",
+      "latitude": -36.8485,
+      "longitude": 174.7633,
+      "description": "New Zealand's largest city, known as the 'City of Sails', featuring vibrant waterfronts, world-class dining, and gateway to nearby islands."
+    },
+    {
+      "name": "Bay of Islands",
+      "latitude": -35.2825,
+      "longitude": 174.0915,
+      "description": "A subtropical paradise known for its beautiful islands, turquoise waters, marine life encounters, and significant historical sites."
+    },
+    {
+      "name": "Queenstown",
+      "latitude": -45.0312,
+      "longitude": 168.6626,
+      "description": "Set against the dramatic Southern Alps and Lake Wakatipu, known as the 'Adventure Capital' offering stunning scenery, outdoor activities, and fine dining. Likely base for the Milford Sound excursion."
+    }
+  ]
+}

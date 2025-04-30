@@ -1,0 +1,30 @@
+{
+  "tour_id": "a95371b8-998c-4c4c-bfbe-9055462fb923",
+  "tour_name": "Aegean Sailing Adventure",
+  "locations": [
+    {
+      "name": "Mykonos",
+      "latitude": 37.4467,
+      "longitude": 25.3289,
+      "description": "Known for its cosmopolitan allure, vibrant town (Chora), and iconic windmills. Overnight likely spent on the yacht anchored near the island."
+    },
+    {
+      "name": "Santorini",
+      "latitude": 36.4172,
+      "longitude": 25.4319,
+      "description": "Famous for its dramatic caldera views and picturesque whitewashed villages like Fira (coordinates provided) and Oia. Overnight likely spent on the yacht anchored within or near the caldera."
+    },
+    {
+      "name": "Crete",
+      "latitude": 35.3418,
+      "longitude": 25.1482,
+      "description": "The largest Greek island, offering Minoan history (like Knossos near Heraklion - coordinates provided) and diverse landscapes. Overnight likely spent on the yacht moored near a port facilitating exploration."
+    },
+    {
+      "name": "Rhodes",
+      "latitude": 36.4444,
+      "longitude": 28.2244,
+      "description": "Features the medieval majesty of Rhodes Old Town (coordinates provided), a UNESCO World Heritage site. Overnight likely spent on the yacht moored near Rhodes Town."
+    }
+  ]
+}

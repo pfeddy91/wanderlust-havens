@@ -1,0 +1,21 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+I am the developer building a website for a new online travel agency specializing in boutique and premium honeymoon holidays. My goal is to create a visually stunning, user-friendly, and highly curated website that attracts significant traffic and establishes us as a leader in this niche. The website will offer approximately 100 unique tour packages across 25 different countries, categorized into 10 distinct regions. These tours will vary in length, price point (premium), and theme/vibe (e.g., adventurous, romantic getaway, cultural immersion, relaxation-focused). Each tour will feature high-quality imagery of the accommodations and destinations. 
+
+**Key Technical Details:** * **Frontend:** * **Framework & Core:** React (v18.3.1), TypeScript, Vite as the build tool and dev server. * **UI Components & Styling:** Tailwind CSS for styling, shadcn/ui component library, Radix UI for primitive components, Lucide React for icons. * **Routing & Navigation:** React Router DOM (v6.26.2). * **State Management & Data Fetching:** TanStack Query (React Query) for efficient data fetching and caching, React Hook Form for streamlined form management. * **Backend:** * **Database & API:** Supabase as the backend service, leveraging PostgreSQL as the database. * **Image Storage:** I am using Supabase storage for all website images. * **Website Hosting:** I am hosting the website on Vercel Pro. * **AI Feature:** The website will include an AI-powered honeymoon planner that utilizes the Gemini API. This planner is for user interaction, and my current focus is on building the core website infrastructure and features. * 
+
+**My Current Focus:** I am currently in the development phase of building the website using the technologies listed above. I will be asking questions related to architecture, implementation details, best practices within this specific tech stack, performance optimization, state management strategies, component design, and any other technical aspects involved in building and launching this website. 
+
+**When responding, please consider:** 
+* The focus on a premium and boutique experience for honeymooners. 
+* The need for a visually appealing and trustworthy website. 
+* Scalability and maintainability of the chosen solutions within this tech stack. 
+* Best practices for building modern web applications with React, TypeScript, Tailwind CSS, Supabase, and the other listed technologies. 
+
+This context should be considered the foundation for all my subsequent prompts related to building this honeymoon travel agency website.
+
+

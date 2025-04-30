@@ -1,0 +1,24 @@
+{
+  "tour_id": "bc710721-edfd-4b43-817d-8c8f17a55712",
+  "tour_name": "Epic Southern Italy",
+  "locations": [
+    {
+      "name": "Amalfi",
+      "latitude": 40.6346,
+      "longitude": 14.6026,
+      "description": "The tour begins on the Amalfi Coast, mentioning exploration of Positano and Ravello. Amalfi town serves as a central and representative base for exploring this renowned coastline."
+    },
+    {
+      "name": "Matera",
+      "latitude": 40.6664,
+      "longitude": 16.606,
+      "description": "Explicitly mentioned as the next destination in Basilicata, focusing on the unique experience of exploring the Sassi districts, implying an overnight stay."
+    },
+    {
+      "name": "Ostuni",
+      "latitude": 40.7291,
+      "longitude": 17.5782,
+      "description": "Located in Puglia's Itria Valley region, which is the final destination. Ostuni is mentioned alongside Locorotondo and the general trulli landscape, making it a plausible base for exploring this area."
+    }
+  ]
+}

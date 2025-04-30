@@ -1,0 +1,18 @@
+{
+  "tour_id": "92ca3a46-51a4-4904-8435-fbe6562f72a5",
+  "tour_name": "Samoan Serenity",
+  "locations": [
+    {
+      "name": "Upolu",
+      "latitude": -13.9167,
+      "longitude": -171.75,
+      "description": "The first island visited on the tour, known for its dramatic coastlines, waterfalls like those hidden in emerald rainforests, and the unique To Sua Ocean Trench. Likely serves as the initial base for exploring these attractions."
+    },
+    {
+      "name": "Savai'i",
+      "latitude": -13.6167,
+      "longitude": -172.45,
+      "description": "The second island visited, reached by ferry. Described as larger, more rugged ('real Samoa'), featuring volcanic lava fields, the Alofaaga Blowholes, and secluded beaches, offering a more relaxed pace."
+    }
+  ]
+}

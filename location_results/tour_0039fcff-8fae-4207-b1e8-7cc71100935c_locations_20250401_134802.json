@@ -1,0 +1,30 @@
+{
+  "tour_id": "0039fcff-8fae-4207-b1e8-7cc71100935c",
+  "tour_name": "Wild Madagascar",
+  "locations": [
+    {
+      "name": "Andasibe",
+      "latitude": -18.9333,
+      "longitude": 48.4167,
+      "description": "Gateway town for Andasibe-Mantadia National Park, renowned for its primary rainforest, Indri lemurs, and diverse nocturnal wildlife."
+    },
+    {
+      "name": "Ranomafana",
+      "latitude": -21.2597,
+      "longitude": 47.4522,
+      "description": "Village adjacent to Ranomafana National Park, a biodiversity hotspot featuring dense cloud forest and rare species like the golden bamboo lemur."
+    },
+    {
+      "name": "Ranohira",
+      "latitude": -22.555,
+      "longitude": 45.42,
+      "description": "Primary base for exploring Isalo National Park, known for its dramatic sandstone massifs, canyons, natural swimming pools, and ring-tailed lemurs."
+    },
+    {
+      "name": "Ifaty",
+      "latitude": -23.15,
+      "longitude": 43.6167,
+      "description": "Coastal area north of Tulear, offering beaches on the Mozambique Channel, snorkelling opportunities, and access to the unique spiny forest with baobab trees."
+    }
+  ]
+}

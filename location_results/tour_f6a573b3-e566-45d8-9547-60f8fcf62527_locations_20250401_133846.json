@@ -1,0 +1,24 @@
+{
+  "tour_id": "f6a573b3-e566-45d8-9547-60f8fcf62527",
+  "tour_name": "Thailand Treasures",
+  "locations": [
+    {
+      "name": "Bangkok",
+      "latitude": 13.7563,
+      "longitude": 100.5018,
+      "description": "Thailand's vibrant capital, the starting point focusing on cultural landmarks like the Grand Palace and Wat Pho, river exploration, markets, and diverse cuisine."
+    },
+    {
+      "name": "Chiang Mai",
+      "latitude": 18.7883,
+      "longitude": 98.9853,
+      "description": "The cultural hub of Northern Thailand, offering ancient temples within the Old City, ethical elephant interactions, cooking experiences, and mountain scenery."
+    },
+    {
+      "name": "Koh Samui",
+      "latitude": 9.526,
+      "longitude": 100.0324,
+      "description": "A tropical island destination in the Gulf of Thailand focused on beach relaxation, swimming, spa treatments, and potential excursions to nearby marine parks."
+    }
+  ]
+}

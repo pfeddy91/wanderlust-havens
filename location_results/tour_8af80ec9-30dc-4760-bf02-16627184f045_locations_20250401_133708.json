@@ -1,0 +1,24 @@
+{
+  "tour_id": "8af80ec9-30dc-4760-bf02-16627184f045",
+  "tour_name": "Scandinavian Splendor",
+  "locations": [
+    {
+      "name": "Copenhagen",
+      "latitude": 55.6761,
+      "longitude": 12.5683,
+      "description": "Denmark's capital, the starting point, known for its 'hygge' atmosphere, colourful Nyhavn harbour, royal history, and design scene."
+    },
+    {
+      "name": "Stockholm",
+      "latitude": 59.3293,
+      "longitude": 18.0686,
+      "description": "Sweden's capital, spread across 14 islands, featuring the medieval Gamla Stan (Old Town) and a strong connection to its surrounding archipelago."
+    },
+    {
+      "name": "Oslo",
+      "latitude": 59.9139,
+      "longitude": 10.7522,
+      "description": "Norway's capital, the final destination, nestled by the Oslofjord, known for its blend of modern architecture, rich maritime and Viking history, and proximity to nature."
+    }
+  ]
+}

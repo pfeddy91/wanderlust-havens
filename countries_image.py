@@ -9,13 +9,13 @@ from PIL import Image, ImageEnhance, ImageFilter
 import google.generativeai as genai
 from supabase import create_client
 
-# Hardcoded credentials
-SUPABASE_URL = "https://jeiuruhneitvfyjkmbvj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplaXVydWhuZWl0dmZ5amttYnZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2NjU5NzQsImV4cCI6MjA1ODI0MTk3NH0.iYBsdI4p7o7rKbrMHstzis4KZYV_ks2p09pmtj5-bTo"
+# Supabase credentials (ensure these are correct)
+SUPABASE_URL = "https://ydcggawwxohbcpcjyhdk.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkY2dnYXd3eG9oYmNwY2p5aGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNjk3NjUsImV4cCI6MjA1ODg0NTc2NX0.FHSkH2qML9w5Li6VfG8jWbcu-DV4HQCLTK0wu6J3VV0"
 GEMINI_API_KEY = 'AIzaSyBHQrWXW6ix1Me5ufjfc70b01W20hbgZKc'
-GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
+GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-exp-03-25:generateContent'
 PEXELS_API_KEY = "2nTDyWqcjwBRUWzyi2mpWlbqKHAy4xxAHuRbSHtA38kCOfoNQbDeOoye"
-FORCE_UPDATE = False  # Set to True to update images that already exist
+FORCE_UPDATE = True  # Set to True to update images that already exist
 
 # Initialize Supabase client
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -189,44 +189,52 @@ def evaluate_image_quality(image_url: str, country_name: str) -> float:
         print(f"Error evaluating image: {e}")
         return 0.0
 
-
 def post_process_image(image_data: bytes) -> bytes:
-    """Apply post-processing to the image"""
+    """Apply post-processing optimized for luxury travel photography
+    Enhances colors particularly for sea, sky and nature while maintaining bright, premium aesthetic"""
     with Image.open(BytesIO(image_data)) as img:
-        # Resize
-        img = img.resize((1920, int(img.height * (1920 / img.width))), Image.LANCZOS)
+        # Preserve original aspect ratio
+        original_aspect = img.height / img.width
         
-        # Enhance contrast
-        enhancer = ImageEnhance.Contrast(img)
-        img = enhancer.enhance(1.2)
+        # Maintain 1920px width for premium quality
+        img_main = img.resize((1920, int(1920 * original_aspect)), Image.LANCZOS)
         
-        # Enhance saturation
-        enhancer = ImageEnhance.Color(img)
-        img = enhancer.enhance(1.15)
+        # Enhance brightness more to make images less dark
+        enhancer = ImageEnhance.Brightness(img_main)
+        img_main = enhancer.enhance(0.97)  # Increased from 1.1 to 1.15
         
-        # Enhance warmth
-        r, g, b = img.split()
-        r = r.point(lambda i: i * 1.05)
-        g = g.point(lambda i: i * 1.03)
-        img = Image.merge('RGB', (r, g, b))
+        # Reduce contrast slightly for a more natural look
+        enhancer = ImageEnhance.Contrast(img_main)
+        img_main = enhancer.enhance(1.1)  # Reduced from 1.15 to 1.1
         
-        # Sharpen
-        img = img.filter(ImageFilter.UnsharpMask(radius=1.0, percent=75, threshold=3))
+        # Enhance saturation slightly for vibrant nature and sea colors
+        enhancer = ImageEnhance.Color(img_main)
+        img_main = enhancer.enhance(1.2)  # Increased from 1.15 to 1.2
         
-        # Vignette
-        vignette = Image.new('L', img.size, 255)  # Start with a white mask
-        for x in range(img.width):
-            for y in range(img.height):
-                dx = x - img.width / 2
-                dy = y - img.height / 2
+        # Enhance colors with focus on blues for sea and sky
+        r, g, b = img_main.split()
+        r = r.point(lambda i: i * 1.02)  # Reduced from 1.05 to 1.02
+        g = g.point(lambda i: i * 1.02)  # Reduced from 1.03 to 1.02
+        b = b.point(lambda i: i * 1.05)  # Added blue enhancement for sea/sky
+        img_main = Image.merge('RGB', (r, g, b))
+        
+        # Sharpen with refined parameters for luxury detail
+        img_main = img_main.filter(ImageFilter.UnsharpMask(radius=0.8, percent=70, threshold=2))
+        
+        # Very subtle vignette for a clean, premium look
+        vignette = Image.new('L', img_main.size, 255)
+        for x in range(img_main.width):
+            for y in range(img_main.height):
+                dx = x - img_main.width / 2
+                dy = y - img_main.height / 2
                 distance = (dx**2 + dy**2)**0.5
-                vignette.putpixel((x, y), int(255 * (1 - min(1, distance / (img.width / 2) * 0.2))))  # Reduce the effect
+                vignette.putpixel((x, y), int(255 * (1 - min(1, distance / (img_main.width / 2) * 0.08))))
         
-        img = Image.composite(img, Image.new('RGB', img.size, (0, 0, 0)), vignette)
+        img_main = Image.composite(img_main, Image.new('RGB', img_main.size, (0, 0, 0)), vignette)
         
-        # Save to bytes
+        # Save to bytes with higher quality for luxury brand
         output = BytesIO()
-        img.save(output, format='JPEG')
+        img_main.save(output, format='JPEG', quality=90, optimize=True, progressive=True)
         return output.getvalue()
 
 

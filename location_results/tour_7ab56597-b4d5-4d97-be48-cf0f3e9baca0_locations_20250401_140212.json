@@ -1,0 +1,24 @@
+{
+  "tour_id": "7ab56597-b4d5-4d97-be48-cf0f3e9baca0",
+  "tour_name": "Turkish Delights",
+  "locations": [
+    {
+      "name": "Istanbul",
+      "latitude": 41.0082,
+      "longitude": 28.9784,
+      "description": "A major city straddling Europe and Asia across the Bosphorus Strait, known for its rich history, iconic landmarks like Hagia Sophia and the Blue Mosque, and vibrant markets like the Grand Bazaar."
+    },
+    {
+      "name": "Cappadocia",
+      "latitude": 38.6431,
+      "longitude": 34.8287,
+      "description": "A historical region in Central Anatolia famous for its unique 'fairy chimney' rock formations, ancient cave dwellings, underground cities, and popular hot air ballooning."
+    },
+    {
+      "name": "Bodrum",
+      "latitude": 37.0344,
+      "longitude": 27.4305,
+      "description": "A city on the Bodrum Peninsula, stretching from Turkey's southwest coast into the Aegean Sea, known for its beaches, marinas, nightlife, and the site of the ancient Mausoleum at Halicarnassus."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "tour_id": "e21c9918-7cab-437d-b74c-d4e339a0abe7",
+  "tour_name": "Tahiti Overwater Luxury",
+  "locations": [
+    {
+      "name": "Moorea",
+      "latitude": -17.538,
+      "longitude": -149.828,
+      "description": "Known as the 'Magical Island', featuring dramatic volcanic landscapes, lush valleys, pineapple plantations, and calm lagoons ideal for water activities."
+    },
+    {
+      "name": "Bora Bora",
+      "latitude": -16.5,
+      "longitude": -151.741,
+      "description": "Famous for its iconic turquoise lagoon dominated by Mount Otemanu, luxurious overwater bungalows, and opportunities to swim with sharks and rays."
+    }
+  ]
+}

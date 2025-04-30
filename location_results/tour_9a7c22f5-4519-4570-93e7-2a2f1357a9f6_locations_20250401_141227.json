@@ -1,0 +1,24 @@
+{
+  "tour_id": "9a7c22f5-4519-4570-93e7-2a2f1357a9f6",
+  "tour_name": "Highlights of Zambia, South Africa and Mozambique",
+  "locations": [
+    {
+      "name": "Livingstone",
+      "latitude": -17.8519,
+      "longitude": 25.8702,
+      "description": "The primary gateway city on the Zambian side of Victoria Falls, offering access to one of the world's largest waterfalls and activities on the Zambezi River."
+    },
+    {
+      "name": "Sabi Sands Game Reserve",
+      "latitude": -24.7967,
+      "longitude": 31.5,
+      "description": "A renowned private game reserve bordering Kruger National Park in South Africa, famous for its high density of wildlife, particularly leopards, and luxury safari experiences."
+    },
+    {
+      "name": "Bazaruto Archipelago",
+      "latitude": -21.6833,
+      "longitude": 35.45,
+      "description": "An idyllic group of islands off the coast of Mozambique, known for pristine white-sand beaches, turquoise waters, coral reefs, and marine life, offering a tranquil beach escape."
+    }
+  ]
+}

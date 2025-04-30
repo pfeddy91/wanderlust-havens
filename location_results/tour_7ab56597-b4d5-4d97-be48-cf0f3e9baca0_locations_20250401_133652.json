@@ -1,0 +1,24 @@
+{
+  "tour_id": "7ab56597-b4d5-4d97-be48-cf0f3e9baca0",
+  "tour_name": "Turkish Delights",
+  "locations": [
+    {
+      "name": "Istanbul",
+      "latitude": 41.0082,
+      "longitude": 28.9784,
+      "description": "The tour begins in this vibrant metropolis spanning Europe and Asia, known for iconic sites like Hagia Sophia, the Blue Mosque, and the Grand Bazaar."
+    },
+    {
+      "name": "G\u00f6reme (Cappadocia)",
+      "latitude": 38.6431,
+      "longitude": 34.8287,
+      "description": "Located in the heart of Cappadocia, this area is the base for exploring surreal landscapes, fairy chimneys, cave dwellings, and experiencing hot air balloon rides. G\u00f6reme is a central town often used as a base."
+    },
+    {
+      "name": "Bodrum",
+      "latitude": 37.0344,
+      "longitude": 27.4305,
+      "description": "The final stop is this glamorous Aegean coastal town, offering relaxation by the sea, historical exploration (Mausoleum at Halicarnassus), and charming white-washed architecture."
+    }
+  ]
+}

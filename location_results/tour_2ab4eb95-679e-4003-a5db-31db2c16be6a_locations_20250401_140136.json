@@ -1,0 +1,24 @@
+{
+  "tour_id": "2ab4eb95-679e-4003-a5db-31db2c16be6a",
+  "tour_name": "Scottish Highlands & Island Escape",
+  "locations": [
+    {
+      "name": "Edinburgh",
+      "latitude": 55.9533,
+      "longitude": -3.1883,
+      "description": "Scotland's capital city, the starting point of the tour, known for its historic castle, Royal Mile, and blend of medieval and Georgian architecture."
+    },
+    {
+      "name": "Isle of Skye",
+      "latitude": 57.4128,
+      "longitude": -6.1949,
+      "description": "An enchanting island famous for its dramatic landscapes, including the Cuillin mountains, Neist Point cliffs, Fairy Pools, and the Old Man of Storr. The description mentions 'cozy evenings by the fire', strongly implying overnight stays here."
+    },
+    {
+      "name": "Inverness",
+      "latitude": 57.4778,
+      "longitude": -4.2247,
+      "description": "The final destination and cultural capital of the Highlands, serving as a base to explore Loch Ness, Culloden Battlefield, and local distilleries."
+    }
+  ]
+}

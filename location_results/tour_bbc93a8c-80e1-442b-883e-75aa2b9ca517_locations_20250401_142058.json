@@ -1,0 +1,24 @@
+{
+  "tour_id": "bbc93a8c-80e1-442b-883e-75aa2b9ca517",
+  "tour_name": "Argentina Passion",
+  "locations": [
+    {
+      "name": "Buenos Aires",
+      "latitude": -34.6037,
+      "longitude": -58.3816,
+      "description": "The vibrant capital of Argentina, known as the 'Paris of South America' for its European architecture, tango culture, and lively neighborhoods like La Boca and San Telmo."
+    },
+    {
+      "name": "Mendoza",
+      "latitude": -32.8895,
+      "longitude": -68.8458,
+      "description": "Argentina's principal wine region, located at the foothills of the Andes, celebrated for its Malbec wines, boutique vineyards, and stunning mountain scenery."
+    },
+    {
+      "name": "El Calafate",
+      "latitude": -50.3375,
+      "longitude": -72.2741,
+      "description": "A town in Patagonia serving as the primary gateway to the southern part of Los Glaciares National Park, including the famous Perito Moreno Glacier."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "615d6392-5022-465a-8a6d-b7a475fc4157",
+  "tour_name": "Honeymoon in Morocco",
+  "locations": [
+    {
+      "name": "Marrakech",
+      "latitude": 31.6295,
+      "longitude": -7.9811,
+      "description": "The starting point, known for its vibrant Medina, souks, palaces, gardens, and lively atmosphere, offering cultural immersion and romantic experiences."
+    },
+    {
+      "name": "Atlas Mountains (region/village, e.g., Imlil)",
+      "latitude": 31.1353,
+      "longitude": -7.9185,
+      "description": "A region offering dramatic mountain scenery, tranquility, Berber culture, and opportunities for gentle treks or relaxation amidst nature. Imlil is a common base in this area fitting the description."
+    },
+    {
+      "name": "Oualidia",
+      "latitude": 32.7303,
+      "longitude": -9.0339,
+      "description": "A serene coastal fishing village known for its natural lagoon, oyster farms, birdlife, and tranquil beaches, providing a peaceful end to the tour."
+    }
+  ]
+}

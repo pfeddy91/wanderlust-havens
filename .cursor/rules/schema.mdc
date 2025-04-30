@@ -1,0 +1,209 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+-- =============================================
+-- Refactored Schema V2 for Luxury Honeymoon Packages
+-- (Includes Region-Country Link & Removes vibe_tag)
+-- =============================================
+
+-- Regions Table (Added photos array)
+CREATE TABLE public.regions (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  description text NULL,
+  featured_image text NULL,
+  slug text NOT NULL,
+  photos text[] NULL, -- Array to store region photo URLs
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT regions_pkey PRIMARY KEY (id),
+  CONSTRAINT regions_slug_key UNIQUE (slug)
+);
+
+-- Countries Table (Re-added region_id, added photos array)
+CREATE TABLE public.countries (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  region_id uuid NULL, -- Re-added: Foreign key to regions
+  name text NOT NULL,
+  description text NULL,
+  featured_image text NULL,
+  map_image text NULL,
+  slug text NOT NULL,
+  photos text[] NULL, -- Added: Array to store country photo URLs
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  is_featured boolean NULL,
+  best_period text NULL,
+  comfort text NULL,
+  distance text NULL,
+  rationale text NULL,
+  favourite_destination boolean NULL DEFAULT false,
+  CONSTRAINT countries_pkey PRIMARY KEY (id),
+  CONSTRAINT countries_slug_key UNIQUE (slug),
+  CONSTRAINT countries_region_id_fkey FOREIGN KEY (region_id) REFERENCES regions(id) ON DELETE SET NULL -- Re-added constraint
+);
+-- Optional Index for the re-added FK
+CREATE INDEX IF NOT EXISTS idx_countries_region_id ON public.countries USING btree (region_id);
+
+
+-- Tours Table (Main Refactored Table - Removed vibe_tag)
+CREATE TABLE public.tours (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  title text NOT NULL, -- Renamed from 'name'
+  slug text NOT NULL,
+  duration integer NOT NULL,
+  guide_price numeric(10,2) NOT NULL,
+  summary text NOT NULL,
+  description text NOT NULL,
+  featured_image text NULL,
+  region_id uuid NULL, -- Link to regions (kept)
+  collection text NULL, -- Collection identifier (kept)
+  countries uuid[] NULL, -- Array of country UUIDs (kept)
+  is_featured boolean NULL DEFAULT false,
+  -- vibe_tag jsonb NULL, -- Removed as requested
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT tours_pkey PRIMARY KEY (id),
+  CONSTRAINT tours_slug_key UNIQUE (slug),
+  CONSTRAINT tours_region_id_fkey FOREIGN KEY (region_id) REFERENCES regions(id) ON DELETE SET NULL -- Or ON DELETE RESTRICT
+);
+-- Optional Index: Consider adding an index if you query tours by country frequently
+-- CREATE INDEX idx_tours_countries ON public.tours USING GIN (countries);
+
+-- Hotels Table (Removed country_id)
+CREATE TABLE public.hotels (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  location text NOT NULL,
+  -- country_id uuid NULL, -- Removed: Country context via tour/itinerary/region
+  description text NULL,
+  star_rating integer NULL,
+  features text[] NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT hotels_pkey PRIMARY KEY (id),
+  CONSTRAINT hotels_star_rating_check CHECK (((star_rating >= 1) AND (star_rating <= 5)))
+);
+
+-- Hotel Images Table (Unchanged structure, ensures FK integrity)
+CREATE TABLE public.hotel_images (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  hotel_id uuid NULL,
+  image_url text NOT NULL,
+  alt_text text NULL,
+  is_featured boolean NULL DEFAULT false,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT hotel_images_pkey PRIMARY KEY (id),
+  CONSTRAINT hotel_images_hotel_id_fkey FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_hotel_images_hotel_id ON public.hotel_images USING btree (hotel_id);
+
+
+-- Tour Itineraries Table (Added hotel_id)
+CREATE TABLE public.tour_itineraries (
+  id serial NOT NULL,
+  tour_id uuid NULL,
+  hotel_id uuid NULL, -- Foreign key to hotels
+  day_range character varying(20) NOT NULL,
+  title text NOT NULL,
+  content text NOT NULL,
+  order_index integer NOT NULL,
+  created_at timestamp with time zone NULL DEFAULT now(),
+  updated_at timestamp with time zone NULL DEFAULT now(),
+  CONSTRAINT tour_itineraries_pkey PRIMARY KEY (id),
+  CONSTRAINT tour_itineraries_tour_id_fkey FOREIGN KEY (tour_id) REFERENCES tours(id) ON DELETE CASCADE,
+  CONSTRAINT tour_itineraries_hotel_id_fkey FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE SET NULL
+);
+-- Ensure necessary indexes exist
+CREATE INDEX IF NOT EXISTS idx_tour_itineraries_tour_id ON public.tour_itineraries USING btree (tour_id);
+CREATE INDEX IF NOT EXISTS idx_tour_itineraries_hotel_id ON public.tour_itineraries USING btree (hotel_id);
+
+-- =============================================
+-- Tables Kept Unchanged (as requested previously)
+-- =============================================
+
+-- Tour Highlights Table
+CREATE TABLE public.tour_highlights (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  tour_id uuid NULL,
+  title text NOT NULL,
+  description text NULL,
+  image text NULL,
+  "order" integer NOT NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT tour_highlights_pkey PRIMARY KEY (id),
+  CONSTRAINT tour_highlights_tour_id_fkey FOREIGN KEY (tour_id) REFERENCES tours(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_tour_highlights_tour_id ON public.tour_highlights USING btree (tour_id);
+
+
+-- Tour Images Table
+CREATE TABLE public.tour_images (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  tour_id uuid NULL,
+  image_url text NOT NULL,
+  alt_text text NULL,
+  is_featured boolean NULL DEFAULT false,
+  display_order integer NOT NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  is_primary boolean NULL DEFAULT false,
+  search_term text NULL,
+  overall_score numeric NULL,
+  country_name text NULL, -- Note: Now potentially redundant with tours.countries array? Review if needed.
+  alt text NULL,
+  CONSTRAINT tour_images_pkey PRIMARY KEY (id),
+  CONSTRAINT tour_images_tour_id_fkey FOREIGN KEY (tour_id) REFERENCES tours(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_tour_images_tour_id ON public.tour_images USING btree (tour_id);
+
+-- Tour Locations Table
+CREATE TABLE public.tour_locations (
+  id serial NOT NULL,
+  tour_id uuid NOT NULL,
+  name character varying(255) NOT NULL,
+  latitude double precision NOT NULL,
+  longitude double precision NOT NULL,
+  description text NULL,
+  order_index integer NOT NULL,
+  CONSTRAINT tour_locations_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_tour_locations_tour_id FOREIGN KEY (tour_id) REFERENCES tours(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_tour_locations_tour_id ON public.tour_locations USING btree (tour_id);
+
+-- Tour Maps Table
+CREATE TABLE public.tour_maps (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  tour_id uuid NOT NULL,
+  static_map_url text NULL,
+  route_geojson jsonb NULL,
+  distance text NULL,
+  duration text NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT tour_maps_pkey PRIMARY KEY (id),
+  CONSTRAINT tour_maps_tour_id_fkey FOREIGN KEY (tour_id) REFERENCES tours(id) ON DELETE CASCADE
+);
+CREATE INDEX IF NOT EXISTS idx_tour_maps_tour_id ON public.tour_maps USING btree (tour_id);
+
+-- Background Images Table
+CREATE TABLE public.background_images (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  image_url text NOT NULL,
+  alt_text text NULL,
+  display_order integer NOT NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT background_images_pkey PRIMARY KEY (id)
+);
+
+-- =============================================
+-- End of Refactored Schema V2
+-- =============================================

@@ -1,0 +1,2528 @@
+[
+  {
+    "tour_id": "b31f0032-e5a5-4470-9bfd-c339382bd5e5",
+    "tour_name": "Romantic Italian Journey",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Venice",
+        "latitude": 45.4408,
+        "longitude": 12.3155,
+        "description": "The unique 'Floating City', renowned for its intricate network of canals, gondolas, historic architecture, and romantic atmosphere."
+      },
+      {
+        "name": "Florence",
+        "latitude": 43.7696,
+        "longitude": 11.2558,
+        "description": "The capital of Tuscany, celebrated as the birthplace of the Renaissance, home to masterpieces of art and architecture like Michelangelo's David and the Duomo."
+      },
+      {
+        "name": "Rome",
+        "latitude": 41.9028,
+        "longitude": 12.4964,
+        "description": "Italy's capital, the 'Eternal City', offering a blend of ancient wonders like the Colosseum and Roman Forum, Vatican City treasures, and vibrant modern life."
+      }
+    ]
+  },
+  {
+    "tour_id": "c2011e70-337e-4522-b1b4-ab94759dafce",
+    "tour_name": "Amalfi Coast Splendor",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Positano",
+        "latitude": 40.6285,
+        "longitude": 14.485,
+        "description": "The tour begins here, described as the Amalfi Coast's postcard-perfect jewel, focusing on exploration, relaxation, and soaking in the romantic atmosphere, implying an overnight stay."
+      },
+      {
+        "name": "Capri",
+        "latitude": 40.5514,
+        "longitude": 14.2433,
+        "description": "Travelers move here from Positano to discover the island's magic, including boat tours, exploring the town, and visiting gardens/viewpoints, suggesting this is the second overnight base."
+      },
+      {
+        "name": "Ravello",
+        "latitude": 40.6497,
+        "longitude": 14.6122,
+        "description": "The tour concludes its journey here, emphasizing tranquility, stunning views, villas, gardens, and intimate dinners, indicating this is the final overnight location."
+      }
+    ]
+  },
+  {
+    "tour_id": "bc710721-edfd-4b43-817d-8c8f17a55712",
+    "tour_name": "Epic Southern Italy",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Amalfi",
+        "latitude": 40.6346,
+        "longitude": 14.6026,
+        "description": "The tour begins on the Amalfi Coast, mentioning exploration of Positano and Ravello. Amalfi town serves as a central and representative base for exploring this renowned coastline."
+      },
+      {
+        "name": "Matera",
+        "latitude": 40.6664,
+        "longitude": 16.606,
+        "description": "Explicitly mentioned as the next destination in Basilicata, focusing on the unique experience of exploring the Sassi districts, implying an overnight stay."
+      },
+      {
+        "name": "Ostuni",
+        "latitude": 40.7291,
+        "longitude": 17.5782,
+        "description": "Located in Puglia's Itria Valley region, which is the final destination. Ostuni is mentioned alongside Locorotondo and the general trulli landscape, making it a plausible base for exploring this area."
+      }
+    ]
+  },
+  {
+    "tour_id": "074a7e86-52fd-4a5e-a820-bc372902f6c7",
+    "tour_name": "Tuscan Countryside Retreat",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Florence",
+        "latitude": 43.7696,
+        "longitude": 11.2558,
+        "description": "The starting point of the tour, renowned as the cradle of the Renaissance, famous for its art, architecture, and historical significance."
+      },
+      {
+        "name": "Chianti Region",
+        "latitude": 43.5875,
+        "longitude": 11.3175,
+        "description": "The heart of the trip, characterized by rolling hills, vineyards, olive groves, and rustic accommodations like farmhouses or villas. Known for Chianti Classico wine. (Coordinates are approximate, representing a central point like Greve in Chianti)."
+      },
+      {
+        "name": "Siena",
+        "latitude": 43.3188,
+        "longitude": 11.3308,
+        "description": "The concluding city of the retreat, a stunning medieval Gothic city famous for the Piazza del Campo and the Palio horse race."
+      }
+    ]
+  },
+  {
+    "tour_id": "0c28f9bb-feaf-4246-9416-ce172d430d94",
+    "tour_name": "Greek Island Odyssey",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Athens",
+        "latitude": 37.9838,
+        "longitude": 23.7275,
+        "description": "The capital of Greece, renowned as the cradle of Western civilization, featuring ancient landmarks like the Acropolis and the historic Plaka district."
+      },
+      {
+        "name": "Santorini",
+        "latitude": 36.3932,
+        "longitude": 25.4615,
+        "description": "A volcanic island famous for its dramatic caldera views, stunning sunsets, unique beaches, and charming villages like Oia and Fira."
+      },
+      {
+        "name": "Mykonos",
+        "latitude": 37.4467,
+        "longitude": 25.3289,
+        "description": "A cosmopolitan island known for its vibrant energy, picturesque Mykonos Town (Chora), iconic windmills, beautiful beaches, and sophisticated atmosphere."
+      }
+    ]
+  },
+  {
+    "tour_id": "03441a4a-b7f7-475e-b957-851bc1620097",
+    "tour_name": "Hidden Greek Treasures",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Athens",
+        "latitude": 37.9838,
+        "longitude": 23.7275,
+        "description": "The capital of Greece, renowned for its ancient landmarks including the Acropolis and Parthenon, and vibrant neighborhoods like Plaka."
+      },
+      {
+        "name": "Milos",
+        "latitude": 36.7431,
+        "longitude": 24.4471,
+        "description": "A volcanic island in the Cyclades famous for its unique lunar-like landscapes (e.g., Sarakiniko beach), dramatic coastline, catacombs, and charming fishing villages."
+      },
+      {
+        "name": "Sifnos",
+        "latitude": 36.9714,
+        "longitude": 24.6958,
+        "description": "A Cycladic island celebrated for its distinct pottery, exceptional cuisine, picturesque whitewashed villages, numerous churches, and extensive network of walking trails."
+      },
+      {
+        "name": "Naxos",
+        "latitude": 37.0751,
+        "longitude": 25.4869,
+        "description": "The largest island in the Cyclades, known for the ancient Portara marble gate, mountainous inland villages, fertile valleys, olive groves, and long sandy beaches."
+      }
+    ]
+  },
+  {
+    "tour_id": "b727315d-00c5-40f9-b364-0bd2c4aec025",
+    "tour_name": "Ultimate Peloponnese",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Mani Peninsula",
+        "latitude": 36.6636,
+        "longitude": 22.3822,
+        "description": "A rugged and historic region in the southern Peloponnese, known for its distinctive stone tower houses, wild landscapes, and fiercely independent past. (Coordinates are approximate, centered near Areopoli as a likely base)."
+      },
+      {
+        "name": "Monemvasia",
+        "latitude": 36.6875,
+        "longitude": 23.0347,
+        "description": "A unique medieval fortress town located on a small island linked to the mainland by a causeway, offering a magical atmosphere with its car-free alleys and Byzantine history."
+      },
+      {
+        "name": "Porto Heli",
+        "latitude": 37.325,
+        "longitude": 23.1444,
+        "description": "A sophisticated harbour town on the eastern Peloponnese coast, known as part of the 'Greek Riviera', offering seaside relaxation and access to nearby islands."
+      }
+    ]
+  },
+  {
+    "tour_id": "a95371b8-998c-4c4c-bfbe-9055462fb923",
+    "tour_name": "Aegean Sailing Adventure",
+    "success": false,
+    "message": "Failed to get locations"
+  },
+  {
+    "tour_id": "a122cbf7-08a5-46e9-a9a5-622544341dfe",
+    "tour_name": "French Riviera Romance",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Paris",
+        "latitude": 48.8566,
+        "longitude": 2.3522,
+        "description": "The capital of France, renowned globally as the 'City of Love', famous for iconic landmarks like the Eiffel Tower, Louvre Museum, and its romantic atmosphere."
+      },
+      {
+        "name": "Nice",
+        "latitude": 43.7102,
+        "longitude": 7.262,
+        "description": "A major city on the French Riviera (C\u00f4te d'Azur), likely serving as the base for exploring nearby locations like Cannes, Antibes, Monaco, and Saint-Paul de Vence, known for its Promenade des Anglais and vibrant old town."
+      }
+    ]
+  },
+  {
+    "tour_id": "2de63978-7a7a-4c4e-9b1c-a70a898deef4",
+    "tour_name": "Provence & C\u00f4te d'Azur",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Aix-en-Provence",
+        "latitude": 43.5297,
+        "longitude": 5.4474,
+        "description": "The elegant heart of Provence, known for its historical architecture, bustling markets, shaded squares, and association with the painter C\u00e9zanne."
+      },
+      {
+        "name": "Saint-Tropez",
+        "latitude": 43.2679,
+        "longitude": 6.6394,
+        "description": "A legendary C\u00f4te d'Azur destination famous for its glamorous reputation, charming old fishing village core, beautiful beaches like Pampelonne, and vibrant port."
+      },
+      {
+        "name": "Nice",
+        "latitude": 43.7102,
+        "longitude": 7.262,
+        "description": "The vibrant capital of the French Riviera, featuring the colorful Vieux Nice (Old Town), the iconic Promenade des Anglais, art museums, and panoramic views from Castle Hill."
+      }
+    ]
+  },
+  {
+    "tour_id": "3ab0a6d9-a358-4f66-ad00-bbb6ce2d49c2",
+    "tour_name": "Parisian Chic & Champagne",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Paris",
+        "latitude": 48.8566,
+        "longitude": 2.3522,
+        "description": "The capital of France, renowned for its iconic landmarks like the Eiffel Tower and Louvre Museum, romantic atmosphere, world-class museums, and vibrant cultural scene. The tour begins here."
+      },
+      {
+        "name": "\u00c9pernay",
+        "latitude": 49.0406,
+        "longitude": 3.9547,
+        "description": "Often called the 'Capital of Champagne', famous for the Avenue de Champagne where major houses are located, and extensive underground cellars (cray\u00e8res). While Reims is also mentioned as a possibility to explore, \u00c9pernay serves as a central hub in the Champagne region and fits the description of grand avenues and famous houses."
+      }
+    ]
+  },
+  {
+    "tour_id": "2bfeb6ad-7d12-41db-b49c-ace75f86a207",
+    "tour_name": "Sunlit Soul of Spain",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Madrid",
+        "latitude": 40.4168,
+        "longitude": -3.7038,
+        "description": "Elegant capital of Spain, known for its world-class art museums ('Golden Triangle'), Royal Palace, vibrant plazas like Plaza Mayor, and sophisticated atmosphere."
+      },
+      {
+        "name": "Seville",
+        "latitude": 37.3891,
+        "longitude": -5.9845,
+        "description": "The fiery heart of Andalusia, famous for its majestic Alc\u00e1zar palace, the historic Santa Cruz quarter, flamenco performances, and stunning Mudejar architecture."
+      },
+      {
+        "name": "Granada",
+        "latitude": 37.1773,
+        "longitude": -3.5986,
+        "description": "Nestled at the foot of the Sierra Nevada mountains, renowned worldwide for the breathtaking Alhambra Palace and Generalife Gardens, showcasing exquisite Moorish artistry."
+      },
+      {
+        "name": "Montecorto",
+        "latitude": 36.8086,
+        "longitude": -5.2664,
+        "description": "A picturesque 'white village' (pueblo blanco) in the Andalusian hills, offering a tranquil retreat amidst olive groves, stunning natural beauty, and authentic rural charm."
+      }
+    ]
+  },
+  {
+    "tour_id": "921e3684-c92e-41fb-afeb-728e402ff855",
+    "tour_name": "Spanish Coastal Romance",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Barcelona",
+        "latitude": 41.3851,
+        "longitude": 2.1734,
+        "description": "Catalan capital known for Gaud\u00ed's architecture, the Gothic Quarter, and vibrant Las Ramblas."
+      },
+      {
+        "name": "Valencia",
+        "latitude": 39.4699,
+        "longitude": -0.3763,
+        "description": "City blending historic sites like the Silk Exchange with modern marvels like the City of Arts and Sciences, and the birthplace of paella."
+      },
+      {
+        "name": "Palma",
+        "latitude": 39.5696,
+        "longitude": 2.6502,
+        "description": "Capital city of Mallorca, featuring a stunning cathedral and bustling marina, acting as a gateway to the island's beaches and the Serra de Tramuntana mountains."
+      }
+    ]
+  },
+  {
+    "tour_id": "e0427b6c-9a3a-48f2-b01e-1ecb05d1caa0",
+    "tour_name": "Balearic Island Bliss",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Mallorca",
+        "latitude": 39.6953,
+        "longitude": 3.0176,
+        "description": "The largest Balearic island, offering a mix of rugged mountains (Serra de Tramuntana), picturesque villages, charming ports, and the sophisticated capital, Palma."
+      },
+      {
+        "name": "Ibiza",
+        "latitude": 39.02,
+        "longitude": 1.4821,
+        "description": "Famous for its vibrant atmosphere but also featuring hidden coves, the historic Dalt Vila (Ibiza Town's old quarter), bohemian markets, and stylish relaxation spots."
+      },
+      {
+        "name": "Formentera",
+        "latitude": 38.7063,
+        "longitude": 1.4546,
+        "description": "Ibiza's serene sister island, renowned for its exceptionally white beaches, clear turquoise waters, and tranquil atmosphere, ideal for peaceful relaxation."
+      }
+    ]
+  },
+  {
+    "tour_id": "d64ab6f7-4af3-4ede-8b58-d4f237ee8b79",
+    "tour_name": "Andalusian Dream",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Seville",
+        "latitude": 37.3891,
+        "longitude": -5.9845,
+        "description": "Capital of Andalusia, known for the Real Alc\u00e1zar palace, the Santa Cruz neighbourhood, and passionate flamenco shows."
+      },
+      {
+        "name": "Cordoba",
+        "latitude": 37.8882,
+        "longitude": -4.7794,
+        "description": "Historic city famed for the Mezquita-Cathedral with its unique arches and the charming patios of the Jewish Quarter (Juder\u00eda)."
+      },
+      {
+        "name": "Granada",
+        "latitude": 37.1773,
+        "longitude": -3.5986,
+        "description": "Home to the stunning Alhambra Palace and Generalife Gardens, as well as the historic Albaic\u00edn Arab quarter with views across to the Alhambra."
+      },
+      {
+        "name": "Ronda",
+        "latitude": 36.7374,
+        "longitude": -5.164,
+        "description": "A dramatic town set atop the El Tajo gorge, famous for the Puente Nuevo bridge, its historic bullring, and 'pueblo blanco' charm."
+      }
+    ]
+  },
+  {
+    "tour_id": "1d0ee28d-d762-4390-8ba3-81ddf232401d",
+    "tour_name": "Portuguese Passion",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Lisbon",
+        "latitude": 38.7223,
+        "longitude": -9.1393,
+        "description": "Portugal's vibrant capital city, the starting point of the tour, known for its historic neighborhoods, trams, castle views, and Fado music."
+      },
+      {
+        "name": "Douro Valley",
+        "latitude": 41.1885,
+        "longitude": -7.5481,
+        "description": "A stunning UNESCO World Heritage wine region characterized by terraced vineyards along the Douro River, offering stays in traditional wine estates (quintas)."
+      },
+      {
+        "name": "Algarve Coast",
+        "latitude": 37.1028,
+        "longitude": -8.673,
+        "description": "Portugal's southern coastal region, famous for its golden beaches, dramatic cliffs, sea caves, fresh seafood, and picturesque villages."
+      }
+    ]
+  },
+  {
+    "tour_id": "d3362fb2-1cd8-4215-8952-da7127b0dd5b",
+    "tour_name": "Epic Portugal",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Lisbon",
+        "latitude": 38.7223,
+        "longitude": -9.1393,
+        "description": "Portugal's vibrant capital, known for its historic neighborhoods (Alfama, Chiado), colorful tiles, Fado music, 'miradouros' (viewpoints), and culinary scene."
+      },
+      {
+        "name": "Comporta",
+        "latitude": 38.3817,
+        "longitude": -8.785,
+        "description": "A chic, laid-back coastal enclave south of Lisbon, famed for its protected coastline, golden beaches, dunes, pine forests, rice paddies, and relaxed luxury."
+      }
+    ]
+  },
+  {
+    "tour_id": "3c978f27-1a70-4aae-9212-2250ce4c03d9",
+    "tour_name": "Alpine Elegance",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Como",
+        "latitude": 45.8094,
+        "longitude": 9.0855,
+        "description": "The starting point on the shores of Lake Como, known for its elegant atmosphere, beautiful villas, and access to charming lakeside villages like Bellagio and Varenna."
+      },
+      {
+        "name": "Interlaken",
+        "latitude": 46.6863,
+        "longitude": 7.8632,
+        "description": "An educated guess for the 'heart of Switzerland' stay. Interlaken is a popular base nestled between two lakes, offering access to the dramatic peaks, valleys, and iconic mountain railways of the Bernese Oberland region."
+      },
+      {
+        "name": "Lucerne",
+        "latitude": 47.0502,
+        "longitude": 8.3093,
+        "description": "The concluding city on the shores of Lake Lucerne, famous for its charming Old Town, the iconic Chapel Bridge, and stunning lake and mountain scenery including Pilatus and Rigi."
+      }
+    ]
+  },
+  {
+    "tour_id": "7ef34c6f-053b-46cf-9dbc-c23737e6945a",
+    "tour_name": "Croatian Dalmatian Coast",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Dubrovnik",
+        "latitude": 42.6507,
+        "longitude": 18.0944,
+        "description": "Starting point of the tour, famous for its medieval city walls, limestone streets of the Old Town, and stunning Adriatic views."
+      },
+      {
+        "name": "Hvar",
+        "latitude": 43.1725,
+        "longitude": 16.4431,
+        "description": "Croatia's sunniest island, known for its sophisticated charm, harbour-side strolls, beautiful beaches, and proximity to the Pakleni Islands."
+      },
+      {
+        "name": "Split",
+        "latitude": 43.5081,
+        "longitude": 16.4402,
+        "description": "Final destination, a vibrant city built around the ancient Diocletian's Palace (UNESCO World Heritage site), featuring a bustling promenade and historical alleys."
+      }
+    ]
+  },
+  {
+    "tour_id": "641cfb1f-0f52-4ea4-a876-5177944881ca",
+    "tour_name": "British Isles Adventure",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "London",
+        "latitude": 51.5074,
+        "longitude": -0.1278,
+        "description": "England's vibrant capital city, known for its rich history, royal landmarks, world-class museums, theatre, and diverse neighbourhoods."
+      },
+      {
+        "name": "Scottish Highlands",
+        "latitude": 57.144,
+        "longitude": -4.6802,
+        "description": "A vast and sparsely populated region in northern Scotland characterized by dramatic mountain ranges, deep lochs (lakes), ancient castles, and wild beauty."
+      },
+      {
+        "name": "The Cotswolds",
+        "latitude": 51.9288,
+        "longitude": -1.7241,
+        "description": "An Area of Outstanding Natural Beauty in south-central England, famous for its rolling hills, picturesque honey-coloured stone villages, and charming countryside."
+      }
+    ]
+  },
+  {
+    "tour_id": "2ab4eb95-679e-4003-a5db-31db2c16be6a",
+    "tour_name": "Scottish Highlands & Island Escape",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Edinburgh",
+        "latitude": 55.9533,
+        "longitude": -3.1883,
+        "description": "Scotland's capital city, the starting point of the tour, known for its historic castle, Royal Mile, and blend of medieval and Georgian architecture."
+      },
+      {
+        "name": "Isle of Skye",
+        "latitude": 57.4128,
+        "longitude": -6.1949,
+        "description": "An enchanting island famous for its dramatic landscapes, including the Cuillin mountains, Neist Point cliffs, Fairy Pools, and the Old Man of Storr. The description mentions 'cozy evenings by the fire', strongly implying overnight stays here."
+      },
+      {
+        "name": "Inverness",
+        "latitude": 57.4778,
+        "longitude": -4.2247,
+        "description": "The final destination and cultural capital of the Highlands, serving as a base to explore Loch Ness, Culloden Battlefield, and local distilleries."
+      }
+    ]
+  },
+  {
+    "tour_id": "c4316d59-71db-4a90-ac70-86119d066b65",
+    "tour_name": "Irish Castles & Coastlines",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Dublin",
+        "latitude": 53.3498,
+        "longitude": -6.2603,
+        "description": "Ireland's capital city, known for its historical sites like Trinity College, Georgian architecture, and lively Temple Bar district."
+      },
+      {
+        "name": "Killarney",
+        "latitude": 52.0598,
+        "longitude": -9.5056,
+        "description": "A key town often used as a base for exploring the scenic Ring of Kerry, known for its stunning coastal views, cliffs, and charming villages."
+      },
+      {
+        "name": "Galway",
+        "latitude": 53.2707,
+        "longitude": -9.0568,
+        "description": "A vibrant city on the west coast, famous for its bohemian atmosphere, traditional music scene, medieval lanes, and proximity to Connemara and the Cliffs of Moher."
+      }
+    ]
+  },
+  {
+    "tour_id": "7ab56597-b4d5-4d97-be48-cf0f3e9baca0",
+    "tour_name": "Turkish Delights",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "description": "A major city straddling Europe and Asia across the Bosphorus Strait, known for its rich history, iconic landmarks like Hagia Sophia and the Blue Mosque, and vibrant markets like the Grand Bazaar."
+      },
+      {
+        "name": "Cappadocia",
+        "latitude": 38.6431,
+        "longitude": 34.8287,
+        "description": "A historical region in Central Anatolia famous for its unique 'fairy chimney' rock formations, ancient cave dwellings, underground cities, and popular hot air ballooning."
+      },
+      {
+        "name": "Bodrum",
+        "latitude": 37.0344,
+        "longitude": 27.4305,
+        "description": "A city on the Bodrum Peninsula, stretching from Turkey's southwest coast into the Aegean Sea, known for its beaches, marinas, nightlife, and the site of the ancient Mausoleum at Halicarnassus."
+      }
+    ]
+  },
+  {
+    "tour_id": "8af80ec9-30dc-4760-bf02-16627184f045",
+    "tour_name": "Scandinavian Splendor",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Copenhagen",
+        "latitude": 55.6761,
+        "longitude": 12.5683,
+        "description": "Denmark's capital, the starting point, known for Nyhavn harbour, royal palaces, Danish design, and the concept of 'hygge'."
+      },
+      {
+        "name": "Stockholm",
+        "latitude": 59.3293,
+        "longitude": 18.0686,
+        "description": "Sweden's capital, spread across 14 islands, featuring the medieval Gamla Stan (Old Town) and stylish districts."
+      },
+      {
+        "name": "Oslo",
+        "latitude": 59.9139,
+        "longitude": 10.7522,
+        "description": "Norway's capital, the final destination, located on the Oslofjord and known for modern architecture, museums, and access to nature."
+      }
+    ]
+  },
+  {
+    "tour_id": "6db3443f-a1a6-4e18-b4db-f0be31e3db28",
+    "tour_name": "Norwegian Fjords & Northern Lights",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Bergen",
+        "latitude": 60.3913,
+        "longitude": 5.3242,
+        "description": "Historic port city known for the UNESCO-listed Bryggen wharf and often called the 'Gateway to the Fjords'. Likely the starting point for the tour."
+      },
+      {
+        "name": "Lofoten Islands",
+        "latitude": 68.2333,
+        "longitude": 14.5667,
+        "description": "An archipelago renowned for its dramatic scenery, jagged mountains, sheltered bays, fishing villages with 'rorbuer', and opportunities for viewing the Northern Lights or Midnight Sun. Travelers likely stay in one of the towns/villages within the islands (coordinates are for Svolv\u00e6r, a major town)."
+      },
+      {
+        "name": "Troms\u00f8",
+        "latitude": 69.6492,
+        "longitude": 18.9553,
+        "description": "A major city located well above the Arctic Circle, serving as a base for Arctic experiences like husky sledding, reindeer interactions, and prime Northern Lights viewing."
+      }
+    ]
+  },
+  {
+    "tour_id": "ae647ea1-d13a-4392-934a-c48efda73e1a",
+    "tour_name": "Romantic Rhine River Cruise",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Amsterdam",
+        "latitude": 52.3676,
+        "longitude": 4.9041,
+        "description": "The vibrant starting point of the cruise, famous for its picturesque canals and world-class museums. Travelers embark here."
+      },
+      {
+        "name": "Cologne",
+        "latitude": 50.9375,
+        "longitude": 6.9603,
+        "description": "A major docking city on the Rhine, renowned for its impressive Gothic Cathedral."
+      },
+      {
+        "name": "Strasbourg",
+        "latitude": 48.5734,
+        "longitude": 7.7521,
+        "description": "The capital of Alsace, where the cruise docks, known for its fairytale Petite France district and unique Franco-Germanic culture."
+      },
+      {
+        "name": "Basel",
+        "latitude": 47.5596,
+        "longitude": 7.5886,
+        "description": "The concluding city of the cruise journey, located in Switzerland near the borders of France and Germany."
+      }
+    ]
+  },
+  {
+    "tour_id": "17e044b1-4db3-4d4d-9b4a-5195074e9909",
+    "tour_name": "Bali Serenity",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Ubud",
+        "latitude": -8.506879,
+        "longitude": 115.262482,
+        "description": "Bali's artistic and spiritual centre, known for lush rice paddies, traditional crafts, temples, and a focus on wellness and culture."
+      },
+      {
+        "name": "Munduk",
+        "latitude": -8.266667,
+        "longitude": 115.116667,
+        "description": "A tranquil highland village area offering cool air, stunning views of lakes and mountains, coffee/clove plantations, and numerous waterfalls."
+      },
+      {
+        "name": "Manggis",
+        "latitude": -8.5,
+        "longitude": 115.533333,
+        "description": "A peaceful village on Bali's East Coast, providing a serene atmosphere with quiet beaches, views towards Lombok, and access to snorkeling spots."
+      }
+    ]
+  },
+  {
+    "tour_id": "db64d260-406a-4496-8902-363947b73842",
+    "tour_name": "Epic Bali and Lombok",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Ubud",
+        "latitude": -8.5069,
+        "longitude": 115.2625,
+        "description": "Spiritual and cultural heart of Bali, known for lush rice paddies, sacred forests, temples, and traditional arts."
+      },
+      {
+        "name": "Uluwatu",
+        "latitude": -8.8147,
+        "longitude": 115.0927,
+        "description": "Dramatic cliffside area on Bali's southern coast, famous for stunning ocean views, surf breaks, and the Uluwatu Temple sunsets."
+      },
+      {
+        "name": "Lombok",
+        "latitude": -8.6539,
+        "longitude": 116.321,
+        "description": "Island east of Bali offering a more relaxed atmosphere, with quiet beaches, turquoise waters, and opportunities to explore nearby Gili Islands. (Note: Coordinates are approximate for a central/tourist area of the island)."
+      }
+    ]
+  },
+  {
+    "tour_id": "f6a573b3-e566-45d8-9547-60f8fcf62527",
+    "tour_name": "Thailand Treasures",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Bangkok",
+        "latitude": 13.7563,
+        "longitude": 100.5018,
+        "description": "Thailand's vibrant capital, known for its dazzling temples like the Grand Palace and Wat Pho, bustling markets, and lively atmosphere along the Chao Phraya River."
+      },
+      {
+        "name": "Chiang Mai",
+        "latitude": 18.7883,
+        "longitude": 98.9853,
+        "description": "The cultural heart of Northern Thailand, situated amidst hills, famous for its ancient temples within the Old City, ethical elephant sanctuaries, and Doi Suthep temple."
+      },
+      {
+        "name": "Koh Samui",
+        "latitude": 9.5232,
+        "longitude": 100.0307,
+        "description": "A tropical island paradise in the Gulf of Thailand, renowned for its beautiful beaches, clear waters, coconut groves, and proximity to Ang Thong Marine Park."
+      }
+    ]
+  },
+  {
+    "tour_id": "a81052b8-62b8-4c92-b117-2e57546570a3",
+    "tour_name": "Perfect Thailand",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Bangkok",
+        "latitude": 13.7563,
+        "longitude": 100.5018,
+        "description": "Thailand's vibrant capital city, offering a mix of glittering temples, bustling markets, canal life, and dynamic street food scenes."
+      },
+      {
+        "name": "Chiang Mai",
+        "latitude": 18.7883,
+        "longitude": 98.9853,
+        "description": "Known as the 'Rose of the North', this city is nestled in the mountains and celebrated for its rich Lanna culture, ancient temples, artisan crafts, and proximity to ethical elephant sanctuaries."
+      },
+      {
+        "name": "Phuket",
+        "latitude": 7.9519,
+        "longitude": 98.3364,
+        "description": "Thailand's largest island, famous for its beautiful beaches, clear turquoise waters, luxury resorts, and as a base for exploring nearby islands and dramatic limestone karsts in the Andaman Sea."
+      }
+    ]
+  },
+  {
+    "tour_id": "9eadc3a3-82b4-4fe1-a878-59ab989647dd",
+    "tour_name": "Luxury in Thailand",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Bangkok",
+        "latitude": 13.7563,
+        "longitude": 100.5018,
+        "description": "Thailand's vibrant capital city, known for its ornate temples, bustling canals, lively markets, and diverse culinary scene."
+      },
+      {
+        "name": "Koh Yao Noi",
+        "latitude": 8.1167,
+        "longitude": 98.6,
+        "description": "A tranquil island nestled in Phang Nga Bay, offering seclusion, stunning karst vistas, spa experiences, and exploration of nearby islets."
+      },
+      {
+        "name": "Krabi",
+        "latitude": 8.0863,
+        "longitude": 98.9063,
+        "description": "A coastal province famous for its dramatic limestone cliffs, turquoise waters, pristine beaches (like Railay), island hopping, and kayaking opportunities."
+      }
+    ]
+  },
+  {
+    "tour_id": "ecd530db-e1d7-4afd-bc0d-28163257a68f",
+    "tour_name": "Vietnam Heritage & Beach",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Hanoi",
+        "latitude": 21.0278,
+        "longitude": 105.8342,
+        "description": "Vietnam's vibrant capital city, known for its historic Old Quarter, Hoan Kiem Lake, and French colonial architecture mixed with Vietnamese traditions."
+      },
+      {
+        "name": "Hoi An",
+        "latitude": 15.8801,
+        "longitude": 108.338,
+        "description": "A charming UNESCO World Heritage ancient town in Central Vietnam, famous for its well-preserved architecture, colourful lanterns, and riverside setting."
+      },
+      {
+        "name": "Con Dao Islands",
+        "latitude": 8.693,
+        "longitude": 106.6111,
+        "description": "A remote archipelago and national park off the southern coast, offering pristine beaches, clear waters, coral reefs, and a tranquil, off-the-beaten-path atmosphere."
+      }
+    ]
+  },
+  {
+    "tour_id": "d9cc58dd-1447-48c4-abee-a730cac96608",
+    "tour_name": "Japan's Timeless Beauty",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Tokyo",
+        "latitude": 35.6895,
+        "longitude": 139.6917,
+        "description": "The vibrant capital city, offering a blend of futuristic skyscrapers, historic neighborhoods like Yanaka, trendy districts like Shibuya and Shinjuku, and serene gardens."
+      },
+      {
+        "name": "Kyoto",
+        "latitude": 35.0116,
+        "longitude": 135.7681,
+        "description": "The cultural heart of Japan, renowned for its temples (Kinkaku-ji), shrines (Fushimi Inari), bamboo groves (Arashiyama), and the traditional Gion district."
+      },
+      {
+        "name": "Hakone",
+        "latitude": 35.2336,
+        "longitude": 139.0272,
+        "description": "A mountain resort town within a national park, famous for its natural hot springs (onsen), stunning views of Mt. Fuji (weather permitting), Lake Ashi, and art museums."
+      }
+    ]
+  },
+  {
+    "tour_id": "2ac4ea73-3a3c-4d75-9fa8-58d1d9d3caaf",
+    "tour_name": "Exceptional Japan",
+    "success": true,
+    "locations_count": 5,
+    "locations": [
+      {
+        "name": "Tokyo",
+        "latitude": 35.6895,
+        "longitude": 139.6917,
+        "description": "The vibrant and energetic capital of Japan, starting point of the tour, known for its dazzling lights and dynamic atmosphere."
+      },
+      {
+        "name": "Tsumago",
+        "latitude": 35.578,
+        "longitude": 137.595,
+        "description": "A representative overnight location within the Kiso Valley, known for its preserved Nakasendo Trail post town charm, offering tranquility and a step back in time."
+      },
+      {
+        "name": "Kyoto",
+        "latitude": 35.0116,
+        "longitude": 135.7681,
+        "description": "Japan's cultural heart, famous for its temples, Zen gardens, the Arashiyama Bamboo Grove, and the historic Gion district."
+      },
+      {
+        "name": "Miyajima",
+        "latitude": 34.295,
+        "longitude": 132.319,
+        "description": "Sacred island famous for the iconic Itsukushima Shrine and its 'floating' torii gate, offering a spiritual and romantic experience, especially at sunset."
+      },
+      {
+        "name": "Lake Kawaguchi",
+        "latitude": 35.516,
+        "longitude": 138.754,
+        "description": "Located in the Fuji Five Lakes region, offering stunning, iconic views of Mount Fuji, serving as the concluding destination for reflection."
+      }
+    ]
+  },
+  {
+    "tour_id": "d511971e-e6ad-434b-b809-a432df7a2a23",
+    "tour_name": "Maldives Overwater Dream",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Male Atoll",
+        "latitude": 4.1755,
+        "longitude": 73.5093,
+        "description": "Located near the Maldivian capital, offering convenience and the iconic overwater villa experience with direct lagoon access. Known for vibrant house reefs and proximity to Male."
+      },
+      {
+        "name": "Baa Atoll",
+        "latitude": 5.1167,
+        "longitude": 73.0667,
+        "description": "A UNESCO Biosphere Reserve famed for incredible biodiversity, especially manta rays at Hanifaru Bay (seasonal). Offers exceptional diving, powder-soft beaches, and a sense of untouched natural beauty."
+      }
+    ]
+  },
+  {
+    "tour_id": "6272281d-58cc-4b27-a07e-79efb53a114a",
+    "tour_name": "Twin Centre Seychelles",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Denis Island",
+        "latitude": -3.8,
+        "longitude": 55.6667,
+        "description": "An exclusive private coral island focused on barefoot luxury, conservation, and connection with nature, offering serene isolation and unique wildlife experiences like giant tortoises."
+      },
+      {
+        "name": "Praslin",
+        "latitude": -4.3215,
+        "longitude": 55.73,
+        "description": "A larger granitic island known for the UNESCO World Heritage site Vall\u00e9e de Mai (home to the Coco de Mer palm) and world-renowned beaches like Anse Lazio, offering more exploration opportunities."
+      }
+    ]
+  },
+  {
+    "tour_id": "ea3cf3a4-46d2-4140-bef0-b14247f3d4da",
+    "tour_name": "Epic Oman and the Maldives",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Muscat",
+        "latitude": 23.5859,
+        "longitude": 58.3834,
+        "description": "Oman's capital city, known for its blend of traditional architecture (like the Sultan Qaboos Grand Mosque and Mutrah Souk) and modern elegance along the coast."
+      },
+      {
+        "name": "Wahiba Sands",
+        "latitude": 22.42,
+        "longitude": 58.83,
+        "description": "A vast desert region (also known as Sharqiya Sands) famous for its rolling dunes, Bedouin culture, and opportunities for overnight desert camping experiences."
+      },
+      {
+        "name": "Nizwa",
+        "latitude": 22.9333,
+        "longitude": 57.5333,
+        "description": "A historic city in the foothills of the Hajar Mountains, renowned for its impressive fort, traditional souk specializing in silverwork, and role as a former capital."
+      },
+      {
+        "name": "Maldives",
+        "latitude": 3.2028,
+        "longitude": 73.2207,
+        "description": "An island nation in the Indian Ocean, synonymous with luxury resorts, pristine beaches, clear turquoise waters, and abundant marine life, offering relaxation and water sports."
+      }
+    ]
+  },
+  {
+    "tour_id": "6e401a44-9bf8-48d5-9cbc-c2669f7f2a59",
+    "tour_name": "Treasures of the Tropics: Sri Lanka and the Maldives",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Sigiriya",
+        "latitude": 7.9569,
+        "longitude": 80.76,
+        "description": "Likely base for exploring ancient cities and climbing Sigiriya Rock Fortress, located in Sri Lanka's Cultural Triangle."
+      },
+      {
+        "name": "Nuwara Eliya",
+        "latitude": 6.9686,
+        "longitude": 80.7836,
+        "description": "Located in Sri Lanka's cool highlands, known for its tea plantations and colonial charm."
+      },
+      {
+        "name": "Yala National Park",
+        "latitude": 6.3667,
+        "longitude": 81.5,
+        "description": "Area for wildlife safaris in Sri Lanka. Accommodation is typically in lodges near or just outside the park boundaries (e.g., near Tissamaharama)."
+      },
+      {
+        "name": "The Maldives",
+        "latitude": 3.2028,
+        "longitude": 73.2207,
+        "description": "An archipelagic country known for its luxurious island resorts, white sand beaches, and clear waters. The specific island/atoll isn't mentioned, so coordinates represent the general country region."
+      }
+    ]
+  },
+  {
+    "tour_id": "bc0fa0ff-85c2-4ff5-a540-539967b2a0e0",
+    "tour_name": "Honeymoon to Sri Lanka",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Koggala",
+        "latitude": 5.9884,
+        "longitude": 80.3215,
+        "description": "Starting point on the southern coast, known for its beaches, lake, and proximity to stilt fishermen viewpoints."
+      },
+      {
+        "name": "Yala National Park",
+        "latitude": 6.4667,
+        "longitude": 81.4667,
+        "description": "Sri Lanka's premier wildlife park, famous for leopard sightings. Overnight stays are typically in lodges/hotels near the park entrances (e.g., Tissamaharama, Kirinda)."
+      },
+      {
+        "name": "Nuwara Eliya",
+        "latitude": 6.9686,
+        "longitude": 80.7836,
+        "description": "A key town in the heart of the Tea Country highlands, known for its cool climate, colonial architecture, and surrounding tea plantations."
+      },
+      {
+        "name": "Bentota",
+        "latitude": 6.4206,
+        "longitude": 79.9989,
+        "description": "Final coastal destination famed for its golden beaches, calm lagoon waters ideal for water sports, and relaxation."
+      }
+    ]
+  },
+  {
+    "tour_id": "d34de69a-8b6b-4d08-adeb-1fa6901b6692",
+    "tour_name": "Jewels of Jordan & Petra",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Amman",
+        "latitude": 31.9539,
+        "longitude": 35.9106,
+        "description": "Jordan's capital city, where the tour begins, known for its historical sites like the Citadel and Roman Theatre, and bustling souks."
+      },
+      {
+        "name": "Petra",
+        "latitude": 30.3285,
+        "longitude": 35.4444,
+        "description": "An ancient Nabataean city carved into sandstone cliffs. The description mentions spending 'days exploring,' implying overnight stays nearby to access the archaeological park."
+      },
+      {
+        "name": "Wadi Rum",
+        "latitude": 29.5732,
+        "longitude": 35.42,
+        "description": "A vast desert landscape known for its red sands and dramatic rock formations. Experiencing sunset and stargazing necessitates an overnight stay, typically in a desert camp."
+      },
+      {
+        "name": "Dead Sea",
+        "latitude": 31.558,
+        "longitude": 35.5881,
+        "description": "The lowest point on Earth, famous for its hyper-saline waters and therapeutic mud. The emphasis on indulgence and relaxation suggests an overnight stay at one of the resorts along its shores."
+      }
+    ]
+  },
+  {
+    "tour_id": "a9767c70-71c4-4a37-8327-32cd1f790839",
+    "tour_name": "Honeymoon to China",
+    "success": true,
+    "locations_count": 5,
+    "locations": [
+      {
+        "name": "Shanghai",
+        "latitude": 31.2304,
+        "longitude": 121.4737,
+        "description": "A vibrant metropolis known for its futuristic Bund skyline, historic French Concession, and modern art scene."
+      },
+      {
+        "name": "Beijing",
+        "latitude": 39.9042,
+        "longitude": 116.4074,
+        "description": "China's capital, rich in history with iconic sites like the Great Wall, Forbidden City, and Summer Palace."
+      },
+      {
+        "name": "Lijiang",
+        "latitude": 26.8741,
+        "longitude": 100.2348,
+        "description": "Home to a UNESCO-listed Old Town with charming cobblestone streets, canals, and Naxi culture, set against the Jade Dragon Snow Mountain."
+      },
+      {
+        "name": "Yangshuo",
+        "latitude": 24.7761,
+        "longitude": 110.4916,
+        "description": "Famous for its stunning karst mountain landscape along the Li and Yulong Rivers, ideal for river cruises and cycling."
+      },
+      {
+        "name": "Hong Kong",
+        "latitude": 22.3193,
+        "longitude": 114.1694,
+        "description": "A dynamic global city offering iconic skyline views from Victoria Peak, bustling markets, and a unique fusion of cultures."
+      }
+    ]
+  },
+  {
+    "tour_id": "3cfdfbf0-378f-4a31-b7b8-1aeb8c2dda53",
+    "tour_name": "Active China",
+    "success": true,
+    "locations_count": 5,
+    "locations": [
+      {
+        "name": "Shanghai",
+        "latitude": 31.2304,
+        "longitude": 121.4737,
+        "description": "A dazzling metropolis blending futuristic skyscrapers with colonial charm, serving as the tour's starting point."
+      },
+      {
+        "name": "Lijiang",
+        "latitude": 26.8738,
+        "longitude": 100.2345,
+        "description": "UNESCO-listed ancient town in Yunnan province, known for its Naxi culture, cobbled streets, and canals."
+      },
+      {
+        "name": "Shangri-La",
+        "latitude": 27.8258,
+        "longitude": 99.7078,
+        "description": "Located near Himalayan foothills in Yunnan, known for Tibetan monasteries, stunning scenery, and profound tranquility."
+      },
+      {
+        "name": "Guilin",
+        "latitude": 25.282,
+        "longitude": 110.2861,
+        "description": "City famed for its otherworldly karst landscape and serving as a base for exploring the Li River region and nearby Longji Rice Terraces."
+      },
+      {
+        "name": "Hong Kong",
+        "latitude": 22.3193,
+        "longitude": 114.1694,
+        "description": "A dynamic metropolis where East meets West, offering iconic views, vibrant markets, and world-class dining, serving as the tour's culmination point."
+      }
+    ]
+  },
+  {
+    "tour_id": "f6a8f57d-4ce8-4338-8928-da42c5047c46",
+    "tour_name": "Maldives and Dubai",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Dubai",
+        "latitude": 25.276987,
+        "longitude": 55.296249,
+        "description": "A city of superlatives known for its modern architecture like the Burj Khalifa, luxury shopping, vibrant souks, and desert adventures."
+      },
+      {
+        "name": "The Maldives",
+        "latitude": 3.2028,
+        "longitude": 73.2207,
+        "description": "An archipelago renowned for its stunning natural beauty, turquoise waters, coral reefs, and luxurious overwater resorts, offering ultimate tropical relaxation and romance."
+      }
+    ]
+  },
+  {
+    "tour_id": "8fe94a50-21c3-40ea-84af-502ad38d9819",
+    "tour_name": "Borneo Rainforest & Reef",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Kinabatangan River",
+        "latitude": 5.541,
+        "longitude": 118.315,
+        "description": "Likely staying in a lodge along the river, famous for its exceptional wildlife viewing opportunities via river cruises and jungle walks, including proboscis monkeys, orangutans, pygmy elephants, and diverse birdlife."
+      },
+      {
+        "name": "Mabul Island",
+        "latitude": 4.246,
+        "longitude": 118.632,
+        "description": "An island off the coast of Sabah in the Celebes Sea, serving as a popular base for accessing world-renowned diving and snorkeling sites like Sipadan, known for its rich marine biodiversity, turtles, and coral reefs. (Note: This is a highly likely representative island based on the description; other nearby islands like Kapalai or Mataking are also possibilities)."
+      }
+    ]
+  },
+  {
+    "tour_id": "a7b8f35f-13b4-4db9-87b5-989cd086fe0e",
+    "tour_name": "Bhutanese Himalayan Retreat",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Paro",
+        "latitude": 27.4287,
+        "longitude": 89.4169,
+        "description": "A valley town renowned for the iconic Taktsang Monastery (Tiger's Nest) and the impressive Paro Rinpung Dzong, serving as a major arrival point and cultural hub."
+      },
+      {
+        "name": "Thimphu",
+        "latitude": 27.4712,
+        "longitude": 89.6339,
+        "description": "The unique capital city of Bhutan, blending tradition and modernity, known for landmarks like the Buddha Dordenma statue and the National Memorial Chorten."
+      }
+    ]
+  },
+  {
+    "tour_id": "ca16e56c-c54d-4aeb-9b42-0b05d136b66b",
+    "tour_name": "Ultimate South Africa",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Kalahari Desert Region",
+        "latitude": -26.47,
+        "longitude": 20.61,
+        "description": "An expansive semi-arid savanna known for its stark beauty, red sands, unique wildlife (including black-maned lions and meerkats), and exceptional stargazing due to dark skies."
+      },
+      {
+        "name": "Cape Town",
+        "latitude": -33.9249,
+        "longitude": 18.4241,
+        "description": "A vibrant port city dramatically situated between Table Mountain and the Atlantic Ocean, known for its cultural diversity, historical significance, stunning natural scenery, and cosmopolitan atmosphere."
+      },
+      {
+        "name": "Franschhoek",
+        "latitude": -33.9108,
+        "longitude": 19.1218,
+        "description": "A picturesque historical town nestled in a valley within the Cape Winelands, celebrated for its Huguenot heritage, world-class wineries, gourmet restaurants, and stunning mountain backdrop."
+      }
+    ]
+  },
+  {
+    "tour_id": "d7fff167-73d1-4e86-bbe3-3e00ec4d52c7",
+    "tour_name": "Ultimate South Africa and Mozambique",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Cape Town",
+        "latitude": -33.9249,
+        "longitude": 18.4241,
+        "description": "South Africa's vibrant 'Mother City', known for Table Mountain, diverse culture, and scenic coastline."
+      },
+      {
+        "name": "Stellenbosch",
+        "latitude": -33.9373,
+        "longitude": 18.8601,
+        "description": "A historic town central to the Cape Winelands region, famous for its vineyards, oak-lined streets, and Cape Dutch architecture. Represents the overnight stay in the Winelands."
+      },
+      {
+        "name": "Madikwe Game Reserve",
+        "latitude": -24.7789,
+        "longitude": 26.3806,
+        "description": "A large, malaria-free Big Five game reserve in South Africa known for exclusive wildlife viewing experiences away from crowds."
+      },
+      {
+        "name": "Benguerra Island",
+        "latitude": -21.8575,
+        "longitude": 35.4383,
+        "description": "An island within Mozambique's Bazaruto Archipelago, renowned for its pristine beaches, turquoise waters, and coral reefs, offering relaxation and marine activities."
+      }
+    ]
+  },
+  {
+    "tour_id": "bb326573-344a-4d5f-9e6e-52006d532ac6",
+    "tour_name": "Epic Kenya",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Nairobi",
+        "latitude": -1.2921,
+        "longitude": 36.8219,
+        "description": "Kenya's capital city, serving as the starting point for the tour, offering a 'gentle introduction' before heading to wildlife areas."
+      },
+      {
+        "name": "Laikipia Plateau",
+        "latitude": 0.25,
+        "longitude": 36.85,
+        "description": "A high-altitude conservation area north of Nairobi, known for its private conservancies, dramatic landscapes, and unique wildlife like Grevy's zebra and rhino."
+      },
+      {
+        "name": "Maasai Mara",
+        "latitude": -1.5833,
+        "longitude": 35.2,
+        "description": "Iconic wildlife ecosystem in southwestern Kenya, famous for its high concentration of animals, the Great Migration, and the Big Five. The stay is indicated to be in a private conservancy bordering the main reserve."
+      },
+      {
+        "name": "Zanzibar",
+        "latitude": -6.1659,
+        "longitude": 39.199,
+        "description": "An island archipelago off the coast of Tanzania, known for its stunning beaches, turquoise waters, and historic Stone Town, providing the relaxation part of the tour."
+      }
+    ]
+  },
+  {
+    "tour_id": "b1e690ad-3d9b-4b67-890f-bfda70e0c4a5",
+    "tour_name": "Ultimate Rwanda and Tanzania",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Virunga Mountains / Volcanoes National Park area",
+        "latitude": -1.46,
+        "longitude": 29.59,
+        "description": "Located in Rwanda, this volcanic mountain range is famous for being a prime habitat for endangered mountain gorillas and the location for trekking experiences."
+      },
+      {
+        "name": "Serengeti National Park",
+        "latitude": -2.3333,
+        "longitude": 34.8333,
+        "description": "A vast and iconic national park in Tanzania, renowned for its massive savannas, abundant wildlife including the 'Big Five', and the annual Great Migration."
+      },
+      {
+        "name": "Zanzibar",
+        "latitude": -6.1659,
+        "longitude": 39.199,
+        "description": "A Tanzanian archipelago off the coast of East Africa, known for its historic Stone Town (a UNESCO World Heritage site) and beautiful beaches with opportunities for relaxation and water activities."
+      }
+    ]
+  },
+  {
+    "tour_id": "84b2b41d-b436-447a-9f1a-c1f878508df9",
+    "tour_name": "Exceptional Kenya and Tanzania",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Maasai Mara National Reserve",
+        "latitude": -1.5,
+        "longitude": 35.0,
+        "description": "Kenya's renowned reserve, famous for abundant wildlife including the 'Big Five', dramatic landscapes, and witnessing the Great Migration's river crossings (seasonal)."
+      },
+      {
+        "name": "Serengeti National Park",
+        "latitude": -2.33,
+        "longitude": 34.83,
+        "description": "Tanzania's iconic park, characterized by vast open plains teeming with wildlife, including large predator populations and the massive migratory herds of wildebeest and zebra."
+      },
+      {
+        "name": "Ngorongoro Conservation Area",
+        "latitude": -3.23,
+        "longitude": 35.5,
+        "description": "Home to the Ngorongoro Crater, a UNESCO World Heritage site. This massive volcanic caldera offers incredibly dense and diverse wildlife viewing, including the rare black rhino, within a unique enclosed ecosystem. Stays are typically on the Crater rim offering stunning views."
+      }
+    ]
+  },
+  {
+    "tour_id": "b7d368e8-6bef-4f61-a266-711d4a1c474e",
+    "tour_name": "Tanzania Uncovered",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Ruaha National Park",
+        "latitude": -7.67,
+        "longitude": 34.83,
+        "description": "One of Tanzania's largest and least-visited protected areas, known for its wild, remote safari experience, dramatic landscapes with baobabs, large lion prides, significant elephant populations, and a sense of vast seclusion."
+      },
+      {
+        "name": "Pemba Island",
+        "latitude": -5.17,
+        "longitude": 39.75,
+        "description": "A lush, green island north of Zanzibar, offering a more authentic and peaceful escape with turquoise waters, spectacular coral reefs for diving/snorkelling, secluded beaches, and spice plantations."
+      }
+    ]
+  },
+  {
+    "tour_id": "817cb0ff-1b2c-4bed-8dcb-ac19e6f7986c",
+    "tour_name": "Botswana and South Africa Luxury Honeymoon",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Okavango Delta",
+        "latitude": -19.4,
+        "longitude": 23.2,
+        "description": "UNESCO World Heritage site known for its unique inland delta ecosystem, mokoro excursions, and remote wildlife viewing."
+      },
+      {
+        "name": "Chobe National Park",
+        "latitude": -17.85,
+        "longitude": 25.05,
+        "description": "Famous for its massive elephant herds, especially along the Chobe River, offering spectacular sunset cruises."
+      },
+      {
+        "name": "Cape Town",
+        "latitude": -33.9249,
+        "longitude": 18.4241,
+        "description": "Iconic South African city nestled beneath Table Mountain, offering a blend of vibrant culture, history, and stunning natural beauty."
+      },
+      {
+        "name": "Cape Winelands",
+        "latitude": -33.9333,
+        "longitude": 18.8667,
+        "description": "Picturesque region near Cape Town known for its charming towns (like Stellenbosch or Franschhoek), rolling vineyards, mountain scenery, world-class wines, and gourmet cuisine."
+      }
+    ]
+  },
+  {
+    "tour_id": "8d668e41-fe1f-49fd-ad18-ea3d853c7928",
+    "tour_name": "Wild Botswana",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Moremi Game Reserve",
+        "latitude": -19.15,
+        "longitude": 23.5,
+        "description": "Located in the Okavango Delta, renowned for diverse ecosystems combining wetlands and dry savannah, excellent wildlife viewing including the Big Five and wild dogs. Overnight stays are in mobile camps."
+      },
+      {
+        "name": "Khwai Community Concession",
+        "latitude": -19.15,
+        "longitude": 23.75,
+        "description": "Adjacent to Moremi, famous for predator sightings (lions, leopards, wild dogs) and abundant plains game along the Khwai River. Offers exclusive mobile camping experiences."
+      },
+      {
+        "name": "Chobe National Park",
+        "latitude": -17.82,
+        "longitude": 25.15,
+        "description": "Specifically focusing on the Chobe Riverfront area, known for having the highest concentration of elephants in the world, plus hippos, crocodiles, and diverse birdlife, often viewed via river cruises."
+      }
+    ]
+  },
+  {
+    "tour_id": "3ba51371-ba61-4d9c-b474-9d66d7d99084",
+    "tour_name": "Epic Zimbabwe",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Mana Pools National Park",
+        "latitude": -15.73,
+        "longitude": 29.36,
+        "description": "UNESCO World Heritage Site on the Zambezi River, known for walking safaris, canoeing, and abundant wildlife on the floodplains."
+      },
+      {
+        "name": "Lake Kariba",
+        "latitude": -16.85,
+        "longitude": 28.0,
+        "description": "Large man-made lake offering dramatic scenery with submerged trees, boat excursions, fishing, and wildlife viewing along the shores."
+      },
+      {
+        "name": "Hwange National Park",
+        "latitude": -19.0,
+        "longitude": 27.0,
+        "description": "Zimbabwe's largest game reserve, renowned for its vast elephant herds, predators like lions and wild dogs, and diverse habitats."
+      }
+    ]
+  },
+  {
+    "tour_id": "9a7c22f5-4519-4570-93e7-2a2f1357a9f6",
+    "tour_name": "Highlights of Zambia, South Africa and Mozambique",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Livingstone",
+        "latitude": -17.8519,
+        "longitude": 25.8702,
+        "description": "The primary gateway city on the Zambian side of Victoria Falls, offering access to one of the world's largest waterfalls and activities on the Zambezi River."
+      },
+      {
+        "name": "Sabi Sands Game Reserve",
+        "latitude": -24.7967,
+        "longitude": 31.5,
+        "description": "A renowned private game reserve bordering Kruger National Park in South Africa, famous for its high density of wildlife, particularly leopards, and luxury safari experiences."
+      },
+      {
+        "name": "Bazaruto Archipelago",
+        "latitude": -21.6833,
+        "longitude": 35.45,
+        "description": "An idyllic group of islands off the coast of Mozambique, known for pristine white-sand beaches, turquoise waters, coral reefs, and marine life, offering a tranquil beach escape."
+      }
+    ]
+  },
+  {
+    "tour_id": "0039fcff-8fae-4207-b1e8-7cc71100935c",
+    "tour_name": "Wild Madagascar",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Andasibe-Mantadia National Park",
+        "latitude": -18.933,
+        "longitude": 48.417,
+        "description": "Lush eastern rainforest famous for Indri lemurs and nocturnal wildlife viewing."
+      },
+      {
+        "name": "Ranomafana National Park",
+        "latitude": -21.25,
+        "longitude": 47.42,
+        "description": "Dense cloud forest park known as a biodiversity hotspot, home to the golden bamboo lemur."
+      },
+      {
+        "name": "Isalo National Park",
+        "latitude": -22.55,
+        "longitude": 45.36,
+        "description": "Spectacular sandstone massif landscape with canyons, oases, natural swimming pools, and ring-tailed lemurs."
+      },
+      {
+        "name": "Ifaty",
+        "latitude": -23.15,
+        "longitude": 43.62,
+        "description": "Coastal region near the Mozambique Channel offering beaches, snorkelling, relaxation, and access to the unique spiny forest with baobabs."
+      }
+    ]
+  },
+  {
+    "tour_id": "615d6392-5022-465a-8a6d-b7a475fc4157",
+    "tour_name": "Honeymoon in Morocco",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Marrakech",
+        "latitude": 31.6295,
+        "longitude": -7.9811,
+        "description": "The starting point, a vibrant city known for its bustling Medina, souks, historical palaces, gardens, and unique atmosphere."
+      },
+      {
+        "name": "Atlas Mountains",
+        "latitude": 31.1351,
+        "longitude": -7.9147,
+        "description": "A region offering dramatic mountain scenery, traditional Berber villages, peace, seclusion, and opportunities for gentle treks with panoramic views. (Note: Specific village/town not mentioned, coordinates represent a central point in the likely visited High Atlas area near Imlil)."
+      },
+      {
+        "name": "Oualidia",
+        "latitude": 32.732,
+        "longitude": -9.035,
+        "description": "A serene coastal fishing village known for its stunning natural lagoon, oyster farms, birdlife, quiet beaches, and offering a tranquil final escape."
+      }
+    ]
+  },
+  {
+    "tour_id": "e8f14085-bcbe-4014-bde1-02f185cecc1a",
+    "tour_name": "Egypt Unveiled",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Cairo",
+        "latitude": 30.0444,
+        "longitude": 31.2357,
+        "description": "Egypt's bustling capital, initial base for exploring the Giza Pyramids and the Egyptian Museum."
+      },
+      {
+        "name": "Aswan",
+        "latitude": 24.0889,
+        "longitude": 32.8998,
+        "description": "Southern city on the Nile where travelers board the cruise ship for overnight stays while sailing north."
+      },
+      {
+        "name": "Luxor",
+        "latitude": 25.6872,
+        "longitude": 32.6396,
+        "description": "Disembarkation point from the Nile cruise and location for overnight stays while exploring the Valley of the Kings, Karnak, and Luxor Temples."
+      },
+      {
+        "name": "Hurghada",
+        "latitude": 27.2579,
+        "longitude": 33.8116,
+        "description": "Red Sea coastal resort town, the final location for overnight stays focused on relaxation and water activities."
+      }
+    ]
+  },
+  {
+    "tour_id": "e3349a9c-f747-4d41-8854-b1d4e96fe384",
+    "tour_name": "Namibian Desert & Dunes",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Sossusvlei",
+        "latitude": -24.7315,
+        "longitude": 15.2925,
+        "description": "Located in the heart of the Namib Desert within the Namib-Naukluft National Park, famous for its towering red sand dunes like Dune 45, the white clay pan of Deadvlei, and exceptional stargazing."
+      },
+      {
+        "name": "Etosha National Park",
+        "latitude": -18.8556,
+        "longitude": 16.3417,
+        "description": "One of Africa's premier wildlife sanctuaries in northern Namibia, characterized by a vast salt pan and numerous waterholes attracting abundant wildlife, including elephants, rhinos, lions, and diverse antelope species."
+      }
+    ]
+  },
+  {
+    "tour_id": "9e922220-2740-4420-a9ce-9592fbf1f091",
+    "tour_name": "Exceptional Australia and New Zealand",
+    "success": true,
+    "locations_count": 6,
+    "locations": [
+      {
+        "name": "Auckland",
+        "latitude": -36.8485,
+        "longitude": 174.7633,
+        "description": "New Zealand's largest city, serving as the starting point and gateway for experiences like visiting Waiheke Island."
+      },
+      {
+        "name": "Rotorua",
+        "latitude": -38.1368,
+        "longitude": 176.2497,
+        "description": "Known for its geothermal activity, unique spa experiences, and significant Maori cultural sites and performances."
+      },
+      {
+        "name": "Queenstown",
+        "latitude": -45.0312,
+        "longitude": 168.6626,
+        "description": "An alpine resort town set by Lake Wakatipu, famous for adventure sports, scenic beauty, and fine dining."
+      },
+      {
+        "name": "Sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "description": "Australia's iconic harbour city, featuring the Opera House, Harbour Bridge, and vibrant urban life."
+      },
+      {
+        "name": "Whitsunday Islands",
+        "latitude": -20.2698,
+        "longitude": 148.9183,
+        "description": "An archipelago off the coast of Queensland, renowned for white-sand beaches, turquoise waters, and access to the Great Barrier Reef."
+      },
+      {
+        "name": "Uluru",
+        "latitude": -25.3444,
+        "longitude": 131.0369,
+        "description": "Located in Australia's Red Centre, this area is home to the sacred Uluru monolith and Kata Tjuta formations, central to Aboriginal culture."
+      }
+    ]
+  },
+  {
+    "tour_id": "652fd2ec-051a-4f53-a75d-8d2e0e50aeea",
+    "tour_name": "Australia Honeymoon",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Melbourne",
+        "latitude": -37.8136,
+        "longitude": 144.9631,
+        "description": "Australia's 'capital of cool', known for its vibrant laneways, street art, coffee culture, and dining scene."
+      },
+      {
+        "name": "Hamilton Island",
+        "latitude": -20.3482,
+        "longitude": 148.9546,
+        "description": "A popular island in the Whitsundays, serving as a base for exploring the Great Barrier Reef and iconic Whitehaven Beach."
+      },
+      {
+        "name": "Sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "description": "Australia's largest city, famous for the Sydney Opera House, Harbour Bridge, Bondi Beach, and vibrant neighbourhoods."
+      },
+      {
+        "name": "Bouddi Peninsula",
+        "latitude": -33.5225,
+        "longitude": 151.3844,
+        "description": "A coastal region near Sydney known for Bouddi National Park, offering cliff-top walks, secluded beaches, and natural tranquility."
+      }
+    ]
+  },
+  {
+    "tour_id": "1d392b30-7a89-4ca7-853e-24ee139bddeb",
+    "tour_name": "Ultimate New Zealand",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Auckland",
+        "latitude": -36.8485,
+        "longitude": 174.7633,
+        "description": "New Zealand's largest city, known as the 'City of Sails', featuring vibrant waterfronts, world-class dining, and gateway to nearby islands."
+      },
+      {
+        "name": "Bay of Islands",
+        "latitude": -35.2825,
+        "longitude": 174.0915,
+        "description": "A subtropical paradise known for its beautiful islands, turquoise waters, marine life encounters, and significant historical sites."
+      },
+      {
+        "name": "Queenstown",
+        "latitude": -45.0312,
+        "longitude": 168.6626,
+        "description": "Set against the dramatic Southern Alps and Lake Wakatipu, known as the 'Adventure Capital' offering stunning scenery, outdoor activities, and fine dining. Likely base for the Milford Sound excursion."
+      }
+    ]
+  },
+  {
+    "tour_id": "73ddbb17-cc5d-4e74-a602-1c274b22318b",
+    "tour_name": "Galapagos Islands Cruise",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Galapagos Islands National Park",
+        "latitude": -0.7558,
+        "longitude": -90.2585,
+        "description": "Travelers stay overnight aboard the expedition vessel as it navigates between various islands within this UNESCO World Heritage site, renowned for its unique volcanic landscapes and fearless endemic wildlife. The exact nightly anchorage point varies depending on the cruise itinerary."
+      }
+    ]
+  },
+  {
+    "tour_id": "cd410926-87af-494b-bd86-3f435683c9d1",
+    "tour_name": "Fiji Island Paradise",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Viti Levu",
+        "latitude": -17.8,
+        "longitude": 178.0,
+        "description": "Fiji's largest and main island, serving as the international gateway and offering initial cultural experiences before transferring to other islands."
+      },
+      {
+        "name": "Matamanoa Island",
+        "latitude": -17.7,
+        "longitude": 177.071,
+        "description": "A secluded island resort location within the Mamanuca archipelago, emphasized as the main romantic and tranquil destination for the tour."
+      }
+    ]
+  },
+  {
+    "tour_id": "0c6afafc-131b-4033-9ad9-7feaf07193b7",
+    "tour_name": "Cook Islands Retreat",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Rarotonga",
+        "latitude": -21.2367,
+        "longitude": -159.7777,
+        "description": "The vibrant main island and hub of the Cook Islands, featuring volcanic peaks, lush jungle, surrounding reef, beaches, markets, and cultural experiences."
+      },
+      {
+        "name": "Aitutaki",
+        "latitude": -18.851,
+        "longitude": -159.7841,
+        "description": "Renowned for its breathtakingly beautiful and vast turquoise lagoon, offering pristine motus (islets) like One Foot Island, snorkeling, and tranquility."
+      }
+    ]
+  },
+  {
+    "tour_id": "e21c9918-7cab-437d-b74c-d4e339a0abe7",
+    "tour_name": "Tahiti Overwater Luxury",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Moorea",
+        "latitude": -17.538,
+        "longitude": -149.828,
+        "description": "Known as the 'Magical Island', featuring dramatic volcanic landscapes, lush valleys, pineapple plantations, and calm lagoons ideal for water activities."
+      },
+      {
+        "name": "Bora Bora",
+        "latitude": -16.5,
+        "longitude": -151.741,
+        "description": "Famous for its iconic turquoise lagoon dominated by Mount Otemanu, luxurious overwater bungalows, and opportunities to swim with sharks and rays."
+      }
+    ]
+  },
+  {
+    "tour_id": "92ca3a46-51a4-4904-8435-fbe6562f72a5",
+    "tour_name": "Samoan Serenity",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Upolu",
+        "latitude": -13.9167,
+        "longitude": -171.75,
+        "description": "The first island visited on the tour, known for its dramatic coastlines, waterfalls like those hidden in emerald rainforests, and the unique To Sua Ocean Trench. Likely serves as the initial base for exploring these attractions."
+      },
+      {
+        "name": "Savai'i",
+        "latitude": -13.6167,
+        "longitude": -172.45,
+        "description": "The second island visited, reached by ferry. Described as larger, more rugged ('real Samoa'), featuring volcanic lava fields, the Alofaaga Blowholes, and secluded beaches, offering a more relaxed pace."
+      }
+    ]
+  },
+  {
+    "tour_id": "c4e632ff-7389-4df2-a6fa-01be552334cd",
+    "tour_name": "Ultimate Costa Rica",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "Central Valley",
+        "latitude": 10.0168,
+        "longitude": -84.2167,
+        "description": "The starting point, likely near San Jos\u00e9 or Alajuela, characterized by rolling green hills, coffee estates, and cultural introduction."
+      },
+      {
+        "name": "Arenal Volcano Area",
+        "latitude": 10.4635,
+        "longitude": -84.6401,
+        "description": "Region centered around the Arenal Volcano (near La Fortuna town), known for volcanic views, thermal hot springs, and adventure activities like zip-lining and hanging bridges."
+      },
+      {
+        "name": "Osa Peninsula",
+        "latitude": 8.6033,
+        "longitude": -83.5819,
+        "description": "A remote and highly biodiverse peninsula in the south, primary access point for Corcovado National Park, offering immersive rainforest and wildlife experiences."
+      },
+      {
+        "name": "Manuel Antonio",
+        "latitude": 9.3956,
+        "longitude": -84.1479,
+        "description": "Pacific coast destination known for its scenic beaches adjacent to Manuel Antonio National Park, offering a blend of relaxation and accessible wildlife viewing."
+      }
+    ]
+  },
+  {
+    "tour_id": "c6662803-277b-4137-a06e-b1937ddc1f76",
+    "tour_name": "Nayara Tented Camp",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Arenal Volcano Area",
+        "latitude": 10.463,
+        "longitude": -84.703,
+        "description": "Region surrounding the Arenal Volcano, known for its rainforests, abundant wildlife, adventure activities like zip-lining and hanging bridges, and natural hot springs."
+      },
+      {
+        "name": "Papagayo Peninsula",
+        "latitude": 10.58,
+        "longitude": -85.66,
+        "description": "An exclusive peninsula on Costa Rica's northern Pacific coast, celebrated for its luxury resorts, calm beaches, clear waters, and focus on relaxation and water sports."
+      }
+    ]
+  },
+  {
+    "tour_id": "42150a10-3e83-490d-a748-db8649b66720",
+    "tour_name": "Ultimate Guatemala & Belize",
+    "success": true,
+    "locations_count": 5,
+    "locations": [
+      {
+        "name": "Antigua Guatemala",
+        "latitude": 14.5573,
+        "longitude": -90.7344,
+        "description": "UNESCO World Heritage site famed for its well-preserved Spanish Baroque-influenced architecture, cobblestone streets, and dramatic volcanic surroundings."
+      },
+      {
+        "name": "Lake Atitl\u00e1n",
+        "latitude": 14.697,
+        "longitude": -91.27,
+        "description": "A large, stunningly beautiful endorheic lake in the Guatemalan Highlands, surrounded by volcanoes and dotted with traditional Mayan villages."
+      },
+      {
+        "name": "Flores",
+        "latitude": 16.9298,
+        "longitude": -89.8907,
+        "description": "A town located on an island in Lake Pet\u00e9n Itz\u00e1, serving as the primary gateway for visiting the ancient Mayan ruins of Tikal in the Pet\u00e9n rainforest."
+      },
+      {
+        "name": "Mountain Pine Ridge Forest Reserve",
+        "latitude": 17.05,
+        "longitude": -88.95,
+        "description": "A nature reserve in Belize known for its distinctive pine forests, waterfalls (like Big Rock Falls and Rio On Pools), caves (like Rio Frio Cave), and opportunities for hiking and wildlife spotting."
+      },
+      {
+        "name": "Cayo Espanto",
+        "latitude": 17.9431,
+        "longitude": -87.9806,
+        "description": "A private island located off the coast of Belize, near Ambergris Caye, offering luxury accommodation and access to the Belize Barrier Reef."
+      }
+    ]
+  },
+  {
+    "tour_id": "184ec858-cc20-4e50-b732-0423a3c69929",
+    "tour_name": "Ultimate Colombia & Galapagos",
+    "success": true,
+    "locations_count": 5,
+    "locations": [
+      {
+        "name": "Bogota",
+        "latitude": 4.711,
+        "longitude": -74.0721,
+        "description": "Colombia's high-altitude capital, featuring the historic La Candelaria district and rich cultural attractions."
+      },
+      {
+        "name": "Medellin",
+        "latitude": 6.2476,
+        "longitude": -75.5658,
+        "description": "Known as the 'City of Eternal Spring,' celebrated for its urban transformation and proximity to coffee regions."
+      },
+      {
+        "name": "Cartagena",
+        "latitude": 10.391,
+        "longitude": -75.4794,
+        "description": "A vibrant port city on Colombia's Caribbean coast with a UNESCO-listed walled Old Town."
+      },
+      {
+        "name": "Quito",
+        "latitude": -0.1807,
+        "longitude": -78.4678,
+        "description": "Ecuador's capital high in the Andes, boasting a well-preserved colonial center (UNESCO World Heritage site)."
+      },
+      {
+        "name": "Galapagos Islands",
+        "latitude": -0.7352,
+        "longitude": -90.3103,
+        "description": "A unique volcanic archipelago famous for its fearless wildlife and contribution to the theory of evolution. Coordinates represent a central point near Santa Cruz Island."
+      }
+    ]
+  },
+  {
+    "tour_id": "ec3807ac-b70e-45ad-afcd-b25685e35095",
+    "tour_name": "Caribbean All-Inclusive Luxury",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Soufri\u00e8re",
+        "latitude": 13.856,
+        "longitude": -61.059,
+        "description": "The first part of the tour is based in a hillside retreat near the iconic Pitons, strongly suggesting the Soufri\u00e8re area, known for its dramatic volcanic scenery and luxury boutique resorts offering such views."
+      },
+      {
+        "name": "Rodney Bay",
+        "latitude": 14.076,
+        "longitude": -60.953,
+        "description": "The second part involves moving to a larger, all-inclusive beachfront resort. Rodney Bay is the most prominent area in St. Lucia matching this description, known for its extensive bay, beaches, marina, and concentration of larger resorts and amenities."
+      }
+    ]
+  },
+  {
+    "tour_id": "5d6bb6c4-117d-404f-b78b-45e63045ab31",
+    "tour_name": "St. Lucia Luxury Hideaway",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Soufriere",
+        "latitude": 13.8563,
+        "longitude": -61.0589,
+        "description": "Located in the south, famous for its stunning natural beauty, proximity to the iconic Pitons, volcanic Sulphur Springs, and botanical gardens. Focuses on secluded, nature-rich luxury."
+      },
+      {
+        "name": "Gros Islet",
+        "latitude": 14.0785,
+        "longitude": -60.9533,
+        "description": "Situated in the north near the vibrant Rodney Bay area. Known for beautiful beaches like Reduit Beach, diverse dining, marinas, and offering chic relaxation with a gentle buzz."
+      }
+    ]
+  },
+  {
+    "tour_id": "f732ee6f-7c54-4c1f-96f9-2e823d85b45a",
+    "tour_name": "Sandals Royal Curacao",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Willemstad",
+        "latitude": 12.1094,
+        "longitude": -68.9335,
+        "description": "The capital of Curacao and the primary base for this tour, likely staying at the specified all-inclusive resort located within or near this area. Willemstad is famed for its UNESCO World Heritage city center featuring iconic pastel-colored Dutch colonial architecture."
+      }
+    ]
+  },
+  {
+    "tour_id": "c7c548c4-097b-47ff-9612-27b5056c94ba",
+    "tour_name": "Turks & Caicos Tranquility",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Providenciales",
+        "latitude": 21.7932,
+        "longitude": -72.2515,
+        "description": "The main tourist hub of the Turks & Caicos Islands, renowned for the stunning Grace Bay beach, luxury resorts, fine dining, and proximity to the barrier reef for snorkeling and diving."
+      }
+    ]
+  },
+  {
+    "tour_id": "50e1910d-6361-4a36-8c17-a2e8ede9a620",
+    "tour_name": "Bahamian Bliss",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Exuma Cays",
+        "latitude": 24.3833,
+        "longitude": -76.6333,
+        "description": "An archipelago of 365 islands and cays known for its stunning turquoise waters, white-sand beaches, secluded anchorages, and unique wildlife encounters like the swimming pigs and nurse sharks. The description heavily implies staying within this chain, likely at a small resort, private rental, or potentially aboard a boat moving between cays, rather than a single large town."
+      }
+    ]
+  },
+  {
+    "tour_id": "6a306cea-ad87-4194-a73f-ce362c3ca426",
+    "tour_name": "Panama Canal & Rainforest",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Panama City",
+        "latitude": 8.983333,
+        "longitude": -79.516667,
+        "description": "The capital city, featuring the historic Casco Viejo district, modern amenities, and close proximity to the Panama Canal's Miraflores Locks."
+      },
+      {
+        "name": "Gamboa",
+        "latitude": 9.119722,
+        "longitude": -79.699444,
+        "description": "A small town located near Soberan\u00eda National Park and Gatun Lake, serving as a base for rainforest exploration and wildlife viewing."
+      }
+    ]
+  },
+  {
+    "tour_id": "b9efebb8-ea9c-485e-a816-c20d7487326a",
+    "tour_name": "Ultimate Chile",
+    "success": true,
+    "locations_count": 5,
+    "locations": [
+      {
+        "name": "San Pedro de Atacama",
+        "latitude": -22.9081,
+        "longitude": -68.1997,
+        "description": "Primary base for exploring the Atacama Desert, known for its unique lunar landscapes, geysers, salt flats, and stargazing opportunities."
+      },
+      {
+        "name": "Santiago",
+        "latitude": -33.4489,
+        "longitude": -70.6693,
+        "description": "Chile's vibrant capital city, offering a mix of history, culture, culinary experiences, and views of the Andes."
+      },
+      {
+        "name": "Puerto Varas",
+        "latitude": -41.3193,
+        "longitude": -72.9852,
+        "description": "A key town in the scenic Lake District, located on Lake Llanquihue with views of Osorno and Calbuco volcanoes, serving as a base for exploring lakes and forests."
+      },
+      {
+        "name": "Torres del Paine National Park",
+        "latitude": -51.0888,
+        "longitude": -73.0435,
+        "description": "Iconic Patagonian wilderness destination famed for its dramatic granite peaks (the 'Towers'), glaciers, lakes, and diverse wildlife."
+      },
+      {
+        "name": "Santa Cruz",
+        "latitude": -34.6378,
+        "longitude": -71.3692,
+        "description": "Main town in the Colchagua Valley, one of Chile's premier wine regions, offering vineyard tours, wine tasting, and relaxation."
+      }
+    ]
+  },
+  {
+    "tour_id": "bed31a2b-9d7a-41b0-bac4-67b5a77bbe5b",
+    "tour_name": "Limitless Brazil",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Rio de Janeiro",
+        "latitude": -22.9068,
+        "longitude": -43.1729,
+        "description": "Iconic Brazilian city famed for its Christ the Redeemer statue, Sugarloaf Mountain, vibrant beaches like Copacabana and Ipanema, and lively samba culture."
+      },
+      {
+        "name": "Amazon Rainforest",
+        "latitude": -3.4653,
+        "longitude": -62.2159,
+        "description": "A vast region of dense tropical rainforest known for unparalleled biodiversity, river exploration, and immersive jungle experiences often based out of remote lodges."
+      },
+      {
+        "name": "Trancoso",
+        "latitude": -16.5925,
+        "longitude": -39.0975,
+        "description": "A chic coastal town in Bahia, known for its beautiful beaches, colourful historic Quadrado (town square), and a blend of rustic charm and understated luxury."
+      }
+    ]
+  },
+  {
+    "tour_id": "3fa0fffa-f4fc-4e5e-94d5-7920b296fca5",
+    "tour_name": "Peru & Galapagos Adventure (continued)",
+    "success": true,
+    "locations_count": 5,
+    "locations": [
+      {
+        "name": "Lima",
+        "latitude": -12.0464,
+        "longitude": -77.0428,
+        "description": "Peru's coastal capital, known for its colonial architecture and renowned culinary scene."
+      },
+      {
+        "name": "Sacred Valley",
+        "latitude": -13.3058,
+        "longitude": -72.1156,
+        "description": "Heart of the Inca Empire in the Andes, featuring markets, Inca sites, and mountain scenery, ideal for acclimatization."
+      },
+      {
+        "name": "Machu Picchu (Aguas Calientes/Machu Picchu Pueblo)",
+        "latitude": -13.1547,
+        "longitude": -72.5253,
+        "description": "Overnight location providing access to the iconic mountaintop citadel of Machu Picchu."
+      },
+      {
+        "name": "Quito",
+        "latitude": -0.1807,
+        "longitude": -78.4678,
+        "description": "Ecuador's high-altitude capital with a well-preserved UNESCO World Heritage historic center."
+      },
+      {
+        "name": "Galapagos Islands",
+        "latitude": -0.7447,
+        "longitude": -90.2628,
+        "description": "Volcanic archipelago famous for unique wildlife encounters, both on land and sea."
+      }
+    ]
+  },
+  {
+    "tour_id": "bbc93a8c-80e1-442b-883e-75aa2b9ca517",
+    "tour_name": "Argentina Passion",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Buenos Aires",
+        "latitude": -34.6037,
+        "longitude": -58.3816,
+        "description": "The vibrant capital of Argentina, known as the 'Paris of South America' for its European architecture, tango culture, and lively neighborhoods like La Boca and San Telmo."
+      },
+      {
+        "name": "Mendoza",
+        "latitude": -32.8895,
+        "longitude": -68.8458,
+        "description": "Argentina's principal wine region, located at the foothills of the Andes, celebrated for its Malbec wines, boutique vineyards, and stunning mountain scenery."
+      },
+      {
+        "name": "El Calafate",
+        "latitude": -50.3375,
+        "longitude": -72.2741,
+        "description": "A town in Patagonia serving as the primary gateway to the southern part of Los Glaciares National Park, including the famous Perito Moreno Glacier."
+      }
+    ]
+  },
+  {
+    "tour_id": "992940d0-082e-480d-9669-b2e2a0373ce6",
+    "tour_name": "Ecuadorian Highlands & Amazon",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Quito",
+        "latitude": -0.2252,
+        "longitude": -78.5243,
+        "description": "The world's first UNESCO World Heritage site, known for its colonial architecture set against an Andean backdrop. The tour commences here, implying overnight stays to explore the city."
+      },
+      {
+        "name": "Otavalo",
+        "latitude": 0.2298,
+        "longitude": -78.2622,
+        "description": "Home to one of South America\u2019s most famous indigenous markets. While not explicitly stated as overnight, the description 'immerse yourselves' suggests more than a brief day trip, making an overnight stay highly probable, especially following Quito and before heading to the Amazon."
+      },
+      {
+        "name": "Ecuadorian Amazon Rainforest",
+        "latitude": -0.95,
+        "longitude": -76.0,
+        "description": "The tour culminates here with descriptions of spending days exploring trails and experiencing evenings, clearly indicating multiple overnight stays in a jungle lodge setting within the Amazon basin."
+      }
+    ]
+  },
+  {
+    "tour_id": "911b59d3-9579-4e01-8db7-0fa9a25622d1",
+    "tour_name": "Highlights of California and Hawaii",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "San Francisco",
+        "latitude": 37.7749,
+        "longitude": -122.4194,
+        "description": "The starting point, known for iconic landmarks like the Golden Gate Bridge, charming neighborhoods, and bay views."
+      },
+      {
+        "name": "Kauai",
+        "latitude": 22.0964,
+        "longitude": -159.5261,
+        "description": "The 'Garden Isle', famed for its dramatic cliffs, lush valleys, waterfalls (Na Pali Coast), Waimea Canyon, and beaches."
+      },
+      {
+        "name": "Hawaii Island (Big Island)",
+        "latitude": 19.5429,
+        "longitude": -155.6659,
+        "description": "An island of contrasts featuring active volcanoes (Hawai'i Volcanoes National Park), Mauna Kea for stargazing, and unique black, green, and white sand beaches."
+      },
+      {
+        "name": "Los Angeles",
+        "latitude": 34.0522,
+        "longitude": -118.2437,
+        "description": "The final stop, offering Hollywood glamour, Venice Beach vibes, museums, diverse dining, and Southern California culture."
+      }
+    ]
+  },
+  {
+    "tour_id": "2ecd0d1c-924e-470c-a3f2-e813a931f412",
+    "tour_name": "Dream Hawaii Island Hopping",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Poipu",
+        "latitude": 21.8788,
+        "longitude": -159.4614,
+        "description": "Located on Kauai's sunny south shore, mentioned for its golden sands and relaxation, serving as a likely base for exploring the 'Garden Isle'."
+      },
+      {
+        "name": "Kaanapali",
+        "latitude": 20.9191,
+        "longitude": -156.6946,
+        "description": "A renowned resort area on Maui's west coast, explicitly mentioned as the landing vicinity and famous for its beach, snorkeling, and sunsets."
+      }
+    ]
+  },
+  {
+    "tour_id": "a37c3256-599d-4e9e-b777-040d21235efe",
+    "tour_name": "Uniquely Designed Kauai Honeymoon",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Hanalei",
+        "latitude": 22.2052,
+        "longitude": -159.4982,
+        "description": "Base for exploring Kauai's North Shore, known for its stunning bay, bohemian charm, lush valleys, and proximity to the Na Pali Coast."
+      },
+      {
+        "name": "Poipu",
+        "latitude": 21.8776,
+        "longitude": -159.4606,
+        "description": "Sunny South Shore resort area famous for its golden-sand beaches, ideal for swimming, snorkeling, and relaxation, with access to Waimea Canyon."
+      }
+    ]
+  },
+  {
+    "tour_id": "e11e9730-8a1b-479c-a4a3-8c76f4b09758",
+    "tour_name": "Romantic Oahu, Maui and Kauai",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Honolulu",
+        "latitude": 21.3069,
+        "longitude": -157.8583,
+        "description": "The vibrant capital of Hawaii on Oahu, serving as the primary base for exploring Waikiki Beach, Pearl Harbor, and the North Shore."
+      },
+      {
+        "name": "Kihei",
+        "latitude": 20.7899,
+        "longitude": -156.4544,
+        "description": "A likely base on Maui's sunny south shore, offering convenient access to beaches, snorkeling, the Road to Hana, and Haleakala National Park. Chosen for its central location and accommodation options."
+      },
+      {
+        "name": "Poipu",
+        "latitude": 21.8812,
+        "longitude": -159.4633,
+        "description": "A resort area on Kauai's sunny South Shore, serving as a probable base for exploring Waimea Canyon and accessing tours for the Napali Coast, known for its beaches and resorts."
+      }
+    ]
+  },
+  {
+    "tour_id": "098e5a2e-8a66-45c3-8467-8ac8cfb3a5e6",
+    "tour_name": "Luxury Hawaii Honeymoon",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Poipu",
+        "latitude": 21.8769,
+        "longitude": -159.4644,
+        "description": "Located on Kauai's sunny south shore, known for its beautiful beaches, snorkeling spots, and resort accommodations, aligning with the tour's mention of relaxing on Poipu Beach."
+      },
+      {
+        "name": "Kapalua",
+        "latitude": 21.0,
+        "longitude": -156.6619,
+        "description": "A prestigious resort area on Maui's northwestern coast, explicitly mentioned as the area to 'settle into', renowned for luxury resorts, golf, and stunning shorelines like Kapalua Bay."
+      }
+    ]
+  },
+  {
+    "tour_id": "d4e3c7b5-6a36-4a90-a6f4-b302f2798774",
+    "tour_name": "California Coast & Wine Country",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "San Francisco",
+        "latitude": 37.7749,
+        "longitude": -122.4194,
+        "description": "Iconic city known for the Golden Gate Bridge, cable cars, Alcatraz, and diverse neighbourhoods. The tour starts here."
+      },
+      {
+        "name": "Napa Valley",
+        "latitude": 38.5024,
+        "longitude": -122.3208,
+        "description": "World-renowned wine region famous for its vineyards, wineries, gourmet food, and scenic rolling hills. (Coordinates are approximate for the valley center)."
+      },
+      {
+        "name": "Monterey / Carmel-by-the-Sea area",
+        "latitude": 36.5819,
+        "longitude": -121.902,
+        "description": "Likely overnight stop along the Highway 1 drive through Big Sur, known for stunning coastal scenery, the Monterey Bay Aquarium, and charming towns. (Coordinates for general area midpoint)."
+      },
+      {
+        "name": "Santa Barbara",
+        "latitude": 34.4208,
+        "longitude": -119.6982,
+        "description": "Known as the 'American Riviera', offering beautiful beaches, Spanish Colonial Revival architecture, upscale boutiques, and a relaxed coastal atmosphere. The tour ends here."
+      }
+    ]
+  },
+  {
+    "tour_id": "3ad15975-9a01-4331-8dfa-b0cbd328f532",
+    "tour_name": "Canadian Rockies & Vancouver Island",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Banff",
+        "latitude": 51.1784,
+        "longitude": -115.5708,
+        "description": "The primary hub within Banff National Park, mentioned for strolling through the town and as a likely base for exploring the Rockies, Lake Louise, and potentially the Icefields Parkway."
+      },
+      {
+        "name": "Victoria",
+        "latitude": 48.4284,
+        "longitude": -123.3656,
+        "description": "The capital of British Columbia on Vancouver Island, explicitly mentioned as the starting point on the island, known for its Inner Harbour and architecture."
+      },
+      {
+        "name": "Tofino",
+        "latitude": 49.1526,
+        "longitude": -125.9044,
+        "description": "A coastal town on the west coast of Vancouver Island, described as a destination reached after Victoria, known for beaches, rainforests, surfing, and access to Clayoquot Sound."
+      }
+    ]
+  },
+  {
+    "tour_id": "6c713b14-e643-4bb2-8552-7567dac02072",
+    "tour_name": "Alaska Wilderness & Luxury",
+    "success": true,
+    "locations_count": 3,
+    "locations": [
+      {
+        "name": "Anchorage",
+        "latitude": 61.2181,
+        "longitude": -149.9003,
+        "description": "Alaska's largest city and the tour's starting point, often serving as the initial overnight location and transportation hub."
+      },
+      {
+        "name": "Denali National Park Area",
+        "latitude": 63.7304,
+        "longitude": -148.9176,
+        "description": "The area adjacent to Denali National Park where lodges are typically located, serving as a base for park exploration, wildlife viewing, and seeing Denali."
+      },
+      {
+        "name": "Seward",
+        "latitude": 60.1044,
+        "longitude": -149.4431,
+        "description": "A key port town on the Kenai Peninsula, acting as the primary gateway for cruises into Kenai Fjords National Park and offering access to coastal Alaskan scenery and marine wildlife."
+      }
+    ]
+  },
+  {
+    "tour_id": "a792e8a0-4f2b-4e11-bfe0-669f381dd235",
+    "tour_name": "New York City & Caribbean Escape",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "New York City",
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "description": "A vibrant metropolis known for iconic landmarks like Times Square and Central Park, world-class museums, and boundless energy."
+      },
+      {
+        "name": "Antigua",
+        "latitude": 17.0608,
+        "longitude": -61.7964,
+        "description": "A Caribbean island paradise famed for its stunning coastline with numerous beaches, clear turquoise waters, and opportunities for relaxation."
+      }
+    ]
+  },
+  {
+    "tour_id": "a386322e-f756-4a3b-8321-410f269c1f3f",
+    "tour_name": "Secrets Moxch\u00e9 Luxury",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Playa del Carmen",
+        "latitude": 20.6275,
+        "longitude": -87.0819,
+        "description": "A major hub in the Riviera Maya, known for its stunning Caribbean beaches, vibrant atmosphere, and hosting luxury resorts like Secrets Moxch\u00e9. The tour centers entirely around a single resort experience in this area."
+      }
+    ]
+  },
+  {
+    "tour_id": "67538d27-1959-462f-aa20-491a141ec90c",
+    "tour_name": "Ultimate Luxury Secrets Impression",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Riviera Maya",
+        "latitude": 20.5118,
+        "longitude": -87.2718,
+        "description": "A major tourism district stretching along the Caribbean coastline of Mexico's Yucat\u00e1n Peninsula. Known for its numerous all-inclusive luxury resorts, stunning beaches, turquoise waters, Mayan ruins, and cenotes. The tour description strongly implies a single-location stay at a high-end resort within this region, potentially near hubs like Playa del Carmen."
+      }
+    ]
+  },
+  {
+    "tour_id": "a6c05956-ddc3-4d47-851f-66ae66e3ee25",
+    "tour_name": "Romantic All-Inclusive Cabo",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Cabo San Lucas",
+        "latitude": 22.8905,
+        "longitude": -109.9167,
+        "description": "A resort city on the southern tip of Mexico's Baja California peninsula, known for its stunning beaches, water-based activities, luxury resorts, and vibrant nightlife, overlooking the Sea of Cortez and the Pacific Ocean."
+      }
+    ]
+  },
+  {
+    "tour_id": "c907394a-b618-422d-ad95-b00af5dd55ee",
+    "tour_name": "Mexico City & Riviera Maya",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Mexico City",
+        "latitude": 19.4326,
+        "longitude": -99.1332,
+        "description": "The vibrant capital of Mexico, offering a blend of rich history, colonial architecture, world-class museums (like Frida Kahlo's home in Coyoac\u00e1n), bustling markets, and sophisticated dining, serving as a base for exploring nearby sites like Teotihuacan."
+      },
+      {
+        "name": "Tulum",
+        "latitude": 20.2114,
+        "longitude": -87.4654,
+        "description": "A stylish town on the Riviera Maya famed for its well-preserved Mayan ruins perched above turquoise waters, stunning white-sand beaches, nearby cenotes (natural swimming holes), and a chic, bohemian atmosphere."
+      }
+    ]
+  },
+  {
+    "tour_id": "e0586ff2-4b9e-471d-8e87-56eb802e9f4c",
+    "tour_name": "Honeymoon in Swedish Lapland",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Stockholm",
+        "latitude": 59.3293,
+        "longitude": 18.0686,
+        "description": "Sweden's vibrant capital city, known for its historic Gamla Stan (Old Town), museums, design, and culinary scene. The tour begins here, offering urban exploration."
+      },
+      {
+        "name": "Kiruna",
+        "latitude": 67.8558,
+        "longitude": 20.2253,
+        "description": "Located in the heart of Swedish Lapland, north of the Arctic Circle. While the description mentions a 'secluded cabin or lodge setting' which could be outside the town itself, Kiruna is the major hub in this region for accessing Arctic experiences like Northern Lights viewing, dogsledding, snowmobiling, and S\u00e1mi culture, making it the most likely base area."
+      }
+    ]
+  },
+  {
+    "tour_id": "2e6b7983-f813-4c96-a3d0-6dc7cd73556c",
+    "tour_name": "Active Dolomites Ski Safari",
+    "success": true,
+    "locations_count": 1,
+    "locations": [
+      {
+        "name": "Dolomiti Superski area",
+        "latitude": 46.55,
+        "longitude": 11.87,
+        "description": "The tour description indicates a 'safari' style trip moving between multiple locations within the vast Dolomiti Superski area, rather than staying in one specific base. The exact villages or mountain huts are not specified, but they are located within this general region known for its stunning UNESCO World Heritage peaks and extensive skiing. Coordinates are approximate for the central area."
+      }
+    ]
+  },
+  {
+    "tour_id": "92261a32-888c-4114-9be9-b99dd5d1a204",
+    "tour_name": "Iceland Northern Lights Luxury",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Reykjavik",
+        "latitude": 64.1466,
+        "longitude": -21.9426,
+        "description": "Iceland's capital and largest city, serving as the starting point for the tour, known for its colourful buildings, vibrant arts scene, and proximity to southwestern attractions."
+      },
+      {
+        "name": "Troll Peninsula",
+        "latitude": 65.9,
+        "longitude": -18.9,
+        "description": "A remote and mountainous peninsula in Northern Iceland, emphasized in the tour for its dramatic landscapes, seclusion, exclusive experiences, and dark skies ideal for Northern Lights viewing."
+      }
+    ]
+  },
+  {
+    "tour_id": "720d6aa3-5508-46f5-81ad-d57bc3fb5194",
+    "tour_name": "Finnish Lapland & Helsinki",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Helsinki",
+        "latitude": 60.1699,
+        "longitude": 24.9384,
+        "description": "Finland's vibrant capital city, offering a blend of neoclassical architecture, modern design, and coastal charm. The starting point for the tour."
+      },
+      {
+        "name": "Saariselk\u00e4",
+        "latitude": 68.4218,
+        "longitude": 27.4311,
+        "description": "A resort village deep within Finnish Lapland, famous for its Arctic wilderness experiences, Northern Lights viewing opportunities, husky sledding, reindeer encounters, and access to S\u00e1mi culture. Chosen as a representative location for the 'heart of Finnish Lapland' activities described."
+      }
+    ]
+  },
+  {
+    "tour_id": "c8cdd915-91e0-42cc-ad1d-a99b25dd6cea",
+    "tour_name": "Swiss Alps Winter Romance",
+    "success": true,
+    "locations_count": 2,
+    "locations": [
+      {
+        "name": "Zermatt",
+        "latitude": 46.0207,
+        "longitude": 7.7491,
+        "description": "A picturesque, car-free village dramatically set against the backdrop of the awe-inspiring Matterhorn, known for its traditional charm and extensive ski terrain."
+      },
+      {
+        "name": "St. Moritz",
+        "latitude": 46.4984,
+        "longitude": 9.8391,
+        "description": "A chic and sun-blessed resort in the Engadin valley, famous for its 'champagne climate', vibrant atmosphere, luxury boutiques, and unique winter activities like events on the frozen lake."
+      }
+    ]
+  }
+]

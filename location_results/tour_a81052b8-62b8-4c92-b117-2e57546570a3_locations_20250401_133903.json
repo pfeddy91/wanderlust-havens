@@ -1,0 +1,24 @@
+{
+  "tour_id": "a81052b8-62b8-4c92-b117-2e57546570a3",
+  "tour_name": "Perfect Thailand",
+  "locations": [
+    {
+      "name": "Bangkok",
+      "latitude": 13.7563,
+      "longitude": 100.5018,
+      "description": "The vibrant capital city, the starting point of the tour, known for its temples, canals, floating markets, and street food."
+    },
+    {
+      "name": "Chiang Mai",
+      "latitude": 18.7883,
+      "longitude": 98.9853,
+      "description": "Located in Northern Thailand, known as the 'Rose of the North', offering cultural experiences, mountain scenery, ethical elephant interactions, and artisan crafts."
+    },
+    {
+      "name": "Phuket",
+      "latitude": 7.9519,
+      "longitude": 98.3364,
+      "description": "A world-renowned southern island, the final destination focused on relaxation, beaches, turquoise waters, island hopping, and potentially luxury accommodations."
+    }
+  ]
+}

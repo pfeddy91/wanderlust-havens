@@ -1,0 +1,24 @@
+{
+  "tour_id": "ca16e56c-c54d-4aeb-9b42-0b05d136b66b",
+  "tour_name": "Ultimate South Africa",
+  "locations": [
+    {
+      "name": "Kalahari Desert Region",
+      "latitude": -26.47,
+      "longitude": 20.61,
+      "description": "An expansive semi-arid savanna known for its stark beauty, red sands, unique wildlife (including black-maned lions and meerkats), and exceptional stargazing due to dark skies."
+    },
+    {
+      "name": "Cape Town",
+      "latitude": -33.9249,
+      "longitude": 18.4241,
+      "description": "A vibrant port city dramatically situated between Table Mountain and the Atlantic Ocean, known for its cultural diversity, historical significance, stunning natural scenery, and cosmopolitan atmosphere."
+    },
+    {
+      "name": "Franschhoek",
+      "latitude": -33.9108,
+      "longitude": 19.1218,
+      "description": "A picturesque historical town nestled in a valley within the Cape Winelands, celebrated for its Huguenot heritage, world-class wineries, gourmet restaurants, and stunning mountain backdrop."
+    }
+  ]
+}

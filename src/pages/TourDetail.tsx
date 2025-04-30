@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTourBySlug } from '@/services/honeymoonService';
@@ -60,9 +59,9 @@ const TourDetail = () => {
     );
   }
 
-  // Extract country names from tour_countries
-  const countryNames = tour.tour_countries
-    ? tour.tour_countries.map(tc => tc.countries?.name).filter(Boolean)
+  // Extract country names using the new structure provided by getTourBySlug
+  const countryNames = tour.country_details // Use the key where service function stores country data
+    ? tour.country_details.map(country => country.name).filter(Boolean)
     : [];
 
   return (

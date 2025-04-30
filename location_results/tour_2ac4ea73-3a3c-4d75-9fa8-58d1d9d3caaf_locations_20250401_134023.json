@@ -1,0 +1,36 @@
+{
+  "tour_id": "2ac4ea73-3a3c-4d75-9fa8-58d1d9d3caaf",
+  "tour_name": "Exceptional Japan",
+  "locations": [
+    {
+      "name": "Tokyo",
+      "latitude": 35.6895,
+      "longitude": 139.6917,
+      "description": "The vibrant capital, starting point of the tour, known for its dazzling lights, energy, and futuristic architecture."
+    },
+    {
+      "name": "Tsumago (Kiso Valley)",
+      "latitude": 35.5781,
+      "longitude": 137.5961,
+      "description": "A preserved post town on the Nakasendo Trail in the tranquil Kiso Valley, offering an experience of rural Japan and history. Chosen as a representative overnight location within the described Kiso Valley segment."
+    },
+    {
+      "name": "Kyoto",
+      "latitude": 35.0116,
+      "longitude": 135.7681,
+      "description": "The cultural heart of Japan, featuring Zen gardens, the Arashiyama Bamboo Grove, and the historic Gion district."
+    },
+    {
+      "name": "Miyajima Island (Itsukushima)",
+      "latitude": 34.2958,
+      "longitude": 132.3197,
+      "description": "Sacred island famous for the 'floating' torii gate of Itsukushima Shrine. Staying on the island is implied to experience the sunset views mentioned."
+    },
+    {
+      "name": "Lake Kawaguchi (Fuji Five Lakes)",
+      "latitude": 35.5167,
+      "longitude": 138.7667,
+      "description": "Located in the Fuji Five Lakes region, offering iconic and stunning views of Mount Fuji reflected in the lake waters, serving as the concluding location."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "0c28f9bb-feaf-4246-9416-ce172d430d94",
+  "tour_name": "Greek Island Odyssey",
+  "locations": [
+    {
+      "name": "Athens",
+      "latitude": 37.9838,
+      "longitude": 23.7275,
+      "description": "The capital of Greece and the cradle of Western civilization, offering millennia of history including the Acropolis and Parthenon, alongside the charming Plaka district."
+    },
+    {
+      "name": "Santorini",
+      "latitude": 36.3932,
+      "longitude": 25.4615,
+      "description": "A stunning volcanic island in the Aegean Sea, famous for its dramatic caldera views, iconic blue-domed churches in villages like Oia and Fira, unique volcanic beaches, and breathtaking sunsets."
+    },
+    {
+      "name": "Mykonos",
+      "latitude": 37.4467,
+      "longitude": 25.3289,
+      "description": "A cosmopolitan island in the Cyclades group, known for its vibrant energy, picturesque whitewashed Mykonos Town (Chora), Little Venice waterfront, iconic windmills, and stylish beaches."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "tour_id": "a9767c70-71c4-4a37-8327-32cd1f790839",
+  "tour_name": "Honeymoon to China",
+  "locations": [
+    {
+      "name": "Shanghai",
+      "latitude": 31.2304,
+      "longitude": 121.4737,
+      "description": "The tour begins here, exploring its futuristic skyline, historic lanes, art districts, and dining scene."
+    },
+    {
+      "name": "Beijing",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "description": "The second stop, featuring visits to the Great Wall, Forbidden City, Summer Palace, and traditional hutongs."
+    },
+    {
+      "name": "Lijiang",
+      "latitude": 26.8719,
+      "longitude": 100.2351,
+      "description": "An escape to the Naxi kingdom, focused on exploring the UNESCO-listed Old Town and soaking in the unique culture."
+    },
+    {
+      "name": "Yangshuo",
+      "latitude": 24.7761,
+      "longitude": 110.4911,
+      "description": "Characterized by dramatic karst landscapes, river rafting (Li/Yulong), and countryside exploration."
+    },
+    {
+      "name": "Hong Kong",
+      "latitude": 22.3193,
+      "longitude": 114.1694,
+      "description": "The concluding destination, offering iconic skyline views, vibrant markets, and world-class cuisine."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "tour_id": "bc0fa0ff-85c2-4ff5-a540-539967b2a0e0",
+  "tour_name": "Honeymoon to Sri Lanka",
+  "locations": [
+    {
+      "name": "Koggala",
+      "latitude": 5.9884,
+      "longitude": 80.3215,
+      "description": "Starting point on the southern coast, known for its beaches, lake, and proximity to stilt fishermen viewpoints."
+    },
+    {
+      "name": "Yala National Park",
+      "latitude": 6.4667,
+      "longitude": 81.4667,
+      "description": "Sri Lanka's premier wildlife park, famous for leopard sightings. Overnight stays are typically in lodges/hotels near the park entrances (e.g., Tissamaharama, Kirinda)."
+    },
+    {
+      "name": "Nuwara Eliya",
+      "latitude": 6.9686,
+      "longitude": 80.7836,
+      "description": "A key town in the heart of the Tea Country highlands, known for its cool climate, colonial architecture, and surrounding tea plantations."
+    },
+    {
+      "name": "Bentota",
+      "latitude": 6.4206,
+      "longitude": 79.9989,
+      "description": "Final coastal destination famed for its golden beaches, calm lagoon waters ideal for water sports, and relaxation."
+    }
+  ]
+}

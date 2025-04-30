@@ -1,0 +1,18 @@
+{
+  "tour_id": "cd410926-87af-494b-bd86-3f435683c9d1",
+  "tour_name": "Fiji Island Paradise",
+  "locations": [
+    {
+      "name": "Viti Levu",
+      "latitude": -17.8,
+      "longitude": 178.0,
+      "description": "Fiji's largest and main island, serving as the international gateway and offering initial cultural experiences before transferring to other islands."
+    },
+    {
+      "name": "Matamanoa Island",
+      "latitude": -17.7,
+      "longitude": 177.071,
+      "description": "A secluded island resort location within the Mamanuca archipelago, emphasized as the main romantic and tranquil destination for the tour."
+    }
+  ]
+}

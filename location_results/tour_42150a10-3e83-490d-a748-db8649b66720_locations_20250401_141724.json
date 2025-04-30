@@ -1,0 +1,36 @@
+{
+  "tour_id": "42150a10-3e83-490d-a748-db8649b66720",
+  "tour_name": "Ultimate Guatemala & Belize",
+  "locations": [
+    {
+      "name": "Antigua Guatemala",
+      "latitude": 14.5573,
+      "longitude": -90.7344,
+      "description": "UNESCO World Heritage site famed for its well-preserved Spanish Baroque-influenced architecture, cobblestone streets, and dramatic volcanic surroundings."
+    },
+    {
+      "name": "Lake Atitl\u00e1n",
+      "latitude": 14.697,
+      "longitude": -91.27,
+      "description": "A large, stunningly beautiful endorheic lake in the Guatemalan Highlands, surrounded by volcanoes and dotted with traditional Mayan villages."
+    },
+    {
+      "name": "Flores",
+      "latitude": 16.9298,
+      "longitude": -89.8907,
+      "description": "A town located on an island in Lake Pet\u00e9n Itz\u00e1, serving as the primary gateway for visiting the ancient Mayan ruins of Tikal in the Pet\u00e9n rainforest."
+    },
+    {
+      "name": "Mountain Pine Ridge Forest Reserve",
+      "latitude": 17.05,
+      "longitude": -88.95,
+      "description": "A nature reserve in Belize known for its distinctive pine forests, waterfalls (like Big Rock Falls and Rio On Pools), caves (like Rio Frio Cave), and opportunities for hiking and wildlife spotting."
+    },
+    {
+      "name": "Cayo Espanto",
+      "latitude": 17.9431,
+      "longitude": -87.9806,
+      "description": "A private island located off the coast of Belize, near Ambergris Caye, offering luxury accommodation and access to the Belize Barrier Reef."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "3ba51371-ba61-4d9c-b474-9d66d7d99084",
+  "tour_name": "Epic Zimbabwe",
+  "locations": [
+    {
+      "name": "Mana Pools National Park",
+      "latitude": -15.73,
+      "longitude": 29.36,
+      "description": "UNESCO World Heritage Site on the Zambezi River, known for walking safaris, canoeing, and abundant wildlife on the floodplains."
+    },
+    {
+      "name": "Lake Kariba",
+      "latitude": -16.85,
+      "longitude": 28.0,
+      "description": "Large man-made lake offering dramatic scenery with submerged trees, boat excursions, fishing, and wildlife viewing along the shores."
+    },
+    {
+      "name": "Hwange National Park",
+      "latitude": -19.0,
+      "longitude": 27.0,
+      "description": "Zimbabwe's largest game reserve, renowned for its vast elephant herds, predators like lions and wild dogs, and diverse habitats."
+    }
+  ]
+}

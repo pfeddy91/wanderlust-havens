@@ -1,0 +1,24 @@
+{
+  "tour_id": "bc710721-edfd-4b43-817d-8c8f17a55712",
+  "tour_name": "Epic Southern Italy",
+  "locations": [
+    {
+      "name": "Positano",
+      "latitude": 40.6285,
+      "longitude": 14.485,
+      "description": "A likely base on the Amalfi Coast, famed for its dramatic cliffside setting, colourful houses, and romantic atmosphere mentioned early in the itinerary."
+    },
+    {
+      "name": "Matera",
+      "latitude": 40.6667,
+      "longitude": 16.6,
+      "description": "Explicitly mentioned as the next destination, this ancient city in Basilicata is renowned for its unique Sassi districts (cave dwellings)."
+    },
+    {
+      "name": "Ostuni",
+      "latitude": 40.7293,
+      "longitude": 17.577,
+      "description": "A probable base for exploring Puglia's Itria Valley. Known as 'The White City', it's centrally located for visiting trulli areas, other towns like Locorotondo, and nearby coastlines."
+    }
+  ]
+}

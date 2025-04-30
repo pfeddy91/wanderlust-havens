@@ -1,0 +1,24 @@
+{
+  "tour_id": "6c713b14-e643-4bb2-8552-7567dac02072",
+  "tour_name": "Alaska Wilderness & Luxury",
+  "locations": [
+    {
+      "name": "Anchorage",
+      "latitude": 61.2181,
+      "longitude": -149.9003,
+      "description": "Alaska's largest city and the tour's starting point, often serving as the initial overnight location and transportation hub."
+    },
+    {
+      "name": "Denali National Park Area",
+      "latitude": 63.7304,
+      "longitude": -148.9176,
+      "description": "The area adjacent to Denali National Park where lodges are typically located, serving as a base for park exploration, wildlife viewing, and seeing Denali."
+    },
+    {
+      "name": "Seward",
+      "latitude": 60.1044,
+      "longitude": -149.4431,
+      "description": "A key port town on the Kenai Peninsula, acting as the primary gateway for cruises into Kenai Fjords National Park and offering access to coastal Alaskan scenery and marine wildlife."
+    }
+  ]
+}

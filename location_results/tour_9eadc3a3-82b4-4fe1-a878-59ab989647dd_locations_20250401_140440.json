@@ -1,0 +1,24 @@
+{
+  "tour_id": "9eadc3a3-82b4-4fe1-a878-59ab989647dd",
+  "tour_name": "Luxury in Thailand",
+  "locations": [
+    {
+      "name": "Bangkok",
+      "latitude": 13.7563,
+      "longitude": 100.5018,
+      "description": "Thailand's vibrant capital city, known for its ornate temples, bustling canals, lively markets, and diverse culinary scene."
+    },
+    {
+      "name": "Koh Yao Noi",
+      "latitude": 8.1167,
+      "longitude": 98.6,
+      "description": "A tranquil island nestled in Phang Nga Bay, offering seclusion, stunning karst vistas, spa experiences, and exploration of nearby islets."
+    },
+    {
+      "name": "Krabi",
+      "latitude": 8.0863,
+      "longitude": 98.9063,
+      "description": "A coastal province famous for its dramatic limestone cliffs, turquoise waters, pristine beaches (like Railay), island hopping, and kayaking opportunities."
+    }
+  ]
+}

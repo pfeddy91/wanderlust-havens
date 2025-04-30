@@ -1,0 +1,18 @@
+{
+  "tour_id": "d511971e-e6ad-434b-b809-a432df7a2a23",
+  "tour_name": "Maldives Overwater Dream",
+  "locations": [
+    {
+      "name": "Male Atoll (Resort Area)",
+      "latitude": 4.3,
+      "longitude": 73.55,
+      "description": "Initial stay near the capital, offering the classic Maldivian overwater villa experience with convenient access and vibrant house reefs. Often located in North or South Male Atoll."
+    },
+    {
+      "name": "Baa Atoll",
+      "latitude": 5.13,
+      "longitude": 73.05,
+      "description": "A UNESCO Biosphere Reserve known for incredible marine biodiversity, particularly manta ray sightings at Hanifaru Bay (seasonal), exceptional diving, and pristine natural beauty."
+    }
+  ]
+}

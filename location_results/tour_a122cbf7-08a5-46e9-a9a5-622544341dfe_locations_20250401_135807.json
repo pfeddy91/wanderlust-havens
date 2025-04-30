@@ -1,0 +1,18 @@
+{
+  "tour_id": "a122cbf7-08a5-46e9-a9a5-622544341dfe",
+  "tour_name": "French Riviera Romance",
+  "locations": [
+    {
+      "name": "Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "description": "The capital of France, renowned globally as the 'City of Love', famous for iconic landmarks like the Eiffel Tower, Louvre Museum, and its romantic atmosphere."
+    },
+    {
+      "name": "Nice",
+      "latitude": 43.7102,
+      "longitude": 7.262,
+      "description": "A major city on the French Riviera (C\u00f4te d'Azur), likely serving as the base for exploring nearby locations like Cannes, Antibes, Monaco, and Saint-Paul de Vence, known for its Promenade des Anglais and vibrant old town."
+    }
+  ]
+}

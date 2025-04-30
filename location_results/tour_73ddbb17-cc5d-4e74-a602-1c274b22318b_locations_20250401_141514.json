@@ -1,0 +1,12 @@
+{
+  "tour_id": "73ddbb17-cc5d-4e74-a602-1c274b22318b",
+  "tour_name": "Galapagos Islands Cruise",
+  "locations": [
+    {
+      "name": "Galapagos Islands National Park",
+      "latitude": -0.7558,
+      "longitude": -90.2585,
+      "description": "Travelers stay overnight aboard the expedition vessel as it navigates between various islands within this UNESCO World Heritage site, renowned for its unique volcanic landscapes and fearless endemic wildlife. The exact nightly anchorage point varies depending on the cruise itinerary."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "8d668e41-fe1f-49fd-ad18-ea3d853c7928",
+  "tour_name": "Wild Botswana",
+  "locations": [
+    {
+      "name": "Moremi Game Reserve (Mobile Camp Area)",
+      "latitude": -19.2,
+      "longitude": 23.5,
+      "description": "Overnighting in mobile camps within Moremi, renowned for its stunning landscapes where dry savannah meets Okavango Delta wetlands, offering rich biodiversity including big cats and wild dogs."
+    },
+    {
+      "name": "Khwai Community Concession (Mobile Camp Area)",
+      "latitude": -19.15,
+      "longitude": 23.75,
+      "description": "Staying in mobile camps within the Khwai Concession, famous for predator sightings along the Khwai River and offering an exclusive, immersive bush experience under the stars."
+    },
+    {
+      "name": "Chobe National Park (Riverfront Area)",
+      "latitude": -17.8,
+      "longitude": 25.1,
+      "description": "Accommodation likely near or within the Chobe Riverfront area, famed for hosting the world's largest concentration of elephants and offering spectacular wildlife viewing, especially via boat cruises."
+    }
+  ]
+}

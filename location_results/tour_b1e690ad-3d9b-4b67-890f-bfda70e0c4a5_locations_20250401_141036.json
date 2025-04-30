@@ -1,0 +1,24 @@
+{
+  "tour_id": "b1e690ad-3d9b-4b67-890f-bfda70e0c4a5",
+  "tour_name": "Ultimate Rwanda and Tanzania",
+  "locations": [
+    {
+      "name": "Virunga Mountains / Volcanoes National Park area",
+      "latitude": -1.46,
+      "longitude": 29.59,
+      "description": "Located in Rwanda, this volcanic mountain range is famous for being a prime habitat for endangered mountain gorillas and the location for trekking experiences."
+    },
+    {
+      "name": "Serengeti National Park",
+      "latitude": -2.3333,
+      "longitude": 34.8333,
+      "description": "A vast and iconic national park in Tanzania, renowned for its massive savannas, abundant wildlife including the 'Big Five', and the annual Great Migration."
+    },
+    {
+      "name": "Zanzibar",
+      "latitude": -6.1659,
+      "longitude": 39.199,
+      "description": "A Tanzanian archipelago off the coast of East Africa, known for its historic Stone Town (a UNESCO World Heritage site) and beautiful beaches with opportunities for relaxation and water activities."
+    }
+  ]
+}

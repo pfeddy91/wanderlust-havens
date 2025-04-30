@@ -1,0 +1,18 @@
+{
+  "tour_id": "f6a8f57d-4ce8-4338-8928-da42c5047c46",
+  "tour_name": "Maldives and Dubai",
+  "locations": [
+    {
+      "name": "Dubai",
+      "latitude": 25.276987,
+      "longitude": 55.296249,
+      "description": "A major city in the United Arab Emirates known for its futuristic architecture, luxury shopping, vibrant souks, and surrounding desert landscape."
+    },
+    {
+      "name": "Maldives Resort (representative)",
+      "latitude": 4.1755,
+      "longitude": 73.5093,
+      "description": "Representing a typical luxury resort location within the Maldives archipelago, famed for overwater villas, turquoise lagoons, coral reefs, and providing a tranquil, romantic escape. Exact location varies by specific resort chosen."
+    }
+  ]
+}

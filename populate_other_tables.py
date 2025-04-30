@@ -7,506 +7,345 @@ import time
 import json
 from datetime import datetime
 from supabase import create_client, Client
+from typing import List, Dict, Optional, Any # Added typing
 
-# Supabase credentials
-SUPABASE_URL = "https://jeiuruhneitvfyjkmbvj.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImplaXVydWhuZWl0dmZ5amttYnZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2NjU5NzQsImV4cCI6MjA1ODI0MTk3NH0.iYBsdI4p7o7rKbrMHstzis4KZYV_ks2p09pmtj5-bTo"
+# Supabase credentials (ensure these are correct)
+SUPABASE_URL = "https://ydcggawwxohbcpcjyhdk.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkY2dnYXd3eG9oYmNwY2p5aGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNjk3NjUsImV4cCI6MjA1ODg0NTc2NX0.FHSkH2qML9w5Li6VfG8jWbcu-DV4HQCLTK0wu6J3VV0"
 
-# Initialize Perplexity API config
-PERPLEXITY_API_KEY = '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'
-PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions'
-
-# Initialize Gemini API config
-GEMINI_API_KEY = 'AIzaSyBHQrWXW6ix1Me5ufjfc70b01W20hbgZKc'
-GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
+# Gemini API config
+GEMINI_API_KEY = 'AIzaSyBHQrWXW6ix1Me5ufjfc70b01W20hbgZKc' # Replace with your actual key if different
+GEMINI_API_MODEL = 'gemini-2.5-pro-exp-03-25' # Using the specified model
 
 # Initialize Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-def call_perplexity_api(system_prompt: str, user_prompt: str) -> str:
-    """Call the Perplexity API and return the response content"""
-    headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {PERPLEXITY_API_KEY}'
-    }
-    
-    payload = {
-        "model": "sonar-pro",
-        "messages": [
-            {"role": "system", "content": system_prompt.strip()},
-            {"role": "user", "content": user_prompt.strip()}
-        ]
-    }
-    
-    try:
-        # Add a delay to avoid rate limiting
-        time.sleep(1)
-        
-        response = requests.post(PERPLEXITY_API_URL, headers=headers, json=payload, timeout=30)
-        
-        if response.status_code == 401:
-            print("Authentication failed: Your Perplexity API key may have expired or is invalid.")
+# --- Utility Functions ---
+
+def custom_slugify(text: str) -> str:
+    """
+    Convert a string to a slug format (lowercase, no special chars, hyphens instead of spaces).
+    Handles potential None input gracefully.
+    """
+    if not text:
             return ""
-        elif not response.ok:
-            print(f"Perplexity API error: {response.status_code} - {response.text[:200]}...")
-            raise Exception(f"Perplexity API returned status code {response.status_code}")
-            
-        result = response.json()
-        if 'choices' not in result or not result['choices']:
-            raise Exception("No choices in Perplexity API response")
-            
-        content = result['choices'][0]['message']['content']
-        return content
-        
-    except Exception as e:
-        print(f"Perplexity API Request Error: {str(e)}")
-        raise
-
-def call_gemini_api(system_prompt: str, user_prompt: str) -> str:
-    """Call the Gemini API and return the response content"""
-    # Combine system and user prompts for Gemini
-    combined_prompt = f"{system_prompt}\n\n{user_prompt}"
-    
-    # Construct the API URL with the API key
-    url = f"{GEMINI_API_URL}?key={GEMINI_API_KEY}"
-    
-    headers = {
-        'Content-Type': 'application/json'
-    }
-    
-    payload = {
-        "contents": [{
-            "parts": [{"text": combined_prompt}]
-        }]
-    }
-    
-    try:
-        # Add a delay to avoid rate limiting
-        time.sleep(1)
-        
-        response = requests.post(url, headers=headers, json=payload, timeout=30)
-        
-        if not response.ok:
-            print(f"Gemini API error: {response.status_code} - {response.text[:200]}...")
-            raise Exception(f"Gemini API returned status code {response.status_code}")
-            
-        result = response.json()
-        
-        # Extract the content from Gemini's response format
-        if 'candidates' in result and result['candidates'] and 'content' in result['candidates'][0]:
-            content_parts = result['candidates'][0]['content']['parts']
-            content = ''.join([part.get('text', '') for part in content_parts if 'text' in part])
-            return content
-        else:
-            raise Exception("Unexpected response format from Gemini API")
-        
-    except Exception as e:
-        print(f"Gemini API Request Error: {str(e)}")
-        raise
-
-def call_ai_api(system_prompt: str, user_prompt: str, model: str = "perplexity") -> str:
-    """Call the selected AI API and return the response content"""
-    if model.lower() == "gemini":
-        return call_gemini_api(system_prompt, user_prompt)
-    else:  # Default to Perplexity
-        return call_perplexity_api(system_prompt, user_prompt)
-
-def generate_country_description(country_name, model="perplexity"):
-    """Generate a description for a country using the selected AI API"""
-    system_prompt = "You are a sophisticated travel expert specializing in luxury honeymoon destinations. Your writing is elegant, informative, and appeals to discerning travelers seeking exceptional experiences."
-    
-    user_prompt = f"""
-Write an elegant description answering the question: "Why should you travel on your honeymoon to {country_name}?"
-
-Your response should:
-- Be approximately 150 words maximum
-- Convey the essence of {country_name} as a honeymoon destination
-- Highlight what makes it exciting and unique for couples
-- Mention any potential drawbacks or considerations, if relevant
-- Use sophisticated language appropriate for luxury travelers
-- Focus on exclusive experiences, romantic settings, and memorable moments
-- Avoid clichés and generic travel writing
-
-The description will be used on a luxury honeymoon travel website.
-"""
-    
-    try:
-        description = call_ai_api(system_prompt, user_prompt, model)
-        print(f"Generated description for {country_name} using {model.capitalize()} API")
-        return description
-    except Exception as e:
-        print(f"Failed to generate description for {country_name} using {model.capitalize()} API: {str(e)}")
-        return ""
-
-def seo_slugify(text, prefix=None, suffix=None):
-    """
-    Create an SEO-friendly slug from text with optional prefix and suffix
-    """
-    # Convert to lowercase
-    text = text.lower()
-    
-    # Convert to ASCII
+    text = str(text).lower() # Ensure input is string and lowercase
     text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
-    
-    # Replace non-alphanumeric characters with hyphens
     text = re.sub(r'[^a-z0-9]+', '-', text)
-    
-    # Remove leading/trailing hyphens
     text = text.strip('-')
-    
-    # Add prefix if provided
-    if prefix:
-        prefix = seo_slugify(prefix)
-        text = f"{prefix}-{text}"
-    
-    # Add suffix if provided
-    if suffix:
-        suffix = seo_slugify(suffix)
-        text = f"{text}-{suffix}"
-    
     return text
 
-def load_tours_data(filename):
-    """Load tour data from CSV file"""
-    tours = []
-    with open(filename, 'r', encoding='utf-8') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            tours.append(row)
-    return tours
+def call_gemini_api(prompt: str) -> Optional[Dict[str, Any]]:
+    """
+    Call the Gemini API with a prompt and return the parsed JSON response.
+    Uses the configured GEMINI_API_MODEL.
+    """
+    if not GEMINI_API_KEY or GEMINI_API_KEY == 'YOUR_GEMINI_API_KEY':
+         print("Error: Gemini API key is not configured.")
+         return None
 
-def extract_regions_and_countries(tours_data):
-    """Extract unique regions and countries from tour data"""
-    regions = set()
-    countries = {}  # {country_name: region_name}
-    
-    for tour in tours_data:
-        region = tour['region']
-        country = tour['main_country']
-        
-        regions.add(region)
-        countries[country] = region
-    
-    return list(regions), countries
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_API_MODEL}:generateContent?key={GEMINI_API_KEY}"
+    headers = {'Content-Type': 'application/json'}
+    payload = {"contents": [{"parts": [{"text": prompt.strip()}]}]}
 
-def update_region_slugs(regions):
-    """Update region slugs for SEO and return a mapping of region names to IDs"""
-    region_mapping = {}
-    
-    for region_name in regions:
-        # Generate SEO-friendly slug
-        seo_slug = seo_slugify(f"honeymoon-{region_name}")
-        
-        # Check if region already exists
-        existing_region = supabase.table('regions').select('id').eq('name', region_name).execute()
-        
-        if existing_region.data:
-            # Region exists, update its slug
-            region_id = existing_region.data[0]['id']
-            print(f"Updating slug for region '{region_name}'")
-            
-            update_data = {
-                "slug": seo_slug,
-                "updated_at": datetime.now().isoformat()
-            }
-            
-            supabase.table('regions').update(update_data).eq('id', region_id).execute()
-            print(f"Updated region '{region_name}' with SEO slug: {seo_slug}")
-        else:
-            # Create new region with SEO slug
-            now = datetime.now().isoformat()
-            region_data = {
-                "name": region_name,
-                "description": "",
-                "featured_image": "",
-                "slug": seo_slug,
-                "created_at": now,
-                "updated_at": now
-            }
-            
-            response = supabase.table('regions').insert(region_data).execute()
-            region_id = response.data[0]['id']
-            print(f"Created new region '{region_name}' with SEO slug: {seo_slug}")
-        
-        # Get the region ID (either from existing or newly created)
-        if not existing_region.data:
-            region_id = supabase.table('regions').select('id').eq('name', region_name).execute().data[0]['id']
-        
-        region_mapping[region_name] = region_id
-    
-    return region_mapping
-
-def generate_country_attributes(country_name, model="gemini"):
-    """Generate detailed attributes for a country using the selected AI API"""
-    system_prompt = "You are a travel expert specializing in honeymoon destinations worldwide. You provide accurate, concise information about countries for travelers."
-    
-    user_prompt = f"""
-Provide detailed information about {country_name} as a honeymoon destination in JSON format. Include the following:
-
-1) description: 
-    A 125-word general introduction about {country_name} as a travel destination highlighting what makes it special.
-    The description should be written in the style of a travel magazine and not be banale. Keep in mind we cater to affluent young couples. 
-    Feel free to mention highlights of the country as a destination,natural wonders and even experiences (eg surfing or diving) that are not obvious.
-2) rationale:
-    A 100-word explanation of who would enjoy {country_name} as a honeymoon destination and things to look out for (e.g., comfort level, cultural considerations).
-    The rationale should be written in the style of a travel magazine and not be banale. Keep in mind we cater to affluent young couples. 
-3) distance: An estimated flight duration range (in hours) to travel to {country_name} from Europe. Format as text (e.g., "8-10 hours").
-4) best_period: The best periods of the year to visit {country_name} for a honeymoon. Keep it short (eg from March to May and October to December are the best months to visit {country_name})
-5) comfort: A rating from 1-5 (where 1 = very challenging infrastructure (eg places like Philippines or India) and 5 = extremely developed (Japan or Europe)). This should include quality of hotels, roads and infrastructure. Provide super brief explanation about the ease of travel in {country_name}. Format as text (e.g., "4 - Well-developed infrastructure with reliable transportation").
-
-Each section should be concise and factual. Format your response strictly as JSON with these fields as text values. No preamble or explanations outside the JSON structure.
-"""
-    
     try:
-        response = call_ai_api(system_prompt, user_prompt, model)
-        
-        # Extract JSON from response (in case the AI includes any extra text)
-        json_match = re.search(r'```(?:json)?\s*([\s\S]*?)```', response)
+        print(f"Sending prompt to Gemini API ({GEMINI_API_MODEL})...")
+        time.sleep(2)
+        response = requests.post(url, headers=headers, json=payload, timeout=120)
+
+        if not response.ok:
+            print(f"Gemini API error: {response.status_code} - {response.text[:300]}...")
+            return None
+
+        result = response.json()
+
+        if 'candidates' not in result or not result['candidates'] or 'content' not in result['candidates'][0]:
+            print("Invalid response format from Gemini API (missing candidates/content)")
+            print(f"Full response: {result}")
+            return None
+
+        content_parts = result['candidates'][0]['content']['parts']
+        content = ''.join([part.get('text', '') for part in content_parts if 'text' in part])
+
+        print("Raw Gemini API response content (first 300 chars):")
+        print(content[:300] + "..." if len(content) > 300 else content)
+
+        json_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', content, re.DOTALL | re.IGNORECASE)
         if json_match:
-            response = json_match.group(1).strip()
+            json_content = json_match.group(1).strip()
         else:
-            # Try to clean up response to get just the JSON part
-            response = re.sub(r'^[^{]*', '', response)
-            response = re.sub(r'[^}]*$', '', response)
-        
-        # Parse the JSON
-        country_data = json.loads(response)
-        print(f"Generated attributes for {country_name} using {model.capitalize()} API")
-        
-        # Ensure all values are strings
-        for key in country_data:
-            if not isinstance(country_data[key], str):
-                country_data[key] = str(country_data[key])
-                
-        return country_data
-    except Exception as e:
-        print(f"Failed to generate attributes for {country_name} using {model.capitalize()} API: {str(e)}")
-        return {}
+            start_index = content.find('{')
+            end_index = content.rfind('}')
+            if start_index != -1 and end_index != -1 and end_index > start_index:
+                json_content = content[start_index : end_index + 1].strip()
+            else:
+                print("Could not reliably extract JSON object from Gemini response content.")
+                print(f"Content was: {content}")
+                return None
 
-def update_country_attributes(country_name, country_id, override=False, model="gemini"):
-    """Update extended attributes for a specific country"""
-    if not override:
-        # Check if attributes already exist
-        country_data = supabase.table('countries').select('description, rationale, distance, best_period, comfort').eq('id', country_id).execute()
-        
-        if country_data.data and country_data.data[0].get('description') and country_data.data[0].get('rationale'):
-            print(f"Attributes already exist for country '{country_name}', skipping (use -override to replace)")
-            return False
-    
-    # Generate attributes
-    print(f"Generating attributes for country '{country_name}' using {model.capitalize()} API")
-    attributes = generate_country_attributes(country_name, model)
-    
-    if not attributes:
-        print(f"Failed to generate attributes for country '{country_name}'")
-        return False
-    
-    # Update country attributes - ensure all are text values
-    update_data = {
-        "description": str(attributes.get('description', '')),
-        "rationale": str(attributes.get('rationale', '')),
-        "distance": str(attributes.get('distance', '')),
-        "best_period": str(attributes.get('best_period', '')),
-        "comfort": str(attributes.get('comfort', '')),
-        "updated_at": datetime.now().isoformat()
-    }
-    
+        print("Attempting to parse JSON content (first 300 chars):")
+        print(json_content[:300] + "..." if len(json_content) > 300 else json_content)
+
+        try:
+            return json.loads(json_content)
+        except json.JSONDecodeError as e:
+            print(f"JSON decode error: {e}")
+            print(f"Problematic JSON string: {json_content}")
+            return None
+
+    except requests.exceptions.Timeout:
+        print("Gemini API request timed out.")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"Gemini API Request Error (Network/Connection): {str(e)}")
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred during Gemini API call: {str(e)}")
+        return None
+
+
+def load_csv_data(filename: str) -> List[Dict[str, str]]:
+    """Load data from CSV file"""
+    data = []
     try:
-        # Only update the specific attributes, don't touch other fields
-        supabase.table('countries').update(update_data).eq('id', country_id).execute()
-        print(f"Updated attributes for country '{country_name}'")
-        return True
+        with open(filename, 'r', encoding='utf-8-sig') as file: # Use utf-8-sig to handle potential BOM
+            reader = csv.DictReader(file)
+            if not reader.fieldnames:
+                 print(f"Error: CSV file '{filename}' might be empty or header is missing.")
+                 return []
+            print(f"CSV Headers: {reader.fieldnames}") # Debugging: show headers
+            for row in reader:
+                data.append(row)
+    except FileNotFoundError:
+        print(f"Error: Input file '{filename}' not found.")
+        return []
     except Exception as e:
-        print(f"Error updating attributes for country '{country_name}': {str(e)}")
-        return False
+        print(f"Error reading CSV file '{filename}': {e}")
+        return []
+    return data
 
-def update_country_slugs(countries, region_mapping, generate_attributes=False, override=False, model="gemini"):
-    """Update country slugs for SEO and return a mapping of country names to IDs"""
-    country_mapping = {}
-    
-    for country_name, region_name in countries.items():
-        region_id = region_mapping[region_name]
-        
-        # Get region name for the slug
-        region_data = supabase.table('regions').select('name').eq('id', region_id).execute()
-        region_name = region_data.data[0]['name'] if region_data.data else region_name
-        
-        # Generate SEO-friendly slug
-        seo_slug = seo_slugify(f"honeymoon-{region_name}-{country_name}")
-        
-        # Check if country already exists
-        existing_country = supabase.table('countries').select('id').eq('name', country_name).execute()
-        
-        if existing_country.data:
-            # Country exists, update its slug
-            country_id = existing_country.data[0]['id']
-            print(f"Updating slug for country '{country_name}'")
-            
-            update_data = {
-                "slug": seo_slug,
-                "updated_at": datetime.now().isoformat()
-            }
-            
-            supabase.table('countries').update(update_data).eq('id', country_id).execute()
-            print(f"Updated country '{country_name}' with SEO slug: {seo_slug}")
-            
-            # Update country attributes if requested
-            if generate_attributes:
-                update_country_attributes(country_name, country_id, override, model)
-        else:
-            # Create new country with SEO slug
-            now = datetime.now().isoformat()
-            
-            # Setup basic country data - DON'T MODIFY THESE FIELDS
-            country_data = {
-                "region_id": region_id,
-                "name": country_name,
-                "featured_image": "",
-                "map_image": "",
-                "slug": seo_slug,
-                "created_at": now,
-                "updated_at": now
-            }
-            
-            # Generate attributes if requested
-            if generate_attributes:
-                print(f"Generating attributes for new country '{country_name}' using {model.capitalize()} API")
-                attributes = generate_country_attributes(country_name, model)
-                if attributes:
-                    # Ensure all attributes are strings
-                    country_data.update({
-                        "description": str(attributes.get('description', '')),
-                        "rationale": str(attributes.get('rationale', '')),
-                        "distance": str(attributes.get('distance', '')),
-                        "best_period": str(attributes.get('best_period', '')),
-                        "comfort": str(attributes.get('comfort', ''))
-                    })
-            
-            response = supabase.table('countries').insert(country_data).execute()
-            country_id = response.data[0]['id']
-            print(f"Created new country '{country_name}' with SEO slug: {seo_slug}")
-        
-        # Get the country ID (either from existing or newly created)
-        if not existing_country.data:
-            country_id = supabase.table('countries').select('id').eq('name', country_name).execute().data[0]['id']
-        
-        country_mapping[country_name] = country_id
-    
-    return country_mapping
-
-def get_tour_id_by_name(tour_name):
-    """Get tour ID from the tours table by name"""
-    response = supabase.table('tours').select('id').eq('name', tour_name).execute()
-    if response.data:
-        return response.data[0]['id']
-    return None
-
-def link_tours_to_countries(tours_data, country_mapping):
-    """Create links between tours and their main countries"""
-    successful_links = 0
-    failed_links = 0
-    
+def extract_unique_regions_countries(tours_data: List[Dict[str, str]]) -> Dict[str, List[str]]:
+    """Extract unique regions and their associated countries from tour data"""
+    # Assumes '1) Category' is Region and '5) Primary country' is Country
+    region_to_countries = {}
     for tour in tours_data:
-        tour_name = tour['tour_name']
-        country_name = tour['main_country']
-        
-        # Get tour ID
-        tour_id = get_tour_id_by_name(tour_name)
-        if not tour_id:
-            print(f"Could not find tour with name: {tour_name}")
-            failed_links += 1
+        region_name = tour.get('1) Category')
+        country_name = tour.get('5) Primary country')
+
+        if region_name and country_name:
+            region_name = region_name.strip()
+            country_name = country_name.strip()
+            if region_name not in region_to_countries:
+                region_to_countries[region_name] = set() # Use set for uniqueness
+            region_to_countries[region_name].add(country_name)
+
+    # Convert sets to lists
+    result = {region: sorted(list(countries)) for region, countries in region_to_countries.items()}
+    return result
+
+# --- Region Population ---
+
+def generate_region_prompt(region_name: str) -> str:
+    """Generate the prompt for Gemini API to get region details."""
+    return f"""
+    Analyze the region "{region_name}" as a luxury honeymoon travel destination.
+
+    Provide the following details in a valid JSON object format:
+    {{
+      "description": "A compelling and evocative description (approx. 100-150 words) highlighting the unique appeal of '{region_name}' for honeymooners. Focus on atmosphere, key experiences, and romantic potential. Use sophisticated language suitable for a luxury travel audience.",
+      "photo_keywords": ["list", "of", "3-5", "specific", "keywords", "or short phrases for searching high-quality, representative photos of this region suitable for a luxury travel website (e.g., 'overwater bungalow Bora Bora', 'Kyoto cherry blossom temple', 'Serengeti balloon safari sunrise')"],
+      "featured_image_keyword": "A single, concise keyword or short phrase for searching a stunning featured image for the '{region_name}' region page."
+    }}
+
+    Ensure the output is ONLY the JSON object, without any introductory text, backticks, or explanations.
+    """
+
+def populate_regions(regions_to_populate: List[str]) -> Dict[str, str]:
+    """Generate content and insert regions into the database."""
+    region_name_to_id = {}
+    print(f"\n--- Populating {len(regions_to_populate)} Regions ---")
+
+    for region_name in regions_to_populate:
+        print(f"\nProcessing Region: {region_name}")
+
+        # 1. Generate Slug
+        region_slug = custom_slugify(f"honeymoon-{region_name}")
+
+        # 2. Generate Content via Gemini
+        prompt = generate_region_prompt(region_name)
+        ai_data = call_gemini_api(prompt)
+
+        if not ai_data:
+            print(f"Skipping region '{region_name}' due to content generation failure.")
             continue
-        
-        # Get country ID from mapping
-        if country_name not in country_mapping:
-            print(f"Could not find country with name: {country_name} in mapping")
-            failed_links += 1
-            continue
-        
-        country_id = country_mapping[country_name]
-        
-        # Check if the link already exists
-        existing_link = supabase.table('tour_countries').select('id') \
-                               .eq('tour_id', tour_id) \
-                               .eq('country_id', country_id) \
-                               .execute()
-        
-        if existing_link.data:
-            print(f"Link between tour '{tour_name}' and country '{country_name}' already exists, skipping")
-            continue
-        
-        # Create new link
+
+        # 3. Prepare Data for DB Insertion
         now = datetime.now().isoformat()
-        link_data = {
-            "tour_id": tour_id,
-            "country_id": country_id,
-            "order": 1,  # Default order is 1 since we're only linking the main country
+        region_data = {
+            "name": region_name,
+            "slug": region_slug,
+            "description": ai_data.get("description", f"Explore the beautiful region of {region_name}."), # Default description
+            "photos": ai_data.get("photo_keywords"), # Store keywords as text array
+            "featured_image": ai_data.get("featured_image_keyword"), # Store keyword, URL determined later
             "created_at": now,
             "updated_at": now
         }
-        
+            
+        # 4. Insert into Supabase
         try:
-            response = supabase.table('tour_countries').insert(link_data).execute()
-            print(f"Created link between tour '{tour_name}' and country '{country_name}'")
-            successful_links += 1
+            response = supabase.table('regions').insert(region_data).execute()
+            if response.data:
+                region_id = response.data[0]['id']
+                region_name_to_id[region_name] = region_id
+                print(f"Successfully inserted region '{region_name}' (ID: {region_id})")
+            else:
+                # Handle potential insert errors (e.g., duplicate slug if run twice without clearing)
+                error_info = getattr(response, 'error', None)
+                print(f"Failed to insert region '{region_name}'. Error: {error_info}")
         except Exception as e:
-            print(f"Error creating link between tour '{tour_name}' and country '{country_name}': {str(e)}")
-            failed_links += 1
-    
-    print(f"Completed linking tours to countries: {successful_links} successful, {failed_links} failed")
+            print(f"Exception inserting region '{region_name}': {e}")
+            # Consider logging the specific region_data that failed
+
+    print(f"--- Finished Populating Regions ({len(region_name_to_id)} successful) ---")
+    return region_name_to_id
+
+# --- Country Population ---
+
+def generate_country_prompt(country_name: str, region_name: str) -> str:
+    """Generate the prompt for Gemini API to get country details."""
+    return f"""
+    Analyze "{country_name}" located in the region "{region_name}" as a luxury honeymoon travel destination.
+
+    Provide the following details in a valid JSON object format:
+    {{
+      "description": "A 125-word general introduction about '{country_name}' as a travel destination, highlighting what makes it special for affluent young couples on their honeymoon. Mention unique natural wonders or experiences. Use an evocative, travel magazine style.",
+      "rationale": "A 100-word explanation of *who* would enjoy '{country_name}' for a honeymoon and things to look out for (e.g., adventure level, cultural immersion, relaxation focus). Maintain a sophisticated tone.",
+      "distance": "An estimated flight duration range (in hours) to travel to '{country_name}' from a major European hub (e.g., London, Paris, Frankfurt). Format as text (e.g., '12-14 hours').",
+      "best_period": "The best periods (months or seasons) to visit '{country_name}' for ideal honeymoon weather and experiences. Keep it concise (e.g., 'March to May and October to December').",
+      "comfort": "A rating from 1 (very basic infrastructure) to 5 (highly developed) reflecting overall travel ease (hotels, roads, transport). Provide a brief explanation. Format as text (e.g., '4 - Well-developed tourist infrastructure, especially in major areas').",
+      "photo_keywords": ["list", "of", "5-7", "specific", "keywords", "or short phrases for searching high-quality, representative photos of '{country_name}' suitable for a luxury honeymoon site (e.g., 'Santorini caldera sunset', 'Maasai Mara safari jeep', 'Tokyo Shibuya crossing night')"],
+      "featured_image_keyword": "A single, concise keyword or short phrase for searching a stunning featured image for the '{country_name}' country page.",
+      "map_image_keyword": "A keyword or phrase for searching a stylish, simple map image highlighting '{country_name}' (e.g., 'minimalist map Italy', 'Japan prefectures map outlined').",
+      "is_featured": "true or false (boolean) - Indicate if '{country_name}' is generally considered a top-tier, popular, or highly recommended honeymoon destination.",
+      "favourite_destination": "true or false (boolean) - Indicate if '{country_name}' is an exceptionally sought-after or 'bucket list' type honeymoon destination."
+    }}
+
+    Ensure the output is ONLY the JSON object, without any introductory text, backticks, or explanations. Make sure boolean values are true/false, not strings.
+    """
+
+def populate_countries(region_countries_map: Dict[str, List[str]], region_name_to_id: Dict[str, str]):
+    """Generate content and insert countries into the database."""
+    print(f"\n--- Populating Countries ---")
+    total_countries_processed = 0
+    successful_inserts = 0
+
+    for region_name, countries in region_countries_map.items():
+        if region_name not in region_name_to_id:
+            print(f"Skipping countries in region '{region_name}' as region ID was not found.")
+            continue
+
+        region_id = region_name_to_id[region_name]
+        print(f"\nProcessing Countries in Region: {region_name} (ID: {region_id})")
+
+        for country_name in countries:
+            total_countries_processed += 1
+            print(f"  Processing Country: {country_name}")
+
+            # 1. Generate Slug
+            country_slug = custom_slugify(f"honeymoon-{region_name}-{country_name}") # Include region for uniqueness
+
+            # 2. Generate Content via Gemini
+            prompt = generate_country_prompt(country_name, region_name)
+            ai_data = call_gemini_api(prompt)
+
+            if not ai_data:
+                print(f"  Skipping country '{country_name}' due to content generation failure.")
+                continue
+
+            # 3. Prepare Data for DB Insertion
+            now = datetime.now().isoformat()
+            try:
+                # Attempt to cast boolean fields correctly
+                is_featured = str(ai_data.get("is_featured", False)).lower() == 'true'
+                favourite_destination = str(ai_data.get("favourite_destination", False)).lower() == 'true'
+            except Exception:
+                 is_featured = False # Default to false on error
+                 favourite_destination = False
+
+
+            country_data = {
+                "region_id": region_id,
+                "name": country_name,
+                "slug": country_slug,
+                "description": ai_data.get("description"),
+                "rationale": ai_data.get("rationale"),
+                "distance": ai_data.get("distance"),
+                "best_period": ai_data.get("best_period"),
+                "comfort": ai_data.get("comfort"),
+                "photos": ai_data.get("photo_keywords"), # Store keywords
+                "featured_image": ai_data.get("featured_image_keyword"), # Store keyword
+                "map_image": ai_data.get("map_image_keyword"), # Store keyword
+                "is_featured": is_featured,
+                "favourite_destination": favourite_destination,
+                "created_at": now,
+                "updated_at": now
+            }
+            
+            # 4. Insert into Supabase
+            try:
+                response = supabase.table('countries').insert(country_data).execute()
+                if response.data:
+                    country_id = response.data[0]['id']
+                    print(f"  Successfully inserted country '{country_name}' (ID: {country_id})")
+                    successful_inserts += 1
+                else:
+                    error_info = getattr(response, 'error', None)
+                    print(f"  Failed to insert country '{country_name}'. Error: {error_info}")
+            except Exception as e:
+                print(f"  Exception inserting country '{country_name}': {e}")
+                # Consider logging the specific country_data that failed
+
+    print(f"--- Finished Populating Countries ({successful_inserts}/{total_countries_processed} successful) ---")
+
+# --- Main Execution ---
 
 def main():
-    # Add argument parsing
-    parser = argparse.ArgumentParser(description='Populate regions, countries, and tour_countries tables')
-    parser.add_argument('-tour', type=str, help='Process specific tour by tour code (e.g., OCE002)')
-    parser.add_argument('-country', type=str, help='Update attributes for specific country')
-    parser.add_argument('-attributes', action='store_true', help='Generate detailed attributes for countries')
-    parser.add_argument('-override', action='store_true', help='Override existing attributes')
-    parser.add_argument('-model', type=str, choices=['perplexity', 'gemini'], default='gemini', 
-                        help='Select AI model to use (perplexity or gemini)')
-    args = parser.parse_args()
-    
-    # If updating a specific country attributes
-    if args.country:
-        # Get country ID
-        country_response = supabase.table('countries').select('id').eq('name', args.country).execute()
-        if not country_response.data:
-            print(f"Country '{args.country}' not found in database")
-            return
-            
-        country_id = country_response.data[0]['id']
-        update_country_attributes(args.country, country_id, args.override, args.model)
+    """Main function to load data and populate tables."""
+    parser = argparse.ArgumentParser(description='Populate Regions and Countries tables using Gemini API')
+    # Removed unused arguments like -tour, -country, -override, -model
+    args = parser.parse_args() # Keep parser for potential future args
+
+    print("Starting script...")
+    print(f"Using Gemini Model: {GEMINI_API_MODEL}")
+
+    # 1. Load tour data from the correct CSV
+    input_filename = 'tours_input.csv'
+    tours_data = load_csv_data(input_filename)
+
+    if not tours_data:
+        print("No tour data loaded. Exiting.")
         return
-    
-    # Load tour data
-    all_tours_data = load_tours_data('tours_incipit.txt')
-    print(f"Loaded {len(all_tours_data)} tours from tours_incipit.txt")
-    
-    # Filter tours based on tour code if provided
-    if args.tour:
-        tours_data = [tour for tour in all_tours_data if tour['tour_code'] == args.tour]
-        if not tours_data:
-            print(f"No tour found with code {args.tour}")
-            return
-        print(f"Processing single tour: {args.tour}")
+    print(f"Loaded {len(tours_data)} rows from {input_filename}")
+
+    # 2. Extract unique regions and the countries within them
+    region_countries_map = extract_unique_regions_countries(tours_data)
+    unique_regions = sorted(region_countries_map.keys())
+    unique_countries_count = sum(len(countries) for countries in region_countries_map.values())
+    print(f"Found {len(unique_regions)} unique regions and {unique_countries_count} unique country entries.")
+    # print(f"Region Map: {region_countries_map}") # Optional: Print map for debugging
+
+    # 3. Populate Regions table
+    # Assumes the regions table is empty, so no checks for existing needed
+    region_name_to_id_map = populate_regions(unique_regions)
+
+    # 4. Populate Countries table
+    # Assumes the countries table is empty
+    if region_name_to_id_map:
+         populate_countries(region_countries_map, region_name_to_id_map)
     else:
-        tours_data = all_tours_data
-    
-    # Extract unique regions and countries from the filtered tours
-    regions, countries = extract_regions_and_countries(tours_data)
-    print(f"Found {len(regions)} unique regions and {len(countries)} unique countries")
-    
-    # Update region slugs and get mapping
-    region_mapping = update_region_slugs(regions)
-    
-    # Update country slugs and get mapping (pass attributes flag, override flag and model)
-    country_mapping = update_country_slugs(countries, region_mapping, args.attributes, args.override, args.model)
-    
-    # Link tours to their main countries
-    link_tours_to_countries(tours_data, country_mapping)
-    
-    print("Completed populating regions, countries, and tour_countries tables")
+         print("\nSkipping country population because no regions were successfully populated.")
+
+    print("\nScript finished.")
 
 if __name__ == "__main__":
     main()

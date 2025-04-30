@@ -1,0 +1,18 @@
+{
+  "tour_id": "3ab0a6d9-a358-4f66-ad00-bbb6ce2d49c2",
+  "tour_name": "Parisian Chic & Champagne",
+  "locations": [
+    {
+      "name": "Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "description": "The starting point of the tour, the capital of France, known for its iconic landmarks (Eiffel Tower, Louvre), romantic atmosphere, charming neighborhoods like Montmartre and Le Marais, and sophisticated dining and shopping."
+    },
+    {
+      "name": "Reims",
+      "latitude": 49.2583,
+      "longitude": 4.0317,
+      "description": "A principal city in the Champagne region, likely serving as the overnight base for exploring the area. It's famous for its Gothic cathedral and numerous major Champagne houses with extensive underground cellars (cray\u00e8res). The description explicitly mentions exploring Reims or \u00c9pernay, making one of them the probable overnight location for this phase."
+    }
+  ]
+}

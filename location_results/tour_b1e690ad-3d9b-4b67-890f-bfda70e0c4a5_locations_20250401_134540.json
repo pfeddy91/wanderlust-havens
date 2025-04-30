@@ -1,0 +1,30 @@
+{
+  "tour_id": "b1e690ad-3d9b-4b67-890f-bfda70e0c4a5",
+  "tour_name": "Ultimate Rwanda and Tanzania",
+  "locations": [
+    {
+      "name": "Volcanoes National Park Area, Rwanda",
+      "latitude": -1.472,
+      "longitude": 29.593,
+      "description": "The primary base for mountain gorilla trekking in the Virunga Mountains, offering intimate wildlife encounters."
+    },
+    {
+      "name": "Serengeti National Park, Tanzania",
+      "latitude": -2.3328,
+      "longitude": 34.8307,
+      "description": "Iconic safari destination known for its vast plains, the Great Migration (seasonal), and abundant wildlife including the Big Five."
+    },
+    {
+      "name": "Stone Town, Zanzibar, Tanzania",
+      "latitude": -6.1659,
+      "longitude": 39.192,
+      "description": "A UNESCO World Heritage site, the historic heart of Zanzibar City, known for its winding lanes, unique architecture, and vibrant markets."
+    },
+    {
+      "name": "Zanzibar Beach Area, Tanzania",
+      "latitude": -5.7289,
+      "longitude": 39.2977,
+      "description": "Representative location for Zanzibar's coastal resorts (e.g., Nungwi/Kendwa in the north), offering pristine beaches, turquoise waters, snorkeling, and relaxation."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "tour_id": "c4316d59-71db-4a90-ac70-86119d066b65",
+  "tour_name": "Irish Castles & Coastlines",
+  "locations": [
+    {
+      "name": "Dublin",
+      "latitude": 53.3498,
+      "longitude": -6.2603,
+      "description": "Ireland's capital city, the starting point of the tour, known for its history, Georgian architecture, and vibrant atmosphere."
+    },
+    {
+      "name": "Killarney",
+      "latitude": 52.0593,
+      "longitude": -9.506,
+      "description": "A likely base for exploring the Ring of Kerry, situated in the southwest near the Iveragh Peninsula, offering access to dramatic coastal scenery and charming villages. The description implies a stay in this region to facilitate relaxed exploration of the Ring."
+    },
+    {
+      "name": "Galway",
+      "latitude": 53.2707,
+      "longitude": -9.0568,
+      "description": "The final overnight location in the west of Ireland, described as a bohemian city famous for its arts scene, music, and as a base for exploring Connemara and the Cliffs of Moher."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "tour_id": "2bfeb6ad-7d12-41db-b49c-ace75f86a207",
+  "tour_name": "Sunlit Soul of Spain",
+  "locations": [
+    {
+      "name": "Madrid",
+      "latitude": 40.4168,
+      "longitude": -3.7038,
+      "description": "Spain's elegant capital city, the starting point of the tour, known for its art museums, Royal Palace, and vibrant plazas."
+    },
+    {
+      "name": "Seville",
+      "latitude": 37.3891,
+      "longitude": -5.9845,
+      "description": "The capital of Andalusia, described as its 'fiery heart', famous for the Alc\u00e1zar, Santa Cruz quarter, and flamenco."
+    },
+    {
+      "name": "Granada",
+      "latitude": 37.1773,
+      "longitude": -3.5986,
+      "description": "City at the foot of the Sierra Nevada, renowned for the magnificent Alhambra Palace and Generalife Gardens."
+    },
+    {
+      "name": "Montecorto",
+      "latitude": 36.8116,
+      "longitude": -5.3095,
+      "description": "A picturesque 'white village' in the Andalusian hills, offering a tranquil retreat for relaxation and experiencing rural Spain."
+    }
+  ]
+}

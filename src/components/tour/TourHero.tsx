@@ -60,7 +60,7 @@ const TourHero = ({ tour, countryNames }: TourHeroProps) => {
             >
               <img
                 src={image}
-                alt={tour.name}
+                alt={tour.title}
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
@@ -99,7 +99,7 @@ const TourHero = ({ tour, countryNames }: TourHeroProps) => {
             {countryString}
           </p>
           <h1 className="font-serif text-3xl font-bold tracking-wide sm:text-3xl md:text-3xl lg:text-5xl">
-            {tour.name}
+            {tour.title}
           </h1>
         </div>
       </div>

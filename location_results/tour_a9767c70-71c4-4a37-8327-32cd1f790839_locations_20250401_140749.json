@@ -1,0 +1,36 @@
+{
+  "tour_id": "a9767c70-71c4-4a37-8327-32cd1f790839",
+  "tour_name": "Honeymoon to China",
+  "locations": [
+    {
+      "name": "Shanghai",
+      "latitude": 31.2304,
+      "longitude": 121.4737,
+      "description": "A vibrant metropolis known for its futuristic Bund skyline, historic French Concession, and modern art scene."
+    },
+    {
+      "name": "Beijing",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "description": "China's capital, rich in history with iconic sites like the Great Wall, Forbidden City, and Summer Palace."
+    },
+    {
+      "name": "Lijiang",
+      "latitude": 26.8741,
+      "longitude": 100.2348,
+      "description": "Home to a UNESCO-listed Old Town with charming cobblestone streets, canals, and Naxi culture, set against the Jade Dragon Snow Mountain."
+    },
+    {
+      "name": "Yangshuo",
+      "latitude": 24.7761,
+      "longitude": 110.4916,
+      "description": "Famous for its stunning karst mountain landscape along the Li and Yulong Rivers, ideal for river cruises and cycling."
+    },
+    {
+      "name": "Hong Kong",
+      "latitude": 22.3193,
+      "longitude": 114.1694,
+      "description": "A dynamic global city offering iconic skyline views from Victoria Peak, bustling markets, and a unique fusion of cultures."
+    }
+  ]
+}

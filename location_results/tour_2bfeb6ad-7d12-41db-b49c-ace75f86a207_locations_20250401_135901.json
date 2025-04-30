@@ -1,0 +1,30 @@
+{
+  "tour_id": "2bfeb6ad-7d12-41db-b49c-ace75f86a207",
+  "tour_name": "Sunlit Soul of Spain",
+  "locations": [
+    {
+      "name": "Madrid",
+      "latitude": 40.4168,
+      "longitude": -3.7038,
+      "description": "Elegant capital of Spain, known for its world-class art museums ('Golden Triangle'), Royal Palace, vibrant plazas like Plaza Mayor, and sophisticated atmosphere."
+    },
+    {
+      "name": "Seville",
+      "latitude": 37.3891,
+      "longitude": -5.9845,
+      "description": "The fiery heart of Andalusia, famous for its majestic Alc\u00e1zar palace, the historic Santa Cruz quarter, flamenco performances, and stunning Mudejar architecture."
+    },
+    {
+      "name": "Granada",
+      "latitude": 37.1773,
+      "longitude": -3.5986,
+      "description": "Nestled at the foot of the Sierra Nevada mountains, renowned worldwide for the breathtaking Alhambra Palace and Generalife Gardens, showcasing exquisite Moorish artistry."
+    },
+    {
+      "name": "Montecorto",
+      "latitude": 36.8086,
+      "longitude": -5.2664,
+      "description": "A picturesque 'white village' (pueblo blanco) in the Andalusian hills, offering a tranquil retreat amidst olive groves, stunning natural beauty, and authentic rural charm."
+    }
+  ]
+}

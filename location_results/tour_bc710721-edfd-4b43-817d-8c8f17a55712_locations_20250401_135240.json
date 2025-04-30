@@ -1,0 +1,24 @@
+{
+  "tour_id": "bc710721-edfd-4b43-817d-8c8f17a55712",
+  "tour_name": "Epic Southern Italy",
+  "locations": [
+    {
+      "name": "Amalfi",
+      "latitude": 40.6344,
+      "longitude": 14.6025,
+      "description": "A central town on the stunning Amalfi Coast, likely serving as a base for exploring nearby Positano, Ravello, and potentially Capri. Known for its dramatic cliffs, lemon groves, and vibrant atmosphere."
+    },
+    {
+      "name": "Matera",
+      "latitude": 40.6667,
+      "longitude": 16.6063,
+      "description": "Located in Basilicata, famous for its ancient 'Sassi' cave dwellings, offering a unique and atmospheric historical experience."
+    },
+    {
+      "name": "Alberobello",
+      "latitude": 40.785,
+      "longitude": 17.2377,
+      "description": "Situated in Puglia's Itria Valley, renowned for its unique conical-roofed 'trulli' houses. Serves as a likely base for exploring the valley, nearby towns like Ostuni and Locorotondo, and the region's olive groves."
+    }
+  ]
+}

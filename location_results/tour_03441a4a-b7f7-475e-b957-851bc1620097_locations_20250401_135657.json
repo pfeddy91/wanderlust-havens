@@ -1,0 +1,30 @@
+{
+  "tour_id": "03441a4a-b7f7-475e-b957-851bc1620097",
+  "tour_name": "Hidden Greek Treasures",
+  "locations": [
+    {
+      "name": "Athens",
+      "latitude": 37.9838,
+      "longitude": 23.7275,
+      "description": "The capital of Greece, renowned for its ancient landmarks including the Acropolis and Parthenon, and vibrant neighborhoods like Plaka."
+    },
+    {
+      "name": "Milos",
+      "latitude": 36.7431,
+      "longitude": 24.4471,
+      "description": "A volcanic island in the Cyclades famous for its unique lunar-like landscapes (e.g., Sarakiniko beach), dramatic coastline, catacombs, and charming fishing villages."
+    },
+    {
+      "name": "Sifnos",
+      "latitude": 36.9714,
+      "longitude": 24.6958,
+      "description": "A Cycladic island celebrated for its distinct pottery, exceptional cuisine, picturesque whitewashed villages, numerous churches, and extensive network of walking trails."
+    },
+    {
+      "name": "Naxos",
+      "latitude": 37.0751,
+      "longitude": 25.4869,
+      "description": "The largest island in the Cyclades, known for the ancient Portara marble gate, mountainous inland villages, fertile valleys, olive groves, and long sandy beaches."
+    }
+  ]
+}

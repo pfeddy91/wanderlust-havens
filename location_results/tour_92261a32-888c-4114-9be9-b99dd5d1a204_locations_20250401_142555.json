@@ -1,0 +1,18 @@
+{
+  "tour_id": "92261a32-888c-4114-9be9-b99dd5d1a204",
+  "tour_name": "Iceland Northern Lights Luxury",
+  "locations": [
+    {
+      "name": "Reykjavik",
+      "latitude": 64.1466,
+      "longitude": -21.9426,
+      "description": "Iceland's capital and largest city, serving as the starting point for the tour, known for its colourful buildings, vibrant arts scene, and proximity to southwestern attractions."
+    },
+    {
+      "name": "Troll Peninsula",
+      "latitude": 65.9,
+      "longitude": -18.9,
+      "description": "A remote and mountainous peninsula in Northern Iceland, emphasized in the tour for its dramatic landscapes, seclusion, exclusive experiences, and dark skies ideal for Northern Lights viewing."
+    }
+  ]
+}

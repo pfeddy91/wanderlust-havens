@@ -1,0 +1,24 @@
+{
+  "tour_id": "e0427b6c-9a3a-48f2-b01e-1ecb05d1caa0",
+  "tour_name": "Balearic Island Bliss",
+  "locations": [
+    {
+      "name": "Mallorca",
+      "latitude": 39.6953,
+      "longitude": 3.0176,
+      "description": "The largest Balearic island, offering a mix of rugged mountains (Serra de Tramuntana), picturesque villages, charming ports, and the sophisticated capital, Palma."
+    },
+    {
+      "name": "Ibiza",
+      "latitude": 39.02,
+      "longitude": 1.4821,
+      "description": "Famous for its vibrant atmosphere but also featuring hidden coves, the historic Dalt Vila (Ibiza Town's old quarter), bohemian markets, and stylish relaxation spots."
+    },
+    {
+      "name": "Formentera",
+      "latitude": 38.7063,
+      "longitude": 1.4546,
+      "description": "Ibiza's serene sister island, renowned for its exceptionally white beaches, clear turquoise waters, and tranquil atmosphere, ideal for peaceful relaxation."
+    }
+  ]
+}

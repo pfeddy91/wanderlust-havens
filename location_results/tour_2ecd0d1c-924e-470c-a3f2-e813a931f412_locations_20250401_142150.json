@@ -1,0 +1,18 @@
+{
+  "tour_id": "2ecd0d1c-924e-470c-a3f2-e813a931f412",
+  "tour_name": "Dream Hawaii Island Hopping",
+  "locations": [
+    {
+      "name": "Poipu",
+      "latitude": 21.8788,
+      "longitude": -159.4614,
+      "description": "Located on Kauai's sunny south shore, mentioned for its golden sands and relaxation, serving as a likely base for exploring the 'Garden Isle'."
+    },
+    {
+      "name": "Kaanapali",
+      "latitude": 20.9191,
+      "longitude": -156.6946,
+      "description": "A renowned resort area on Maui's west coast, explicitly mentioned as the landing vicinity and famous for its beach, snorkeling, and sunsets."
+    }
+  ]
+}

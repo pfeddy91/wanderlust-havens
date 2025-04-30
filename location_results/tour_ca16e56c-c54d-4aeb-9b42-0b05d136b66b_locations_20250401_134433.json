@@ -1,0 +1,24 @@
+{
+  "tour_id": "ca16e56c-c54d-4aeb-9b42-0b05d136b66b",
+  "tour_name": "Ultimate South Africa",
+  "locations": [
+    {
+      "name": "Kalahari Desert (Specific Lodge/Reserve)",
+      "latitude": -27.23,
+      "longitude": 22.47,
+      "description": "While a specific lodge isn't named, the description points to a stay within a reserve in the Kalahari, famed for its unique desert wildlife (black-maned lions, meerkats), red dunes, and stargazing. Coordinates are approximate for a representative luxury reserve like Tswalu Kalahari, fitting the description."
+    },
+    {
+      "name": "Cape Town",
+      "latitude": -33.9249,
+      "longitude": 18.4241,
+      "description": "South Africa's vibrant 'Mother City', known for its stunning location between Table Mountain and the ocean, cultural diversity (Bo-Kaap), historical significance, and attractions like the V&A Waterfront and Cape Peninsula."
+    },
+    {
+      "name": "Franschhoek (representing the Cape Winelands)",
+      "latitude": -33.9112,
+      "longitude": 19.122,
+      "description": "A key town in the Cape Winelands, mentioned alongside Stellenbosch. Chosen as the representative overnight location due to its strong association with romance, gourmet food, wine estates, and scenic beauty described in the tour."
+    }
+  ]
+}

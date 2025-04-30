@@ -1,0 +1,18 @@
+{
+  "tour_id": "e3349a9c-f747-4d41-8854-b1d4e96fe384",
+  "tour_name": "Namibian Desert & Dunes",
+  "locations": [
+    {
+      "name": "Sossusvlei",
+      "latitude": -24.7315,
+      "longitude": 15.2925,
+      "description": "Located in the heart of the Namib Desert within the Namib-Naukluft National Park, famous for its towering red sand dunes like Dune 45, the white clay pan of Deadvlei, and exceptional stargazing."
+    },
+    {
+      "name": "Etosha National Park",
+      "latitude": -18.8556,
+      "longitude": 16.3417,
+      "description": "One of Africa's premier wildlife sanctuaries in northern Namibia, characterized by a vast salt pan and numerous waterholes attracting abundant wildlife, including elephants, rhinos, lions, and diverse antelope species."
+    }
+  ]
+}

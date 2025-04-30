@@ -1,0 +1,42 @@
+{
+  "tour_id": "9e922220-2740-4420-a9ce-9592fbf1f091",
+  "tour_name": "Exceptional Australia and New Zealand",
+  "locations": [
+    {
+      "name": "Waiheke Island",
+      "latitude": -36.79,
+      "longitude": 175.09,
+      "description": "A haven of beaches, art, and vineyards near Auckland, likely the first romantic stay."
+    },
+    {
+      "name": "Rotorua",
+      "latitude": -38.138,
+      "longitude": 176.245,
+      "description": "Known for geothermal activity, Maori culture, and unique spa experiences."
+    },
+    {
+      "name": "Queenstown",
+      "latitude": -45.031,
+      "longitude": 168.662,
+      "description": "Adventure capital set by Lake Wakatipu, offering stunning alpine scenery, adventure activities, and fine dining."
+    },
+    {
+      "name": "Sydney",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "description": "Australia's iconic harbour city, featuring the Opera House, Harbour Bridge, and vibrant urban life."
+    },
+    {
+      "name": "Hamilton Island (Whitsundays)",
+      "latitude": -20.349,
+      "longitude": 148.956,
+      "description": "A key resort island within the Whitsundays, offering access to the Great Barrier Reef, pristine beaches, and sailing opportunities."
+    },
+    {
+      "name": "Yulara (for Uluru/Ayers Rock)",
+      "latitude": -25.234,
+      "longitude": 130.986,
+      "description": "The gateway resort town for exploring the spiritual heart of Australia: Uluru (Ayers Rock) and Kata Tjuta."
+    }
+  ]
+}

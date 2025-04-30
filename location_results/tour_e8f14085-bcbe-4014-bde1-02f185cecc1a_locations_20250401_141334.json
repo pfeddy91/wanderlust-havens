@@ -1,0 +1,30 @@
+{
+  "tour_id": "e8f14085-bcbe-4014-bde1-02f185cecc1a",
+  "tour_name": "Egypt Unveiled",
+  "locations": [
+    {
+      "name": "Cairo",
+      "latitude": 30.0444,
+      "longitude": 31.2357,
+      "description": "Egypt's bustling capital, initial base for exploring the Giza Pyramids and the Egyptian Museum."
+    },
+    {
+      "name": "Aswan",
+      "latitude": 24.0889,
+      "longitude": 32.8998,
+      "description": "Southern city on the Nile where travelers board the cruise ship for overnight stays while sailing north."
+    },
+    {
+      "name": "Luxor",
+      "latitude": 25.6872,
+      "longitude": 32.6396,
+      "description": "Disembarkation point from the Nile cruise and location for overnight stays while exploring the Valley of the Kings, Karnak, and Luxor Temples."
+    },
+    {
+      "name": "Hurghada",
+      "latitude": 27.2579,
+      "longitude": 33.8116,
+      "description": "Red Sea coastal resort town, the final location for overnight stays focused on relaxation and water activities."
+    }
+  ]
+}

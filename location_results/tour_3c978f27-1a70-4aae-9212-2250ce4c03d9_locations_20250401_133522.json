@@ -1,0 +1,24 @@
+{
+  "tour_id": "3c978f27-1a70-4aae-9212-2250ce4c03d9",
+  "tour_name": "Alpine Elegance",
+  "locations": [
+    {
+      "name": "Lake Como area (e.g., Bellagio)",
+      "latitude": 45.9845,
+      "longitude": 9.2615,
+      "description": "The tour begins here, focusing on lakeside villages like Bellagio and Varenna. A stay in this elegant Italian lake region is implied."
+    },
+    {
+      "name": "Swiss Alps region (e.g., Grindelwald or Interlaken area)",
+      "latitude": 46.6243,
+      "longitude": 8.0363,
+      "description": "The tour transitions to the Swiss Alps, mentioning iconic mountain railways and panoramic vistas, suggesting a stay in a central alpine location like Grindelwald (coordinates provided) or the nearby Interlaken hub, offering access to mountains and valleys."
+    },
+    {
+      "name": "Lucerne",
+      "latitude": 47.0522,
+      "longitude": 8.3058,
+      "description": "The tour concludes on the shores of Lake Lucerne, specifically mentioning exploring Lucerne's Old Town and Chapel Bridge, indicating an overnight stay in the city of Lucerne."
+    }
+  ]
+}

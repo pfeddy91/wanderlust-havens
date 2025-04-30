@@ -1,0 +1,30 @@
+{
+  "tour_id": "0039fcff-8fae-4207-b1e8-7cc71100935c",
+  "tour_name": "Wild Madagascar",
+  "locations": [
+    {
+      "name": "Andasibe-Mantadia National Park",
+      "latitude": -18.933,
+      "longitude": 48.417,
+      "description": "Lush eastern rainforest famous for Indri lemurs and nocturnal wildlife viewing."
+    },
+    {
+      "name": "Ranomafana National Park",
+      "latitude": -21.25,
+      "longitude": 47.42,
+      "description": "Dense cloud forest park known as a biodiversity hotspot, home to the golden bamboo lemur."
+    },
+    {
+      "name": "Isalo National Park",
+      "latitude": -22.55,
+      "longitude": 45.36,
+      "description": "Spectacular sandstone massif landscape with canyons, oases, natural swimming pools, and ring-tailed lemurs."
+    },
+    {
+      "name": "Ifaty",
+      "latitude": -23.15,
+      "longitude": 43.62,
+      "description": "Coastal region near the Mozambique Channel offering beaches, snorkelling, relaxation, and access to the unique spiny forest with baobabs."
+    }
+  ]
+}

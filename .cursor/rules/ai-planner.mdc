@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+* We are implementing the "AI-Assisted Mapping to Pre-Generated Itineraries" approach.
+* The primary orchestrator component will manage the overall state and conditionally render child components for each phase.
+* The user flow follows the 13 steps outlined below (Questionnaire -> Submit -> Loading -> Preview/Payment -> Loading -> Full Itinerary -> Export).
+
+Flow Summary:
+
+
+1) User fills questionnaire (React Hook Form).
+
+2) Frontend sends answers to findMatchingItinerary (Supabase Edge Function).
+
+3) Function generates query embedding, performs vector search (pgvector) against pre-embedded itineraries in Postgres, returns preview of best match.
+
+4) Frontend displays preview + "Unlock" button.
+
+5) User clicks Unlock -> Frontend calls createPaymentIntent (Supabase Function).
+
+6) Backend gets client_secret from Stripe, returns to frontend.
+
+7) Frontend uses Stripe.js + client_secret to take payment.
+
+8) Stripe confirms payment -> Sends webhook to handleStripeWebhook (Supabase Function).
+
+9) Webhook handler verifies signature, updates database record to mark itinerary as paid for user/session.
+
+10) Frontend (on Stripe confirmation) calls getUnlockedItinerary (Supabase Function).
+
+11) Backend verifies payment status in DB, fetches full itinerary data from Postgres, returns to frontend.
+
+12) Frontend renders the full, beautiful itinerary page with text, map, and images (from Supabase Storage).
+
+13) User clicks "Export PDF" -> PDF generated (client-side using @react-pdf/renderer initially).

@@ -1,0 +1,24 @@
+{
+  "tour_id": "7ef34c6f-053b-46cf-9dbc-c23737e6945a",
+  "tour_name": "Croatian Dalmatian Coast",
+  "locations": [
+    {
+      "name": "Dubrovnik",
+      "latitude": 42.6507,
+      "longitude": 18.0944,
+      "description": "Starting point of the tour, famous for its medieval city walls, limestone streets of the Old Town, and stunning Adriatic views."
+    },
+    {
+      "name": "Hvar",
+      "latitude": 43.1725,
+      "longitude": 16.4431,
+      "description": "Croatia's sunniest island, known for its sophisticated charm, harbour-side strolls, beautiful beaches, and proximity to the Pakleni Islands."
+    },
+    {
+      "name": "Split",
+      "latitude": 43.5081,
+      "longitude": 16.4402,
+      "description": "Final destination, a vibrant city built around the ancient Diocletian's Palace (UNESCO World Heritage site), featuring a bustling promenade and historical alleys."
+    }
+  ]
+}

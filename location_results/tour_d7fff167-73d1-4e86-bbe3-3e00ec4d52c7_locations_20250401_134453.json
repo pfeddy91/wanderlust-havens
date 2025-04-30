@@ -1,0 +1,30 @@
+{
+  "tour_id": "d7fff167-73d1-4e86-bbe3-3e00ec4d52c7",
+  "tour_name": "Ultimate South Africa and Mozambique",
+  "locations": [
+    {
+      "name": "Cape Town",
+      "latitude": -33.9249,
+      "longitude": 18.4241,
+      "description": "The starting point of the tour, a vibrant coastal city known for Table Mountain, diverse culture, and the V&A Waterfront."
+    },
+    {
+      "name": "Stellenbosch (Cape Winelands)",
+      "latitude": -33.9333,
+      "longitude": 18.8667,
+      "description": "A key town within the Cape Winelands region, famous for its historic vineyards, wine tasting, and charming atmosphere. Chosen as a representative overnight base for exploring the Winelands."
+    },
+    {
+      "name": "Madikwe Game Reserve",
+      "latitude": -24.7833,
+      "longitude": 26.35,
+      "description": "A malaria-free Big Five game reserve in South Africa's North West province, offering exclusive safari experiences and overnight stays in lodges within or bordering the reserve."
+    },
+    {
+      "name": "Benguerra Island (Bazaruto Archipelago)",
+      "latitude": -21.8583,
+      "longitude": 35.4333,
+      "description": "A tropical island paradise in Mozambique's Bazaruto Archipelago, offering luxury accommodation for relaxation, diving, snorkeling, and beach activities."
+    }
+  ]
+}

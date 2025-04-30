@@ -1,0 +1,30 @@
+{
+  "tour_id": "bb326573-344a-4d5f-9e6e-52006d532ac6",
+  "tour_name": "Epic Kenya",
+  "locations": [
+    {
+      "name": "Nairobi",
+      "latitude": -1.2921,
+      "longitude": 36.8219,
+      "description": "Kenya's capital city, serving as the starting point for the tour, offering a 'gentle introduction' before heading to wildlife areas."
+    },
+    {
+      "name": "Laikipia Plateau",
+      "latitude": 0.25,
+      "longitude": 36.85,
+      "description": "A high-altitude conservation area north of Nairobi, known for its private conservancies, dramatic landscapes, and unique wildlife like Grevy's zebra and rhino."
+    },
+    {
+      "name": "Maasai Mara",
+      "latitude": -1.5833,
+      "longitude": 35.2,
+      "description": "Iconic wildlife ecosystem in southwestern Kenya, famous for its high concentration of animals, the Great Migration, and the Big Five. The stay is indicated to be in a private conservancy bordering the main reserve."
+    },
+    {
+      "name": "Zanzibar",
+      "latitude": -6.1659,
+      "longitude": 39.199,
+      "description": "An island archipelago off the coast of Tanzania, known for its stunning beaches, turquoise waters, and historic Stone Town, providing the relaxation part of the tour."
+    }
+  ]
+}

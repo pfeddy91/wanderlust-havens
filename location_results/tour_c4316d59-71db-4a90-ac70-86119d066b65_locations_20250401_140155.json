@@ -1,0 +1,24 @@
+{
+  "tour_id": "c4316d59-71db-4a90-ac70-86119d066b65",
+  "tour_name": "Irish Castles & Coastlines",
+  "locations": [
+    {
+      "name": "Dublin",
+      "latitude": 53.3498,
+      "longitude": -6.2603,
+      "description": "Ireland's capital city, known for its historical sites like Trinity College, Georgian architecture, and lively Temple Bar district."
+    },
+    {
+      "name": "Killarney",
+      "latitude": 52.0598,
+      "longitude": -9.5056,
+      "description": "A key town often used as a base for exploring the scenic Ring of Kerry, known for its stunning coastal views, cliffs, and charming villages."
+    },
+    {
+      "name": "Galway",
+      "latitude": 53.2707,
+      "longitude": -9.0568,
+      "description": "A vibrant city on the west coast, famous for its bohemian atmosphere, traditional music scene, medieval lanes, and proximity to Connemara and the Cliffs of Moher."
+    }
+  ]
+}

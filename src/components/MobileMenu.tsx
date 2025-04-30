@@ -69,7 +69,7 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                 to="/collections"
                 className="block py-5 text-2xl font-serif border-b border-gray-100"
                 onClick={onClose}
-              >d
+              >
                 Collections
               </Link>
               

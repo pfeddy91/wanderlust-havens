@@ -1,0 +1,18 @@
+{
+  "tour_id": "a792e8a0-4f2b-4e11-bfe0-669f381dd235",
+  "tour_name": "New York City & Caribbean Escape",
+  "locations": [
+    {
+      "name": "New York City",
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "description": "A vibrant metropolis known for iconic landmarks like Times Square and Central Park, world-class museums, and boundless energy."
+    },
+    {
+      "name": "Antigua",
+      "latitude": 17.0608,
+      "longitude": -61.7964,
+      "description": "A Caribbean island paradise famed for its stunning coastline with numerous beaches, clear turquoise waters, and opportunities for relaxation."
+    }
+  ]
+}

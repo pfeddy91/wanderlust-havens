@@ -1,0 +1,325 @@
+{
+  "e8f14085-bcbe-4014-bde1-02f185cecc1a": {
+    "tour_name": "Egypt Unveiled",
+    "search_terms": {
+      "landmarks": [
+        "Pyramids Giza",
+        "Nile River Egypt",
+        "Luxor Temple",
+        "Karnak Temple",
+        "Red Sea Beach Egypt"
+      ],
+      "cultural": [
+        "Egyptian Market",
+        "Ancient Egypt Hieroglyphs"
+      ],
+      "activities": [
+        "Red Sea Snorkeling"
+      ]
+    }
+  },
+  "9e922220-2740-4420-a9ce-9592fbf1f091": {
+    "tour_name": "Exceptional Australia and New Zealand",
+    "search_terms": {
+      "landmarks": [
+        "Waiheke Island Vineyard",
+        "Rotorua Geothermal",
+        "Queenstown Lake Wakatipu",
+        "Sydney Opera House",
+        "Uluru Sunset"
+      ],
+      "cultural": [
+        "Maori Culture New Zealand",
+        "Australia Fine Dining"
+      ],
+      "activities": [
+        "Sailing Whitsundays"
+      ]
+    }
+  },
+  "1d392b30-7a89-4ca7-853e-24ee139bddeb": {
+    "tour_name": "Ultimate New Zealand",
+    "search_terms": {
+      "landmarks": [
+        "Milford Sound New Zealand",
+        "Queenstown Lake Wakatipu",
+        "Bay of Islands New Zealand",
+        "Auckland Harbour",
+        "Southern Alps New Zealand"
+      ],
+      "cultural": [
+        "Maori Culture New Zealand",
+        "New Zealand winery"
+      ],
+      "activities": [
+        "Scenic Flight New Zealand"
+      ]
+    }
+  },
+  "0c6afafc-131b-4033-9ad9-7feaf07193b7": {
+    "tour_name": "Cook Islands Retreat",
+    "search_terms": {
+      "landmarks": [
+        "Aitutaki Lagoon",
+        "Rarotonga Beach",
+        "Cook Islands Volcanic Landscape",
+        "Turquoise Water South Pacific",
+        "Palm Tree Beach Cook Islands"
+      ],
+      "cultural": [
+        "Polynesian People",
+        "Cook Islands Market"
+      ],
+      "activities": [
+        "Snorkeling Coral Reef"
+      ]
+    }
+  },
+  "92ca3a46-51a4-4904-8435-fbe6562f72a5": {
+    "tour_name": "Samoan Serenity",
+    "search_terms": {
+      "landmarks": [
+        "To Sua Ocean Trench",
+        "Samoa Beach",
+        "Samoa Waterfall",
+        "Samoa Volcanic",
+        "Samoa Lagoon"
+      ],
+      "cultural": [
+        "Samoan Culture",
+        "Samoan Village"
+      ],
+      "activities": [
+        "Snorkeling Samoa"
+      ]
+    }
+  },
+  "c6662803-277b-4137-a06e-b1937ddc1f76": {
+    "tour_name": "Nayara Tented Camp",
+    "search_terms": {
+      "landmarks": [
+        "Arenal Volcano Costa Rica",
+        "Costa Rica Rainforest",
+        "Luxury Glamping",
+        "Costa Rica Pacific Coast",
+        "Toucan Costa Rica"
+      ],
+      "cultural": [
+        "Costa Rican Coffee Plantation",
+        "Tropical Fruit Costa Rica"
+      ],
+      "activities": [
+        "Wildlife Spotting Costa Rica"
+      ]
+    }
+  },
+  "ec3807ac-b70e-45ad-afcd-b25685e35095": {
+    "tour_name": "Caribbean All-Inclusive Luxury",
+    "search_terms": {
+      "landmarks": [
+        "St Lucia Pitons",
+        "St Lucia Beach",
+        "Caribbean Infinity Pool",
+        "St Lucia Sunset View",
+        "St Lucia Tropical Landscape"
+      ],
+      "cultural": [
+        "Caribbean Cuisine",
+        "Tropical Cocktails Beach"
+      ],
+      "activities": [
+        "Caribbean Sailing"
+      ]
+    }
+  },
+  "f732ee6f-7c54-4c1f-96f9-2e823d85b45a": {
+    "tour_name": "Sandals Royal Curacao",
+    "search_terms": {
+      "landmarks": [
+        "Willemstad Curacao",
+        "Curacao Beaches",
+        "Caribbean Coral Reef",
+        "Curacao Caribbean Sea",
+        "Curacao Sunset"
+      ],
+      "cultural": [
+        "Willemstad Colorful Houses",
+        "Caribbean Food"
+      ],
+      "activities": [
+        "Snorkeling Caribbean"
+      ]
+    }
+  },
+  "50e1910d-6361-4a36-8c17-a2e8ede9a620": {
+    "tour_name": "Bahamian Bliss",
+    "search_terms": {
+      "landmarks": [
+        "Exuma Cays Bahamas",
+        "Bahamas Blue Water",
+        "Bahamas Deserted Beach",
+        "Exuma Islands Aerial",
+        "Bahamas Swimming Pigs"
+      ],
+      "cultural": [
+        "Bahamas Conch",
+        "Bahamas Colorful Houses"
+      ],
+      "activities": [
+        "Bahamas Snorkeling"
+      ]
+    }
+  },
+  "bed31a2b-9d7a-41b0-bac4-67b5a77bbe5b": {
+    "tour_name": "Limitless Brazil",
+    "search_terms": {
+      "landmarks": [
+        "Sugarloaf Mountain Rio",
+        "Rio de Janeiro Aerial",
+        "Amazon Rainforest Brazil",
+        "Amazon River Sunset",
+        "Trancoso Beach"
+      ],
+      "cultural": [
+        "Brazilian Samba Dancer",
+        "Caipirinha Drink Brazil"
+      ],
+      "activities": [
+        "Rainforest Hiking Brazil"
+      ]
+    }
+  },
+  "bbc93a8c-80e1-442b-883e-75aa2b9ca517": {
+    "tour_name": "Argentina Passion",
+    "search_terms": {
+      "landmarks": [
+        "Buenos Aires Architecture",
+        "Mendoza Vineyards",
+        "Andes Mountains Argentina",
+        "Perito Moreno Glacier",
+        "Patagonia Landscape"
+      ],
+      "cultural": [
+        "Tango Buenos Aires",
+        "Argentina Malbec Wine"
+      ],
+      "activities": [
+        "Patagonia Hiking"
+      ]
+    }
+  },
+  "992940d0-082e-480d-9669-b2e2a0373ce6": {
+    "tour_name": "Ecuadorian Highlands & Amazon",
+    "search_terms": {
+      "landmarks": [
+        "Quito Old Town",
+        "Andes Mountains Ecuador",
+        "Cotopaxi Ecuador",
+        "Amazon Rainforest Ecuador",
+        "Ecuador Waterfall"
+      ],
+      "cultural": [
+        "Otavalo Market Ecuador",
+        "Ecuadorian Crafts"
+      ],
+      "activities": [
+        "Wildlife Spotting Ecuador"
+      ]
+    }
+  },
+  "2ecd0d1c-924e-470c-a3f2-e813a931f412": {
+    "tour_name": "Dream Hawaii Island Hopping",
+    "search_terms": {
+      "landmarks": [
+        "Na Pali Coast Kauai",
+        "Kauai Valley",
+        "Poipu Beach Kauai",
+        "Kaanapali Beach Maui",
+        "Maui Sunset"
+      ],
+      "cultural": [
+        "Hawaii Luau",
+        "Hawaii Lei"
+      ],
+      "activities": [
+        "Hawaii Helicopter Tour"
+      ]
+    }
+  },
+  "098e5a2e-8a66-45c3-8467-8ac8cfb3a5e6": {
+    "tour_name": "Luxury Hawaii Honeymoon",
+    "search_terms": {
+      "landmarks": [
+        "Kauai Na Pali Coast",
+        "Waimea Canyon Kauai",
+        "Kauai Waterfall",
+        "Maui Sunset Beach",
+        "Haleakala Maui"
+      ],
+      "cultural": [
+        "Hawaii Luau",
+        "Hawaii Lei"
+      ],
+      "activities": [
+        "Couple Hawaii Sunset"
+      ]
+    }
+  },
+  "3ad15975-9a01-4331-8dfa-b0cbd328f532": {
+    "tour_name": "Canadian Rockies & Vancouver Island",
+    "search_terms": {
+      "landmarks": [
+        "Lake Louise Canada",
+        "Moraine Lake Banff",
+        "Canadian Rockies Mountains",
+        "Tofino Pacific Coast",
+        "Victoria Inner Harbour"
+      ],
+      "cultural": [
+        "Victoria Butchart Gardens",
+        "West Coast Canada Seafood"
+      ],
+      "activities": [
+        "Canoeing Lake Louise"
+      ]
+    }
+  },
+  "a792e8a0-4f2b-4e11-bfe0-669f381dd235": {
+    "tour_name": "New York City & Caribbean Escape",
+    "search_terms": {
+      "landmarks": [
+        "New York City Skyline",
+        "Central Park New York",
+        "Antigua Beach",
+        "Caribbean Turquoise Water",
+        "Caribbean Palm Trees"
+      ],
+      "cultural": [
+        "Broadway Show New York",
+        "Caribbean Food"
+      ],
+      "activities": [
+        "Luxury Beach Resort Caribbean"
+      ]
+    }
+  },
+  "a386322e-f756-4a3b-8321-410f269c1f3f": {
+    "tour_name": "Secrets Moxch\u00e9 Luxury",
+    "search_terms": {
+      "landmarks": [
+        "Riviera Maya Beach",
+        "Tulum Mexico",
+        "Cenote Yucatan",
+        "Caribbean Sea Aerial",
+        "Luxury Resort Pool Mexico"
+      ],
+      "cultural": [
+        "Gourmet Mexican Cuisine",
+        "Tropical Cocktails Poolside"
+      ],
+      "activities": [
+        "Couple Spa Massage"
+      ]
+    }
+  }
+}

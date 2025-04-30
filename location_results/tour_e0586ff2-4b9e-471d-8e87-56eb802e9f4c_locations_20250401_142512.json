@@ -1,0 +1,18 @@
+{
+  "tour_id": "e0586ff2-4b9e-471d-8e87-56eb802e9f4c",
+  "tour_name": "Honeymoon in Swedish Lapland",
+  "locations": [
+    {
+      "name": "Stockholm",
+      "latitude": 59.3293,
+      "longitude": 18.0686,
+      "description": "Sweden's vibrant capital city, known for its historic Gamla Stan (Old Town), museums, design, and culinary scene. The tour begins here, offering urban exploration."
+    },
+    {
+      "name": "Kiruna",
+      "latitude": 67.8558,
+      "longitude": 20.2253,
+      "description": "Located in the heart of Swedish Lapland, north of the Arctic Circle. While the description mentions a 'secluded cabin or lodge setting' which could be outside the town itself, Kiruna is the major hub in this region for accessing Arctic experiences like Northern Lights viewing, dogsledding, snowmobiling, and S\u00e1mi culture, making it the most likely base area."
+    }
+  ]
+}

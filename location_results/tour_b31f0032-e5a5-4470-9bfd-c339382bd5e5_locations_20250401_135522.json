@@ -1,0 +1,24 @@
+{
+  "tour_id": "b31f0032-e5a5-4470-9bfd-c339382bd5e5",
+  "tour_name": "Romantic Italian Journey",
+  "locations": [
+    {
+      "name": "Venice",
+      "latitude": 45.4408,
+      "longitude": 12.3155,
+      "description": "The unique 'Floating City', renowned for its intricate network of canals, gondolas, historic architecture, and romantic atmosphere."
+    },
+    {
+      "name": "Florence",
+      "latitude": 43.7696,
+      "longitude": 11.2558,
+      "description": "The capital of Tuscany, celebrated as the birthplace of the Renaissance, home to masterpieces of art and architecture like Michelangelo's David and the Duomo."
+    },
+    {
+      "name": "Rome",
+      "latitude": 41.9028,
+      "longitude": 12.4964,
+      "description": "Italy's capital, the 'Eternal City', offering a blend of ancient wonders like the Colosseum and Roman Forum, Vatican City treasures, and vibrant modern life."
+    }
+  ]
+}

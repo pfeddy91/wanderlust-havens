@@ -1,0 +1,42 @@
+{
+  "tour_id": "9e922220-2740-4420-a9ce-9592fbf1f091",
+  "tour_name": "Exceptional Australia and New Zealand",
+  "locations": [
+    {
+      "name": "Auckland",
+      "latitude": -36.8485,
+      "longitude": 174.7633,
+      "description": "New Zealand's largest city, serving as the starting point and gateway for experiences like visiting Waiheke Island."
+    },
+    {
+      "name": "Rotorua",
+      "latitude": -38.1368,
+      "longitude": 176.2497,
+      "description": "Known for its geothermal activity, unique spa experiences, and significant Maori cultural sites and performances."
+    },
+    {
+      "name": "Queenstown",
+      "latitude": -45.0312,
+      "longitude": 168.6626,
+      "description": "An alpine resort town set by Lake Wakatipu, famous for adventure sports, scenic beauty, and fine dining."
+    },
+    {
+      "name": "Sydney",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "description": "Australia's iconic harbour city, featuring the Opera House, Harbour Bridge, and vibrant urban life."
+    },
+    {
+      "name": "Whitsunday Islands",
+      "latitude": -20.2698,
+      "longitude": 148.9183,
+      "description": "An archipelago off the coast of Queensland, renowned for white-sand beaches, turquoise waters, and access to the Great Barrier Reef."
+    },
+    {
+      "name": "Uluru",
+      "latitude": -25.3444,
+      "longitude": 131.0369,
+      "description": "Located in Australia's Red Centre, this area is home to the sacred Uluru monolith and Kata Tjuta formations, central to Aboriginal culture."
+    }
+  ]
+}

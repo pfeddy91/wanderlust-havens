@@ -1,0 +1,24 @@
+{
+  "tour_id": "6db3443f-a1a6-4e18-b4db-f0be31e3db28",
+  "tour_name": "Norwegian Fjords & Northern Lights",
+  "locations": [
+    {
+      "name": "Bergen",
+      "latitude": 60.3913,
+      "longitude": 5.3242,
+      "description": "Historic port city known for the UNESCO-listed Bryggen wharf and often called the 'Gateway to the Fjords'. Likely the starting point for the tour."
+    },
+    {
+      "name": "Lofoten Islands",
+      "latitude": 68.2333,
+      "longitude": 14.5667,
+      "description": "An archipelago renowned for its dramatic scenery, jagged mountains, sheltered bays, fishing villages with 'rorbuer', and opportunities for viewing the Northern Lights or Midnight Sun. Travelers likely stay in one of the towns/villages within the islands (coordinates are for Svolv\u00e6r, a major town)."
+    },
+    {
+      "name": "Troms\u00f8",
+      "latitude": 69.6492,
+      "longitude": 18.9553,
+      "description": "A major city located well above the Arctic Circle, serving as a base for Arctic experiences like husky sledding, reindeer interactions, and prime Northern Lights viewing."
+    }
+  ]
+}

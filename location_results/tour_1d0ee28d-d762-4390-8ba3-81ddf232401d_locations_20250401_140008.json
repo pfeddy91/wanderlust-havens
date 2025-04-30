@@ -1,0 +1,24 @@
+{
+  "tour_id": "1d0ee28d-d762-4390-8ba3-81ddf232401d",
+  "tour_name": "Portuguese Passion",
+  "locations": [
+    {
+      "name": "Lisbon",
+      "latitude": 38.7223,
+      "longitude": -9.1393,
+      "description": "Portugal's vibrant capital city, the starting point of the tour, known for its historic neighborhoods, trams, castle views, and Fado music."
+    },
+    {
+      "name": "Douro Valley",
+      "latitude": 41.1885,
+      "longitude": -7.5481,
+      "description": "A stunning UNESCO World Heritage wine region characterized by terraced vineyards along the Douro River, offering stays in traditional wine estates (quintas)."
+    },
+    {
+      "name": "Algarve Coast",
+      "latitude": 37.1028,
+      "longitude": -8.673,
+      "description": "Portugal's southern coastal region, famous for its golden beaches, dramatic cliffs, sea caves, fresh seafood, and picturesque villages."
+    }
+  ]
+}

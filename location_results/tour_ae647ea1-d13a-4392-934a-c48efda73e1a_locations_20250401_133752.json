@@ -1,0 +1,30 @@
+{
+  "tour_id": "ae647ea1-d13a-4392-934a-c48efda73e1a",
+  "tour_name": "Romantic Rhine River Cruise",
+  "locations": [
+    {
+      "name": "Amsterdam",
+      "latitude": 52.3702,
+      "longitude": 4.8952,
+      "description": "The vibrant starting point of the cruise in the Netherlands, where travelers embark after exploring its canals and museums."
+    },
+    {
+      "name": "Cologne",
+      "latitude": 50.9375,
+      "longitude": 6.9603,
+      "description": "A major stop along the Rhine in Germany, known for its magnificent Gothic Cathedral, where the ship docks for exploration."
+    },
+    {
+      "name": "Strasbourg",
+      "latitude": 48.5734,
+      "longitude": 7.7521,
+      "description": "The cruise docks near this captivating Alsatian capital in France, allowing exploration of the fairytale Petite France district."
+    },
+    {
+      "name": "Basel",
+      "latitude": 47.5596,
+      "longitude": 7.5886,
+      "description": "The final destination of the cruise in Switzerland, where travelers disembark after the journey concludes."
+    }
+  ]
+}

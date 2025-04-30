@@ -1,0 +1,30 @@
+{
+  "tour_id": "652fd2ec-051a-4f53-a75d-8d2e0e50aeea",
+  "tour_name": "Australia Honeymoon",
+  "locations": [
+    {
+      "name": "Melbourne",
+      "latitude": -37.8136,
+      "longitude": 144.9631,
+      "description": "Australia's 'capital of cool', known for its laneway culture, street art, coffee scene, and vibrant atmosphere."
+    },
+    {
+      "name": "Hamilton Island",
+      "latitude": -20.348,
+      "longitude": 148.9546,
+      "description": "An island paradise in the Whitsundays, offering direct access to the Great Barrier Reef and iconic Whitehaven Beach."
+    },
+    {
+      "name": "Sydney",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "description": "Iconic global city famed for its Opera House, Harbour Bridge, beautiful beaches like Bondi, and vibrant neighbourhoods."
+    },
+    {
+      "name": "Bouddi Peninsula",
+      "latitude": -33.521,
+      "longitude": 151.385,
+      "description": "A serene coastal escape near Sydney, featuring stunning national park walks, secluded beaches, and peaceful natural beauty."
+    }
+  ]
+}

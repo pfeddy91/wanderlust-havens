@@ -1,0 +1,18 @@
+{
+  "tour_id": "0c6afafc-131b-4033-9ad9-7feaf07193b7",
+  "tour_name": "Cook Islands Retreat",
+  "locations": [
+    {
+      "name": "Rarotonga",
+      "latitude": -21.2367,
+      "longitude": -159.7777,
+      "description": "The vibrant main island and hub of the Cook Islands, featuring volcanic peaks, lush jungle, surrounding reef, beaches, markets, and cultural experiences."
+    },
+    {
+      "name": "Aitutaki",
+      "latitude": -18.851,
+      "longitude": -159.7841,
+      "description": "Renowned for its breathtakingly beautiful and vast turquoise lagoon, offering pristine motus (islets) like One Foot Island, snorkeling, and tranquility."
+    }
+  ]
+}

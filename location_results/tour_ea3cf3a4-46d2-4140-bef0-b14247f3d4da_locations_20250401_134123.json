@@ -1,0 +1,30 @@
+{
+  "tour_id": "ea3cf3a4-46d2-4140-bef0-b14247f3d4da",
+  "tour_name": "Epic Oman and the Maldives",
+  "locations": [
+    {
+      "name": "Muscat",
+      "latitude": 23.5859,
+      "longitude": 58.3834,
+      "description": "Oman's capital city, where the tour begins, known for its blend of traditional architecture (mosques, souks) and coastal scenery."
+    },
+    {
+      "name": "Wahiba Sands",
+      "latitude": 22.4167,
+      "longitude": 58.8333,
+      "description": "A vast desert region mentioned for dune drives, sunsets, and a potential overnight stay under the stars, likely in a desert camp."
+    },
+    {
+      "name": "Nizwa",
+      "latitude": 22.9333,
+      "longitude": 57.5333,
+      "description": "Historic former capital of Oman located near the Hajar Mountains, known for its fort and traditional souk. Serves as a base for exploring the region."
+    },
+    {
+      "name": "Maldives (Resort Island)",
+      "latitude": 3.2028,
+      "longitude": 73.2207,
+      "description": "Represents the stay in the Maldives archipelago, likely at a private resort island (coordinates are approximate for the general region/typical resort atolls, south of Mal\u00e9), focused on relaxation, beaches, and water activities."
+    }
+  ]
+}

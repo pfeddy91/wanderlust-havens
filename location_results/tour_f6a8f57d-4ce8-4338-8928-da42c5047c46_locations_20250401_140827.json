@@ -1,0 +1,18 @@
+{
+  "tour_id": "f6a8f57d-4ce8-4338-8928-da42c5047c46",
+  "tour_name": "Maldives and Dubai",
+  "locations": [
+    {
+      "name": "Dubai",
+      "latitude": 25.276987,
+      "longitude": 55.296249,
+      "description": "A city of superlatives known for its modern architecture like the Burj Khalifa, luxury shopping, vibrant souks, and desert adventures."
+    },
+    {
+      "name": "The Maldives",
+      "latitude": 3.2028,
+      "longitude": 73.2207,
+      "description": "An archipelago renowned for its stunning natural beauty, turquoise waters, coral reefs, and luxurious overwater resorts, offering ultimate tropical relaxation and romance."
+    }
+  ]
+}

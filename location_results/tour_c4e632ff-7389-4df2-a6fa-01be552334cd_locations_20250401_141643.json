@@ -1,0 +1,30 @@
+{
+  "tour_id": "c4e632ff-7389-4df2-a6fa-01be552334cd",
+  "tour_name": "Ultimate Costa Rica",
+  "locations": [
+    {
+      "name": "Central Valley",
+      "latitude": 10.0168,
+      "longitude": -84.2167,
+      "description": "The starting point, likely near San Jos\u00e9 or Alajuela, characterized by rolling green hills, coffee estates, and cultural introduction."
+    },
+    {
+      "name": "Arenal Volcano Area",
+      "latitude": 10.4635,
+      "longitude": -84.6401,
+      "description": "Region centered around the Arenal Volcano (near La Fortuna town), known for volcanic views, thermal hot springs, and adventure activities like zip-lining and hanging bridges."
+    },
+    {
+      "name": "Osa Peninsula",
+      "latitude": 8.6033,
+      "longitude": -83.5819,
+      "description": "A remote and highly biodiverse peninsula in the south, primary access point for Corcovado National Park, offering immersive rainforest and wildlife experiences."
+    },
+    {
+      "name": "Manuel Antonio",
+      "latitude": 9.3956,
+      "longitude": -84.1479,
+      "description": "Pacific coast destination known for its scenic beaches adjacent to Manuel Antonio National Park, offering a blend of relaxation and accessible wildlife viewing."
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const HoneymoonInfo = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-travel-cream">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="text-3xl md:text-4xl font-serif font-bold text-center mb-8">
           The Honeymoon Experts
@@ -31,9 +31,9 @@ const HoneymoonInfo = () => {
         <div className="flex justify-center">
           <Link
             to="/contact"
-            className="bg-black text-white px-10 py-3 rounded-[10px] font-medium bg-[#333333] hover:bg-[#333333]/90 transition-colors"
+            className="bg-travel-charcoal text-white px-10 py-3.5 rounded-[10px] text-lg font-medium tracking-wide transition-colors"
           >
-            GET IN TOUCH
+            Get in Touch
           </Link>
         </div>
       </div>

@@ -1,0 +1,34 @@
+[
+  {
+    "tour_id": "911b59d3-9579-4e01-8db7-0fa9a25622d1",
+    "tour_name": "Highlights of California and Hawaii",
+    "success": true,
+    "locations_count": 4,
+    "locations": [
+      {
+        "name": "San Francisco, California",
+        "latitude": 37.7749,
+        "longitude": -122.4194,
+        "description": "A vibrant city with iconic landmarks like the Golden Gate Bridge and Alcatraz Island, offering a blend of culture, history, and stunning bay views."
+      },
+      {
+        "name": "Kauai, Hawaii",
+        "latitude": 22.0664,
+        "longitude": -159.4486,
+        "description": "Known as the 'Garden Isle', Kauai boasts dramatic cliffs, lush valleys, waterfalls, and pristine beaches, offering a tranquil escape into nature."
+      },
+      {
+        "name": "Big Island, Hawaii",
+        "latitude": 19.5561,
+        "longitude": -155.5875,
+        "description": "A land of incredible contrasts, featuring active volcanoes, stargazing opportunities on Mauna Kea, and beaches of diverse colors.  The specific location of overnight stays would depend on the tour operator, likely near Volcanoes National Park or Kona."
+      },
+      {
+        "name": "Los Angeles, California",
+        "latitude": 34.0522,
+        "longitude": -118.2437,
+        "description": "A sprawling metropolis offering diverse experiences, from the glamour of Hollywood and the beaches of Santa Monica to world-class museums and a vibrant culinary scene."
+      }
+    ]
+  }
+]

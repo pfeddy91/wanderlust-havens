@@ -1,0 +1,30 @@
+{
+  "tour_id": "d4e3c7b5-6a36-4a90-a6f4-b302f2798774",
+  "tour_name": "California Coast & Wine Country",
+  "locations": [
+    {
+      "name": "San Francisco",
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "description": "Iconic city known for the Golden Gate Bridge, cable cars, Alcatraz, and diverse neighbourhoods. The tour starts here."
+    },
+    {
+      "name": "Napa Valley",
+      "latitude": 38.5024,
+      "longitude": -122.3208,
+      "description": "World-renowned wine region famous for its vineyards, wineries, gourmet food, and scenic rolling hills. (Coordinates are approximate for the valley center)."
+    },
+    {
+      "name": "Monterey / Carmel-by-the-Sea area",
+      "latitude": 36.5819,
+      "longitude": -121.902,
+      "description": "Likely overnight stop along the Highway 1 drive through Big Sur, known for stunning coastal scenery, the Monterey Bay Aquarium, and charming towns. (Coordinates for general area midpoint)."
+    },
+    {
+      "name": "Santa Barbara",
+      "latitude": 34.4208,
+      "longitude": -119.6982,
+      "description": "Known as the 'American Riviera', offering beautiful beaches, Spanish Colonial Revival architecture, upscale boutiques, and a relaxed coastal atmosphere. The tour ends here."
+    }
+  ]
+}

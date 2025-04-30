@@ -1,0 +1,24 @@
+{
+  "tour_id": "3ad15975-9a01-4331-8dfa-b0cbd328f532",
+  "tour_name": "Canadian Rockies & Vancouver Island",
+  "locations": [
+    {
+      "name": "Banff",
+      "latitude": 51.1784,
+      "longitude": -115.5708,
+      "description": "The primary hub within Banff National Park, mentioned for strolling through the town and as a likely base for exploring the Rockies, Lake Louise, and potentially the Icefields Parkway."
+    },
+    {
+      "name": "Victoria",
+      "latitude": 48.4284,
+      "longitude": -123.3656,
+      "description": "The capital of British Columbia on Vancouver Island, explicitly mentioned as the starting point on the island, known for its Inner Harbour and architecture."
+    },
+    {
+      "name": "Tofino",
+      "latitude": 49.1526,
+      "longitude": -125.9044,
+      "description": "A coastal town on the west coast of Vancouver Island, described as a destination reached after Victoria, known for beaches, rainforests, surfing, and access to Clayoquot Sound."
+    }
+  ]
+}

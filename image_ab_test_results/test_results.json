@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "start_time": "2025-03-30T21:04:16.507054",
+    "test_complete": true,
+    "end_time": "2025-03-30T21:04:29.037540",
+    "total_images": 3
+  },
+  "variations": {
+    "variation_a": {
+      "avg_processing_time_ms": 2063.8966666666665,
+      "avg_file_size_kb": 339.10333333333335,
+      "total_images": 3
+    },
+    "variation_b": {
+      "avg_processing_time_ms": 363.6666666666667,
+      "avg_file_size_kb": 899.3533333333334,
+      "total_images": 3
+    },
+    "variation_c": {
+      "avg_processing_time_ms": 487.74,
+      "avg_file_size_kb": 536.7666666666668,
+      "total_images": 3
+    },
+    "variation_d": {
+      "avg_processing_time_ms": 409.75666666666666,
+      "avg_file_size_kb": 1050.7933333333333,
+      "total_images": 3
+    }
+  },
+  "images": {
+    "image_1": {
+      "url": "https://images.pexels.com/photos/5273408/pexels-photo-5273408.jpeg",
+      "original_size": [
+        8192,
+        5461
+      ],
+      "metrics": {
+        "variation_a": {
+          "processing_time_ms": 2882.24,
+          "file_size_kb": 353.28,
+          "output_path": "image_ab_test_results/image_1_variation_a.jpg",
+          "resolution": [
+            1200,
+            799
+          ]
+        },
+        "variation_b": {
+          "processing_time_ms": 695.48,
+          "file_size_kb": 951.01,
+          "output_path": "image_ab_test_results/image_1_variation_b.jpg",
+          "resolution": [
+            1600,
+            1066
+          ]
+        },
+        "variation_c": {
+          "processing_time_ms": 1098.32,
+          "file_size_kb": 552.48,
+          "output_path": "image_ab_test_results/image_1_variation_c.jpg",
+          "resolution": [
+            1400,
+            933
+          ]
+        },
+        "variation_d": {
+          "processing_time_ms": 819.02,
+          "file_size_kb": 1127.75,
+          "output_path": "image_ab_test_results/image_1_variation_d.jpg",
+          "resolution": [
+            1800,
+            1199
+          ]
+        }
+      }
+    },
+    "image_2": {
+      "url": "https://images.pexels.com/photos/632522/pexels-photo-632522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "original_size": [
+        2414,
+        1500
+      ],
+      "metrics": {
+        "variation_a": {
+          "processing_time_ms": 1533.13,
+          "file_size_kb": 294.43,
+          "output_path": "image_ab_test_results/image_2_variation_a.jpg",
+          "resolution": [
+            1200,
+            745
+          ]
+        },
+        "variation_b": {
+          "processing_time_ms": 183.09,
+          "file_size_kb": 766.41,
+          "output_path": "image_ab_test_results/image_2_variation_b.jpg",
+          "resolution": [
+            1600,
+            994
+          ]
+        },
+        "variation_c": {
+          "processing_time_ms": 245.95,
+          "file_size_kb": 455.85,
+          "output_path": "image_ab_test_results/image_2_variation_c.jpg",
+          "resolution": [
+            1400,
+            869
+          ]
+        },
+        "variation_d": {
+          "processing_time_ms": 195.83,
+          "file_size_kb": 882.19,
+          "output_path": "image_ab_test_results/image_2_variation_d.jpg",
+          "resolution": [
+            1800,
+            1118
+          ]
+        }
+      }
+    },
+    "image_3": {
+      "url": "https://images.pexels.com/photos/1296200/pexels-photo-1296200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "original_size": [
+        1998,
+        1500
+      ],
+      "metrics": {
+        "variation_a": {
+          "processing_time_ms": 1776.32,
+          "file_size_kb": 369.6,
+          "output_path": "image_ab_test_results/image_3_variation_a.jpg",
+          "resolution": [
+            1200,
+            900
+          ]
+        },
+        "variation_b": {
+          "processing_time_ms": 212.43,
+          "file_size_kb": 980.64,
+          "output_path": "image_ab_test_results/image_3_variation_b.jpg",
+          "resolution": [
+            1600,
+            1201
+          ]
+        },
+        "variation_c": {
+          "processing_time_ms": 118.95,
+          "file_size_kb": 601.97,
+          "output_path": "image_ab_test_results/image_3_variation_c.jpg",
+          "resolution": [
+            1400,
+            1051
+          ]
+        },
+        "variation_d": {
+          "processing_time_ms": 214.42,
+          "file_size_kb": 1142.44,
+          "output_path": "image_ab_test_results/image_3_variation_d.jpg",
+          "resolution": [
+            1800,
+            1351
+          ]
+        }
+      }
+    }
+  }
+}

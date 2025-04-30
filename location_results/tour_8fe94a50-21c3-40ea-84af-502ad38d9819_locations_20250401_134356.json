@@ -1,0 +1,18 @@
+{
+  "tour_id": "8fe94a50-21c3-40ea-84af-502ad38d9819",
+  "tour_name": "Borneo Rainforest & Reef",
+  "locations": [
+    {
+      "name": "Kinabatangan River Area",
+      "latitude": 5.5486,
+      "longitude": 118.3097,
+      "description": "Likely staying at a jungle lodge along the river. This location is central to the described wildlife experiences like river cruises to see proboscis monkeys, pygmy elephants, and hornbills, as well as jungle treks."
+    },
+    {
+      "name": "Coastal Island (Celebes Sea)",
+      "latitude": 4.245,
+      "longitude": 118.6317,
+      "description": "An idyllic island resort/accommodation off Sabah's coast in the Celebes Sea, serving as a base for diving and snorkeling activities among coral reefs. Mabul Island coordinates used as a representative example of islands in this region known for diving/snorkeling access."
+    }
+  ]
+}

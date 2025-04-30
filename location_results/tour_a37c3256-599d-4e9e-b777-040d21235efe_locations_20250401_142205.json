@@ -1,0 +1,18 @@
+{
+  "tour_id": "a37c3256-599d-4e9e-b777-040d21235efe",
+  "tour_name": "Uniquely Designed Kauai Honeymoon",
+  "locations": [
+    {
+      "name": "Hanalei",
+      "latitude": 22.2052,
+      "longitude": -159.4982,
+      "description": "Base for exploring Kauai's North Shore, known for its stunning bay, bohemian charm, lush valleys, and proximity to the Na Pali Coast."
+    },
+    {
+      "name": "Poipu",
+      "latitude": 21.8776,
+      "longitude": -159.4606,
+      "description": "Sunny South Shore resort area famous for its golden-sand beaches, ideal for swimming, snorkeling, and relaxation, with access to Waimea Canyon."
+    }
+  ]
+}

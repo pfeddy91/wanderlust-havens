@@ -1,0 +1,30 @@
+{
+  "tour_id": "d34de69a-8b6b-4d08-adeb-1fa6901b6692",
+  "tour_name": "Jewels of Jordan & Petra",
+  "locations": [
+    {
+      "name": "Amman",
+      "latitude": 31.9496,
+      "longitude": 35.9328,
+      "description": "Jordan's capital city, the starting point of the tour, known for its historical sites like the Citadel and Roman Theatre, and vibrant souks."
+    },
+    {
+      "name": "Petra",
+      "latitude": 30.3285,
+      "longitude": 35.4444,
+      "description": "The location of the ancient Nabataean city carved into rock. Overnight stays are typically in the adjacent town of Wadi Musa, providing access for exploring the archaeological site over multiple days."
+    },
+    {
+      "name": "Wadi Rum",
+      "latitude": 29.5732,
+      "longitude": 35.4194,
+      "description": "A vast desert valley known for its dramatic sandstone mountains and red sand. Overnight stays usually occur in Bedouin-style desert camps, offering sunset views and stargazing."
+    },
+    {
+      "name": "Dead Sea (Jordanian side)",
+      "latitude": 31.7036,
+      "longitude": 35.5881,
+      "description": "The lowest point on Earth, famous for its hypersaline water allowing effortless floating. Overnight stays are typically at resorts along the northeastern shore, offering spa treatments and relaxation."
+    }
+  ]
+}
