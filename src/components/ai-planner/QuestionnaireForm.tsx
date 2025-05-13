@@ -29,6 +29,7 @@ import {
 } from '@/services/questionnaireService'; // Adjust path
 import { Skeleton } from "@/components/ui/skeleton"; // For loading state
 import FlipCard from '@/components/ui/FlipCard'; // Import the new component
+import { Textarea } from "@/components/ui/textarea"; // Added: Import Textarea component
 // Remove Progress import if no longer needed
 // import { Progress } from "@/components/ui/progress";
 
@@ -180,6 +181,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                     defaults[q.form_key] = [q.validation_rules?.default ?? 10];
             } else if (q.question_type.includes('multi_select')) {
                 defaults[q.form_key] = [];
+            } else if (q.question_type === 'textarea') { // Added: Handle textarea default
+                defaults[q.form_key] = '';
             } else {
                      defaults[q.form_key] = '';
             }
@@ -282,23 +285,21 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
 
   const processFormSubmit: SubmitHandler<Inputs> = (data) => {
     // Construct the final QuestionnaireAnswers structure
-    // --- EDITED: Include all 8 expected fields with appropriate defaults ---
+    // --- REVERTED: Ensure vibe and timing are handled as potentially multi-select arrays ---
     const answers: QuestionnaireAnswers = {
-        // Multi-select fields (default to empty array)
         interests: data['interests'] || [],
         regions: data['regions'] || [],
         avoids: data['avoids'] || [],
-
-        // Single-select fields (default to empty string or a sensible default)
-        vibe: data['vibe'] || '', // Assuming vibe is single select, default to empty string
-        pace: data['pace'] || 'balanced', // Assuming pace is single select, default to 'balanced'
-        budget_tier: data['budget_tier'] || '', // Assuming budget is single select, default to empty string
-        timing: data['timing'] || '', // Assuming timing is single select, default to empty string
-
-        // Slider field (extract number, provide default)
-        duration: data['duration']?.[0] ?? 10, // Keep default duration as 10 if missing
+        // Treat vibe and timing as arrays from the form data
+        vibe: data['vibe'] || [], // Expect array, default to empty array
+        timing: data['timing'] || [], // Expect array, default to empty array
+        // Pace and budget are assumed single select (string)
+        pace: data['pace'] || 'balanced', // Default if empty string
+        budget_tier: data['budget_tier'] || '', // Default if empty string
+        duration: data['duration']?.[0] ?? 10,
+        openEndedQuery: data['openEndedQuery'] || '', // Added: Include openEndedQuery
     };
-    console.log('Final Form Data:', answers);
+    console.log('Final Form Data (vibe/timing as arrays):', answers);
     // --- Clear storage on successful submit ---
     sessionStorage.removeItem(SESSION_STORAGE_STEP_KEY);
     sessionStorage.removeItem(SESSION_STORAGE_ANSWERS_KEY);
@@ -452,39 +453,40 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
 
     const options = currentQuestion.question_options;
     const optionCount = options.length;
-    const isRegionQuestion = currentQuestion.question_type === 'card_multi_select_regions';
 
+    // --- Multi-Select Handler (Used for all relevant card types now) ---
     const handleMultiSelectChange = (optionValue: string) => {
-        const currentSelection: string[] = field.value || []; // Ensure it's always an array
+        const currentSelection: string[] = field.value || [];
         let newSelection: string[];
-        const maxSelections = currentQuestion.validation_rules?.max_select ?? 99; // Default to high number if not set
+        // Use validation rule max_select OR default to 99 if rule not present
+        const maxSelections = currentQuestion.validation_rules?.max_select ?? 99;
+        const isStrictlySingle = maxSelections === 1; // Check if DB enforces single select
 
         if (currentSelection.includes(optionValue)) {
-            // --- DESELECTING an existing item ---
+            // Deselecting
             newSelection = currentSelection.filter(v => v !== optionValue);
         } else {
-            // --- SELECTING a new item ---
-            if (isRegionQuestion && currentSelection.length >= maxSelections) {
-                // Region specific: Limit reached, remove the FIRST selected item and add the new one
-                // .slice(1) removes the first element. If maxSelections is 1, this removes the only element.
-                newSelection = [...currentSelection.slice(1), optionValue];
+            // Selecting
+            if (isStrictlySingle) {
+                 // If DB rule says max 1, replace current selection
+                 newSelection = [optionValue];
             } else if (currentSelection.length < maxSelections) {
-                // Limit not reached (or not the region question with special logic), just add
+                 // If multi-select allowed and limit not reached, add
                  newSelection = [...currentSelection, optionValue];
             } else {
-                 // Limit reached for non-region questions (shouldn't happen with isDisabled logic, but safe fallback)
+                 // Multi-select limit reached, do nothing (or provide feedback)
                  newSelection = currentSelection;
             }
         }
-        console.log(`Updating field ${field.name} from:`, currentSelection, `to:`, newSelection); // Log state update
-        field.onChange(newSelection); // Update form state
+        console.log(`Field ${field.name} (max: ${maxSelections}) updated to:`, newSelection);
+        field.onChange(newSelection); // Always store as array
     };
 
     const gridClasses = cn(
-      "grid gap-4",
-      "grid-cols-2", // Mobile default
-      optionCount <= 4 ? "md:grid-cols-2" : "md:grid-cols-4", // Desktop
-      "flip-card-grid-container" // Add class for perspective parent
+        "grid gap-4",
+        "grid-cols-2", // Mobile default
+        optionCount <= 4 ? "md:grid-cols-2" : "md:grid-cols-4", // Desktop
+        currentQuestion.question_type === 'card_multi_select_regions' ? "flip-card-grid-container" : "" // Only add perspective for regions
     );
 
     // --- Slider Specific Constants ---
@@ -501,62 +503,43 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
     const currentValuePercent = getSliderPercent(durationValue); // Use the visual state
 
     return (
-       // Container for max-width and centering
        <div className="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto">
-         {/* Input Options Area */}
          <div className="space-y-4">
             {/* Type: Multi-Select Cards (Vibe, Interests) */}
             {(currentQuestion.question_type === 'card_multi_select' || currentQuestion.question_type === 'card_multi_select_interests') && (
-                <div
-                    className={cn( // Define grid classes here for Vibe/Interests
-                        "grid gap-4",
-                        "grid-cols-2",
-                        optionCount <= 4 ? "md:grid-cols-2" : "md:grid-cols-4"
-                         // No perspective needed here unless you want flip for these too
-                    )}
-                >
+                <div className={gridClasses} >
                     {options.map((option) => {
-                        // --- Simplified iconName assignment ---
-                        // Always try to get the icon name from the option data fetched from DB
                         const iconName = option.icon_name;
-                        // --- End simplified assignment ---
-
-                        const isSelected = field.value?.includes(option.value);
+                        // Max selections from validation rules, default high
                         const maxSelections = currentQuestion.validation_rules?.max_select ?? 99;
-                        const isDisabled = !isSelected && (field.value?.length ?? 0) >= maxSelections;
+                        const isStrictlySingle = maxSelections === 1;
+
+                        // Always check array inclusion now
+                        const isSelected = field.value?.includes(option.value);
+
+                        // Disable logic: only if multi-select limit is reached
+                        const isDisabled = !isStrictlySingle && !isSelected && (field.value?.length ?? 0) >= maxSelections;
 
                         return (
                             <Card
                                 key={option.id}
+                                // Always use handleMultiSelectChange, but respect isDisabled
                                 onClick={() => { if (!isDisabled) { handleMultiSelectChange(option.value); } }}
                                 className={cn(
-                                    `transition-all text-center flex flex-col justify-center group border backdrop-blur-sm`,
-                                     // --- CARD HEIGHT CONTROL ---
-                                     // Base height for mobile:
+                                     `transition-all text-center flex flex-col justify-center group border backdrop-blur-sm`,
                                      `min-h-[100px]`,
-                                     // Conditional height for desktop:
-                                     // Taller if more than 4 options (e.g., 8 options in a 4x2 grid)
-                                     // Shorter if 4 or less options (e.g., 4 options in a 2x2 grid)
                                      optionCount > 4 ? 'md:min-h-[160px]' : 'md:min-h-[140px]',
-                                     // --- END HEIGHT CONTROL ---
-                                    isSelected
+                                     isSelected
                                         ? 'bg-white/20 border-white ring-2 ring-white/80 scale-[1.02]'
                                         : 'bg-black/30 border-gray-400/50 hover:border-gray-300 hover:bg-black/50',
-                                    isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                                     isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                                 )}
                             >
                                 <CardContent className="flex flex-col items-center justify-center p-4 flex-grow text-white group-hover:text-white">
-                                     {/* Conditionally render Icon based on iconName */}
-                                     {iconName ? ( // Render icon only if iconName is present
-                                    <DynamicIcon
-                                        name={iconName}
-                                            className={cn("h-7 w-7 md:h-8 md:h-8 mb-2 transition-colors", isSelected ? "text-white" : "text-gray-300 group-hover:text-white")}
-                                        />
-                                     ) : null } {/* Render nothing if no iconName */}
-                                    <span className={cn(
-                                        "font-medium text-center text-sm md:text-base transition-colors", // Adjusted text size slightly
-                                        !iconName && "mt-1" // Add margin if icon is absent
-                                    )}>
+                                     {iconName ? (
+                                        <DynamicIcon name={iconName} className={cn("h-7 w-7 md:h-8 md:h-8 mb-2 transition-colors", isSelected ? "text-white" : "text-gray-300 group-hover:text-white")} />
+                                     ) : null }
+                                    <span className={cn( "font-medium text-center text-sm md:text-base transition-colors", !iconName && "mt-1" )}>
                                         {option.display_text}
                                     </span>
                                 </CardContent>
@@ -568,29 +551,18 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
 
             {/* Type: Multi-Select Region Cards - USE FLIP CARD */}
             {currentQuestion.question_type === 'card_multi_select_regions' && (
-                 <div className={gridClasses}> {/* Apply grid and perspective container class */}
+                 <div className={gridClasses}>
                     {options.map((option) => {
                         const isSelected = field.value?.includes(option.value);
                         const maxSelections = currentQuestion.validation_rules?.max_select ?? 99;
                         const isDisabled = !isSelected && (field.value?.length ?? 0) >= maxSelections;
-
-                        // --- Use FlipCard Component ---
                         return (
                             <FlipCard
                                 key={option.id}
                                 isSelected={isSelected}
                                 isDisabled={isDisabled}
-                                onClick={() => {
-                                    // Prevent click if visually disabled (consistent with other cards)
-                                    if (!isDisabled) { handleMultiSelectChange(option.value); }
-                                }}
-                                frontContent={(
-                                    // --- ADJUSTED TEXT SIZE FOR MOBILE ---
-                                    <span className="font-medium text-center text-sm md:text-base">
-                                        {/* Changed text-3xl to text-sm */}
-                                        {option.display_text}
-                                    </span>
-                                )}
+                                onClick={() => { if (!isDisabled) { handleMultiSelectChange(option.value); } }}
+                                frontContent={( <span className="font-medium text-center text-sm md:text-base">{option.display_text}</span> )}
                                 backContent={(
                                     // --- MODIFIED BACK CONTENT ---
                                     // Use a relative container for positioning the overlay
@@ -620,7 +592,6 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                 )}
                             />
                         );
-                        // --- END Use FlipCard Component ---
                     })}
                 </div>
             )}
@@ -665,6 +636,25 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                    )}
                  </div>
             )}
+
+            {/* Added: Type: Textarea for Open-ended Question */}
+            {currentQuestion.question_type === 'textarea' && (
+                <div className="w-full max-w-3xl mx-auto mt-8"> {/* MODIFIED: Was max-w-xl, changed to max-w-2xl for more width */}
+                    <Textarea
+                        {...field} // Spread field props for RHF connection
+                        rows={4} // MODIFIED: Increased suggested rows slightly to match potential height increase
+                        className={cn(
+                            "w-full bg-black/40 backdrop-blur-md border border-gray-400/60 rounded-lg p-3 text-base text-white",
+                            "placeholder:text-gray-300/70 placeholder:italic",
+                            "focus:ring-1 focus:ring-white/80 focus:border-white/90 shadow-lg",
+                            "min-h-[100px]" // MODIFIED: Was min-h-[80px], increased for slightly more height
+                        )}
+                        placeholder="e.g., 'We are thinking about Italy or Japan as our preferred destinations', 'We would love to do 1 week of resort relaxation and 1 week of adventure'"
+                        id={currentQuestion.form_key}
+                    />
+                </div>
+            )}
+            {/* End Added: Type: Textarea */}
         </div>
 
         {/* Display validation error message */}

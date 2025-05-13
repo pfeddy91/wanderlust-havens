@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '@/utils/supabaseClient';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Loader2 } from 'lucide-react';
 import { Tour } from '@/types/tour';
 
@@ -82,7 +80,7 @@ const CollectionDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center min-h-[calc(100vh-theme(spacing.20))]">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
@@ -90,7 +88,7 @@ const CollectionDetailPage = () => {
 
   if (error || !collectionDetails) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-theme(spacing.20))] pt-20">
         <h1 className="text-2xl font-bold mb-4">Collection Not Found</h1>
         <p className="mt-2 text-muted-foreground mb-6">{error || "We couldn't find the collection you're looking for."}</p>
         <Link to="/collections" className="bg-travel-green text-white px-6 py-3 rounded-md hover:bg-travel-dark-green transition-colors">
@@ -102,66 +100,61 @@ const CollectionDetailPage = () => {
 
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20">
-        {/* Collection Hero Section (Example) */}
-        <section className="py-16 bg-gray-100 text-center">
-            <div className="container mx-auto px-4">
-                <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">{collectionDetails.name}</h1>
-                {collectionDetails.description && (
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">{collectionDetails.description}</p>
-                )}
-            </div>
-        </section>
+    <main className="pt-20">
+      {/* Collection Hero Section (Example) */}
+      <section className="py-16 bg-gray-100 text-center">
+          <div className="container mx-auto px-4">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">{collectionDetails.name}</h1>
+              {collectionDetails.description && (
+                  <p className="text-lg text-gray-600 max-w-2xl mx-auto">{collectionDetails.description}</p>
+              )}
+          </div>
+      </section>
 
-        {/* Tours Grid Section */}
-        <div className="container mx-auto px-4 py-16">
-          {tours && tours.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* --- Tour Card Rendering (Adapt from DestinationTours if needed) --- */}
-              {tours.map((tour) => (
-                <Link
-                  to={`/tours/${tour.slug}`} // Link to the specific tour detail page
-                  key={tour.id}
-                  className="block border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group"
-                >
-                  <div className="w-full h-64 relative overflow-hidden">
-                    <img
-                      src={getTourImage(tour)}
-                      alt={tour.title} // Use title
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'; }}
-                    />
-                     <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm px-2 py-1 rounded text-white text-sm font-medium">
-                      {tour.duration} NIGHTS
-                    </div>
+      {/* Tours Grid Section */}
+      <div className="container mx-auto px-4 py-16">
+        {tours && tours.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* --- Tour Card Rendering (Adapt from DestinationTours if needed) --- */}
+            {tours.map((tour) => (
+              <Link
+                to={`/tours/${tour.slug}`} // Link to the specific tour detail page
+                key={tour.id}
+                className="block border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group"
+              >
+                <div className="w-full h-64 relative overflow-hidden">
+                  <img
+                    src={getTourImage(tour)}
+                    alt={tour.title} // Use title
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'; }}
+                  />
+                   <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm px-2 py-1 rounded text-white text-sm font-medium">
+                    {tour.duration} NIGHTS
                   </div>
-                  <div className="p-4 bg-white">
-                     {/* You might need country names here - requires fetching countries based on tour.countries */}
-                    {/* <p className="uppercase text-xs tracking-wider mb-1 text-gray-500">{formatCountryName(tour)}</p> */}
-                    <h3 className="text-lg font-semibold font-serif mb-2 text-gray-800 group-hover:text-travel-burgundy transition-colors">{tour.title}</h3>
-                    <p className="text-sm text-gray-600">From £{tour.guide_price?.toLocaleString() || 'N/A'} per person</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-8">
-              <p className="text-gray-600 mb-8">
-                We're currently developing new experiences for the "{collectionDetails.name}" collection.
-                Check back soon or contact us for custom travel planning.
-              </p>
-              <Link to="/collections" className="bg-travel-green text-white px-6 py-3 rounded-md hover:bg-travel-dark-green transition-colors">
-                Explore Other Collections
+                </div>
+                <div className="p-4 bg-white">
+                   {/* You might need country names here - requires fetching countries based on tour.countries */}
+                  {/* <p className="uppercase text-xs tracking-wider mb-1 text-gray-500">{formatCountryName(tour)}</p> */}
+                  <h3 className="text-lg font-semibold font-serif mb-2 text-gray-800 group-hover:text-travel-burgundy transition-colors">{tour.title}</h3>
+                  <p className="text-sm text-gray-600">From £{tour.guide_price?.toLocaleString() || 'N/A'} per person</p>
+                </div>
               </Link>
-            </div>
-          )}
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-gray-600 mb-8">
+              We're currently developing new experiences for the "{collectionDetails.name}" collection.
+              Check back soon or contact us for custom travel planning.
+            </p>
+            <Link to="/collections" className="bg-travel-green text-white px-6 py-3 rounded-md hover:bg-travel-dark-green transition-colors">
+              Explore Other Collections
+            </Link>
+          </div>
+        )}
+      </div>
+    </main>
   );
 };
 

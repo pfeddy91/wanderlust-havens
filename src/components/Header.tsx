@@ -56,7 +56,7 @@ const Header = () => {
                 to="/planner" 
                 className="nav-item font-serif text-black tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors"
               >
-                AI Planner
+                Bespoke Planner
               </Link>
             </nav>
           )}
@@ -70,9 +70,6 @@ const Header = () => {
               >
                 Get in Touch
               </Button>
-              <div className="flex items-center justify-center w-12 h-12 text-black hover:text-gray-700 transition-colors cursor-pointer">
-                <Search className="h-5 w-5" />
-              </div>
             </div>
           )}
 

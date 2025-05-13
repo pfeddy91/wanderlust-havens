@@ -10,6 +10,7 @@ import CollectionsPage from "../pages/CollectionsPage";
 import CollectionDetailPage from "../pages/CollectionDetailPage";
 import RegionCountriesPage from "../pages/RegionCountriesPage";
 import AiPlannerContainer from "./ai-planner/AiPlannerContainer";
+import ContactUs from "../pages/ContactUs"; // Import the ContactUs page
 
 // Simple scroll restoration function
 function ScrollRestoration() {
@@ -61,6 +62,7 @@ export const AppRoutes = () => {
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/collections/:slug" element={<CollectionDetailPage />} />
           <Route path="/about" element={<NotFound />} />
+          <Route path="/contact" element={<ContactUs />} />
           <Route path="/destinations/regions/:slug" element={<RegionCountriesPage />} />
           {/* Catch-all for routes within Layout */}
           <Route path="*" element={<NotFound />} />

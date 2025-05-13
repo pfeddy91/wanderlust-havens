@@ -143,9 +143,9 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
   const hasPrevImages = imageIndex > 0;
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row md:h-screen">
       {/* Left Box - Photo and Title */}
-      <div className="relative w-full md:w-1/2 h-1/2 md:h-full">
+      <div className="relative w-full md:w-1/2 h-[50vh] md:h-full">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -165,7 +165,7 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
       </div>
       
       {/* Right Box - Panel with Navigation, Description, and Travel Info */}
-      <div className="w-full md:w-1/2 h-1/2 md:h-full bg-white p-8 md:p-12 overflow-y-auto">
+      <div className="w-full md:w-1/2 bg-white p-8 md:p-12 md:h-full md:overflow-y-auto">
         {/* Navigation */}
         <div className="flex items-center text-gray-400 text-sm mb-8">
           <Link to="/" className="hover:text-gray-600 transition-colors">

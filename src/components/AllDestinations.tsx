@@ -69,21 +69,35 @@ const AllDestinations = () => {
   };
 
   // Define tile layout configuration
-  const getTileConfig = (index: number, totalRegions: number) => {
-    // Special case for the last two tiles - make them equal size
-    if (index >= totalRegions - 2) {
-      return { gridRow: "span 2", gridColumn: "span 2" }; // Standard size for last two
+  const getTileConfig = (index: number) => {
+    // This layout is designed for the first 7 items to fit the 3-row pattern.
+    // All tiles in this pattern will span 2 rows (400px height given auto-rows-[200px]).
+    switch (index) {
+      // Row 1: 2 large tiles (each 2x2)
+      case 0: // Item 1
+        return { gridColumn: "span 2", gridRow: "span 2" };
+      case 1: // Item 2
+        return { gridColumn: "span 2", gridRow: "span 2" };
+
+      // Row 2: 3 tiles (1x2, 2x2, 1x2)
+      case 2: // Item 3 (Tight/Tall)
+        return { gridColumn: "span 1", gridRow: "span 2" };
+      case 3: // Item 4 (Large)
+        return { gridColumn: "span 2", gridRow: "span 2" };
+      case 4: // Item 5 (Tight/Tall)
+        return { gridColumn: "span 1", gridRow: "span 2" };
+
+      // Row 3: 2 large tiles (each 2x2)
+      case 5: // Item 6
+        return { gridColumn: "span 2", gridRow: "span 2" };
+      case 6: // Item 7
+        return { gridColumn: "span 2", gridRow: "span 2" };
+
+      default:
+        // Fallback for items beyond the 7th.
+        // They will be 1 column wide and 1 row unit (200px) tall.
+        return { gridColumn: "span 1", gridRow: "span 1" };
     }
-    
-    // Pattern for other tiles
-    const patterns = [
-      { gridRow: "span 2", gridColumn: "span 1" }, // Tall
-      { gridRow: "span 1", gridColumn: "span 1" }, // Standard
-      { gridRow: "span 1", gridColumn: "span 2" }, // Wide
-      { gridRow: "span 2", gridColumn: "span 2" }, // Large
-    ];
-    
-    return patterns[index % patterns.length];
   };
 
   return (
@@ -134,7 +148,7 @@ const AllDestinations = () => {
             {/* Custom CSS Grid Layout */}
             <div className="hidden md:grid grid-cols-4 auto-rows-[200px] gap-4">
               {regions.map((region, index) => {
-                const config = getTileConfig(index, regions.length);
+                const config = getTileConfig(index);
                 return (
                   <div
                     key={region.id}
@@ -150,8 +164,8 @@ const AllDestinations = () => {
                       alt={region.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
-                      <h3 className="text-white font-serif text-2xl md:text-3xl font-medium">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-center justify-center p-4">
+                      <h3 className="text-white font-serif text-2xl md:text-3xl font-medium text-center">
                         {region.name}
                       </h3>
                     </div>
@@ -173,9 +187,9 @@ const AllDestinations = () => {
                     alt={region.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
-                    <h3 className="text-white font-serif text-xl font-medium">
-                      {region.name}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-center justify-center p-2">
+                    <h3 className="text-white font-serif text-xl font-medium text-center">
+                        {region.name}
                     </h3>
                   </div>
                 </div>

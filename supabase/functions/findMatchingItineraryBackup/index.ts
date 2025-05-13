@@ -4,7 +4,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { GoogleGenerativeAI } from 'https://esm.sh/@google/generative-ai@0.1.3'; // Or your chosen version
 import { corsHeaders } from '../_shared/cors.ts';
 
-const MY_DEPLOY_VERSION = "backup"; // Make this unique!
+const MY_DEPLOY_VERSION = "findMatchingItinerary_v3.0_fresh_deploy_test_XYZ"; // Make this unique!
 console.log(`[VERSION CHECK] Function Loaded: ${MY_DEPLOY_VERSION}`);
 
 // --- Define types based on your questionnaire output and SQL return ---

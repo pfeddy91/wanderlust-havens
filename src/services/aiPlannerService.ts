@@ -5,37 +5,51 @@ import { supabase } from '@/utils/supabaseClient'; // Assuming you have this hel
 // Placeholder function to simulate finding a matching itinerary
 // Replace with actual fetch call to your Supabase Edge Function
 export const findMatchingItinerary = async (answers: QuestionnaireAnswers): Promise<ItineraryPreview[] | null> => { // Return array or null
-  console.log("Calling Supabase Edge Function 'findMatchingItinerary' with:", answers);
+  console.log("Attempting to invoke Supabase Edge Function 'findMatchingItinerary'...");
 
-  const { data: user } = await supabase.auth.getUser(); // Get user session for auth header
+  const { data: user } = await supabase.auth.getUser(); // Get user session info if needed for RLS later
 
-  // Use the Function name defined in Supabase
   const functionName = 'findMatchingItinerary';
 
+  // --- Log the object just before sending ---
+  console.log("Invoking function with this data object:", answers);
+
   const { data: previews, error } = await supabase.functions.invoke(functionName, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // Auth header might be handled automatically by supabase-js v2 when calling invoke
-      // If not, manually add: Authorization: `Bearer ${user?.session?.access_token}`
-    },
-    body: JSON.stringify(answers),
+    method: 'POST', // Keep explicitly stating POST for clarity
+    // --- Let supabase-js handle Content-Type header when body is an object ---
+    // headers: {
+    //   'Content-Type': 'application/json',
+    // },
+    // --- EDITED: Pass the raw object, not the stringified version ---
+    body: answers,
   });
 
   if (error) {
     console.error(`Error invoking Supabase function '${functionName}':`, error);
-    // Consider more specific error handling based on error type/message
-    throw new Error(`Failed to find matching itinerary: ${error.message}`);
+    // Provide a more specific error message based on the type
+    let errorMessage = `Failed to find matching itinerary: ${error.message}`;
+    if (error instanceof Error && error.name === 'FunctionsHttpError') {
+        errorMessage = `Failed to find matching itinerary: Edge Function returned status ${error.context.status} (${error.context.statusText})`;
+    } else if (error instanceof Error && error.name === 'FunctionsRelayError') {
+        errorMessage = `Failed to find matching itinerary: Network error relaying request.`;
+    } else if (error instanceof Error && error.name === 'FunctionsFetchError') {
+        errorMessage = `Failed to find matching itinerary: Could not reach Edge Function.`;
+    }
+     throw new Error(errorMessage);
   }
 
   if (!previews) {
-    console.log("No matching previews returned from the edge function.");
-    return null; // Return null if the function returns nothing or an empty array explicitly means null
-  }
+       console.log("No matching previews returned from the edge function.");
+       return null;
+   }
 
-  // Assuming the edge function returns an array of previews directly
   console.log("Received previews:", previews);
-  return previews as ItineraryPreview[]; // Cast to the expected type (array)
+  // --- Important: Ensure the response is correctly parsed ---
+  // If the edge function returns JSON string in 'data', you might need:
+  // return JSON.parse(previews) as ItineraryPreview[];
+  // But typically invoke handles parsing if the function returns JSON correctly.
+  // Let's assume it returns the parsed array directly for now.
+  return previews as ItineraryPreview[];
 };
 
 // Placeholder function to simulate payment intent creation (if needed server-side)
@@ -77,7 +91,7 @@ export const getUnlockedItinerary = async (itineraryId: string): Promise<FullIti
             { day: 3, title: 'Travel to Florence', description: 'Take a high-speed train to Florence. Check into your hotel and explore the Oltrarno district.', activities: ['Train Journey', 'Explore Oltrarno'], accommodation: 'Hotel Lungarno (Example)' },
             // Add more days...
          ],
-         // Add other FullItinerary fields
+         similarity: 0.95 // Added example
       };
    } else {
       return null;

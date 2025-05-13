@@ -23,15 +23,12 @@ const HoneymoonInfo = () => {
             little personal touch to make it uniquely yours.
           </p>
           
-          <p className="text-gray-700 leading-relaxed mb-4">
-            Start browsing our honeymoon collections today and get inspired.
-          </p>
         </div>
         
         <div className="flex justify-center">
           <Link
             to="/contact"
-            className="bg-travel-charcoal text-white px-10 py-3.5 rounded-[10px] text-lg font-medium tracking-wide transition-colors"
+            className="bg-travel-charcoal text-white px-10 py-3.5 rounded-[10px] text-medium font-medium tracking-wide transition-colors"
           >
             Get in Touch
           </Link>

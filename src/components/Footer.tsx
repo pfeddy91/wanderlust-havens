@@ -78,7 +78,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="/planner" className="text-travel-gray hover:text-travel-green transition-colors">
-                  AI Planner
+                  Bespoke Planner
                 </a>
               </li>
               <li>
@@ -173,11 +173,6 @@ const Footer = () => {
           <p className="text-travel-gray text-sm mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Moons Limited. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-travel-gray">
-            <a href="#" className="hover:text-travel-green transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-travel-green transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-travel-green transition-colors">Cookie Policy</a>
-          </div>
         </div>
       </div>
     </footer>

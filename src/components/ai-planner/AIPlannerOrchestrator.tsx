@@ -11,7 +11,7 @@ import { findMatchingItinerary, getUnlockedItinerary } from '@/services/aiPlanne
 const AIPlannerOrchestrator = () => {
   const [currentPhase, setCurrentPhase] = useState<PlannerPhase>(PlannerPhase.QUESTIONNAIRE);
   const [questionnaireData, setQuestionnaireData] = useState<QuestionnaireAnswers | null>(null);
-  const [previewData, setPreviewData] = useState<ItineraryPreview | null>(null);
+  const [previewData, setPreviewData] = useState<ItineraryPreview[] | null>(null);
   const [fullItineraryData, setFullItineraryData] = useState<FullItinerary | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -23,13 +23,14 @@ const AIPlannerOrchestrator = () => {
     setCurrentPhase(PlannerPhase.LOADING_PREVIEW);
     setError(null);
     try {
-      // TODO: Implement actual API call to findMatchingItinerary (Supabase Edge Function)
       const previewResult = await findMatchingItinerary(answers); // Call the service
-      if (previewResult) {
+      if (previewResult && previewResult.length > 0) {
         setPreviewData(previewResult);
         setCurrentPhase(PlannerPhase.PREVIEW);
       } else {
-        throw new Error("Could not find a matching itinerary.");
+        console.log("No matching previews returned or result was empty.");
+        setError("We couldn't find a suitable match based on your preferences. Please try adjusting your answers.");
+        setCurrentPhase(PlannerPhase.ERROR);
       }
     } catch (err: any) {
       console.error("Error finding matching itinerary:", err);
@@ -38,9 +39,9 @@ const AIPlannerOrchestrator = () => {
     }
   }, []);
 
-  const handleUnlockItinerary = useCallback(async () => {
-    console.log("Unlock Itinerary Requested for:", previewData?.id);
-    if (!previewData) return;
+  const handleUnlockItinerary = useCallback(async (itineraryId: string) => {
+    console.log("Unlock Itinerary Requested for:", itineraryId);
+    if (!itineraryId) return;
 
     // TODO: Implement payment flow here (Steps 5-9 from ai-planner.mdc)
     // This likely involves calling a createPaymentIntent function,
@@ -54,7 +55,7 @@ const AIPlannerOrchestrator = () => {
     try {
       // TODO: Implement actual API call to getUnlockedItinerary (Supabase Function)
       // This function should verify payment status in DB before returning data.
-      const fullResult = await getUnlockedItinerary(previewData.id); // Call the service
+      const fullResult = await getUnlockedItinerary(itineraryId); // Call the service
       if (fullResult) {
         setFullItineraryData(fullResult);
         setCurrentPhase(PlannerPhase.FULL_ITINERARY);
@@ -66,7 +67,7 @@ const AIPlannerOrchestrator = () => {
       setError(err.message || "An error occurred while retrieving the full itinerary.");
       setCurrentPhase(PlannerPhase.ERROR); // Go back to error state
     }
-  }, [previewData]);
+  }, []);
 
   // --- Render Logic ---
 
@@ -78,7 +79,7 @@ const AIPlannerOrchestrator = () => {
       case PlannerPhase.LOADING_PREVIEW:
       case PlannerPhase.LOADING_FULL:
         return (
-          <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center h-[80vh]">
+          <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-[60vh]">
             <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
             <p className="text-lg text-muted-foreground">
               {currentPhase === PlannerPhase.LOADING_PREVIEW
@@ -89,8 +90,23 @@ const AIPlannerOrchestrator = () => {
         );
 
       case PlannerPhase.PREVIEW:
-        if (!previewData) return <div className="container mx-auto px-4 py-8"><p>Error: Preview data missing.</p></div>;
-        return <PreviewDisplay itineraryPreview={previewData} onUnlock={handleUnlockItinerary} />;
+        if (!previewData || previewData.length === 0) {
+          return <div className="container mx-auto px-4 py-8"><p>Error: Preview data missing or empty.</p></div>;
+        }
+        return (
+          <div className="container mx-auto py-10 px-4">
+            <h2 className="text-3xl font-semibold text-center mb-8 font-serif">We found these top matches for you:</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+              {previewData.map((preview) => (
+                <PreviewDisplay
+                  key={preview.id}
+                  itineraryPreview={preview}
+                  onUnlock={() => handleUnlockItinerary(preview.id)}
+                />
+              ))}
+            </div>
+          </div>
+        );
 
       case PlannerPhase.FULL_ITINERARY:
         if (!fullItineraryData) return <div className="container mx-auto px-4 py-8"><p>Error: Full itinerary data missing.</p></div>;
@@ -103,7 +119,10 @@ const AIPlannerOrchestrator = () => {
                 <h2 className="text-2xl font-semibold text-destructive mb-4">Something went wrong</h2>
                 <p className="text-destructive mb-6">{error || "An unexpected error occurred."}</p>
                 <button
-                    onClick={() => setCurrentPhase(PlannerPhase.QUESTIONNAIRE)} // Option to retry
+                    onClick={() => {
+                        setError(null);
+                        setCurrentPhase(PlannerPhase.QUESTIONNAIRE);
+                    }}
                     className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
                 >
                     Start Over

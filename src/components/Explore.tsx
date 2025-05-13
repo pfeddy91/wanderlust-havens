@@ -80,7 +80,7 @@ const Explore = () => {
           
           <ExploreCard 
             icon={<Sparkles className="h-8 w-8 text-travel-burgundy" />}
-            title="AI Planner"
+            title="Bespoke Planner"
             description="Let our intelligent assistant design a customized honeymoon itinerary based on your preferences, budget, and dream experiences."
             buttonText="Start Planning"
             delay="500ms"

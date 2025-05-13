@@ -101,64 +101,95 @@ def call_gemini_api(prompt, max_retries=3, initial_timeout=60, image_data=None):
         "contents": [{"parts": parts}] # Use the constructed parts list
     }
     
-    for attempt in range(max_retries):
+    last_error_status = None # To inform retry delay logic
+
+    for attempt in range(max_retries): # attempt will be 0, 1, ..., max_retries-1
         try:
-            # Calculate timeout with exponential backoff
-            timeout = initial_timeout * (2 ** attempt)
+            # Delay logic before this attempt (if it's a retry or an image call)
+            if attempt > 0: # This is a retry
+                delay_seconds = 0
+                if last_error_status == 429:
+                    delay_seconds = (20 * (2 ** attempt)) # e.g., 40s, 80s for retry attempts 1, 2 after first failure
+                    logger.warning(f"Rate limit (429) previously. Waiting {delay_seconds}s before retry {attempt + 1}/{max_retries}...")
+                elif last_error_status == 502:
+                    delay_seconds = (15 * (2 ** attempt)) # e.g., 30s, 60s
+                    logger.warning(f"Server error (502) previously. Waiting {delay_seconds}s before retry {attempt + 1}/{max_retries}...")
+                else: # General network/other HTTP error/timeout
+                    delay_seconds = (5 * (2 ** attempt)) # e.g., 10s, 20s
+                    logger.info(f"Previous attempt failed (status: {last_error_status}). Waiting {delay_seconds}s before retry {attempt + 1}/{max_retries}...")
+                time.sleep(delay_seconds)
+            elif image_data: # First attempt for an image validation call, add a small proactive delay
+                time.sleep(1.5) # 1.5 seconds general pause before image validation calls
             
-            # Add a delay between retries
-            if attempt > 0:
-                delay = 2 ** attempt  # Exponential backoff delay
-                # logger.info(f"Retry attempt {attempt + 1}/{max_retries} after {delay} seconds...") # Commented out
-                time.sleep(delay)
+            current_timeout = initial_timeout * (2 ** attempt) # Timeout for the current request
             
-            # logger.info(f"Sending prompt to Gemini API - Attempt {attempt + 1}/{max_retries}") # Commented out
-            # logger.info(f"Timeout set to {timeout} seconds") # Commented out
+            logger.info(f"Calling Gemini API. Attempt {attempt + 1}/{max_retries}. Timeout: {current_timeout}s.")
             
-            response = requests.post(url, headers=headers, json=payload, timeout=timeout)
+            response = requests.post(url, headers=headers, json=payload, timeout=current_timeout)
+            last_error_status = response.status_code # Store for next potential retry's delay calculation
             
-            if response.status_code == 429:  # Rate limit
-                logger.warning("Rate limit hit, waiting longer before retry...")
-                time.sleep(5 * (2 ** attempt))  # Longer delay for rate limits
-                continue
-                
-            if not response.ok:
-                logger.error(f"Gemini API error: {response.status_code} - {response.text[:200]}...")
+            if response.ok:
+                result = response.json()
+                if 'candidates' in result and result['candidates'] and 'content' in result['candidates'][0]:
+                    content_parts = result['candidates'][0]['content']['parts']
+                    content = ''.join([part.get('text', '') for part in content_parts if 'text' in part])
+                    logger.info(f"Successfully received response from Gemini API on attempt {attempt + 1}")
+                    return content
+                else:
+                    logger.error(f"Unexpected response format from Gemini API on attempt {attempt + 1}: {result}")
+                    # Treat as failure, will retry if attempts remain (handled by loop and last_error_status)
+                    if attempt < max_retries - 1:
+                        continue
+                    return None # Exhausted retries
+
+            # Handle specific non-OK statuses
+            elif response.status_code == 429:
+                logger.warning(f"Gemini API rate limit (429) on attempt {attempt + 1}/{max_retries}.")
                 if attempt < max_retries - 1:
-                    continue
-                return None
-                
-            result = response.json()
+                    continue # Retry logic will apply delay based on last_error_status
+                else:
+                    logger.error(f"Gemini API rate limit (429) after {max_retries} attempts. Response: {response.text[:200]}...")
+                    return None
             
-            # Extract the content from Gemini's response format
-            if 'candidates' in result and result['candidates'] and 'content' in result['candidates'][0]:
-                content_parts = result['candidates'][0]['content']['parts']
-                content = ''.join([part.get('text', '') for part in content_parts if 'text' in part])
-                logger.info(f"Successfully received response from Gemini API")
-                return content
-            else:
-                logger.error("Unexpected response format from Gemini API")
+            elif response.status_code == 502:
+                logger.warning(f"Gemini API server error (502) on attempt {attempt + 1}/{max_retries}. Response: {response.text[:200]}...")
                 if attempt < max_retries - 1:
-                    continue
-                return None
+                    continue # Retry logic will apply delay
+                else:
+                    logger.error(f"Gemini API server error (502) after {max_retries} attempts. Response: {response.text[:200]}...")
+                    return None
             
+            else: # Other non-OK HTTP status codes
+                logger.error(f"Gemini API HTTP error {response.status_code} on attempt {attempt + 1}/{max_retries}: {response.text[:200]}...")
+                if attempt < max_retries - 1:
+                    continue # Retry logic will apply delay
+                else:
+                    logger.error(f"Gemini API HTTP error {response.status_code} after {max_retries} attempts. Response: {response.text[:200]}...")
+                    return None
+
         except requests.Timeout:
-            logger.error(f"Request timed out after {timeout} seconds") # Keep error log
+            logger.error(f"Request timed out after {current_timeout}s on attempt {attempt + 1}/{max_retries}")
+            last_error_status = "TIMEOUT" # Custom status for delay logic
             if attempt < max_retries - 1:
                 continue
+            logger.error(f"Request timed out after {max_retries} attempts.")
             return None
         except requests.ConnectionError as e:
-            logger.error(f"Connection error: {str(e)}")
+            logger.error(f"Connection error on attempt {attempt + 1}/{max_retries}: {str(e)}")
+            last_error_status = "CONNECTION_ERROR" # Custom status
             if attempt < max_retries - 1:
                 continue
+            logger.error(f"Connection error after {max_retries} attempts.")
             return None
-        except Exception as e:
-            logger.error(f"Unexpected error: {str(e)}")
+        except Exception as e: # Catch-all for other unexpected errors
+            logger.error(f"Unexpected error in call_gemini_api attempt {attempt + 1}/{max_retries}: {str(e)}")
+            last_error_status = "UNEXPECTED_ERROR" # Custom status
             if attempt < max_retries - 1:
                 continue
+            logger.error(f"Unexpected error after {max_retries} attempts.")
             return None
     
-    logger.error(f"All {max_retries} attempts failed")
+    logger.error(f"All {max_retries} attempts to call Gemini API failed.")
     return None
 
 def generate_search_terms_for_tour(tour_name, tour_summary):
@@ -1080,6 +1111,168 @@ def process_single_tour(api_source, tour_id=None, tour_code=None, min_score=IMAG
     logger.info(f"Completed processing tour: {tour_name}")
     logger.info(f"Search terms saved to tour_{tour_id}_search_terms.json")
 
+def check_image_url_exists(image_url: str, timeout=10) -> bool:
+    """
+    Checks if a given public image URL likely exists by making a HEAD request.
+    Args:
+        image_url: The public URL of the image.
+        timeout: Timeout in seconds for the request.
+    Returns:
+        True if the image likely exists (HTTP 200), False otherwise.
+    """
+    if not image_url:
+        logger.warning("Received empty image_url to check.")
+        return False
+    try:
+        # Using HEAD request as it's lightweight and doesn't download the body
+        response = requests.head(image_url, timeout=timeout, allow_redirects=True)
+        if response.status_code == 200:
+            # logger.info(f"Image URL {image_url} exists (Status 200).")
+            return True
+        elif response.status_code == 404:
+            logger.warning(f"Image URL {image_url} returned 404 Not Found.")
+            return False
+        else:
+            # Log other non-200 statuses as they might indicate issues
+            logger.warning(f"Image URL {image_url} returned status {response.status_code}.")
+            return False
+    except requests.Timeout:
+        logger.error(f"Timeout checking HEAD for {image_url}")
+        return False
+    except requests.RequestException as e:
+        logger.error(f"Error checking HEAD for {image_url}: {e}")
+        return False
+
+def audit_and_fix_missing_storage_images(cli_api_source: str, cli_min_score: float):
+    """
+    Audits tour_images against Supabase storage. If discrepancies are found
+    (DB record exists but storage file is missing), it deletes the DB records
+    for that tour and re-runs the image generation process for that tour.
+    Args:
+        cli_api_source: The API source to use for reprocessing (e.g., 'pexels', 'boosted').
+        cli_min_score: The minimum score to use for reprocessing.
+    """
+    logger.info("Starting audit of tour_images against Supabase Storage...")
+    
+    try:
+        db_response = supabase.table(DB_TABLE_NAME).select("id, tour_id, image_url").execute()
+        if db_response.data is None: # Check if data is None explicitly
+            logger.error("Failed to fetch records from tour_images table or table is empty.")
+            if hasattr(db_response, 'error') and db_response.error:
+                logger.error(f"Supabase error: {db_response.error}")
+            return
+        
+        all_tour_image_records = db_response.data
+        if not all_tour_image_records:
+            logger.info("No records found in tour_images table. Audit complete.")
+            return
+
+    except Exception as e:
+        logger.error(f"Error fetching records from tour_images: {e}")
+        return
+
+    logger.info(f"Fetched {len(all_tour_image_records)} records from tour_images table.")
+
+    # Group records by tour_id
+    images_by_tour_id = {}
+    for record in all_tour_image_records:
+        tour_id = record.get('tour_id')
+        if tour_id:
+            if tour_id not in images_by_tour_id:
+                images_by_tour_id[tour_id] = []
+            images_by_tour_id[tour_id].append(record)
+
+    tours_to_reprocess = set()
+
+    for tour_id, image_records in images_by_tour_id.items():
+        logger.info(f"Auditing images for tour_id: {tour_id} ({len(image_records)} images)")
+        missing_image_found_for_tour = False
+        for record in image_records:
+            image_url = record.get('image_url')
+            if not image_url:
+                logger.warning(f"Record ID {record.get('id')} for tour {tour_id} has no image_url. Marking tour for reprocessing.")
+                missing_image_found_for_tour = True
+                break 
+            
+            if not check_image_url_exists(image_url):
+                logger.warning(f"Storage check FAILED for tour_id {tour_id}, image_url: {image_url}. DB record ID: {record.get('id')}")
+                missing_image_found_for_tour = True
+                break # No need to check other images for this tour
+            # else:
+                # logger.info(f"Storage check PASSED for image_url: {image_url}")
+        
+        if missing_image_found_for_tour:
+            tours_to_reprocess.add(tour_id)
+
+    if not tours_to_reprocess:
+        logger.info("Audit complete. No tours found with missing images in storage.")
+        return
+
+    logger.warning(f"Found {len(tours_to_reprocess)} tours with discrepancies: {list(tours_to_reprocess)}")
+    logger.info("Proceeding to delete their tour_images records and reprocess them...")
+
+    # Fetch all tour details once to avoid multiple DB calls in process_single_tour
+    all_tours_details = get_tours_from_supabase()
+    if not all_tours_details:
+        logger.error("Could not fetch tour details. Aborting reprocessing.")
+        return
+    
+    tour_details_map = {tour['id']: tour for tour in all_tours_details}
+
+    for tour_id_to_fix in list(tours_to_reprocess):
+        logger.info(f"--- Reprocessing tour_id: {tour_id_to_fix} ---")
+        
+        tour_detail = tour_details_map.get(tour_id_to_fix)
+        if not tour_detail:
+            logger.error(f"Could not find details for tour_id {tour_id_to_fix}. Skipping reprocessing.")
+            continue
+
+        tour_name = tour_detail.get('title', 'Unknown Tour')
+        tour_summary = tour_detail.get('summary', '')
+
+        logger.info(f"Deleting existing image records from tour_images for tour_id: {tour_id_to_fix}")
+        try:
+            delete_response = supabase.table(DB_TABLE_NAME).delete().eq('tour_id', tour_id_to_fix).execute()
+            # Basic check: Supabase delete often returns the deleted records in `data`
+            if hasattr(delete_response, 'data') and isinstance(delete_response.data, list):
+                 logger.info(f"Successfully deleted {len(delete_response.data)} image records for tour_id: {tour_id_to_fix}.")
+            elif hasattr(delete_response, 'error') and delete_response.error:
+                 logger.error(f"Error deleting records for tour_id {tour_id_to_fix}: {delete_response.error}")
+                 logger.info(f"Skipping reprocessing for tour_id {tour_id_to_fix} due to deletion error.")
+                 continue # Skip reprocessing if deletion failed
+            else:
+                 logger.warning(f"Deletion response for tour_id {tour_id_to_fix} was not as expected, but proceeding. Response: {delete_response}")
+
+        except Exception as e:
+            logger.error(f"Exception during deletion for tour_id {tour_id_to_fix}: {e}")
+            logger.info(f"Skipping reprocessing for tour_id {tour_id_to_fix} due to deletion exception.")
+            continue
+
+        logger.info(f"Triggering image regeneration for tour: {tour_name} (ID: {tour_id_to_fix})")
+        
+        # Re-generate search terms as they might be needed
+        search_terms = generate_search_terms_for_tour(tour_name, tour_summary)
+        if not search_terms:
+            logger.error(f"Could not generate search terms for tour: {tour_name} (ID: {tour_id_to_fix}). Skipping reprocessing.")
+            continue
+
+        # Call download_and_upload_images_for_tour directly as process_single_tour has redundant tour fetching.
+        # Ensure override is True for reprocessing.
+        download_and_upload_images_for_tour(
+            tour_id=tour_id_to_fix,
+            tour_name=tour_name,
+            tour_summary=tour_summary,
+            search_terms=search_terms,
+            api_source=cli_api_source,
+            min_score=cli_min_score,
+            override=True # Crucial: ensure it overrides/replaces if any logic inside checks again
+        )
+        
+        logger.info(f"Completed reprocessing for tour_id: {tour_id_to_fix}. Sleeping for a few seconds...")
+        time.sleep(5) # Be kind to APIs
+
+    logger.info("Audit & Fix process completed.")
+
 def main():
     parser = argparse.ArgumentParser(description='Download and upload images for tours')
     parser.add_argument('--tour-id', type=str, help='Process a specific tour by ID')
@@ -1089,17 +1282,22 @@ def main():
                         help=f'Minimum validation score (1-10), default: {IMAGE_QUALITY_THRESHOLD}')
     parser.add_argument('--override', action='store_true',
                         help='Process tours even if they already have images, deleting existing ones first.')
+    parser.add_argument('--audit-fix', action='store_true',
+                        help='Audit tour_images against storage and reprocess tours with missing images.')
     
     args = parser.parse_args()
     
-    # Log the start of the script
     logger.info("=" * 80)
     logger.info("Starting image generation script")
     logger.info(f"Minimum quality score threshold: {args.min_score}")
     logger.info(f"Using API source: {args.api_source.upper()}")
     logger.info(f"Override mode: {args.override}")
-    
-    if args.tour_id:
+    logger.info(f"Audit & Fix mode: {args.audit_fix}")
+
+    if args.audit_fix:
+        logger.info("Running in Audit & Fix mode...")
+        audit_and_fix_missing_storage_images(cli_api_source=args.api_source, cli_min_score=args.min_score)
+    elif args.tour_id:
         process_single_tour(api_source=args.api_source, tour_id=args.tour_id, min_score=args.min_score, override=args.override)
     else:
         process_all_tours(api_source=args.api_source, min_score=args.min_score, override=args.override)
