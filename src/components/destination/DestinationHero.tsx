@@ -31,15 +31,6 @@ interface TourImage {
   display_order: number;
 }
 
-// Placeholder images to use until the API is working
-const PLACEHOLDER_IMAGES = [
-  'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80',
-  'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&q=80',
-  'https://images.unsplash.com/photo-1507041957456-9c397ce39c97?w=800&q=80',
-  'https://images.unsplash.com/photo-1512053459797-38c3a066cabd?w=800&q=80',
-  'https://images.unsplash.com/photo-1510797215324-95aa89f43c33?w=800&q=80',
-  'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80',
-];
 
 const DestinationHero = ({ country }: DestinationHeroProps) => {
   const [region, setRegion] = useState<Region | null>(null);
@@ -194,11 +185,11 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
           </h2>
           
           <div className="flex flex-col gap-6">
-            {/* Block 1: Main description (countries.description) */}
-            <p className="text-lg leading-relaxed font-serif">{description}</p>
+            {/* Block 1: Main description (countries.description) - now sans-serif */}
+            <p className="text-lg leading-relaxed text-gray-700">{description}</p>
             
-            {/* Block 2: Rationale (countries.rationale) */}
-            <p className="text-sm leading-relaxed text-gray-700">{rationale}</p>
+            {/* Block 2: Rationale (countries.rationale) - already sans-serif by default */}
+            <p className="text-lg leading-relaxed text-gray-700">{rationale}</p>
           </div>
         </div>
         
@@ -212,26 +203,26 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
           <div className="flex flex-col md:flex-row justify-between gap-6">
             {/* When */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#063737" }}>
+              <h3 className="text-xl font-sans font-bold mb-2" style={{ color: "#063737" }}>
                 WHEN
               </h3>
-              <p className="text-base font-light">{bestPeriod}</p>
+              <p className="text-lg font-light">{bestPeriod}</p>
             </div>
             
             {/* Distance */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#A25524" }}>
+              <h3 className="text-xl font-sans font-bold mb-2" style={{ color: "#A25524" }}>
                 DISTANCE
               </h3>
-              <p className="text-base font-light">{distance}</p>
+              <p className="text-lg font-light">{distance}</p>
             </div>
             
             {/* Comfort */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#808000" }}>
+              <h3 className="text-xl font-sans font-bold mb-2" style={{ color: "#808000" }}>
                 COMFORT
               </h3>
-              <p className="text-base font-light">{comfort}</p>
+              <p className="text-lg font-light">{comfort}</p>
             </div>
           </div>
         </div>

@@ -1,4 +1,3 @@
-
 // Define interface for tour image
 export interface TourImage {
   id: string;
@@ -27,31 +26,6 @@ export interface TourHighlight {
   description: string | null;
   image: string | null;
   order: number;
-  created_at: string;
-  updated_at: string;
-}
-
-// Define interface for hotel
-export interface Hotel {
-  id: string;
-  name: string;
-  location: string;
-  description: string | null;
-  country_id: string | null;
-  star_rating: number | null;
-  features: string[] | null;
-  created_at: string;
-  updated_at: string;
-  hotel_images?: HotelImage[];
-}
-
-// Define interface for hotel image
-export interface HotelImage {
-  id: string;
-  hotel_id: string | null;
-  image_url: string;
-  alt_text: string | null;
-  is_featured: boolean | null;
   created_at: string;
   updated_at: string;
 }
@@ -120,6 +94,9 @@ export interface TourMap {
   updated_at?: string;
 }
 
+// IMPORT Hotel from the new hotel.ts file
+import { Hotel } from './hotel'; // Or '@/types/hotel' if you have path aliases configured
+
 // Define interface for tour with tour_images property
 export interface Tour {
   id: string;
@@ -139,4 +116,9 @@ export interface Tour {
   tour_hotels?: TourHotel[];
   tour_countries?: TourCountry[];
   tour_locations?: TourLocation[];
+  country_details: Array<{ name: string; [key: string]: any }>;
+  duration_days?: number;
+  best_time_to_travel?: string;
+  guide_price_usd?: number;
+  hotels?: Hotel[];
 }

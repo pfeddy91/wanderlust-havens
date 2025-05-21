@@ -289,3 +289,44 @@ html {
     /* This class still exists but isn't applied to regions anymore */
     @apply opacity-50 cursor-not-allowed;
 }
+
+/* Add this to your global CSS file (e.g., src/index.css or App.css) */
+.all-destinations-button {
+ padding: 15px 30px; /* Adjusted horizontal padding for 20% width increase */
+ border: unset;
+ border-radius: 15px;
+ color: #212121;
+ z-index: 1;
+ background: #ffffff; /* Changed background to white */
+ position: relative;
+ font-weight: 700; /* Standard max is 900, 1000 will likely render as 900 */
+ font-family: 'Bebas Neue', sans-serif;
+ font-size: 19px;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms;
+ overflow: hidden;
+}
+
+.all-destinations-button::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color: #212121;
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms
+}
+
+.all-destinations-button:hover {
+ color: #e8e8e8;
+}
+
+.all-destinations-button:hover::before {
+ width: 100%;
+}

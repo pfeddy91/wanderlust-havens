@@ -1,8 +1,3 @@
----
-description: 
-globs: 
-alwaysApply: true
----
 
 # Your rule content
 
@@ -54,55 +49,97 @@ CREATE INDEX IF NOT EXISTS idx_countries_region_id ON public.countries USING btr
 -- Tours Table (Main Refactored Table - Removed vibe_tag)
 CREATE TABLE public.tours (
   id uuid NOT NULL DEFAULT gen_random_uuid(),
-  title text NOT NULL, -- Renamed from 'name'
+  title text NOT NULL,
   slug text NOT NULL,
   duration integer NOT NULL,
   guide_price numeric(10,2) NOT NULL,
   summary text NOT NULL,
   description text NOT NULL,
   featured_image text NULL,
-  region_id uuid NULL, -- Link to regions (kept)
-  collection text NULL, -- Collection identifier (kept)
-  countries uuid[] NULL, -- Array of country UUIDs (kept)
+  region_id uuid NULL,
+  collection text NULL,
+  countries uuid[] NULL,
   is_featured boolean NULL DEFAULT false,
-  -- vibe_tag jsonb NULL, -- Removed as requested
   created_at timestamp with time zone NOT NULL DEFAULT now(),
   updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  activity jsonb NULL,
+  pace text NULL,
+  callouts jsonb NULL,
+  best_season jsonb NULL,
+  geo_region text NULL,
+  theme_tags jsonb NULL,
+  recommendation_metric numeric NULL,
+  embedding extensions.vector NULL,
   CONSTRAINT tours_pkey PRIMARY KEY (id),
   CONSTRAINT tours_slug_key UNIQUE (slug),
-  CONSTRAINT tours_region_id_fkey FOREIGN KEY (region_id) REFERENCES regions(id) ON DELETE SET NULL -- Or ON DELETE RESTRICT
-);
+  CONSTRAINT tours_region_id_fkey FOREIGN KEY (region_id) REFERENCES regions(id) ON DELETE SET NULL
+) TABLESPACE pg_default;
+
+CREATE INDEX IF NOT EXISTS idx_tours_slug ON public.tours USING btree (slug) TABLESPACE pg_default;
+CREATE INDEX IF NOT EXISTS idx_tours_region_id ON public.tours USING btree (region_id) TABLESPACE pg_default;
 -- Optional Index: Consider adding an index if you query tours by country frequently
 -- CREATE INDEX idx_tours_countries ON public.tours USING GIN (countries);
 
--- Hotels Table (Removed country_id)
+-- Hotels Table (Updated with new fields)
 CREATE TABLE public.hotels (
   id uuid NOT NULL DEFAULT gen_random_uuid(),
   name text NOT NULL,
   location text NOT NULL,
-  -- country_id uuid NULL, -- Removed: Country context via tour/itinerary/region
-  description text NULL,
+  description text NOT NULL, -- Kept, ensure it's populated or make NULLable if not always available
   star_rating integer NULL,
   features text[] NULL,
   created_at timestamp with time zone NOT NULL DEFAULT now(),
   updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  google_rating numeric NULL, -- This seems to be a duplicate of google_place_rating, review if needed
+  tripadvisor_rating numeric NULL,
+  processed_location text NULL,
+  gemini_suggested_name text NULL,
+  gemini_address text NULL,
+  gemini_latitude numeric(10,7) NULL,
+  gemini_longitude numeric(10,7) NULL,
+  google_place_id text NULL,
+  google_place_name_resource text NULL,
+  google_place_display_name text NULL,
+  google_place_formatted_address text NULL,
+  google_place_short_formatted_address text NULL,
+  google_place_latitude numeric(10,7) NULL,
+  google_place_longitude numeric(10,7) NULL,
+  google_maps_uri text NULL,
+  google_place_price_level text NULL,
+  google_place_rating numeric(2,1) NULL,
+  google_place_user_rating_count integer NULL,
+  google_place_website_uri text NULL,
+  gemini_short_summary text NULL,
+  gemini_longer_summary text NULL,
+  gemini_location_description text NULL,
+  gemini_rationale text NULL,
+  gemini_top_tip text NULL,
+  gemini_price_range text NULL,
   CONSTRAINT hotels_pkey PRIMARY KEY (id),
+  CONSTRAINT hotels_google_place_id_key UNIQUE (google_place_id),
   CONSTRAINT hotels_star_rating_check CHECK (((star_rating >= 1) AND (star_rating <= 5)))
-);
+) TABLESPACE pg_default;
 
--- Hotel Images Table (Unchanged structure, ensures FK integrity)
+CREATE INDEX IF NOT EXISTS idx_hotels_google_place_id ON public.hotels USING btree (google_place_id) TABLESPACE pg_default;
+CREATE INDEX IF NOT EXISTS idx_hotels_processed_location ON public.hotels USING btree (processed_location) TABLESPACE pg_default;
+
+-- Hotel Images Table (Updated with new fields and constraints)
 CREATE TABLE public.hotel_images (
   id uuid NOT NULL DEFAULT gen_random_uuid(),
-  hotel_id uuid NULL,
+  hotel_id uuid NOT NULL, -- Changed from NULL to NOT NULL
   image_url text NOT NULL,
-  alt_text text NULL,
+  alt_text text NULL, -- Explicitly NULL
+  display_order integer NOT NULL DEFAULT 0,
   is_featured boolean NULL DEFAULT false,
+  source_google_url text NULL,
   created_at timestamp with time zone NOT NULL DEFAULT now(),
   updated_at timestamp with time zone NOT NULL DEFAULT now(),
   CONSTRAINT hotel_images_pkey PRIMARY KEY (id),
   CONSTRAINT hotel_images_hotel_id_fkey FOREIGN KEY (hotel_id) REFERENCES hotels(id) ON DELETE CASCADE
-);
-CREATE INDEX IF NOT EXISTS idx_hotel_images_hotel_id ON public.hotel_images USING btree (hotel_id);
+) TABLESPACE pg_default;
+
+CREATE INDEX IF NOT EXISTS idx_hotel_images_hotel_id ON public.hotel_images USING btree (hotel_id) TABLESPACE pg_default;
+CREATE INDEX IF NOT EXISTS idx_hotel_images_is_featured ON public.hotel_images USING btree (is_featured) TABLESPACE pg_default;
 
 
 -- Tour Itineraries Table (Added hotel_id)
@@ -202,6 +239,11 @@ CREATE TABLE public.background_images (
   created_at timestamp with time zone NOT NULL DEFAULT now(),
   updated_at timestamp with time zone NOT NULL DEFAULT now(),
   CONSTRAINT background_images_pkey PRIMARY KEY (id)
+);
+
+-- =============================================
+-- End of Refactored Schema V2
+-- =============================================
 );
 
 -- =============================================

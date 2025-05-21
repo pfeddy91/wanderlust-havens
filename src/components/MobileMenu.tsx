@@ -56,6 +56,13 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         <div className="p-6 flex-1">
           <nav>
             <div className="space-y-1">
+              <Link 
+                to="/planner"
+                className="block py-5 text-2xl font-serif border-b border-gray-100"
+                onClick={onClose}
+              >
+                Bespoke Planner
+              </Link>
               {/* Direct link to destinations page */}
               <Link 
                 to="/destinations"
@@ -71,14 +78,6 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                 onClick={onClose}
               >
                 Collections
-              </Link>
-              
-              <Link 
-                to="/planner"
-                className="block py-5 text-2xl font-serif border-b border-gray-100"
-                onClick={onClose}
-              >
-                AI Planner
               </Link>
             </div>
           </nav>

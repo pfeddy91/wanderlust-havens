@@ -3,6 +3,7 @@ import { Tour, TourImage, TourLocation, TourMap } from '@/types/tour';
 import { Country } from '@/types/country';
 import { TourHighlight } from '@/types/tourHighlight';
 import { TourItinerary } from '@/types/tourItinerary';
+import { Hotel } from '@/types/hotel';
 
 // Region-related functions
 export async function getRegions() {
@@ -44,6 +45,21 @@ export async function getCountries() {
   
   if (error) {
     console.error('Error fetching countries:', error);
+    return [];
+  }
+  
+  return data || [];
+}
+
+export async function getCountriesByFeaturedDestination() {
+  const { data, error } = await supabase
+    .from('countries')
+    .select('*') // Selects all columns, ensure 'id', 'name', 'slug', 'featured_image' are present
+    .eq('favourite_destination', true)
+    .order('name');
+  
+  if (error) {
+    console.error('Error fetching featured destination countries:', error);
     return [];
   }
   
@@ -120,21 +136,19 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
   // 1. Fetch the main tour data
   const { data: tourData, error: tourError } = await supabase
     .from('tours')
-    .select('*') // Select all fields from the tours table
+    .select('*')
     .eq('slug', slug)
-    .single(); // Expect only one tour or null
+    .single();
 
-  // Handle initial fetch error or no data found
   if (tourError) {
     console.error(`Supabase error fetching tour by slug ${slug}:`, tourError.message);
-    return null; // Return null if there's a DB error
+    return null;
   }
   if (!tourData) {
     console.log(`No tour found with slug: ${slug}`);
-    return null; // Return null if no tour matches the slug
+    return null;
   }
 
-  // We have tourData, proceed to fetch related details
   const tourId = tourData.id;
 
   // 2. Fetch associated tour images
@@ -146,7 +160,6 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
 
   if (imagesError) {
     console.error(`Error fetching images for tour ${tourId}:`, imagesError);
-    // Continue, but assign empty array
   }
 
   // 3. Fetch associated tour locations
@@ -158,7 +171,6 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
 
   if (locationsError) {
     console.error(`Error fetching locations for tour ${tourId}:`, locationsError);
-    // Continue, but assign empty array
   }
 
   // 4. Fetch associated tour highlights
@@ -166,14 +178,13 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
     .from('tour_highlights')
     .select('*')
     .eq('tour_id', tourId)
-    .order('order'); // Assuming 'order' is the column name
+    .order('order');
 
    if (highlightsError) {
      console.error(`Error fetching highlights for tour ${tourId}:`, highlightsError);
-     // Continue, but assign empty array
    }
 
-   // 5. Fetch associated tour itineraries (including nested hotel data)
+   // 5. Fetch associated tour itineraries (including nested hotel data for itinerary days if setup)
    const { data: itinerariesData, error: itinerariesError } = await supabase
      .from('tour_itineraries')
      .select(`
@@ -188,42 +199,96 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
 
    if (itinerariesError) {
      console.error(`Error fetching itineraries for tour ${tourId}:`, itinerariesError);
-     // Continue, but assign empty array
    }
-
 
   // 6. Fetch associated countries based on UUIDs in tourData.countries
   let fetchedCountries: Country[] = [];
   if (tourData.countries && tourData.countries.length > 0) {
      const { data: countriesData, error: countriesError } = await supabase
        .from('countries')
-       .select('*') // Select needed country fields (id, name, slug, etc.)
-       .in('id', tourData.countries); // Filter countries whose ID is in the tour's array
+       .select('*')
+       .in('id', tourData.countries);
 
      if (countriesError) {
        console.error(`Error fetching countries for tour ${tourId}:`, countriesError);
-       // Assign empty array if countries fail
      } else {
        fetchedCountries = (countriesData as Country[] || []);
      }
   }
 
-  // 7. Combine all data into a single Tour object
-  //    Ensure your `Tour` type definition includes fields for these relations
+  // 7. Fetch hotels based on tour_locations.name matching hotels.location
+  let associatedHotelsForTour: Hotel[] = [];
+  if (locationsData && locationsData.length > 0) {
+    const locationNamesFromTour = locationsData
+      .map(loc => loc.name)
+      .filter(name => typeof name === 'string' && name.trim() !== '');
+
+    if (locationNamesFromTour.length > 0) {
+      const uniqueLocationNames = [...new Set(locationNamesFromTour)];
+
+      const { data: hotelsFromDb, error: hotelsDbError } = await supabase
+        .from('hotels')
+        .select(`
+          id,
+          name,
+          location,
+          gemini_address,
+          gemini_latitude,
+          gemini_longitude,
+          google_place_id,
+          google_place_name_resource,
+          google_place_display_name,
+          google_place_formatted_address,
+          google_place_short_formatted_address,
+          google_place_latitude,
+          google_place_longitude,
+          google_maps_uri,
+          google_place_rating,
+          google_place_user_rating_count,
+          google_place_website_uri,
+          gemini_short_summary,
+          gemini_longer_summary,
+          gemini_location_description,
+          gemini_rationale,
+          gemini_top_tip,
+          gemini_price_range,
+          hotel_images (
+            id,
+            hotel_id,
+            image_url,
+            alt_text,
+            is_featured,
+            created_at,
+            updated_at
+          )
+        `)
+        .in('location', uniqueLocationNames);
+
+      if (hotelsDbError) {
+        console.error(`Error fetching hotels for tour ${tourId} by 'hotels.location':`, hotelsDbError.message);
+      } else if (hotelsFromDb) {
+        // Map the fetched hotel data to the Hotel type structure, ensuring 'images' array is correctly populated
+        associatedHotelsForTour = hotelsFromDb.map(h => ({
+          ...h, // Spread all fetched hotel properties
+          images: h.hotel_images || [], // Supabase nests related data under the table name (hotel_images)
+                                        // Map this to 'images' as expected by the Hotel type
+        })) as Hotel[];
+      }
+    }
+  }
+
+  // 8. Combine all data into a single Tour object
   const combinedTourData: Tour = {
-    ...tourData,
+    ...tourData, // Main tour data, includes direct columns like duration_days, best_time_to_travel, guide_price_usd
     tour_images: (imagesData as TourImage[] || []),
     tour_locations: (locationsData as TourLocation[] || []),
-    tour_highlights: (highlightsData as TourHighlight[] || []), // Add highlights
-    tour_itineraries: (itinerariesData as TourItinerary[] || []), // Add itineraries
-    // Add a field for the fetched country details, e.g., country_details
-    // You'll need to add `country_details?: Country[]` to your Tour type definition
+    tour_highlights: (highlightsData as TourHighlight[] || []),
+    tour_itineraries: (itinerariesData as TourItinerary[] || []),
     country_details: fetchedCountries,
-    // Remove the old tour_countries field if it's still in your type
-    // tour_countries: undefined,
+    hotels: associatedHotelsForTour, // Add the hotels for the "Where to Stay" section
   };
 
-  console.log(`Successfully fetched tour and related data for slug: ${slug}`);
+  console.log(`Successfully fetched tour and related data (including associated hotels) for slug: ${slug}`);
   return combinedTourData;
 }
 

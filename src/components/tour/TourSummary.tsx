@@ -18,9 +18,7 @@ const TourSummary = ({ tour }: TourSummaryProps) => {
   return (
     <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
       <div className="lg:col-span-2">
-        <h2 className="mb-8 font-serif text-4xl font-bold uppercase tracking-wide">
-          Overview
-        </h2>
+
         
         <div className="prose prose-lg max-w-none font-serif text-gray-700">
           <p className="text-xl leading-relaxed">{tour.summary}</p>

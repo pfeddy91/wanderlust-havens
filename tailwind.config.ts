@@ -158,9 +158,9 @@ export default {
 				'image-rotate': 'image-rotate 8s ease-in-out forwards'
 			},
 			fontFamily: {
-				'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-				'serif': ['Cormorant Garamond', 'Playfair Display', 'ui-serif', 'Georgia', 'Cambria', 'serif'],
-				'mono': ['ui-monospace', 'SFMono-Regular', 'monospace']
+				sans: ['Jost', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+				mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
 			}
 		}
 	},

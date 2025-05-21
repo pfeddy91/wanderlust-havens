@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { getTourBySlug } from '@/services/honeymoonService';
 import { Loader2 } from 'lucide-react';
 import TourHero from '@/components/tour/TourHero';
-import TourSummary from '@/components/tour/TourSummary';
 import TourItinerary from '@/components/tour/TourItinerary';
 import TourHighlights from '@/components/tour/TourHighlights';
+import TourHotels from '@/components/tour/TourHotels';
+import TourImageGallery from '@/components/tour/TourImageGallery';
 import { Tour } from '@/types/tour';
 import { Separator } from '@/components/ui/separator';
 
@@ -57,40 +58,39 @@ const TourDetail = () => {
     );
   }
 
-  // Extract country names using the new structure provided by getTourBySlug
-  const countryNames = tour.country_details // Use the key where service function stores country data
-    ? tour.country_details.map(country => country.name).filter(Boolean)
-    : [];
-
   return (
-    <main className="pt-20">
-      {/* Hero Section */}
-      <TourHero tour={tour} countryNames={countryNames} />
+    <main className="pb-16">
+      <TourHero tour={tour} />
       
-      {/* Summary Section */}
-      <section id="overview" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <TourSummary tour={tour} />
-        </div>
-      </section>
-
       <Separator />
       
-      {/* Highlights Section */}
       <section id="highlights" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <TourHighlights tour={tour} />
         </div>
       </section>
+      
+      {tour.tour_images && tour.tour_images.length > 0 && (
+        <>
+          <Separator />
+          <TourImageGallery images={tour.tour_images} title="Experience the Journey" />
+        </>
+      )}
 
       <Separator />
       
-      {/* Itinerary Section */}
       <section id="itinerary" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <TourItinerary tour={tour} />
         </div>
       </section>
+
+      {tour.hotels && tour.hotels.length > 0 && (
+        <>
+          <Separator />
+          <TourHotels hotels={tour.hotels} />
+        </>
+      )}
     </main>
   );
 };

@@ -1,8 +1,5 @@
-
 import React, { useEffect, useState } from 'react';
 import { Tour } from '@/types/tour';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface TourHighlightsProps {
   tour: Tour;
@@ -11,8 +8,6 @@ interface TourHighlightsProps {
 const TourHighlights = ({ tour }: TourHighlightsProps) => {
   // Check if tour has highlights
   const hasHighlights = tour.tour_highlights && tour.tour_highlights.length > 0;
-  const isMobile = useIsMobile();
-  const [currentIndex, setCurrentIndex] = useState(0);
   
   // If no highlights, use dummy data
   const highlights = hasHighlights 
@@ -25,20 +20,6 @@ const TourHighlights = ({ tour }: TourHighlightsProps) => {
         { title: 'Exclusive dining experiences', description: 'Savor the finest local cuisine in unique settings.' },
         { title: 'Private guided tours', description: 'Expert guides reveal hidden gems and local secrets.' }
       ];
-
-  // Get tour images for carousel
-  const tourImages = tour.tour_images || [];
-  
-  // Auto-rotate carousel every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (tourImages.length > 0) {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % tourImages.length);
-      }
-    }, 3000);
-    
-    return () => clearInterval(interval);
-  }, [tourImages.length]);
 
   return (
     <div className="space-y-16">
@@ -63,37 +44,6 @@ const TourHighlights = ({ tour }: TourHighlightsProps) => {
           ))}
         </div>
       </div>
-      
-      {tourImages.length > 0 && (
-        <div className="mt-16">
-          <h3 className="mb-8 font-serif text-2xl font-medium tracking-wide">
-            Experience the Journey
-          </h3>
-          
-          <Carousel className="w-full">
-            <CarouselContent>
-              {tourImages.map((image, index) => (
-                <CarouselItem 
-                  key={image.id} 
-                  className={isMobile ? "basis-full" : "basis-1/2"}
-                >
-                  <div className="overflow-hidden rounded-lg">
-                    <img 
-                      src={image.image_url} 
-                      alt={image.alt_text || `Tour highlight ${index + 1}`}
-                      className="h-80 w-full object-cover transition-transform duration-700 hover:scale-105"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex justify-center gap-2 mt-4">
-              <CarouselPrevious className="static transform-none mx-2" />
-              <CarouselNext className="static transform-none mx-2" />
-            </div>
-          </Carousel>
-        </div>
-      )}
     </div>
   );
 };

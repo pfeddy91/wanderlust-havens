@@ -39,6 +39,12 @@ const Header = () => {
           {/* Desktop Navigation - Center */}
           {!isMobile && (
             <nav className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-10">
+              <Link 
+                to="/planner" 
+                className="nav-item font-serif text-black tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors"
+              >
+                Bespoke Planner
+              </Link>
               <button 
                 onClick={toggleDestinations} 
                 className="nav-item text-black font-serif tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors flex items-center gap-1"
@@ -51,12 +57,6 @@ const Header = () => {
                 className="nav-item font-serif text-black tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors"
               >
                 Collections
-              </Link>
-              <Link 
-                to="/planner" 
-                className="nav-item font-serif text-black tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors"
-              >
-                Bespoke Planner
               </Link>
             </nav>
           )}

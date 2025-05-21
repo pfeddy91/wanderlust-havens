@@ -1,107 +1,162 @@
-
-import React, { useState } from 'react';
-import { Tour } from '@/types/tour';
+import React, { useEffect, useState } from 'react';
+import { Tour, Country as TourCountry } from '@/types/tour'; // Assuming Country type is also in tour.ts or imported there
+import { Link } from 'react-router-dom';
+import { ChevronRight, Home, Calendar, Clock, DollarSign } from 'lucide-react';
+import { Button } from '@/components/ui/button'; // For Enquire Now button
+// Assuming a type for Region, if not already in your types
+interface Region {
+  id: string;
+  name: string;
+  slug: string;
+}
 
 interface TourHeroProps {
   tour: Tour;
-  countryNames: string[];
+  // countryNames is still useful for a quick display if detailed objects aren't fully there
+  // but we'll try to use tour.country_details for richer breadcrumb data.
 }
 
-const TourHero = ({ tour, countryNames }: TourHeroProps) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  // Get the best images for the hero
-  const heroImages = tour.tour_images && tour.tour_images.length > 0
-    ? [...tour.tour_images].sort((a, b) => {
-        // Prioritize primary images first
-        if (a.is_primary && !b.is_primary) return -1;
-        if (!a.is_primary && b.is_primary) return 1;
-        
-        // Then featured images
-        if (a.is_featured && !b.is_featured) return -1;
-        if (!a.is_featured && b.is_featured) return 1;
-        
-        // Then by display_order
-        return a.display_order - b.display_order;
-      })
-    : [];
-  
-  // Fallback to featured_image if no tour_images
-  const images = heroImages.length > 0 
-    ? heroImages.map(img => img.image_url) 
-    : tour.featured_image 
-      ? [tour.featured_image] 
-      : ['https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'];
+const TourHero = ({ tour }: TourHeroProps) => {
+  const [primaryCountry, setPrimaryCountry] = useState<TourCountry | null>(null);
+  const [region, setRegion] = useState<Region | null>(null);
 
-  // Country string (e.g., "MOROCCO" or "MOROCCO & ALGERIA")
-  const countryString = countryNames.length > 0 
-    ? countryNames.join(' & ').toUpperCase() 
-    : 'DESTINATION';
+  useEffect(() => {
+    if (tour.country_details && tour.country_details.length > 0) {
+      const firstCountry = tour.country_details[0];
+      setPrimaryCountry(firstCountry as any); // Cast if structure is slightly different from TourCountry type
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      // Assuming region data might be nested or needs a separate fetch based on country.
+      // For simplicity, let's assume region info is on the firstCountry object
+      // or you'd fetch it here.
+      if ((firstCountry as any).region) { // Example: if region is nested in country_details
+        setRegion((firstCountry as any).region as Region);
+      } else if ((firstCountry as any).region_id) {
+        // Placeholder: Fetch region by firstCountry.region_id if necessary
+        // fetchRegionById((firstCountry as any).region_id).then(setRegion);
+        console.warn("Region ID found, but fetching region by ID is not implemented in this example.");
+      }
+    }
+  }, [tour.country_details]);
+
+  const heroImageUrl = 
+    (tour.tour_images?.find(img => img.is_primary)?.image_url) ||
+    (tour.tour_images?.find(img => img.is_featured)?.image_url) ||
+    (tour.tour_images?.[0]?.image_url) ||
+    tour.featured_image ||
+    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1500&q=80'; // Absolute fallback
+
+  const formatTourTitle = (title?: string | null): string => {
+    // Example: "A Week In Paradise" -> "A Week in Paradise"
+    // This is a simple title case, adjust as needed
+    if (!title || typeof title !== 'string' || title.length === 0) {
+      return 'Untitled Tour'; // Or an empty string, or handle as an error
+    }
+    return title.charAt(0).toUpperCase() + title.slice(1);
   };
+  
+  const formattedPrice = tour.guide_price_usd?.toLocaleString() || tour.guide_price?.toLocaleString();
 
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
 
   return (
-    <div className="relative h-[85vh] w-full">
-      {/* Background image with gradient overlay */}
-      <div className="absolute inset-0 z-0 bg-black">
-        <div className="relative h-full w-full">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${
-                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <img
-                src={image}
-                alt={tour.title}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-            </div>
-          ))}
-        </div>
+    <div className="flex flex-col md:flex-row md:min-h-[85vh] lg:min-h-[90vh] bg-slate-50"> {/* Ensure overall container takes height */}
+      {/* Left Column - Image */}
+      <div className="relative w-full md:w-1/2 h-[50vh] md:h-auto"> {/* md:h-auto to fill parent height */}
+        <img
+          src={heroImageUrl}
+          alt={tour.title || 'Tour hero image'}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Optional: Subtle overlay if needed for text contrast, but title is now on the right */}
+        {/* <div className="absolute inset-0 bg-black bg-opacity-10"></div> */}
       </div>
 
-      {/* Image navigation buttons */}
-      {images.length > 1 && (
-        <div className="absolute bottom-10 right-10 z-20 flex space-x-2">
-          <button
-            onClick={prevImage}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-colors hover:bg-white/30"
-            aria-label="Previous image"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <button
-            onClick={nextImage}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-colors hover:bg-white/30"
-            aria-label="Next image"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-        </div>
-      )}
+      {/* Right Column - Details Panel */}
+      <div className="w-full md:w-1/2 bg-white p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center"> {/* Added flex flex-col justify-center */}
+        {/* Breadcrumb Navigation */}
+        <nav className="flex items-center text-gray-500 text-sm mb-4 md:mb-6"> {/* Changed sm:text-base to text-sm */}
+          <Link to="/" className="hover:text-primary transition-colors pr-1"> {/* Added pr-1 */}
+            <Home size={14} /> {/* Adjusted icon size to match typical text-sm */}
+          </Link>
+          <ChevronRight size={14} className="mx-2" /> {/* Changed to mx-2 */}
+          <Link to="/destinations" className="hover:text-primary transition-colors px-1"> {/* Added px-1 */}
+            Destinations
+          </Link>
+          {region && primaryCountry && ( // Ensure primaryCountry exists for region link
+            <>
+              <ChevronRight size={14} className="mx-2" /> {/* Changed to mx-2 */}
+              <Link to={`/regions/${region.slug}`} className="hover:text-primary transition-colors px-1"> {/* Added px-1 */}
+                {region.name}
+              </Link>
+            </>
+          )}
+          {primaryCountry && (
+            <>
+              <ChevronRight size={14} className="mx-2" /> {/* Changed to mx-2 */}
+              <Link 
+                to={`/destinations/${(primaryCountry as any).slug}`}  // Use slug from primaryCountry
+                className="hover:text-primary transition-colors px-1" // Added px-1
+              >
+                {primaryCountry.name}
+              </Link>
+            </>
+          )}
+          <ChevronRight size={14} className="mx-2" /> {/* Changed to mx-2 */}
+          <span className="text-gray-800 font-medium pl-1">{tour.title || 'Tour'}</span> {/* Added pl-1 */}
+        </nav>
 
-      {/* Hero content */}
-      <div className="absolute bottom-10 left-1/2 z-10 flex flex-col items-center justify-center px-4 text-center text-white transform -translate-x-1/2">        <div className="max-w-5xl">
-          <p className="mb-6 font-sans text-sm uppercase tracking-wider sm:text-base">
-            {countryString}
-          </p>
-          <h1 className="font-serif text-3xl font-bold tracking-wide sm:text-3xl md:text-3xl lg:text-5xl">
-            {tour.title}
-          </h1>
+        {/* Tour Title */}
+        <h1 className="font-serif text-2xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-6 md:mb-8 tracking-wide">
+          {formatTourTitle(tour.title)}
+        </h1>
+
+        {/* Tour Summary/Description */}
+        {tour.summary && (
+          <div className="prose prose-base sm:prose-2xl max-w-none font-serif text-gray-700 mb-8 md:mb-10 leading-relaxed">
+            <p>{tour.summary}</p>
+          </div>
+        )}
+        
+        {/* Divider */}
+        <div className="my-4 md:my-6">
+            <div className="border-t border-gray-200 w-28 mx-auto md:mx-0"></div>
         </div>
+
+        {/* Tour Details (Metrics) */}
+        {(tour.duration || tour.best_time || formattedPrice) && (
+          <div className="mb-8 md:mb-10">
+            <ul className="space-y-5">
+              {tour.duration && (
+                <li className="flex items-center">
+                  <Clock className="h-6 w-6 text-primary mr-3 shrink-0" />
+                  <div>
+                    <h3 className="text-base font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Duration</h3>
+                    <p className="font-serif text-xl text-gray-800">{tour.duration} {Number(tour.duration) > 1 ? 'days' : 'day'}</p>
+                  </div>
+                </li>
+              )}
+              {tour.best_time && (
+                <li className="flex items-center">
+                  <Calendar className="h-6 w-6 text-primary mr-3 shrink-0" />
+                  <div>
+                    <h3 className="text-base font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Best time to travel</h3>
+                    <p className="font-serif text-xl text-gray-800">{tour.best_time}</p>
+                  </div>
+                </li>
+              )}
+              {formattedPrice && (
+                 <li className="flex items-center">
+                  <DollarSign className="h-6 w-6 text-primary mr-3 shrink-0" />
+                  <div>
+                    <h3 className="text-base font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Guide Price from</h3>
+                    <p className="font-serif text-xl text-gray-800">
+                      ${formattedPrice} <span className="text-sm text-gray-600">pp</span>
+                    </p>
+                  </div>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
