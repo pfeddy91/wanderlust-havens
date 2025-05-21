@@ -73,7 +73,7 @@ const TourHero = ({ tour }: TourHeroProps) => {
       {/* Right Column - Details Panel */}
       <div className="w-full md:w-1/2 bg-white p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center"> {/* Added flex flex-col justify-center */}
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center text-gray-500 text-sm mb-4 md:mb-6"> {/* Changed sm:text-base to text-sm */}
+        <nav className="flex items-center text-gray-500 text-sm mb-4 md:mb-6 font-serif"> {/* Changed sm:text-base to text-sm */}
           <Link to="/" className="hover:text-primary transition-colors pr-1"> {/* Added pr-1 */}
             <Home size={14} /> {/* Adjusted icon size to match typical text-sm */}
           </Link>
@@ -105,13 +105,13 @@ const TourHero = ({ tour }: TourHeroProps) => {
         </nav>
 
         {/* Tour Title */}
-        <h1 className="font-serif text-2xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-6 md:mb-8 tracking-wide">
+        <h1 className="font-serif text-3xl font-bold text-gray-800 mb-6 md:mb-8 tracking-wide">
           {formatTourTitle(tour.title)}
         </h1>
 
         {/* Tour Summary/Description */}
         {tour.summary && (
-          <div className="prose prose-base sm:prose-2xl max-w-none font-serif text-gray-700 mb-8 md:mb-10 leading-relaxed">
+          <div className="font-sans text-lg text-gray-700 mb-8 md:mb-10 leading-relaxed">
             <p>{tour.summary}</p>
           </div>
         )}
@@ -129,8 +129,8 @@ const TourHero = ({ tour }: TourHeroProps) => {
                 <li className="flex items-center">
                   <Clock className="h-6 w-6 text-primary mr-3 shrink-0" />
                   <div>
-                    <h3 className="text-base font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Duration</h3>
-                    <p className="font-serif text-xl text-gray-800">{tour.duration} {Number(tour.duration) > 1 ? 'days' : 'day'}</p>
+                    <h3 className="text-base font-serif font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Duration</h3>
+                    <p className="font-sans text-lg font-light text-gray-800">{tour.duration} {Number(tour.duration) > 1 ? 'days' : 'day'}</p>
                   </div>
                 </li>
               )}
@@ -138,8 +138,8 @@ const TourHero = ({ tour }: TourHeroProps) => {
                 <li className="flex items-center">
                   <Calendar className="h-6 w-6 text-primary mr-3 shrink-0" />
                   <div>
-                    <h3 className="text-base font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Best time to travel</h3>
-                    <p className="font-serif text-xl text-gray-800">{tour.best_time}</p>
+                    <h3 className="text-base font-serif font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Best time to travel</h3>
+                    <p className="font-sans text-lg font-light text-gray-800">{tour.best_time}</p>
                   </div>
                 </li>
               )}
@@ -147,8 +147,8 @@ const TourHero = ({ tour }: TourHeroProps) => {
                  <li className="flex items-center">
                   <DollarSign className="h-6 w-6 text-primary mr-3 shrink-0" />
                   <div>
-                    <h3 className="text-base font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Guide Price from</h3>
-                    <p className="font-serif text-xl text-gray-800">
+                    <h3 className="text-base font-serif font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Guide Price from</h3>
+                    <p className="font-sans text-lg font-light text-gray-800">
                       ${formattedPrice} <span className="text-sm text-gray-600">pp</span>
                     </p>
                   </div>

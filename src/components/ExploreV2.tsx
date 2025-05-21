@@ -45,7 +45,6 @@ const ExploreV2 = () => {
     } else if (feature.id === 'planner') {
       buttonText = `Try Our ${feature.title}`;
     } else {
-      // Default fallback, though your current data covers all cases
       buttonText = `Explore ${feature.title}`;
     }
 
@@ -53,8 +52,8 @@ const ExploreV2 = () => {
       title: feature.title,
       button: buttonText,
       src: feature.imageSrc,
-      // This onButtonClick will be used by the modified Carousel's Slide component
       onButtonClick: () => navigate(feature.navigationPath),
+      navigationPath: feature.navigationPath
     };
   });
 

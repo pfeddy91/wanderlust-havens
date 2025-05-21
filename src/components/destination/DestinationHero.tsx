@@ -158,7 +158,7 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
       {/* Right Box - Panel with Navigation, Description, and Travel Info */}
       <div className="w-full md:w-1/2 bg-white p-8 md:p-12 md:h-full md:overflow-y-auto">
         {/* Navigation */}
-        <div className="flex items-center text-gray-400 text-sm mb-8">
+        <div className="flex items-center text-gray-400 text-sm mb-8 font-serif">
           <Link to="/" className="hover:text-gray-600 transition-colors">
             <Home size={14} />
           </Link>
@@ -184,12 +184,17 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
             Discover {formatCountryName(country.name)}
           </h2>
           
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {/* Block 1: Main description (countries.description) - now sans-serif */}
-            <p className="text-lg leading-relaxed text-gray-700">{description}</p>
+            <p className="font-sans text-lg leading-relaxed text-gray-700">{description}</p>
             
+            {/* New Title: "Who will like it?" */}
+            <h2 className="text-3xl font-serif font-bold mb-4 mt-4">
+              Who will like it?
+            </h2>
+
             {/* Block 2: Rationale (countries.rationale) - already sans-serif by default */}
-            <p className="text-lg leading-relaxed text-gray-700">{rationale}</p>
+            <p className="font-sans text-lg leading-relaxed text-gray-700">{rationale}</p>
           </div>
         </div>
         
@@ -203,26 +208,26 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
           <div className="flex flex-col md:flex-row justify-between gap-6">
             {/* When */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-sans font-bold mb-2" style={{ color: "#063737" }}>
+              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#063737" }}>
                 WHEN
               </h3>
-              <p className="text-lg font-light">{bestPeriod}</p>
+              <p className="font-sans text-lg font-light">{bestPeriod}</p>
             </div>
             
             {/* Distance */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-sans font-bold mb-2" style={{ color: "#A25524" }}>
+              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#A25524" }}>
                 DISTANCE
               </h3>
-              <p className="text-lg font-light">{distance}</p>
+              <p className="font-sans text-lg font-light">{distance}</p>
             </div>
             
             {/* Comfort */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-sans font-bold mb-2" style={{ color: "#808000" }}>
+              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#808000" }}>
                 COMFORT
               </h3>
-              <p className="text-lg font-light">{comfort}</p>
+              <p className="font-sans text-lg font-light">{comfort}</p>
             </div>
           </div>
         </div>
