@@ -59,7 +59,9 @@ const TourHotels: React.FC<TourHotelsProps> = ({ hotels }) => { // REMOVE tourGe
                   }
                 </p>
                 <a
-                  href="#" // Replace with actual link to hotel details or booking
+                  href={hotel.google_place_website_uri || '#'} // Use the hotel's Google Place website URI, fallback to '#' if undefined
+                  target="_blank" // Open link in a new tab
+                  rel="noopener noreferrer" // Security measure for target="_blank"
                   className="mt-auto text-primary font-medium hover:underline text-xs uppercase tracking-wider self-start"
                 >
                   VIEW HOTEL

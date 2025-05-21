@@ -39,23 +39,16 @@ const AIPlannerOrchestrator = () => {
     }
   }, []);
 
-  const handleUnlockItinerary = useCallback(async (itineraryId: string) => {
+  // The handleUnlockItinerary might be deprecated or changed if PreviewDisplay handles navigation directly.
+  // For now, let's keep it but it won't be called by PreviewDisplay in the new setup.
+  const handleUnlockItinerary_DEPRECATED = useCallback(async (itineraryId: string) => {
     console.log("Unlock Itinerary Requested for:", itineraryId);
     if (!itineraryId) return;
-
-    // TODO: Implement payment flow here (Steps 5-9 from ai-planner.mdc)
-    // This likely involves calling a createPaymentIntent function,
-    // using Stripe.js, and handling the webhook confirmation.
-    // For now, we'll simulate success and fetch the full itinerary.
-
     console.log("Simulating successful payment...");
     setCurrentPhase(PlannerPhase.LOADING_FULL);
     setError(null);
-
     try {
-      // TODO: Implement actual API call to getUnlockedItinerary (Supabase Function)
-      // This function should verify payment status in DB before returning data.
-      const fullResult = await getUnlockedItinerary(itineraryId); // Call the service
+      const fullResult = await getUnlockedItinerary(itineraryId);
       if (fullResult) {
         setFullItineraryData(fullResult);
         setCurrentPhase(PlannerPhase.FULL_ITINERARY);
@@ -65,7 +58,7 @@ const AIPlannerOrchestrator = () => {
     } catch (err: any) {
       console.error("Error fetching full itinerary:", err);
       setError(err.message || "An error occurred while retrieving the full itinerary.");
-      setCurrentPhase(PlannerPhase.ERROR); // Go back to error state
+      setCurrentPhase(PlannerPhase.ERROR);
     }
   }, []);
 
@@ -101,7 +94,6 @@ const AIPlannerOrchestrator = () => {
                 <PreviewDisplay
                   key={preview.id}
                   itineraryPreview={preview}
-                  onUnlock={() => handleUnlockItinerary(preview.id)}
                 />
               ))}
             </div>
