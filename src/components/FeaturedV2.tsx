@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/utils/supabaseClient'; // Assuming this path is correct
 import { Carousel, Card, CardType as AppleCardDataType } from '@/components/ui/apple-cards-carousel'; // Import new carousel
 import { Button } from '@/components/ui/button'; // For a "View Itinerary" button
+import { optimizeImageUrl, ImagePresets } from '@/utils/imageOptimization';
 
 // Interface for your tour data from Supabase (as in Featured.tsx)
 interface Tour {
@@ -105,7 +106,10 @@ const FeaturedV2 = () => {
           title: tour.title,
           duration: tour.duration,
           slug: tour.slug,
-          featured_image: imageMap.get(tour.id) || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', // Fallback image
+          featured_image: optimizeImageUrl(
+            imageMap.get(tour.id) || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80',
+            ImagePresets.cardLarge
+          ),
           countries: tour.countries || [],
           country_names: (tour.countries || []).map(id => countryMap.get(id) || 'Unknown').filter(name => name !== 'Unknown'),
           is_featured: tour.is_featured,
@@ -139,7 +143,7 @@ const FeaturedV2 = () => {
   // Map your tour data to the structure expected by AppleCardsCarousel
   const carouselCards = originalTours.map((tour, index) => {
     const cardData: AppleCardDataType = {
-      src: tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', // Ensure fallback
+      src: tour.featured_image || optimizeImageUrl('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', ImagePresets.cardLarge), // Ensure fallback with optimization
       title: tour.title,
       category: formatCountryNameForCard(tour),
       content: <TourDetailContent tour={tour} onNavigate={handleNavigateToTour} />,
@@ -150,13 +154,17 @@ const FeaturedV2 = () => {
 
   const TitleSection = () => {
     return (
-      <div className="w-full md:w-2/3 text-left mb-4 lg:mb-4">
-        <h2 className="text-travel-burgundy dark:text-red-400 text-2xl md:text-2xl font-serif font-semibold tracking-wider uppercase block mb-2">
-          EXPLORE OUR MOONS
-        </h2>
-        <p className="text-zinc-800 dark:text-neutral-300 text-3xl md:text-4xl font-serif font-light mt-1 md:mt-2 leading-tight">
-        We invite you to discover the realm where luxury is woven into the fabric of the extraordinary. Imagine the profound silence of Namibia's Skeleton Coast under a diamond-studded sky, the untouched beauty of Dominica's emerald rainforests, or the misty serenity of Sri Lanka's rolling tea country, where time itself seems to slow. These are not just destinations; they are intimate encounters with the world's most breathtaking and secluded wonders, curated with passion and unparalleled care for the first, most magical chapter of your life together.
-        </p>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-4 lg:mb-4">
+          <div className="max-w-[60%] mx-auto">
+            <span className="font-serif text-3xl md:text-3xl font-semibold mb-2 block" style={{ color: '#161618' }}>
+              Explore Our Moons
+            </span>
+            <p className="text-xl md:text-xl font-sans mt-2 leading-tight" style={{ color: '#161618' }}>
+            These are not just destinations; they are intimate encounters with the world's most breathtaking and secluded wonders, curated with passion and unparalleled care for the first, most magical chapter of your life together.
+            </p>
+          </div>
+        </div>
       </div>
     );
   };

@@ -1,14 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from '@/components/ui/carousel'; // Assuming @ is src/
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { ImagePresets } from '@/utils/imageOptimization';
 
 // Data adapted from Explore.tsx's featureData
 const featureDataForCarousel = [
   {
     id: 'destinations',
     title: 'Destinations',
+    imageSrc: 'https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     description: "Explore our handpicked collection of romantic destinations around the world, from secluded islands to cultural capitals.",
-    imageSrc: 'https://images.pexels.com/photos/2867732/pexels-photo-2867732.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     imageAlt: 'Hot air balloons flying over a valley',
     navigationPath: '/destinations',
   },
@@ -24,7 +26,7 @@ const featureDataForCarousel = [
     id: 'collections',
     title: 'Curated Collections',
     description: "Seeking adventure, relaxation, or cultural immersion? Find experiences that match your perfect honeymoon atmosphere.",
-    imageSrc: 'https://images.pexels.com/photos/67517/pexels-photo-67517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', // Different image for variety
+    imageSrc: 'https://images.pexels.com/photos/4107414/pexels-photo-4107414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', // Different image for variety
     imageAlt: 'Wooden bridge leading to huts on a tropical island',
     navigationPath: '/collections',
   },
@@ -37,7 +39,6 @@ const ExploreV2 = () => {
   const mainHeadingColor = 'text-zinc-800';
 
   // Transform featureData for the Carousel component
-  // This now includes an onButtonClick handler for navigation
   const slideData = featureDataForCarousel.map(feature => {
     let buttonText = '';
     if (feature.id === 'destinations' || feature.id === 'collections') {
@@ -57,19 +58,31 @@ const ExploreV2 = () => {
     };
   });
 
+  // Find the index of the 'Bespoke Planner' to set it as the default
+  const bespokePlannerIndex = featureDataForCarousel.findIndex(
+    (feature) => feature.id === 'planner'
+  );
+
   return (
     <section id="explore-v2" className={`py-16 md:py-20 ${sectionBgColor} px-8`}>
-      <div className="w-full md:w-2/3 text-left mb-12 md:mb-16">
-        <span className={`${featuresTitleColor} text-2xl md:text-2xl font-serif font-semibold tracking-wider uppercase`}>
-          CHOOSING YOUR HONEYMOON
-        </span>
-        <h2 className={`text-3xl md:text-4xl font-serif font-light text-gray-800 ${mainHeadingColor} mt-2 leading-tight`}>
-          Planning your dream honeymoon should be exciting, not overwhelming! Forget endless scrolling and generic itineraries that leave you feeling underwhelmed. Through a curated list of destination and collections, as well as through our bespoke planner, we make it easy to create a honeymoon that is truly unique and tailored to your dreams.
-        </h2>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="max-w-[60%] mx-auto">
+            <span className="text-3xl md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
+              Choosing Your Honeymoon
+            </span>
+            <h2 className="text-xl md:text-xl font-sans mt-2 leading-tight" style={{ color: '#161618' }}>
+              Through a curated list of destination and collections, as well as through our bespoke planner, we make it easy to create a honeymoon that is truly unique and tailored to your dreams.
+            </h2>
+          </div>
+        </div>
       </div>
 
       <div className="relative w-full mt-8 pb-16">
-        <Carousel slides={slideData} />
+        <Carousel 
+          slides={slideData} 
+          startIndex={bespokePlannerIndex > -1 ? bespokePlannerIndex : 0} 
+        />
       </div>
     </section>
   );

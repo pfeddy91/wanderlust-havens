@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tour, TourImage } from '@/types/tour';
+import { Carousel, Card, CardType as AppleCardDataType } from '@/components/ui/apple-cards-carousel';
+import { Button } from '@/components/ui/button';
+import { optimizeImageUrl, ImagePresets } from '@/utils/imageOptimization';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
 
 interface DestinationToursProps {
   tours: Tour[];
@@ -9,36 +13,138 @@ interface DestinationToursProps {
   };
 }
 
-const DestinationTours = ({ tours, country }: DestinationToursProps) => {
-  // Border configuration - change these values to control border appearance
-  const borderThickness = 8; // Border thickness in pixels
-  const borderColor = "#333"; // Border color
-  const borderStyle = "solid"; // Border style: solid, dashed, dotted, etc.
+// Component to display detailed content when a card is opened
+const TourDetailContent = ({ tour, country, onNavigate }: { 
+  tour: Tour; 
+  country: { name: string }; 
+  onNavigate: (slug: string) => void; 
+}) => {
+  return (
+    <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
+      <p className="text-lg">
+        Embark on a {tour.duration}-night journey through {country.name}.
+      </p>
+      <p>Experience luxury and create unforgettable memories in this carefully curated destination.</p>
+      <p className="text-base font-medium">
+        From £{tour.guide_price?.toLocaleString()} per person
+      </p>
+      <Button 
+        onClick={() => onNavigate(tour.slug)}
+        className="mt-6 w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white"
+      >
+        View Full Itinerary
+      </Button>
+    </div>
+  );
+};
 
+const DestinationTours = ({ tours, country }: DestinationToursProps) => {
   // Function to get the best image for a tour
   const getTourImage = (tour: Tour) => {
+    let imageUrl = '';
+    
     // Try to get featured image from tour_images
     if (tour.tour_images && tour.tour_images.length > 0) {
       // First check for a primary image
       const primaryImage = tour.tour_images.find((img) => img.is_primary);
-      if (primaryImage) return primaryImage.image_url;
+      if (primaryImage) imageUrl = primaryImage.image_url;
       
       // Then look for a featured image
-      const featuredImage = tour.tour_images.find((img) => img.is_featured);
-      if (featuredImage) return featuredImage.image_url;
+      if (!imageUrl) {
+        const featuredImage = tour.tour_images.find((img) => img.is_featured);
+        if (featuredImage) imageUrl = featuredImage.image_url;
+      }
       
       // If no featured image, use the first one by display_order
-      const sortedImages = [...tour.tour_images].sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
-      if (sortedImages.length > 0) return sortedImages[0].image_url;
+      if (!imageUrl) {
+        const sortedImages = [...tour.tour_images].sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
+        if (sortedImages.length > 0) imageUrl = sortedImages[0].image_url;
+      }
     }
+    
     // Fallback to tour's featured_image or a generic placeholder
-    return tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80';
+    if (!imageUrl) {
+      imageUrl = tour.featured_image || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80';
+    }
+    
+    // Return original URL (optimization will be handled by ProgressiveImage)
+    return imageUrl;
   };
+
+  const handleNavigateToTour = (slug: string) => {
+    // Navigate to tour detail page
+    window.location.href = `/tours/${slug}`;
+  };
+
+  // Map tours to carousel cards
+  const carouselCards = tours.map((tour, index) => {
+    const cardData: AppleCardDataType = {
+      src: getTourImage(tour),
+      title: (tour as any).title || `Tour ${index + 1}`, // Using 'title' field from Supabase
+      category: country.name,
+      content: <TourDetailContent tour={tour} country={country} onNavigate={handleNavigateToTour} />,
+      slug: tour.slug,
+    };
+    return <Card key={`${tour.id}-${index}`} card={cardData} index={index} layout={true} />;
+  });
+
+  // Custom card component for the carousel that matches our design
+  const CustomTourCard = ({ tour }: { tour: Tour }) => {
+    return (
+      <Link 
+        to={`/tours/${tour.slug}`} 
+        className="relative z-10 flex h-[26rem] w-64 flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 shadow-lg transition-all hover:shadow-xl md:h-[39rem] md:w-[20.9rem] dark:bg-neutral-900"
+      >
+        {/* Top Gradient Overlay */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-2/3 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
+        
+        {/* Bottom Gradient Overlay - Made darker for better text visibility */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+        {/* Top Content - Category and Title */}
+        <div className="relative z-30 p-6">
+          <p className="text-left font-sans text-xs font-medium uppercase tracking-wider text-white/80 md:text-sm">
+            {country.name}
+          </p>
+          <p className="mt-1 max-w-xs text-left font-serif text-lg font-semibold [text-wrap:balance] text-white md:text-2xl">
+            {(tour as any).title || 'Luxury Honeymoon'}
+          </p>
+        </div>
+
+        {/* Bottom Content - Price, Duration and Button */}
+        <div className="relative z-30 p-6 space-y-3">
+          <p className="text-left text-base font-bold text-white font-serif">
+            From £{tour.guide_price?.toLocaleString()} per person | {tour.duration} Nights
+          </p>
+          <div className="inline-block border border-white/80 px-4 py-2 rounded-lg uppercase tracking-wider font-serif text-lg font-medium text-white backdrop-blur-sm bg-white/10 transition-all hover:bg-white/20 hover:border-white">
+            Explore Moon
+          </div>
+        </div>
+
+        {/* Background Image */}
+        <div className="absolute inset-0 z-10">
+          <ProgressiveImage
+            src={getTourImage(tour)}
+            alt={(tour as any).title || 'Tour image'}
+            className="w-full h-full"
+            optimization={ImagePresets.destinationCard}
+            placeholder="shimmer"
+            loading="lazy"
+          />
+        </div>
+      </Link>
+    );
+  };
+
+  // Create custom cards for our specific design
+  const customCards = tours.map((tour, index) => (
+    <CustomTourCard key={`${tour.id}-${index}`} tour={tour} />
+  ));
 
   return (
     <div className="py-16" style={{ backgroundColor: '#B7B7A4' }}>
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="max-w-7l ml-14 mr-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
           <div className="lg:col-span-1">
             <h2 className="text-3xl font-serif font-bold mb-4 uppercase">
               EXAMPLE<br/>{country.name.toUpperCase()} HONEYMOONS
@@ -49,44 +155,10 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
             </p>
           </div>
           
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 -mt-10 md:-mt-20">
             {tours && tours.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {tours.map((tour) => (
-                  <Link 
-                    to={`/tours/${tour.slug}`} 
-                    key={tour.id} 
-                    className="block h-[600px] relative overflow-hidden group cursor-pointer"
-                    style={{ 
-                      border: `${borderThickness}px ${borderStyle} ${borderColor}`,
-                      boxShadow: `0 4px 8px rgba(0, 0, 0, 0.1)` 
-                    }}
-                  >
-                    <div className="absolute top-4 right-6 z-10 text-white font-serif tracking-wider text-lg">
-                      {tour.duration} NIGHTS
-                    </div>
-                    
-                    <div className="w-full h-full relative">
-                      <img 
-                        src={getTourImage(tour)} 
-                        alt={tour.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-                        <div className="absolute bottom-0 left-0 p-8 text-white">
-                          <p className="uppercase text-sm tracking-wider mb-2 font-sans">{country.name}</p>
-                          <h3 className="text-2xl font-bold uppercase font-serif tracking-wide mb-6">{tour.title}</h3>
-                          <p className="text-sm mb-8 font-serif">From £{tour.guide_price.toLocaleString()} per person</p>
-                          
-                          <div className="inline-block border border-white px-8 py-3 uppercase tracking-wider text-sm font-sans backdrop-blur-sm bg-white/10 transition-colors group-hover:bg-white/20">
-                            EXPLORE MOON
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+              <div className="w-full min-w-[1200px]">
+                <Carousel items={customCards} />
               </div>
             ) : (
               <div className="text-center text-gray-600 font-serif col-span-full">

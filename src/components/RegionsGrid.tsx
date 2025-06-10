@@ -1,11 +1,12 @@
 "use client"; // Keep if this component is used in a Next.js App Router client context
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCountriesByFeaturedDestination } from '@/services/honeymoonService'; // Updated import
-import Image from "next/image"; // If using Next.js <Image>
 // If not using Next.js, replace with a standard <img> tag or your preferred Image component
 import { cn } from "@/lib/utils"; // Assuming you have this utility
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { ImagePresets } from '@/utils/imageOptimization';
 
 // Define the types based on the provided FocusCards structure
 interface FocusCardData {
@@ -15,82 +16,110 @@ interface FocusCardData {
   src: string;
 }
 
-// Card Component (from your provided snippet)
-const FocusCardItem = React.memo(
+// New Destination Card Component with carousel-style mouse tracking
+const DestinationCard = React.memo(
   ({
     card,
-    index,
-    hovered,
-    setHovered,
     onClick,
   }: {
     card: FocusCardData;
-    index: number;
-    hovered: number | null;
-    setHovered: React.Dispatch<React.SetStateAction<number | null>>;
-    onClick: () => void; // Added onClick prop
-  }) => (
-    <div
-      onClick={onClick} // Added onClick handler
-      onMouseEnter={() => setHovered(index)}
-      onMouseLeave={() => setHovered(null)}
-      className={cn(
-        "rounded-xl relative bg-gray-200 dark:bg-neutral-800 overflow-hidden transition-all duration-300 ease-out cursor-pointer group",
-        "h-[26rem] w-full", // MODIFIED: w-full for responsive width, kept height
-        "md:h-[35rem]", // MODIFIED: Kept height, width will be responsive
-        hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
-      )}
-    >
-      {/*
-        Replace Next.js Image with standard img if not in a Next.js project
-        or if you prefer a standard img tag.
-      */}
-      <img // Using standard img tag for broader compatibility example
-        src={card.src}
-        alt={card.title}
-        // fill // 'fill' is a Next.js Image prop
-        className="object-cover absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105" // Ensure w-full, h-full
-      />
-      {/* For Next.js Image:
-      <Image
-        src={card.src}
-        alt={card.title}
-        fill
-        className="object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-      />
-      */}
-      <div
-        className={cn(
-          "absolute inset-0 bg-black/60 flex items-center justify-center text-center py-6 px-4 md:py-8 md:px-6 transition-opacity duration-300", // MODIFIED: items-center, justify-center, text-center
-          hovered === index ? "opacity-100" : "opacity-0 group-hover:opacity-100" // Show on hover for non-blurred items too
-        )}
-      >
-        {/* Ensure text is visible - original used bg-clip-text which might not always work well */}
-        <div className="text-xl md:text-2xl lg:text-3xl font-serif font-medium text-white"> {/* MODIFIED: Added lg:text-3xl */}
-          {card.title}
+    onClick: () => void;
+  }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const xRef = useRef(0);
+    const yRef = useRef(0);
+    const frameRef = useRef<number>();
+
+    useEffect(() => {
+      const animate = () => {
+        if (!cardRef.current) return;
+
+        const x = xRef.current;
+        const y = yRef.current;
+
+        cardRef.current.style.setProperty("--x", `${x}px`);
+        cardRef.current.style.setProperty("--y", `${y}px`);
+
+        frameRef.current = requestAnimationFrame(animate);
+      };
+
+      frameRef.current = requestAnimationFrame(animate);
+
+      return () => {
+        if (frameRef.current) {
+          cancelAnimationFrame(frameRef.current);
+        }
+      };
+    }, []);
+
+    const handleMouseMove = (event: React.MouseEvent) => {
+      const el = cardRef.current;
+      if (!el) return;
+
+      const r = el.getBoundingClientRect();
+      xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
+      yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
+    };
+
+    const handleMouseLeave = () => {
+      xRef.current = 0;
+      yRef.current = 0;
+    };
+
+    return (
+      <div className="[perspective:1200px] [transform-style:preserve-3d]">
+        <div
+          ref={cardRef}
+          onClick={onClick}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="relative cursor-pointer w-[56vmin] h-[56vmin] rounded-xl overflow-hidden mx-auto"
+          style={{
+            transform: "scale(1) rotateX(0deg)",
+            transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+            transformOrigin: "bottom",
+          }}
+        >
+          <div
+            className="absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden transition-all duration-150 ease-out"
+            style={{
+              transform: "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)",
+            }}
+          >
+            <ProgressiveImage
+              src={card.src}
+              alt={card.title}
+              className="absolute inset-0 w-[120%] h-[120%] object-cover"
+              optimization={ImagePresets.cardLarge}
+              placeholder="shimmer"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-black/20" />
+          </div>
+          
+          {/* Always visible country name */}
+          <div className="absolute inset-0 flex items-center justify-center text-center p-6">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-semibold text-white">
+              {card.title}
+            </h3>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    );
+  }
 );
-FocusCardItem.displayName = "FocusCardItem";
+DestinationCard.displayName = "DestinationCard";
 
 
-// FocusCards Component (from your provided snippet, adapted)
-const FocusCardsDisplay = ({ cards, onCardClick }: { cards: FocusCardData[]; onCardClick: (slug: string) => void; }) => {
-  const [hovered, setHovered] = useState<number | null>(null);
-
+// Updated Cards Display Component with increased spacing
+const DestinationCardsDisplay = ({ cards, onCardClick }: { cards: FocusCardData[]; onCardClick: (slug: string) => void; }) => {
   return (
-    // MODIFIED: Removed max-w-6xl, adjusted gap for wider cards.
-    // gap-4 might be suitable now that cards are w-full in their columns.
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-      {cards.map((card, index) => (
-        <FocusCardItem
+          // No horizontal gap, some vertical gap
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-4 lg:gap-y-10 w-full justify-items-center">
+      {cards.map((card) => (
+        <DestinationCard
           key={card.id}
           card={card}
-          index={index}
-          hovered={hovered}
-          setHovered={setHovered}
           onClick={() => onCardClick(card.slug)}
         />
       ))}
@@ -137,22 +166,24 @@ const RegionsGrid = () => {
 
   // MODIFIED: Header structure changed
   const PageHeader = () => (
-    <div className="flex flex-col md:flex-row justify-between md:items-start w-full mb-8 lg:mb-12">
-      <div className="w-full md:w-2/3 text-left">
-        <span className="text-2xl md:text-2xl text-travel-burgundy font-serif font-semibold tracking-wider uppercase mb-2 block dark:text-red-400">
-          DESTINATIONS
-        </span>
-        <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-800 dark:text-neutral-300 leading-tight">
-          Explore Our Favourite Destinations
-        </h2>
-      </div>
-      <div className="mt-4 md:mt-0 md:w-1/3 md:text-right">
-        <button
-          onClick={() => navigate('/destinations')}
-          className="all-destinations-button flex-shrink-0 px-5 py-2.5 text-sm font-medium text-white bg-travel-blue hover:bg-travel-blue-dark focus:ring-4 focus:outline-none focus:ring-travel-blue-light rounded-lg text-center transition-colors dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" // Example styling
-        >
-          All Destinations
-        </button>
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-8 lg:mb-12">
+        <div className="max-w-[60%] mx-auto">
+          <span className="text-3xl md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
+            Destinations
+          </span>
+          <h2 className="text-xl md:text-xl font-sans mt-2 leading-tight" style={{ color: '#161618' }}>
+            Explore Our Favourite Destinations. You can find all of our destinations{' '}
+            <button
+              onClick={() => navigate('/destinations')}
+              className="font-sans underline hover:no-underline transition-all"
+              style={{ color: '#00395c' }}
+            >
+              here
+            </button>
+            .
+          </h2>
+        </div>
       </div>
     </div>
   );
@@ -192,7 +223,7 @@ const RegionsGrid = () => {
     // MODIFIED: Section has px-4 (changed from px-1)
     <section className="py-12 md:py-16 bg-white dark:bg-neutral-950 overflow-x-hidden px-8">
       <PageHeader />
-      <FocusCardsDisplay cards={destinationsToDisplay} onCardClick={handleDestinationCardClick} />
+      <DestinationCardsDisplay cards={destinationsToDisplay} onCardClick={handleDestinationCardClick} />
     </section>
   );
 };

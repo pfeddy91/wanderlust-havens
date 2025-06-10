@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -14,9 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
 import { Separator } from '@/components/ui/separator';
 import { Map, User, ClipboardList, Compass, MessageSquarePlus } from 'lucide-react';
+
+interface Tour {
+  title: string;
+}
+
+interface ContactUsProps {
+  tours: Tour[];
+}
 
 // Define Zod schema for validation
 const currentYear = new Date().getFullYear();
@@ -63,6 +70,7 @@ const formSchema = z.object({
   travelSeason: z.string().min(1, { message: "Please select a season."}),
   duration: z.string().min(1, { message: "Please enter the trip duration." }),
   budgetRange: z.array(z.number()).min(2).max(2).default([5000, 10000]),
+  tourOfInterest: z.string().optional(),
   comments: z.string().optional(),
   
   // Section 2: Your Details - Updated as per the new screenshot
@@ -72,8 +80,9 @@ const formSchema = z.object({
   confirmEmail: z.string().email({ message: "Please confirm your email address." }),
   phoneCountryCode: z.string().min(1, { message: "Please select a country code." }),
   phoneNumber: z.string().min(5, { message: "Please enter a valid phone number." }), // Basic validation
-  preferredContactMethod: z.string().min(1, { message: "Please select your preferred contact method."}),
-  newsletterSignup: z.boolean().default(false),
+  preferredContactMethods: z.array(z.string()).refine(value => value.some(item => item), {
+    message: "You have to select at least one contact method.",
+  }),
 }).refine(data => data.email === data.confirmEmail, {
   message: "Email addresses do not match.",
   path: ["confirmEmail"], // Point error to the confirmEmail field
@@ -94,7 +103,7 @@ const maxBudget = budgetMarks[budgetMarks.length - 1].value;
 
 const peopleOptions = Array.from({ length: 10 }, (_, i) => (i + 1).toString());
 
-const ContactUs = () => {
+const ContactUs: React.FC<ContactUsProps> = ({ tours }) => {
   const {
     register,
     handleSubmit,
@@ -110,6 +119,7 @@ const ContactUs = () => {
       travelSeason: "",
       duration: "",
       budgetRange: [5000, 10000],
+      tourOfInterest: "None in particular",
       comments: "",
       firstName: "",
       lastName: "",
@@ -117,12 +127,20 @@ const ContactUs = () => {
       confirmEmail: "",
       phoneCountryCode: "+44", // Default to UK
       phoneNumber: "",
-      preferredContactMethod: "",
-      newsletterSignup: false,
+      preferredContactMethods: ["email"],
     }
   });
 
   const budgetValue = watch("budgetRange");
+  const contactMethods = watch("preferredContactMethods");
+
+  const handleContactMethodChange = (method: string) => {
+    const currentMethods = getValues("preferredContactMethods");
+    const newMethods = currentMethods.includes(method)
+      ? currentMethods.filter(item => item !== method)
+      : [...currentMethods, method];
+    setValue("preferredContactMethods", newMethods, { shouldValidate: true });
+  };
 
   const onSubmit = async (data: FormData) => {
     console.log("Form data submitted:", data);
@@ -138,12 +156,12 @@ const ContactUs = () => {
           {/* Section 1: Your Trip */}
           <section className="bg-white p-6 md:p-8 rounded-md shadow">
             <div className="flex justify-between items-center mb-6 border-b pb-4">
-              <h2 className="text-2xl font-semibold text-gray-700 tracking-wide">YOUR TRIP</h2>
+              <h2 className="text-2xl font-semibold text-gray-700 tracking-wide font-serif">YOUR TRIP</h2>
             </div>
             
             <div className="space-y-6">
               <div>
-                <Label htmlFor="destinations" className="block text-sm font-medium text-gray-700 mb-1">Where would you like to go?*</Label>
+                <Label htmlFor="destinations" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Where would you like to go?*</Label>
                 <Controller
                   name="destinations"
                   control={control}
@@ -164,7 +182,29 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <Label className="block text-sm font-medium text-gray-700 mb-1">When would you like to go?*</Label>
+                <Label htmlFor="tourOfInterest" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Is there a Moon that caught your attention?</Label>
+                <Controller
+                  name="tourOfInterest"
+                  control={control}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <SelectTrigger className="w-full bg-white border-gray-300 text-sm focus:ring-travel-coral focus:border-travel-coral">
+                        <SelectValue placeholder="Select a tour" />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-56" side="bottom">
+                        <SelectItem value="None in particular">None in particular</SelectItem>
+                        {tours.map(tour => (
+                          <SelectItem key={tour.title} value={tour.title} className="text-sm">{tour.title}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {errors.tourOfInterest && <p className="text-xs text-red-600 mt-1">{errors.tourOfInterest.message}</p>}
+              </div>
+
+              <div>
+                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">When would you like to go?*</Label>
                 <Controller
                   name="travelSeason"
                   control={control}
@@ -185,7 +225,7 @@ const ContactUs = () => {
               </div>
               
               <div>
-                <Label htmlFor="duration" className="block text-sm font-medium text-gray-700 mb-1">How long for?*</Label>
+                <Label htmlFor="duration" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">How long for?*</Label>
                 <Input 
                   id="duration" 
                   {...register("duration")} 
@@ -196,37 +236,108 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <Label className="block text-sm font-medium text-gray-700 mb-1">How much would you like to spend per person?</Label>
-                <p className="text-sm text-gray-900 font-medium mb-2">£{budgetValue[0].toLocaleString()} - £{budgetValue[1].toLocaleString()}{budgetValue[1] === maxBudget ? '+' : ''}</p>
+                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">How much would you like to spend per person?</Label>
+                <p className="text-lg text-gray-900 font-medium mb-4">£{budgetValue[0].toLocaleString()} - £{budgetValue[1].toLocaleString()}{budgetValue[1] === maxBudget ? '+' : ''}</p>
                 <Controller
                   name="budgetRange"
                   control={control}
-                  render={({ field }) => (
-                    <Slider
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      min={minBudget}
-                      max={maxBudget}
-                      step={100}
-                      // Style the track grey, and the selected range pink.
-                      // Assumes Track is the first span child of Root, and Range is the first span child of Track.
-                      // Adjust selectors if your Slider component's structure differs.
-                      className="[&>span:first-child]:h-1 [&>span:first-child]:bg-gray-300 [&>span:first-child>span:first-child]:bg-pink-500"
-                      thumbClassName="[&>span]:bg-pink-500"
-                    />
-                  )}
+                  render={({ field }) => {
+                    const trackRef = useRef<HTMLDivElement>(null);
+
+                    const getClampedValue = useCallback((clientX: number) => {
+                      if (!trackRef.current) return 0;
+                      const rect = trackRef.current.getBoundingClientRect();
+                      const percent = (clientX - rect.left) / rect.width;
+                      const clampedPercent = Math.max(0, Math.min(1, percent));
+                      return minBudget + clampedPercent * (maxBudget - minBudget);
+                    }, [minBudget, maxBudget]);
+
+                    const handleInteractionStart = useCallback((
+                      e: React.MouseEvent | React.TouchEvent,
+                      thumb: 'min' | 'max'
+                    ) => {
+                      e.preventDefault();
+
+                      const moveHandler = (moveEvent: MouseEvent | TouchEvent) => {
+                        const clientX = 'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX;
+                        const rawValue = getClampedValue(clientX);
+                        const value = Math.round(rawValue / 100) * 100;
+                        
+                        const [minVal, maxVal] = field.value;
+
+                        if (thumb === 'min') {
+                          const newMin = Math.min(value, maxVal - 100);
+                          field.onChange([newMin, maxVal]);
+                        } else {
+                          const newMax = Math.max(value, minVal + 100);
+                          field.onChange([minVal, newMax]);
+                        }
+                      };
+
+                      const endHandler = () => {
+                        window.removeEventListener('mousemove', moveHandler);
+                        window.removeEventListener('mouseup', endHandler);
+                        window.removeEventListener('touchmove', moveHandler);
+                        window.removeEventListener('touchend', endHandler);
+                      };
+
+                      window.addEventListener('mousemove', moveHandler);
+                      window.addEventListener('mouseup', endHandler);
+                      window.addEventListener('touchmove', moveHandler);
+                      window.addEventListener('touchend', endHandler);
+                    }, [field, getClampedValue]);
+
+                    const minPos = ((field.value[0] - minBudget) / (maxBudget - minBudget)) * 100;
+                    const maxPos = ((field.value[1] - minBudget) / (maxBudget - minBudget)) * 100;
+
+                    return (
+                      <div className="relative flex items-center h-10">
+                        <div
+                          ref={trackRef}
+                          className="relative w-full h-1.5 rounded-full bg-gray-200"
+                        >
+                          <div
+                            className="absolute h-full rounded-full bg-[#A72424]"
+                            style={{ left: `${minPos}%`, right: `${100 - maxPos}%` }}
+                          />
+                          <div
+                            className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#A72424] cursor-pointer"
+                            style={{
+                              left: `${minPos}%`,
+                              top: '50%',
+                              transform: 'translate(-50%, -50%)',
+                              zIndex: 1,
+                            }}
+                            onMouseDown={(e) => handleInteractionStart(e, 'min')}
+                            onTouchStart={(e) => handleInteractionStart(e, 'min')}
+                          />
+                          <div
+                            className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#A72424] cursor-pointer"
+                            style={{
+                              left: `${maxPos}%`,
+                              top: '50%',
+                              transform: 'translate(-50%, -50%)',
+                              zIndex: 1,
+                            }}
+                            onMouseDown={(e) => handleInteractionStart(e, 'max')}
+                            onTouchStart={(e) => handleInteractionStart(e, 'max')}
+                          />
+                        </div>
+                      </div>
+                    );
+                  }}
                 />
-                 {errors.budgetRange && <p className="text-xs text-red-600 mt-1">{errors.budgetRange.message}</p>}
+                {errors.budgetRange && <p className="text-xs text-red-600 mt-1">{errors.budgetRange.message}</p>}
               </div>
 
               <div>
-                <Label htmlFor="comments" className="block text-sm font-medium text-gray-700 mb-1">Any other comments or requests?</Label>
+                <Label htmlFor="comments" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Tell us more about what you are looking for</Label>
                 <Textarea
                   id="comments"
                   {...register("comments")}
-                  placeholder="Eg. special occasion, any must-dos (or don'ts)"
+                  placeholder="E.g. 'We are thinking about Italy or Japan as our preferred destinations', 'We would love to do 1 week of resort relaxation and 1 week of adventure'"
                   rows={4}
-                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400"
+                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
                 />
               </div>
             </div>
@@ -234,17 +345,17 @@ const ContactUs = () => {
 
           {/* Section 2: Your Details */}
           <section className="bg-white p-6 md:p-8 rounded-md shadow">
-            <h2 className="text-xl font-semibold text-gray-700 tracking-wide mb-6 border-b pb-3">YOUR DETAILS</h2>
+            <h2 className="text-xl font-semibold text-gray-700 tracking-wide mb-6 border-b pb-3 font-serif">YOUR DETAILS</h2>
             <div className="space-y-5">
               <div>
-                <Label className="block text-sm font-medium text-gray-700 mb-1">Your name*</Label>
+                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Your name*</Label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Input 
                       id="firstName" 
                       {...register("firstName")} 
                       placeholder="First name*" 
-                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400" 
+                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400" 
                     />
                     {errors.firstName && <p className="text-xs text-red-600 mt-1">{errors.firstName.message}</p>}
                   </div>
@@ -253,7 +364,7 @@ const ContactUs = () => {
                       id="lastName" 
                       {...register("lastName")} 
                       placeholder="Last name*"
-                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400"
+                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
                     />
                     {errors.lastName && <p className="text-xs text-red-600 mt-1">{errors.lastName.message}</p>}
                   </div>
@@ -261,31 +372,31 @@ const ContactUs = () => {
               </div>
               
               <div>
-                <Label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email address*</Label>
+                <Label htmlFor="email" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Email address*</Label>
                 <Input 
                   id="email" 
                   type="email" 
                   {...register("email")} 
                   placeholder="example@email.com"
-                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400"
+                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
                 />
                 {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email.message}</p>}
               </div>
 
               <div>
-                <Label htmlFor="confirmEmail" className="block text-sm font-medium text-gray-700 mb-1">Confirm email address*</Label>
+                <Label htmlFor="confirmEmail" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Confirm email address*</Label>
                 <Input 
                   id="confirmEmail" 
                   type="email" 
                   {...register("confirmEmail")} 
                   placeholder="example@email.com"
-                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400"
+                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
                 />
                 {errors.confirmEmail && <p className="text-xs text-red-600 mt-1">{errors.confirmEmail.message}</p>}
               </div>
               
               <div>
-                <Label className="block text-sm font-medium text-gray-700 mb-1">Telephone*</Label>
+                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Telephone*</Label>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="md:col-span-1">
                     <Controller
@@ -293,7 +404,7 @@ const ContactUs = () => {
                       control={control}
                       render={({ field }) => (
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <SelectTrigger className="w-full bg-white border-gray-300 text-sm placeholder-gray-400">
+                          <SelectTrigger className="w-full bg-white border-gray-300 text-base placeholder-gray-400">
                             <SelectValue placeholder="Country Code*" />
                           </SelectTrigger>
                           <SelectContent>
@@ -312,7 +423,7 @@ const ContactUs = () => {
                       type="tel" 
                       {...register("phoneNumber")} 
                       placeholder="Phone number"
-                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-sm placeholder-gray-400"
+                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
                     />
                     {errors.phoneNumber && <p className="text-xs text-red-600 mt-1">{errors.phoneNumber.message}</p>}
                   </div>
@@ -320,45 +431,22 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <Label htmlFor="preferredContactMethod" className="block text-sm font-medium text-gray-700 mb-1">How would you like us to contact you?*</Label>
-                 <Controller
-                    name="preferredContactMethod"
-                    control={control}
-                    render={({ field }) => (
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger className="w-full bg-white border-gray-300 text-sm placeholder-gray-400">
-                          <SelectValue placeholder="Select a contact method" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {preferredContactMethodOptions.map(option => (
-                            <SelectItem key={option.value} value={option.value} className="text-sm">{option.label}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                {errors.preferredContactMethod && <p className="text-xs text-red-600 mt-1">{errors.preferredContactMethod.message}</p>}
-              </div>
-
-              <div className="pt-2">
-                <Controller
-                  name="newsletterSignup"
-                  control={control}
-                  render={({ field }) => (
-                    <Button
-                      type="button"
-                      onClick={() => field.onChange(!field.value)}
-                      variant={field.value ? "default" : "outline"}
-                      className={`px-6 py-2 text-sm font-medium rounded-md border ${
-                        field.value 
-                          ? 'bg-black text-white border-black hover:bg-gray-800' 
-                          : 'bg-white text-black border-gray-400 hover:bg-gray-100'
-                      }`}
-                    >
-                      {field.value ? 'Yes ✓' : 'Yes'}
-                    </Button>
-                  )}
-                />
+                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">How should we follow up?*</Label>
+                <div className="flex items-center space-x-4 pt-2">
+                  {preferredContactMethodOptions.map((option) => (
+                    <div key={option.value} className="flex items-center">
+                       <Checkbox
+                        id={option.value}
+                        checked={contactMethods.includes(option.value)}
+                        onCheckedChange={() => handleContactMethodChange(option.value)}
+                      />
+                      <Label htmlFor={option.value} className="ml-2 text-base font-normal text-gray-700">
+                        {option.label}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+                {errors.preferredContactMethods && <p className="text-xs text-red-600 mt-1">{errors.preferredContactMethods.message}</p>}
               </div>
             </div>
           </section>
@@ -367,9 +455,9 @@ const ContactUs = () => {
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-md px-12 py-3 text-base uppercase tracking-wider w-full md:w-auto transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
+              className="bg-travel-burgundy hover:bg-travel-burgundy/90 text-white font-serif rounded-[10px] px-10 h-12 capitalize text-lg font-medium tracking-wide w-full md:w-auto transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
             >
-              {isSubmitting ? 'Submitting...' : 'SUBMIT ENQUIRY'}
+              {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
             </Button>
           </div>
           <p className="text-xs text-gray-500 text-center mt-3">

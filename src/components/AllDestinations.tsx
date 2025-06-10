@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '@/utils/supabaseClient';
 import { ChevronDown } from 'lucide-react';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { ImagePresets } from '@/utils/imageOptimization';
 
 interface Region {
   id: string;
@@ -159,10 +161,13 @@ const AllDestinations = () => {
                     }}
                     onClick={() => handleRegionClick(region)}
                   >
-                    <img
+                    <ProgressiveImage
                       src={region.featured_image || `https://source.unsplash.com/featured/?${region.name},landscape`}
                       alt={region.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full"
+                      optimization={ImagePresets.cardLarge}
+                      placeholder="shimmer"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-center justify-center p-4">
                       <h3 className="text-white font-serif text-2xl md:text-3xl font-medium text-center">
@@ -182,10 +187,13 @@ const AllDestinations = () => {
                   className="relative overflow-hidden rounded-lg cursor-pointer aspect-square"
                   onClick={() => handleRegionClick(region)}
                 >
-                  <img
+                  <ProgressiveImage
                     src={region.featured_image || `https://source.unsplash.com/featured/?${region.name},landscape`}
                     alt={region.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
+                    optimization={ImagePresets.cardMedium}
+                    placeholder="shimmer"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-center justify-center p-2">
                     <h3 className="text-white font-serif text-xl font-medium text-center">

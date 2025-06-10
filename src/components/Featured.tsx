@@ -336,15 +336,15 @@ const Featured = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl font-serif font-bold mb-4 tracking-wide"
+            className="text-3xl md:text-3xl font-serif font-semibold mb-4 tracking-wide"
           >
-            RECOMMENDED JOURNEYS
+            Recommended Journeys
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg opacity-80 font-light"
+            className="text-3xl md:text-3xl font-serif font-light opacity-80"
           >
             Crafted for unforgettable moments
           </motion.p>
@@ -357,17 +357,17 @@ const Featured = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl lg:text-5xl font-serif font-bold mb-4"
+              className="text-3xl md:text-3xl font-serif font-semibold mb-4"
             >
-              EXPLORE<br />OUR<br />MOONS
+              Explore Our Moons
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg opacity-80 font-light"
+              className="text-3xl md:text-3xl font-serif font-light opacity-80"
             >
-              Crafted for<br />unforgettable moments
+              Crafted for unforgettable moments
             </motion.p>
           </div>
           

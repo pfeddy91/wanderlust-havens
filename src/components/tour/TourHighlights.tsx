@@ -35,9 +35,9 @@ const TourHighlights = ({ tour }: TourHighlightsProps) => {
                 <span className="text-primary font-medium">{index + 1}</span>
               </div>
               <div>
-                <p className="font-serif font-medium text-lg">{highlight.title}</p>
+                <p className="font-serif font-medium text-2xl">{highlight.title}</p>
                 {highlight.description && (
-                  <p className="text-gray-600 mt-1 font-serif">{highlight.description}</p>
+                  <p className="text-gray-600 mt-1 text-lg">{highlight.description}</p>
                 )}
               </div>
             </div>

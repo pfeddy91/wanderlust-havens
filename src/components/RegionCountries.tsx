@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '@/utils/supabaseClient';
 import { ArrowLeft } from 'lucide-react';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { ImagePresets } from '@/utils/imageOptimization';
 
 interface Region {
   id: string;
@@ -152,13 +154,16 @@ const RegionCountries = () => {
                       className="relative overflow-hidden rounded-lg cursor-pointer group aspect-[4/3]"
                       onClick={() => handleCountryClick(country)}
                     >
-                      <img
+                      <ProgressiveImage
                         src={country.featured_image || `https://source.unsplash.com/featured/?${country.name},travel`}
                         alt={country.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full"
+                        optimization={ImagePresets.cardLarge}
+                        placeholder="shimmer"
+                        loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
-                        <h3 className="text-white font-serif text-3xl font-medium text-center px-4">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center group-hover:from-black/50 transition-all duration-700">
+                        <h3 className="text-white font-serif text-3xl font-medium text-center px-4 group-hover:scale-105 transition-transform duration-700">
                           {country.name}
                         </h3>
                       </div>
@@ -174,10 +179,13 @@ const RegionCountries = () => {
                       className="relative overflow-hidden rounded-lg cursor-pointer aspect-[4/3]"
                       onClick={() => handleCountryClick(country)}
                     >
-                      <img
+                      <ProgressiveImage
                         src={country.featured_image || `https://source.unsplash.com/featured/?${country.name},travel`}
                         alt={country.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full"
+                        optimization={ImagePresets.cardMedium}
+                        placeholder="shimmer"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
                         <h3 className="text-white font-serif text-2xl font-medium text-center px-2">

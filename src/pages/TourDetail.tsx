@@ -7,6 +7,7 @@ import TourItinerary from '@/components/tour/TourItinerary';
 import TourHighlights from '@/components/tour/TourHighlights';
 import TourHotels from '@/components/tour/TourHotels';
 import TourImageGallery from '@/components/tour/TourImageGallery';
+import FloatingBackButton from '@/components/FloatingBackButton';
 import { Tour } from '@/types/tour';
 import { Separator } from '@/components/ui/separator';
 
@@ -91,6 +92,9 @@ const TourDetail = () => {
           <TourHotels hotels={tour.hotels} />
         </>
       )}
+
+      {/* Floating Back Button (conditional) */}
+      <FloatingBackButton />
     </main>
   );
 };

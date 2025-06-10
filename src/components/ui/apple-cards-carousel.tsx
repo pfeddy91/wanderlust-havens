@@ -208,7 +208,7 @@ export const Card = ({
               transition={{ duration: 0.3, ease: "easeOut" }}
               ref={containerRef}
               layoutId={layout ? `card-container-${card.title}` : undefined}
-              className="relative z-[110] mx-auto my-10 h-fit max-w-3xl rounded-xl bg-white p-4 font-sans shadow-2xl md:p-10 dark:bg-neutral-900"
+              className="relative z-[110] mx-auto my-10 h-fit max-w-10xl rounded-xl bg-white p-4 font-sans shadow-2xl md:p-10 dark:bg-neutral-900"
             >
               <button
                 className="sticky -top-3 -right-3 md:top-4 md:right-4 z-[120] ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"

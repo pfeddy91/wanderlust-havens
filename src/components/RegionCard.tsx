@@ -1,7 +1,8 @@
-
 import React from 'react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { Card, CardContent } from '@/components/ui/card';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { ImagePresets } from '@/utils/imageOptimization';
 
 interface RegionCardProps {
   region: {
@@ -24,10 +25,13 @@ const RegionCard = ({ region, onClick }: RegionCardProps) => {
         >
           <div className="relative h-60 overflow-hidden">
             {region.featured_image ? (
-              <img 
-                src={region.featured_image} 
-                alt={region.name} 
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              <ProgressiveImage
+                src={region.featured_image}
+                alt={region.name}
+                className="w-full h-full"
+                optimization={ImagePresets.cardMedium}
+                placeholder="shimmer"
+                loading="lazy"
               />
             ) : (
               <div className="w-full h-full bg-muted flex items-center justify-center">

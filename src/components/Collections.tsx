@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/utils/supabaseClient';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { ImagePresets } from '@/utils/imageOptimization';
 
 interface Vibe {
   id: string;
@@ -55,10 +57,12 @@ const Collections = () => {
             "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2JrZWw3MHBmNTVvcG12anprOGpydDh5ZWtsNmpqbmx2bHQ1NzVkdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8J4w2i7kP7ceQ/giphy.gif" // Added new GIF here
           ].map((gif, index) => (
             <div key={index} className="overflow-hidden rounded-lg h-64 mb-4">
-              <img
+              <ProgressiveImage
                 src={gif}
                 alt={`Puppy GIF ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full"
+                placeholder="shimmer"
+                loading="lazy"
               />
             </div>
           ))}

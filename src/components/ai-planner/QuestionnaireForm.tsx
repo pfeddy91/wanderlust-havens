@@ -133,7 +133,19 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
             }
         } catch { /* Ignore parsing error */ }
     }
-    return 10;
+    return 14; // Updated to center the slider (7-21 range)
+  });
+  const [budgetValue, setBudgetValue] = useState<number>(() => {
+    const savedAnswersStr = sessionStorage.getItem(SESSION_STORAGE_ANSWERS_KEY);
+    if (savedAnswersStr) {
+        try {
+            const savedAnswers = JSON.parse(savedAnswersStr);
+            if (typeof savedAnswers.budget_range === 'number') {
+                return savedAnswers.budget_range;
+            }
+        } catch { /* Ignore parsing error */ }
+    }
+    return 20000; // Default £20k max budget
   });
   const [isExplainerOpen, setIsExplainerOpen] = useState(false);
   const [viewedOption, setViewedOption] = useState<ViewedOptionType>(null);
@@ -147,7 +159,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
   const { data: questionnaireData, isLoading: isLoadingQuestions, error: questionsError } = useQuery<QuestionnaireQuestion[]>({
     queryKey: ['questionnaireData'],
     queryFn: fetchQuestionnaireData,
-    staleTime: Infinity, // Questionnaire structure likely doesn't change often
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes instead of forever
     refetchOnWindowFocus: false,
   });
 
@@ -178,7 +190,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
          if (!hasRestoredState.current && questionnaireData) {
             questionnaireData.forEach(q => {
                 if (q.question_type === 'slider' && q.form_key === 'duration') {
-                    defaults[q.form_key] = [q.validation_rules?.default ?? 10];
+                    defaults[q.form_key] = [q.validation_rules?.default ?? 14];
             } else if (q.question_type.includes('multi_select')) {
                 defaults[q.form_key] = [];
             } else if (q.question_type === 'textarea') { // Added: Handle textarea default
@@ -219,6 +231,15 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                 } else {
                    console.log("No valid duration found in saved answers, using default.");
                 }
+
+                // Restore budget value state
+                if (savedAnswers.budget_range && typeof savedAnswers.budget_range === 'number') {
+                    console.log("Setting budget value visual state:", savedAnswers.budget_range);
+                    setBudgetValue(savedAnswers.budget_range);
+                } else {
+                    console.log("No valid budget value found in saved answers, using default.");
+                }
+
                  hasRestoredState.current = true;
             } catch (e) {
                 console.error("Failed to parse saved answers:", e);
@@ -243,22 +264,23 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
   useEffect(() => {
       // Save answers whenever they change, but only after initial load/restore attempt
       if (isInitialLoadDone.current) {
-        console.log("Saving answers:", watchedValues);
-        sessionStorage.setItem(SESSION_STORAGE_ANSWERS_KEY, JSON.stringify(watchedValues));
+        const answersToSave = {
+            ...watchedValues,
+            budget_range: budgetValue // Include budget value in saved answers
+        };
+        console.log("Saving answers:", answersToSave);
+        sessionStorage.setItem(SESSION_STORAGE_ANSWERS_KEY, JSON.stringify(answersToSave));
       }
-  }, [watchedValues]);
+  }, [watchedValues, budgetValue]); // Watch both form values and budget value
 
-  // Find the current question based on step number
+  // Find the current question based on array index, not step number
   const currentQuestion = useMemo(() => {
     // Ensure data is available before trying to find the question
     if (!questionnaireData || questionnaireData.length === 0) return null;
-    const question = questionnaireData.find(q => q.step_number === currentStep);
-    // --- Add Logging ---
-    if (question) {
-      console.log(`Current Question (Step ${currentStep}):`, question);
-      console.log(`Image URL for Step ${currentStep}:`, question.image_url);
-    } else {
-        console.warn(`No question found for step ${currentStep}`);
+    // Use array index instead of step_number from database
+    const question = questionnaireData[currentStep - 1]; // currentStep is 1-based, array is 0-based
+    if (!question) {
+        console.warn(`No question found for step ${currentStep} (array index ${currentStep - 1})`);
     }
     return question;
   }, [questionnaireData, currentStep]);
@@ -269,7 +291,6 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
            setViewedOption(currentQuestion.question_options[0]);
        }
    }, [currentQuestion, viewedOption]);
-
 
    // Watch duration for display
    const watchedDurationKey = useMemo(() => questionnaireData?.find(q => q.question_type === 'slider')?.form_key, [questionnaireData]);
@@ -283,6 +304,9 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
      }
    }, [watchedFormDuration, durationValue]);
 
+  // Use hardcoded background image for all questionnaire steps
+  const currentBackgroundImage = FALLBACK_BACKGROUND_IMAGE_URL;
+
   const processFormSubmit: SubmitHandler<Inputs> = (data) => {
     // Construct the final QuestionnaireAnswers structure
     // --- REVERTED: Ensure vibe and timing are handled as potentially multi-select arrays ---
@@ -293,10 +317,10 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
         // Treat vibe and timing as arrays from the form data
         vibe: data['vibe'] || [], // Expect array, default to empty array
         timing: data['timing'] || [], // Expect array, default to empty array
-        // Pace and budget are assumed single select (string)
+        // Pace is assumed single select (string)
         pace: data['pace'] || 'balanced', // Default if empty string
-        budget_tier: data['budget_tier'] || '', // Default if empty string
-        duration: data['duration']?.[0] ?? 10,
+        budget_range: budgetValue, // Use the state value
+        duration: data['duration']?.[0] ?? 14, // Updated fallback to 14
         openEndedQuery: data['openEndedQuery'] || '', // Added: Include openEndedQuery
     };
     console.log('Final Form Data (vibe/timing as arrays):', answers);
@@ -322,8 +346,6 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1);
-      // Save state before step change (or rely on useEffect)
-      // sessionStorage.setItem(SESSION_STORAGE_ANSWERS_KEY, JSON.stringify(getValues()));
     } else {
       // --- Clear storage when navigating back to landing ---
       sessionStorage.removeItem(SESSION_STORAGE_STEP_KEY);
@@ -385,13 +407,6 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
       return "";
   };
   const helperText = getHelperText(currentQuestion);
-
-  // --- Determine Background Image AFTER currentQuestion is potentially available ---
-  const currentBackgroundImage = useMemo(() => {
-      const url = currentQuestion?.image_url || FALLBACK_BACKGROUND_IMAGE_URL;
-      console.log(`Using background image: ${url}`);
-      return url;
-  }, [currentQuestion]); // Recalculate when currentQuestion changes
 
   // --- Loading and Error States ---
   // Combine loading states
@@ -539,7 +554,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                      {iconName ? (
                                         <DynamicIcon name={iconName} className={cn("h-7 w-7 md:h-8 md:h-8 mb-2 transition-colors", isSelected ? "text-white" : "text-gray-300 group-hover:text-white")} />
                                      ) : null }
-                                    <span className={cn( "font-medium text-center text-sm md:text-base transition-colors", !iconName && "mt-1" )}>
+                                    <span className={cn( "font-medium font-sans text-center text-lg md:text-xl transition-colors", !iconName && "mt-1" )}>
                                         {option.display_text}
                                     </span>
                                 </CardContent>
@@ -562,7 +577,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                 isSelected={isSelected}
                                 isDisabled={isDisabled}
                                 onClick={() => { if (!isDisabled) { handleMultiSelectChange(option.value); } }}
-                                frontContent={( <span className="font-medium text-center text-sm md:text-base">{option.display_text}</span> )}
+                                frontContent={( <span className="font-medium font-sans text-center text-lg md:text-xl">{option.display_text}</span> )}
                                 backContent={(
                                     // --- MODIFIED BACK CONTENT ---
                                     // Use a relative container for positioning the overlay
@@ -583,7 +598,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                         )}
                                         {/* Overlay for Text */}
                                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-2 pointer-events-none">
-                                            <span className="font-semibold text-white text-sm text-center drop-shadow-md">
+                                            <span className="font-semibold font-sans text-white text-lg text-center drop-shadow-md">
                                                 {option.display_text}
                                             </span>
                                 </div>
@@ -598,42 +613,85 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
 
             {/* Type: Slider */}
             {isSliderQuestion && (
-                 <div className="space-y-2 pt-8 pb-4 max-w-2xl mx-auto"> {/* Increased pt, adjusted max-w */}
-                    {/* Value Tooltip */}
-                    <div className="relative h-8 mb-1"> {/* Container for tooltip */}
-                        <div
-                             className="absolute px-3 py-1 bg-gray-700/80 backdrop-blur-sm text-white text-sm font-semibold rounded-md shadow-lg transform -translate-x-1/2"
-                             style={{ left: `${currentValuePercent}%` }}
-                        >
-                            {durationValue} days
+                 <div className="space-y-8 pt-8 pb-4 max-w-2xl mx-auto"> {/* Increased space between sliders */}
+                    {/* Duration Slider */}
+                    <div className="space-y-2">
+                        <div className="text-center mb-4">
+                            <h3 className="text-2xl font-serif text-white">Duration</h3>
                         </div>
+                        {/* Duration Value Tooltip */}
+                        <div className="relative h-8 mb-1"> {/* Container for tooltip */}
+                            <div
+                                 className="absolute px-3 py-1 bg-gray-700/80 backdrop-blur-sm text-white text-lg font-semibold font-sans rounded-md shadow-lg transform -translate-x-1/2"
+                                 style={{ left: `${currentValuePercent}%` }}
+                            >
+                                {durationValue} days
+                            </div>
+                        </div>
+                        {/* Duration Slider Track and Labels */}
+                        <div className="relative w-full">
+                           <Slider
+                               min={sliderMin}
+                               max={sliderMax}
+                               step={currentQuestion.validation_rules?.step ?? 1}
+                               value={Array.isArray(field.value) && typeof field.value[0] === 'number' ? field.value : [durationValue]}
+                               onValueChange={(value) => {
+                                   field.onChange(value);
+                               }}
+                               className="w-full [&>span:first-child]:h-1.5 [&>span:first-child>span]:bg-white [&>span:first-child]:bg-white/30"
+                           />
+                           {/* Min/Max Labels */}
+                           <div className="flex justify-between text-xs text-gray-400 mt-1 px-1">
+                               <span>{sliderMin} days</span>
+                               <span>{sliderMax} days</span>
+                           </div>
+                        </div>
+                       {/* Duration Helper text below the slider component */}
+                       {currentQuestion.helper_text && (
+                         <p className="text-lg font-sans text-gray-300 text-center pt-2">{currentQuestion.helper_text}</p>
+                       )}
                     </div>
-                    {/* Slider Track and Labels */}
-                    <div className="relative w-full">
-                       <Slider
-                           min={sliderMin}
-                           max={sliderMax}
-                           step={currentQuestion.validation_rules?.step ?? 1}
-                           // Ensure value is correct format
-                           value={Array.isArray(field.value) && typeof field.value[0] === 'number' ? field.value : [durationValue]}
-                           onValueChange={(value) => {
-                               field.onChange(value);
-                               // Visual update handled by watch effect
-                           }}
-                           // Updated styling for track/thumb if desired (keeping white for now)
-                           className="w-full [&>span:first-child]:h-1.5 [&>span:first-child>span]:bg-white [&>span:first-child]:bg-white/30"
-                           thumbClassName="bg-white border-white/50 block h-4 w-4 rounded-full border cursor-pointer ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                       />
-                       {/* Min/Max Labels */}
-                       <div className="flex justify-between text-xs text-gray-400 mt-1 px-1">
-                           <span>{sliderMin} days</span>
-                           <span>{sliderMax} days</span>
-                       </div>
+
+                    {/* Budget Slider */}
+                    <div className="space-y-2">
+                        <div className="text-center mb-4">
+                            <h3 className="text-2xl font-serif text-white">Budget Range per Person</h3>
+                        </div>
+                        {/* Budget Value Tooltip */}
+                        <div className="relative h-8 mb-1">
+                            {(() => {
+                                const budgetPercent = ((budgetValue - 5000) / (35000 - 5000)) * 100;
+                                
+                                return (
+                                    <div className="absolute px-3 py-1 bg-gray-700/80 backdrop-blur-sm text-white text-lg font-semibold font-sans rounded-md shadow-lg transform -translate-x-1/2"
+                                         style={{ left: `${budgetPercent}%` }}>
+                                        £{budgetValue.toLocaleString()}
+                                    </div>
+                                );
+                            })()}
+                        </div>
+                        {/* Budget Slider Track */}
+                        <div className="relative w-full">
+                            <Slider
+                                min={5000}
+                                max={35000}
+                                step={1000}
+                                value={[budgetValue]}
+                                onValueChange={(value) => {
+                                    if (value.length >= 1) {
+                                        setBudgetValue(value[0]);
+                                    }
+                                }}
+                                className="w-full [&>span:first-child]:h-1.5 [&>span:first-child>span]:bg-white [&>span:first-child]:bg-white/30"
+                            />
+                            {/* Min/Max Labels */}
+                            <div className="flex justify-between text-xs text-gray-400 mt-1 px-1">
+                                <span>£5,000</span>
+                                <span>£35,000</span>
+                            </div>
+                        </div>
+                        <p className="text-lg font-sans text-gray-300 text-center pt-2">Select your maximum budget per person.</p>
                     </div>
-                   {/* Helper text ONLY below the slider component */}
-                   {currentQuestion.helper_text && (
-                     <p className="text-base text-gray-300 text-center pt-4">{currentQuestion.helper_text}</p>
-                   )}
                  </div>
             )}
 
@@ -644,7 +702,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         {...field} // Spread field props for RHF connection
                         rows={4} // MODIFIED: Increased suggested rows slightly to match potential height increase
                         className={cn(
-                            "w-full bg-black/40 backdrop-blur-md border border-gray-400/60 rounded-lg p-3 text-base text-white",
+                            "w-full bg-black/40 backdrop-blur-md border border-gray-400/60 rounded-lg p-3 text-xl font-sans text-white",
                             "placeholder:text-gray-300/70 placeholder:italic",
                             "focus:ring-1 focus:ring-white/80 focus:border-white/90 shadow-lg",
                             "min-h-[100px]" // MODIFIED: Was min-h-[80px], increased for slightly more height
@@ -658,7 +716,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
         </div>
 
         {/* Display validation error message */}
-        {fieldState.error && <p className="text-lg text-red-300 text-center mt-4">{fieldState.error.message}</p>}
+        {fieldState.error && <p className="text-xl text-red-300 text-center mt-4">{fieldState.error.message}</p>}
        </div>
     );
   };
@@ -679,10 +737,10 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
 
         {/* Header Section - Stays at the top in flow */}
          <header className="relative z-10 w-full flex justify-between items-center mb-6 md:mb-10 px-0">
-             <Link to="/" className="text-3xl font-bold tracking-wider text-white">
+             <Link to="/" className="text-3xl font-serif font-semibold tracking-wider text-white">
                 MOONS
              </Link>
-             <span className="text-lg font-medium text-gray-300">
+             <span className="text-lg font-serif font-light text-gray-300">
                  Question {currentStep} / {TOTAL_STEPS}
              </span>
         </header>
@@ -690,7 +748,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
         {/* ---- Centering Wrapper for Form Content ---- */}
         <div className="relative z-10 flex-grow flex flex-col items-center justify-center">
              {/* Form Wrapper - Controls max content width */}
-            <div className="w-full max-w-5xl xl:max-w-6xl flex flex-col items-center">
+            <div className="w-full max-w-4xl xl:max-w-5xl flex flex-col items-center">
         <form
             onSubmit={handleSubmit(processFormSubmit)}
                      className="w-full flex flex-col items-center flex-grow"
@@ -711,7 +769,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                         {/* --- MODIFIED: Conditionally render Helper Text --- */}
                         {/* Only render generic helper if NOT a slider question */}
                         {helperText && !currentQuestion?.question_type.includes('slider') && (
-                            <p className="text-lg text-gray-300 mb-6 md:mb-8 text-center max-w-2xl mx-auto">{helperText}</p>
+                            <p className="text-xl text-gray-300 mb-6 md:mb-8 text-center max-w-2xl mx-auto">{helperText}</p>
                         )}
                         {/* --- END MODIFIED HELPER TEXT --- */}
 
@@ -734,12 +792,12 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ onSubmit }) => {
                                type="button"
                                variant="ghost"
                                onClick={prevStep}
-                               className={cn("text-gray-300 hover:text-white hover:bg-white/10 px-6 py-2 text-base")}
+                               className={cn("text-gray-300 hover:text-white hover:bg-white/10 px-6 py-2 text-xl")}
                             >
                                Previous
                             </Button>
                             {/* Next/Submit Button */}
-                            <Button type="button" onClick={nextStep} size="lg" className="bg-white/90 hover:bg-white text-black font-semibold px-10 py-3 text-base">{TOTAL_STEPS === currentStep ? 'Find My Honeymoon' : 'Next'}</Button>
+                            <Button type="button" onClick={nextStep} size="lg" className="bg-white/90 hover:bg-white text-black font-semibold px-10 py-3 text-xl">{TOTAL_STEPS === currentStep ? 'Find My Honeymoon' : 'Next'}</Button>
                 </div>
             </motion.div>
         </form>

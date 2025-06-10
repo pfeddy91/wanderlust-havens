@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, ChevronRight, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { optimizeImageUrl, ImagePresets } from '@/utils/imageOptimization';
 
 interface DestinationHeroProps {
   country: {
@@ -66,17 +67,8 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
           }
         }
 
-        // Create placeholder tour images until API is fixed
-        setTourImages(
-          PLACEHOLDER_IMAGES.map((url, index) => ({
-            id: `placeholder-${index}`,
-            image_url: url,
-            tour_id: `tour-${index}`,
-            is_primary: index === 0,
-            is_featured: index < 2,
-            display_order: index
-          }))
-        );
+        // Remove placeholder images - they're not needed
+        setTourImages([]);
 
         // Commented out failing API call - for reference
         /* 
@@ -107,9 +99,14 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
   // Use provided rationale or default
   const rationale = country.rationale || defaultRationale;
 
-  // Background image
-  const backgroundImage = country.featured_image || 
-    'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1500&q=80';
+  // Background image - optimized for hero display
+  const backgroundImage = optimizeImageUrl(
+    country.featured_image, 
+    ImagePresets.destinationHero
+  ) || optimizeImageUrl(
+    'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1500&q=80',
+    ImagePresets.destinationHero
+  );
 
   // Default values for travel metrics
   const bestPeriod = country.best_period || "March to June / Sept to Nov";

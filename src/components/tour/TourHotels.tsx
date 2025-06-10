@@ -18,6 +18,8 @@ import React from 'react';
 
 // Assuming Hotel type is imported or defined elsewhere:
 import { Hotel } from '@/types/hotel'; // Adjust path as needed
+import { optimizeImageUrl, ImagePresets } from '@/utils/imageOptimization';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
 
 interface TourHotelsProps {
   hotels?: Hotel[];
@@ -40,10 +42,13 @@ const TourHotels: React.FC<TourHotelsProps> = ({ hotels }) => { // REMOVE tourGe
             <div key={hotel.id} className="flex flex-col bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
               {hotel.images && hotel.images.length > 0 && (
                 <div className="w-full h-64 overflow-hidden">
-                  <img
+                  <ProgressiveImage
                     src={hotel.images[0].image_url}
                     alt={hotel.images[0].alt_text || hotel.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full"
+                    optimization={ImagePresets.cardLarge}
+                    placeholder="shimmer"
+                    loading="lazy"
                   />
                 </div>
               )}
@@ -62,9 +67,9 @@ const TourHotels: React.FC<TourHotelsProps> = ({ hotels }) => { // REMOVE tourGe
                   href={hotel.google_place_website_uri || '#'} // Use the hotel's Google Place website URI, fallback to '#' if undefined
                   target="_blank" // Open link in a new tab
                   rel="noopener noreferrer" // Security measure for target="_blank"
-                  className="mt-auto text-primary font-medium hover:underline text-xs uppercase tracking-wider self-start"
+                  className="mt-auto inline-block border border-gray-800 px-4 py-2 rounded-lg uppercase tracking-wider font-serif text-sm font-medium text-gray-800 bg-transparent transition-all hover:bg-gray-800 hover:text-white hover:border-gray-800 self-start"
                 >
-                  VIEW HOTEL
+                  View Hotel
                 </a>
               </div>
             </div>

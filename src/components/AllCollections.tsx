@@ -77,7 +77,7 @@ const AllCollections = () => {
           <div className="grid-container">
             {/* Desktop Grid Layout - Adjusted for 2x2 tiles */}
             {/* Define 4 columns total, with taller auto rows */}
-            <div className="hidden md:grid grid-cols-4 auto-rows-[400px] gap-4">
+            <div className="hidden md:grid grid-cols-4 auto-rows-[300px] gap-4">
               {collections.map((collection, index) => {
                 return (
                   <div

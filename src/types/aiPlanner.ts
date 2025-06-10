@@ -2,9 +2,13 @@
 export interface QuestionnaireAnswers {
   vibe: string[]; // Changed to string array for multiple selections
   duration: number;
-  destinationPrefs: string;
+  regions: string[]; // Updated to match actual questionnaire (was destinationPrefs)
   interests: string[];
-  budgetFeeling?: string;
+  budget_range: number; // Maximum budget per person
+  openEndedQuery?: string; // Added for free-text input
+  avoids?: string[]; // Added for explicit dislikes
+  timing?: string[]; // Added for seasonal preference
+  pace?: string[]; // Added for pace preference
 }
 
 // Define the structure for the itinerary preview data
@@ -14,6 +18,10 @@ export interface ItineraryPreview {
   summary: string;
   featured_image?: string;
   guide_price?: number;
+  duration: number; // Added duration field
+  countries: string[]; // Added countries field
+  slug: string; // Added slug field
+  similarity?: number; // Added similarity field
   // Add other preview-specific fields
 }
 

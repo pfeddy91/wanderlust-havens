@@ -28,6 +28,7 @@ export interface QuestionnaireQuestion {
   helper_text: string | null; // Optional text below the input
   explainer_trigger_text: string | null; // Text for the 'Need advice?' link
   explainer_dialog_title: string | null; // Title for the explainer popup
+  is_active: boolean; // Flag to control question visibility
   question_options: QuestionOption[]; // Array of options for this question
   created_at?: string; // Optional timestamp
   updated_at?: string; // Optional timestamp
@@ -51,6 +52,7 @@ export const fetchQuestionnaireData = async (): Promise<QuestionnaireQuestion[]>
       helper_text,
       explainer_trigger_text,
       explainer_dialog_title,
+      is_active,
       question_options (
         id,
         question_id,
@@ -63,6 +65,7 @@ export const fetchQuestionnaireData = async (): Promise<QuestionnaireQuestion[]>
         order_index
       )
     `)
+    .eq('is_active', true) // Filter for active questions only
     .order('step_number', { ascending: true }) // Order questions by step
     .order('order_index', { referencedTable: 'question_options', ascending: true }); // Order options within each question
 

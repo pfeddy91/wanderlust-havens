@@ -1,0 +1,278 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Extension to 250 Tours Project
+
+## Project Overview
+**Objective**: Expand the tour catalog from 100 to 250 tours to improve user experience and market coverage.
+
+## Current State Analysis
+
+### Database Structure
+- **Regions**: 7 regions covering global destinations
+- **Countries**: 62 countries across all regions
+- **Tours**: 100 tours currently live
+- **Hotels**: 1,194 hotels in database
+- **Collections**: 5 distinct tour collections
+
+### Current Tour Distribution by Region
+- **European Escapes**: 31 tours (16 countries)
+- **Asian Wonders**: 19 tours (13 countries)
+- **African Adventures**: 14 tours (11 countries)
+- **Caribbean & Central America**: 14 tours (9 countries)
+- **North America & Hawaii**: 9 tours (2 countries)
+- **Oceania & Pacific**: 7 tours (6 countries)
+- **South America**: 6 tours (5 countries)
+
+### Current Tour Distribution by Duration
+- **7 days**: 4 tours (avg. £6,250) - **MINI MOONS GAP IDENTIFIED**
+- **8 days**: 13 tours (avg. £8,246)
+- **10 days**: 24 tours (avg. £9,279) - Most popular
+- **12 days**: 23 tours (avg. £9,535) - Second most popular
+- **14 days**: 16 tours (avg. £10,956)
+- **15+ days**: 11 tours (avg. £13,000+)
+
+### Current Collection Distribution
+- **Adventure & Discovery**: 38 tours (avg. £10,624)
+- **Culture & Elegance**: 29 tours (avg. £8,321)
+- **Beach & Relaxation**: 20 tours (avg. £9,550)
+- **Safari & Wildlife**: 11 tours (avg. £11,591)
+- **Road Trips**: 2 tours (avg. £8,000) - **MAJOR GAP IDENTIFIED**
+
+## Problem Statement
+
+### Critical Issues Identified
+1. **Single-Tour Destinations**: 37 countries have only 1 tour each, creating poor user experience
+2. **Questionnaire Match Failures**: Limited tour variety leads to frequent "no matches" in AI recommendations
+3. **Missing Mini Moons**: Only 4 tours of 7 days duration (honeymoon market gap)
+4. **Insufficient Road Trips**: Only 2 road trip tours available
+5. **Limited Ultra Luxury**: No dedicated ultra-luxury tier above current premium offerings
+6. **Multi-Country Gaps**: Limited cross-border tour combinations
+
+### Countries with Only 1 Tour (To Be Addressed)
+**African Adventures**: Egypt, Madagascar, Morocco, Namibia, Rwanda, Zambia, Zimbabwe
+**Asian Wonders**: Bhutan, Jordan, Malaysia, Oman, Seychelles, UAE, Vietnam
+**Caribbean & Central America**: Bahamas, Colombia, Curacao, Guatemala, Panama, Turks & Caicos
+**European Escapes**: Croatia, Denmark, Finland, Germany, Iceland, Ireland, Turkey
+**North America & Hawaii**: Canada
+**Oceania & Pacific**: Cook Islands, Fiji, French Polynesia, Samoa
+**South America**: Argentina, Brazil, Chile, Peru
+
+## Project Objectives
+
+### Primary Goals
+1. **Expand to 250 tours** (+150 new tours)
+2. **Add 10+ Mini Moon tours** (7-day duration)
+3. **Create 15-20 Ultra Luxury tours** (£15,000+ price point)
+4. **Develop 13+ additional Road Trip tours** (total 15)
+5. **Ensure minimum 2 tours per destination** (eliminate single-tour countries)
+6. **Add 20+ multi-country combination tours**
+
+### Destination Strategy
+**Remove Low-Performing Destinations**:
+- Bhutan (limited accessibility, single tour)
+- Madagascar (logistical challenges, single tour)
+- Zimbabwe (limited luxury infrastructure)
+- Zambia (limited luxury infrastructure)
+
+**Add High-Demand Destination**:
+- **Mauritius** (Indian Ocean luxury market gap)
+
+### New Tour Categories to Develop
+
+#### 1. Mini Moons (7-day tours) - Target: 10 tours
+- European city breaks (Paris, Rome, Barcelona)
+- Caribbean escapes (Barbados, St. Lucia)
+- Asian getaways (Singapore, Hong Kong)
+- Domestic luxury (Scotland Highlands, Cornwall)
+
+#### 2. Ultra Luxury Collection - Target: 15-20 tours
+- Private island resorts (Maldives, Seychelles)
+- Exclusive safari lodges (Kenya, Tanzania)
+- Luxury train journeys (Orient Express routes)
+- Private yacht charters (Greek Islands, Croatia)
+- Michelin-starred culinary tours (France, Japan)
+
+#### 3. Extended Road Trips - Target: 13 additional tours
+- European Grand Tours (Germany-Austria-Switzerland)
+- American West Coast (California-Oregon)
+- Australian Coastal (Sydney-Melbourne-Adelaide)
+- New Zealand South Island
+- Scottish Highlands & Islands
+- Italian Riviera to Tuscany
+- Norwegian Fjords
+- Canadian Rockies
+- South African Garden Route
+- Patagonia (Argentina-Chile)
+
+#### 4. Multi-Country Combinations - Target: 30+ tours
+- Southeast Asia combinations (Thailand-Vietnam-Cambodia)
+- East Africa combinations (Kenya-Tanzania-Rwanda)
+- Souther European combinations (Italy-Greece-Spain)
+- Central European combinations (Germany-Switzerland-Italy-Austria)
+- Balkans combinations (Croatia-Slovenia-Montenegro)
+- Central America combinations (Costa Rica-Panama-Guatemala)
+- Safari & Seclusion (Tanzania-Seychelles)
+- Oceania (Australia-New Zealand-French Polynesia)
+- Hawaai (US-Hawaai-Japan)
+
+## Technical Implementation Requirements
+
+### Database Schema Updates
+**No structural changes required** - existing schema supports expansion:
+- `tours` table can accommodate 250+ records
+- `countries` array field supports multi-country tours
+- `collection` field can handle new categories
+- `duration` and `guide_price` fields support new ranges
+
+### Data Requirements for Each New Tour
+1. **Core Tour Data** (tours table):
+   - title, slug, duration, guide_price, summary, description
+   - region_id, countries array, collection
+   - activity, pace, callouts, best_season (for AI matching)
+   - theme_tags, recommendation_metric, embedding
+
+2. **Tour Itineraries** (tour_itineraries table):
+   - Daily breakdown with high level description of activities
+   - 3-5 itinerary entries per tour average
+
+3. **Tour Highlights** (tour_highlights table):
+   - 6 highlights per tour
+
+4. **Tour Images** (tour_images table):
+   - 10-15 high-quality images per tour
+   - Featured image selection
+
+5. **Tour Locations** (tour_locations table):
+   - GPS coordinates for mapping
+   - 3-5 key locations per tour
+
+### Content Creation Pipeline
+1. **Tour Concept Development** (Gemini AI assistance)
+2. **Itinerary Creation** (Hotel selection from existing database)
+3. **Content Writing** (Descriptions, highlights, summaries)
+4. **Image Curation** (High-quality photography)
+5. **Data Entry & QA**
+6. **AI Embedding Generation** (for search functionality)
+
+## Resource Requirements
+
+### Content Creation
+- **150 new tour concepts** and detailed itineraries
+- **2,250+ new images** (15 per tour average)
+- **750+ new highlights** (5 per tour average)
+- **600+ new itinerary entries** (4 per tour average)
+
+### Quality Assurance
+- Tour content review and editing
+- Image quality and consistency checks
+- Pricing validation and market research
+- AI embedding generation and testing
+
+### Technical Tasks
+- Bulk data import procedures
+- Image processing and optimization
+- Search index updates
+- Performance testing with larger dataset
+
+## Success Metrics
+
+### Quantitative Goals
+- **250 total tours** (150 new)
+- **Zero single-tour destinations** (except strategic exclusions)
+- **10+ Mini Moon options** (7-day tours)
+- **15+ Road Trip options** (total)
+- **15-20 Ultra Luxury options** (£15,000+)
+- **Improved questionnaire match rate** (target: 95%+ matches)
+
+## Technical Execution Plan & Script Consolidation
+
+To efficiently manage the data population for 150 new tours, the existing Python scripts must be organized and streamlined. This section outlines the role and priority of each script and proposes a consolidation strategy to create a robust, manageable, and scalable data processing pipeline.
+
+### Script Analysis and Priority
+
+| Script Name                     | Key Role                                                                            | Priority for 250 Tours Project | Necessity                                                                                   |
+| ------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
+| `populate_tours.py`             | Creates core tour records in the `tours` table from a CSV input.                    | **High**                       | **Critical**. This is the foundational step for adding any new tour.                          |
+| `questions_vectors_tours.py`    | Generates AI embeddings for the questionnaire's semantic search feature.            | **High**                       | **Critical**. Without embeddings, the new tours will not appear in AI recommendations.      |
+| `populate_tour_highlights.py`   | Populates the `tour_highlights` table with AI-generated content for each tour.      | **High**                       | **Essential**. Required for displaying key features on tour detail pages.                   |
+| `migrate_tour_itineraries.py`   | Generates detailed day-by-day itineraries for the `tour_itineraries` table.         | **High**                       | **Essential**. Core content for what the user is purchasing.                                |
+| `tour_maps.py`                  | Generates GPS coordinates for key locations within a tour for map rendering.        | **High**                       | **Essential**. Required for the interactive map feature on tour pages.                      |
+| `generate_images.py`            | Manages the full lifecycle of tour images: search, AI validation, processing, upload. | **High**                       | **Very Important**. High-quality imagery is crucial for a luxury travel site.                |
+| `hotels.py`                     | Enriches hotel data with Google Places info, AI narratives, and images.             | **Medium**                     | **Important**. Needed to provide detailed information on accommodations within itineraries.   |
+| `populate_other_tables.py`      | Populates the `regions` and `countries` tables with foundational data.              | **Medium**                     | **Conditionally Important**. Only needed to add new destinations like Mauritius.            |
+| `countries_image.py`            | Finds and updates the `featured_image` for records in the `countries` table.        | **Low**                        | **Useful**. Good for general site maintenance and for new countries.                        |
+| `destination_images.py`         | Aggregates all tour images for a specific country into a separate table.            | **Low**                        | **Useful**. Populates country-level galleries. Can be run after tours are complete.         |
+| `unsplash_simple.py`            | An alternative, more complex script for finding and processing images.              | **Low**                        | **Optional**. Functionality is largely covered by `generate_images.py`.                     |
+| `add_country_name.py`           | Updates a legacy schema in the `tours` table with country names.                    | **None**                       | **Not Essential**. The current schema uses a `countries` array field.                       |
+| `simple_unsplash.py`            | A very basic utility to search Unsplash.                                            | **None**                       | **Not Essential**. Functionality is superseded by more advanced image scripts.              |
+| `ab_test_image_processing.py`   | An empty/incomplete script placeholder.                                             | **None**                       | **Not Essential**.                                                                          |
+
+### Script Consolidation Strategy
+
+The current collection of 14 scripts can be consolidated into a more logical and efficient structure. A master "orchestrator" script will manage a set of specialized modules, improving maintainability, error handling, and the ability to resume the process.
+
+**Proposed Structure:**
+
+1.  **`tour_expansion_pipeline.py` (Master Orchestrator)**
+    *   **Role**: The main entry point for the entire data generation process.
+    *   **Responsibilities**:
+        *   Read a master configuration file (`config.yaml`).
+        *   Manage progress tracking and state (e.g., in a `progress.json` file) to allow for resumability.
+        *   Execute the other modules in the correct sequence.
+        *   Handle batch processing of tours to avoid overwhelming APIs.
+        *   Implement error handling and retry logic at a high level.
+
+2.  **`modules/infrastructure.py` (Infrastructure Manager)**
+    *   **Consolidates**: `populate_other_tables.py`, `countries_image.py`.
+    *   **Role**: Handles the setup of foundational data that rarely changes.
+    *   **Responsibilities**: Creating new regions, adding new countries (e.g., Mauritius), and updating their corresponding images. This would be run once at the start of the project.
+
+3.  **`modules/tour_creation.py` (Tour Creator)**
+    *   **Consolidates**: `populate_tours.py`, `questions_vectors_tours.py`.
+    *   **Role**: Handles the initial creation of a tour record and its associated AI search data.
+    *   **Responsibilities**:
+        *   Reading tour definitions from the input CSV.
+        *   Inserting the base record into the `tours` table.
+        *   Immediately generating and saving the vector embedding for the tour. These two steps should be atomic to ensure a new tour is always searchable.
+
+4.  **`modules/content_generation.py` (Content Generator)**
+    *   **Consolidates**: `populate_tour_highlights.py`, `migrate_tour_itineraries.py`, `tour_maps.py`.
+    *   **Role**: Creates all the descriptive, text-based content for a tour.
+    *   **Responsibilities**: Takes a `tour_id` as input and calls the Gemini API to generate highlights, detailed itineraries, and map locations. Can be run in parallel for multiple tours.
+
+5.  **`modules/media_processing.py` (Media Processor)**
+    *   **Consolidates**: `generate_images.py`, `hotels.py`.
+    *   **Role**: Manages all image and external data enrichment (hotels).
+    *   **Responsibilities**: Searches for, validates, processes, and uploads all tour images. Fetches and populates detailed hotel data from Google Places and generates AI narratives. This is the most time-consuming part and benefits most from robust error handling.
+
+### Optimized Execution Flow
+
+The `tour_expansion_pipeline.py` orchestrator would implement the following logic:
+
+```
+START
+
+1.  **SETUP PHASE (Run Once)**
+    - Call `infrastructure.py` to add Mauritius to the `countries` and `regions` tables.
+
+2.  **BATCH PROCESSING LOOP (For all 150 new tours)**
+    - Read a batch of 10-20 tours from the input CSV.
+    - For each tour in the batch:
+        a. **CREATE**: Call `tour_creation.py` to create the tour record and its AI embedding.
+           - If this fails, log the error and skip this tour for now.
+        b. **GENERATE CONTENT (Parallel)**:
+           - Asynchronously call `content_generation.py` for all successfully created tours in the batch to generate highlights, itineraries, and map data simultaneously.
+        c. **PROCESS MEDIA (Parallel, Rate-Limited)**:
+           - Asynchronously call `media_processing.py` for the batch to find images and enrich hotel data. Apply rate limiting to avoid API bans.
+
+3.  **VALIDATION & CLEANUP**
+    - Run final validation checks.
+    - Manually review any tours that failed during the process.
+
+END
+```
+
+This streamlined approach reduces complexity, centralizes configuration, and makes the entire process of adding 150 tours significantly more robust and manageable.

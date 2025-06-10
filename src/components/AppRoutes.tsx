@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { supabase } from "../utils/supabaseClient"; // Import Supabase client
 import Layout from "./Layout"; // Import the new Layout component
 import Index from "../pages/Index";
 import Destination from "../pages/Destination";
@@ -11,6 +12,10 @@ import CollectionDetailPage from "../pages/CollectionDetailPage";
 import RegionCountriesPage from "../pages/RegionCountriesPage";
 import AiPlannerContainer from "./ai-planner/AiPlannerContainer";
 import ContactUs from "../pages/ContactUs"; // Import the ContactUs page
+
+interface Tour {
+  title: string;
+}
 
 // Simple scroll restoration function
 function ScrollRestoration() {
@@ -25,6 +30,24 @@ function ScrollRestoration() {
 
 export const AppRoutes = () => {
   const navigate = useNavigate(); // This is now inside Router context
+  const [tours, setTours] = useState<Tour[]>([]);
+
+  useEffect(() => {
+    const fetchTours = async () => {
+      const { data, error } = await supabase
+        .from('tours')
+        .select('title')
+        .order('title', { ascending: true });
+
+      if (error) {
+        console.error("Error fetching tours:", error);
+      } else {
+        setTours(data as Tour[]);
+      }
+    };
+
+    fetchTours();
+  }, []);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -62,7 +85,7 @@ export const AppRoutes = () => {
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/collections/:slug" element={<CollectionDetailPage />} />
           <Route path="/about" element={<NotFound />} />
-          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/contact" element={<ContactUs tours={tours} />} />
           <Route path="/destinations/regions/:slug" element={<RegionCountriesPage />} />
           {/* Catch-all for routes within Layout */}
           <Route path="*" element={<NotFound />} />

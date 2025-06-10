@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { getRegions, getCountries } from '@/services/honeymoonService';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { ImagePresets } from '@/utils/imageOptimization';
 
 // Cache objects outside component to persist between renders
 let cachedRegions: any[] = [];
@@ -177,15 +179,14 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                         className="group"
                       >
                         <div className="relative overflow-hidden rounded-md mb-2 aspect-square">
-                          {country.featured_image ? (
-                            <img 
-                              src={country.featured_image} 
-                              alt={country.name}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gray-200"></div>
-                          )}
+                          <ProgressiveImage
+                            src={country.featured_image}
+                            alt={country.name}
+                            className="w-full h-full"
+                            optimization={ImagePresets.cardSmall}
+                            placeholder="shimmer"
+                            loading="lazy"
+                          />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                             <h4 className="text-white font-serif font-medium text-lg p-3">
                               {country.name}
@@ -243,15 +244,14 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                                 className="group"
                               >
                                 <div className="relative overflow-hidden rounded-md mb-2 aspect-square">
-                                  {country.featured_image ? (
-                                    <img 
-                                      src={country.featured_image} 
-                                      alt={country.name}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  ) : (
-                                    <div className="w-full h-full bg-gray-200"></div>
-                                  )}
+                                  <ProgressiveImage
+                                    src={country.featured_image}
+                                    alt={country.name}
+                                    className="w-full h-full"
+                                    optimization={ImagePresets.cardSmall}
+                                    placeholder="shimmer"
+                                    loading="lazy"
+                                  />
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                                     <h4 className="text-white font-serif font-medium text-base p-3">
                                       {country.name}
@@ -332,15 +332,14 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                         className="group"
                       >
                         <div className="relative overflow-hidden rounded-md mb-2 aspect-w-16 aspect-h-10">
-                          {country.featured_image ? (
-                            <img 
-                              src={country.featured_image} 
-                              alt={country.name}
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gray-200"></div>
-                          )}
+                          <ProgressiveImage
+                            src={country.featured_image}
+                            alt={country.name}
+                            className="w-full h-full"
+                            optimization={ImagePresets.cardMedium}
+                            placeholder="shimmer"
+                            loading="lazy"
+                          />
                           <div className="absolute inset-0 bg-black bg-opacity-20 transition-opacity group-hover:bg-opacity-10"></div>
                         </div>
                         <h4 className="font-serif font-medium text-lg group-hover:text-travel-coral transition-colors">
@@ -369,15 +368,14 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
                           className="group"
                         >
                           <div className="relative overflow-hidden rounded-md mb-2 aspect-w-16 aspect-h-10">
-                            {country.featured_image ? (
-                              <img 
-                                src={country.featured_image} 
-                                alt={country.name}
-                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                              />
-                            ) : (
-                              <div className="w-full h-full bg-gray-200"></div>
-                            )}
+                            <ProgressiveImage
+                              src={country.featured_image}
+                              alt={country.name}
+                              className="w-full h-full"
+                              optimization={ImagePresets.cardMedium}
+                              placeholder="shimmer"
+                              loading="lazy"
+                            />
                             <div className="absolute inset-0 bg-black bg-opacity-20 transition-opacity group-hover:bg-opacity-10"></div>
                           </div>
                           <h4 className="font-serif font-medium text-lg group-hover:text-travel-coral transition-colors">

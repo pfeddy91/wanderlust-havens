@@ -54,11 +54,11 @@ const Explore = () => {
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
         <div className={contentWrapperClass}>
           <div className="mb-12 md:mb-16">
-            <span className={`${featuresTitleColor} font-semibold tracking-wider uppercase text-sm md:text-base`}>
-              FEATURES
+            <span className={`${featuresTitleColor} font-semibold tracking-wider text-3xl md:text-3xl mb-2 block`}>
+              Features
             </span>
-            <h2 className={`text-4xl md:text-5xl font-serif font-bold ${mainHeadingColor} mt-2 leading-tight`}>
-              We make nature <br /> accessible
+            <h2 className={`text-3xl md:text-3xl font-serif font-light ${mainHeadingColor} mt-2 leading-tight`}>
+              We make nature accessible
             </h2>
           </div>
 

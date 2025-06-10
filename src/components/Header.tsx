@@ -6,7 +6,11 @@ import DestinationsPopup from "./DestinationsPopup";
 import MobileMenu from "./MobileMenu";
 import { Link, useNavigate } from 'react-router-dom';
 
-const Header = () => {
+interface HeaderProps {
+  hideNavigation?: boolean;
+}
+
+const Header = ({ hideNavigation = false }: HeaderProps) => {
   const [destinationsOpen, setDestinationsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -26,7 +30,7 @@ const Header = () => {
   };
 
   return (
-  <header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-91 shadow-sm px-0">
+  <header className="fixed top-0 left-0 right-0 z-50 shadow-sm px-0 backdrop-blur-md" style={{ backgroundColor: '#fcfaf5', borderBottom: '1px solid #00395c' }}>
     <div className="w-full mx-0 px-0">
       <div className="flex justify-between items-center h-20 px-12">
         <Link 
@@ -37,7 +41,7 @@ const Header = () => {
         </Link>
 
           {/* Desktop Navigation - Center */}
-          {!isMobile && (
+          {!isMobile && !hideNavigation && (
             <nav className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-10">
               <Link 
                 to="/planner" 
@@ -65,10 +69,11 @@ const Header = () => {
           {!isMobile && (
             <div className="flex items-center space-x-4 pr-0">
               <Button 
-                className="bg-travel-charcoal hover:bg-travel-charcoal/90 text-white font-serif rounded-[10px] px-8 h-12 capitalize text-lg font-medium tracking-wide"
+                className="text-white font-serif rounded-[10px] px-10 h-12 capitalize text-lg font-normal tracking-wide"
+                style={{ backgroundColor: '#00395c' }}
                 onClick={() => handleNavigation('/contact')}
               >
-                Get in Touch
+                Get In Touch
               </Button>
             </div>
           )}
@@ -93,7 +98,7 @@ const Header = () => {
       </div>
 
       {/* Destinations Popup - only for desktop */}
-      {!isMobile && destinationsOpen && <DestinationsPopup onClose={closeDestinations} />}
+      {!isMobile && !hideNavigation && destinationsOpen && <DestinationsPopup onClose={closeDestinations} />}
       
       {/* Custom Mobile Menu - completely independent of Radix UI */}
       <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />

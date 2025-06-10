@@ -25,7 +25,7 @@ export default {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
+				background: '#fcfaf5',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
@@ -75,9 +75,10 @@ export default {
 				'travel-torquoise': '#f0faf9',
 				'travel-green': '#C1D8C3',
 				'travel-dark-green': '#6A9C89',
-				'travel-burgundy': '#8c1818',
+				'travel-burgundy': '#540b0e',
 				'travel-charcoal': '#333333',
 				'travel-brown': '#EDE7D9',
+				white: '#fcfaf5',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -158,7 +159,7 @@ export default {
 				'image-rotate': 'image-rotate 8s ease-in-out forwards'
 			},
 			fontFamily: {
-				sans: ['Jost', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				sans: ['"Instrument Serif"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
 				mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
 			}
