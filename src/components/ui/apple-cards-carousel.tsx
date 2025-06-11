@@ -14,6 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { useCarouselSwipe } from "@/hooks/useSwipeGesture";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -89,6 +90,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     return false;
   };
 
+  // Add swipe gesture support for mobile
+  const swipeHandlers = useCarouselSwipe(scrollLeft, scrollRight);
+
   return (
     <CarouselContext.Provider
       value={{ onCardClose: handleCardClose, currentIndex }}
@@ -98,6 +102,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           className="flex w-full overflow-x-auto overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
           ref={carouselRef}
           onScroll={checkScrollability}
+          {...swipeHandlers}
         >
           <div
             className={cn(

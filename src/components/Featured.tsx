@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/utils/supabaseClient';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCarouselSwipe } from '@/hooks/useSwipeGesture';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { optimizeImageUrl, ImagePresets } from '@/utils/imageOptimization';
 
 interface Tour {
   id: string;
@@ -24,6 +27,7 @@ const Featured = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   
   // Fetch featured tours data and associated country names
   useEffect(() => {
@@ -316,6 +320,9 @@ const Featured = () => {
     scrollToSlide(targetIndex);
   };
   
+  // Swipe gesture handlers for mobile carousel navigation
+  const swipeHandlers = useCarouselSwipe(scrollPrev, scrollNext);
+  
   // For dot navigation, map indices to the original tours
   const getOriginalIndex = (currentIndex: number) => {
       // If augmentation didn't happen, index is direct
@@ -393,6 +400,7 @@ const Featured = () => {
                   ref={scrollRef}
                   className="flex pb-16 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                  {...swipeHandlers}
                 >
                   {tours.map((tour, index) => (
                     <div
@@ -404,9 +412,13 @@ const Featured = () => {
                         {tour.featured_image ? (
                           <div className="relative w-full h-full">
                             <img 
-                              src={tour.featured_image} 
+                              src={optimizeImageUrl(
+                                tour.featured_image, 
+                                isMobile ? ImagePresets.carouselMobile : ImagePresets.carouselDesktop
+                              )} 
                               alt={tour.title}
                               className="w-full h-full object-cover"
+                              loading="lazy"
                               onError={(e) => {
                                 (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80';
                               }}

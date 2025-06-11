@@ -32,7 +32,7 @@ const Header = ({ hideNavigation = false }: HeaderProps) => {
   return (
   <header className="fixed top-0 left-0 right-0 z-50 shadow-sm px-0 backdrop-blur-md" style={{ backgroundColor: '#fcfaf5', borderBottom: '1px solid #00395c' }}>
     <div className="w-full mx-0 px-0">
-      <div className="flex justify-between items-center h-20 px-12">
+      <div className="flex justify-between items-center h-20 px-4 md:px-8 lg:px-12">
         <Link 
           to="/" 
           className="pl-0 ml-0"
