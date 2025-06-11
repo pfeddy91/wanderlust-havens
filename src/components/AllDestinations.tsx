@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { supabase } from '@/utils/supabaseClient';
 import { ChevronDown } from 'lucide-react';
 import ProgressiveImage from '@/components/ui/ProgressiveImage';
@@ -19,6 +20,7 @@ const AllDestinations = () => {
   const [loading, setLoading] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const fetchRegions = async () => {
@@ -104,7 +106,7 @@ const AllDestinations = () => {
 
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+      <div className={`container mx-auto ${isMobile ? 'px-4' : 'px-4'}`}>
         {/* Hero section with region selector */}
         <div className="mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
@@ -137,17 +139,27 @@ const AllDestinations = () => {
         </div>
         
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[...Array(8)].map((_, index) => (
-              <div 
-                key={index} 
-                className="animate-pulse bg-gray-200 rounded-lg aspect-[3/4]"
-              ></div>
-            ))}
-          </div>
+          isMobile ? (
+            // Mobile loading: rectangular tile skeletons
+            <div className="space-y-2">
+              {[...Array(6)].map((_, index) => (
+                <div key={index} className="h-40 w-full bg-gray-200 animate-pulse"></div>
+              ))}
+            </div>
+          ) : (
+            // Desktop loading: existing grid
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[...Array(8)].map((_, index) => (
+                <div 
+                  key={index} 
+                  className="animate-pulse bg-gray-200 rounded-lg aspect-[3/4]"
+                ></div>
+              ))}
+            </div>
+          )
         ) : (
           <div className="grid-container">
-            {/* Custom CSS Grid Layout */}
+            {/* Desktop Layout - Keep existing */}
             <div className="hidden md:grid grid-cols-4 auto-rows-[200px] gap-4">
               {regions.map((region, index) => {
                 const config = getTileConfig(index);
@@ -179,25 +191,28 @@ const AllDestinations = () => {
               })}
             </div>
             
-            {/* Mobile Layout - 2x2 Grid with Same Size Tiles */}
-            <div className="grid md:hidden grid-cols-2 gap-3">
+            {/* Mobile Layout - New Rectangular Tiles */}
+            <div className="md:hidden space-y-2">
               {regions.map((region) => (
                 <div
                   key={region.id}
-                  className="relative overflow-hidden rounded-lg cursor-pointer aspect-square"
+                  className="relative w-full h-40 cursor-pointer overflow-hidden"
                   onClick={() => handleRegionClick(region)}
                 >
-                  <ProgressiveImage
+                  {/* Background Image */}
+                  <img
                     src={region.featured_image || `https://source.unsplash.com/featured/?${region.name},landscape`}
                     alt={region.name}
-                    className="w-full h-full"
-                    optimization={ImagePresets.cardMedium}
-                    placeholder="shimmer"
-                    loading="lazy"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-center justify-center p-2">
-                    <h3 className="text-white font-serif text-xl font-medium text-center">
-                        {region.name}
+                  
+                  {/* Dark Overlay */}
+                  <div className="absolute inset-0 bg-black/20" />
+                  
+                  {/* Text Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-white text-2xl font-serif font-semibold tracking-wide">
+                      {region.name}
                     </h3>
                   </div>
                 </div>

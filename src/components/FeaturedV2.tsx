@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useCarouselSwipe } from '@/hooks/useSwipeGesture';
 import { supabase } from '@/utils/supabaseClient'; // Assuming this path is correct
 import { Carousel, Card, CardType as AppleCardDataType } from '@/components/ui/apple-cards-carousel'; // Import new carousel
 import { Button } from '@/components/ui/button'; // For a "View Itinerary" button
@@ -39,11 +41,156 @@ const TourDetailContent = ({ tour, onNavigate }: { tour: Tour; onNavigate: (slug
 };
 
 
+// Mobile Carousel Card Component
+const MobileCarouselCard = ({ tour, onClick }: { tour: Tour; onClick: () => void }) => {
+  return (
+    <div 
+      className="flex-shrink-0 w-[210px] h-[420px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+      onClick={onClick}
+    >
+      {/* Background Image */}
+      <img
+        src={tour.featured_image || optimizeImageUrl('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', ImagePresets.cardLarge)}
+        alt={tour.title}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />
+      
+      {/* Content */}
+      <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
+        {/* Country Label */}
+        <div className="text-xs font-medium uppercase tracking-widest opacity-90">
+          {tour.country_names.join(' • ') || 'Multiple Destinations'}
+        </div>
+        
+        {/* Title at Bottom */}
+        <div className="space-y-2">
+          <h3 className="text-2xl font-serif leading-tight">
+            {tour.title}
+          </h3>
+          <p className="text-sm opacity-90">
+            {tour.duration} nights
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Mobile Infinite Carousel Component
+const MobileInfiniteCarousel = ({ tours, onTourClick }: { tours: Tour[]; onTourClick: (slug: string) => void }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Create infinite array by tripling the tours
+  const infiniteTours = [...tours, ...tours, ...tours];
+  const startIndex = tours.length; // Start in the middle set
+  
+  useEffect(() => {
+    setCurrentIndex(startIndex);
+  }, [startIndex]);
+
+  const scrollToIndex = (index: number) => {
+    if (carouselRef.current) {
+      const cardWidth = 210 + 16; // card width + gap
+      carouselRef.current.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleNext = () => {
+    const newIndex = currentIndex + 1;
+    setCurrentIndex(newIndex);
+    scrollToIndex(newIndex);
+    
+    // Reset to middle when reaching end
+    if (newIndex >= tours.length * 2) {
+      setTimeout(() => {
+        setCurrentIndex(tours.length);
+        if (carouselRef.current) {
+          const cardWidth = 210 + 16;
+          carouselRef.current.scrollTo({
+            left: tours.length * cardWidth,
+            behavior: 'auto'
+          });
+        }
+      }, 300);
+    }
+  };
+
+  const handlePrev = () => {
+    const newIndex = currentIndex - 1;
+    setCurrentIndex(newIndex);
+    scrollToIndex(newIndex);
+    
+    // Reset to middle when reaching start
+    if (newIndex < tours.length) {
+      setTimeout(() => {
+        setCurrentIndex(tours.length * 2 - 1);
+        if (carouselRef.current) {
+          const cardWidth = 210 + 16;
+          carouselRef.current.scrollTo({
+            left: (tours.length * 2 - 1) * cardWidth,
+            behavior: 'auto'
+          });
+        }
+      }, 300);
+    }
+  };
+
+  const swipeHandlers = useCarouselSwipe(handlePrev, handleNext);
+
+  return (
+    <div className="relative">
+      {/* Carousel Container */}
+      <div 
+        ref={carouselRef}
+        className="flex gap-4 overflow-x-auto scrollbar-hide py-4"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        {...swipeHandlers}
+      >
+        {infiniteTours.map((tour, index) => (
+          <MobileCarouselCard
+            key={`${tour.id}-${index}`}
+            tour={tour}
+            onClick={() => onTourClick(tour.slug)}
+          />
+        ))}
+      </div>
+      
+      {/* Navigation Arrows */}
+      <div className="flex justify-center mt-6 space-x-4">
+        <button
+          onClick={handlePrev}
+          className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={handleNext}
+          className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const FeaturedV2 = () => {
   const [originalTours, setOriginalTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const fetchFeaturedToursAndCountries = async () => {
@@ -156,11 +303,11 @@ const FeaturedV2 = () => {
     return (
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4 lg:mb-4">
-          <div className="max-w-[60%] mx-auto">
+          <div className={`${isMobile ? 'max-w-[90%]' : 'max-w-[60%]'} mx-auto`}>
             <span className="font-serif text-3xl md:text-3xl font-semibold mb-2 block" style={{ color: '#161618' }}>
               Explore Our Moons
             </span>
-            <p className="text-xl md:text-xl font-sans mt-2 leading-tight" style={{ color: '#161618' }}>
+            <p className={`${isMobile ? 'text-lg' : 'text-xl md:text-xl'} font-sans mt-2 leading-tight`} style={{ color: '#161618' }}>
             These are not just destinations; they are intimate encounters with the world's most breathtaking and secluded wonders, curated with passion and unparalleled care for the first, most magical chapter of your life together.
             </p>
           </div>
@@ -170,12 +317,13 @@ const FeaturedV2 = () => {
   };
   
   if (loading) {
+    const paddingClass = isMobile ? 'px-4' : 'px-8';
     return (
-      <section className="py-12 bg-white dark:bg-travel-charcoal text-neutral-800 dark:text-white overflow-hidden px-8">
+      <section className={`py-12 bg-white dark:bg-travel-charcoal text-neutral-800 dark:text-white overflow-hidden ${paddingClass}`}>
         <TitleSection />
         <div className="flex space-x-4 overflow-hidden py-8 md:py-14 justify-center">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="w-[17rem] md:w-[22rem] h-[26rem] md:h-[39rem] bg-gray-200 dark:bg-neutral-800 animate-pulse rounded-xl flex-shrink-0"></div>
+            <div key={i} className={`${isMobile ? 'w-[210px] h-[420px]' : 'w-[17rem] md:w-[22rem] h-[26rem] md:h-[39rem]'} bg-gray-200 dark:bg-neutral-800 animate-pulse rounded-xl flex-shrink-0`}></div>
           ))}
         </div>
       </section>
@@ -183,8 +331,9 @@ const FeaturedV2 = () => {
   }
 
   if (error) {
+    const paddingClass = isMobile ? 'px-4' : 'px-8';
     return (
-      <section className="py-16 bg-white dark:bg-travel-charcoal text-neutral-800 dark:text-white px-8">
+      <section className={`py-16 bg-white dark:bg-travel-charcoal text-neutral-800 dark:text-white ${paddingClass}`}>
         <TitleSection />
         <div className="text-center py-8 bg-red-100 dark:bg-red-900/20 rounded border border-red-300 dark:border-red-700 max-w-md mx-auto mt-4">
           <p className="text-red-700 dark:text-red-300">{error}</p>
@@ -194,8 +343,9 @@ const FeaturedV2 = () => {
   }
 
   if (carouselCards.length === 0) {
+    const paddingClass = isMobile ? 'px-4' : 'px-8';
     return (
-      <section className="py-16 bg-white dark:bg-travel-charcoal text-neutral-800 dark:text-white px-8">
+      <section className={`py-16 bg-white dark:bg-travel-charcoal text-neutral-800 dark:text-white ${paddingClass}`}>
         <TitleSection />
         <div className="text-center py-8 text-neutral-600 dark:text-neutral-400 mt-4">
           <p>No featured tours available at the moment.</p>
@@ -204,8 +354,22 @@ const FeaturedV2 = () => {
     );
   }
 
+  const paddingClass = isMobile ? 'px-4' : 'px-8';
+
+  if (isMobile) {
+    // Mobile: Custom infinite carousel
+    return (
+      <section className={`py-8 md:py-16 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-white overflow-x-hidden ${paddingClass}`}>
+        <TitleSection />
+        <MobileInfiniteCarousel tours={originalTours} onTourClick={handleNavigateToTour} />
+      </section>
+    );
+  }
+
+  // Desktop: Original AppleCardsCarousel
   return (
-<section className="py-8 md:py-16 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-white overflow-x-hidden px-8">      <TitleSection />
+    <section className={`py-8 md:py-16 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-white overflow-x-hidden ${paddingClass}`}>
+      <TitleSection />
       <Carousel items={carouselCards} />
     </section>
   );

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { getCountriesByFeaturedDestination } from '@/services/honeymoonService'; // Updated import
 // If not using Next.js, replace with a standard <img> tag or your preferred Image component
 import { cn } from "@/lib/utils"; // Assuming you have this utility
@@ -130,6 +131,7 @@ const DestinationCardsDisplay = ({ cards, onCardClick }: { cards: FocusCardData[
 // Main RegionsGrid Component
 const RegionsGrid = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [destinationsToDisplay, setDestinationsToDisplay] = useState<FocusCardData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -170,10 +172,10 @@ const RegionsGrid = () => {
       <div className="text-center mb-8 lg:mb-12">
         <div className="max-w-[60%] mx-auto">
           <span className="text-3xl md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
-            Destinations
+            Dream Destinations
           </span>
-          <h2 className="text-xl md:text-xl font-sans mt-2 leading-tight" style={{ color: '#161618' }}>
-            Explore Our Favourite Destinations. You can find all of our destinations{' '}
+          <h2 className="text-lg md:text-xl font-sans mt-2 leading-tight" style={{ color: '#161618' }}>
+            Explore Our Favourite Destinations. You can find the full list {' '}
             <button
               onClick={() => navigate('/destinations')}
               className="font-sans underline hover:no-underline transition-all"
@@ -192,8 +194,22 @@ const RegionsGrid = () => {
   // const mainContentWrapperClass = `max-w-6xl mx-auto w-full ${leftPaddingClass}`;
 
   if (isLoading) {
+    if (isMobile) {
+      // Mobile loading: tile skeletons
+      return (
+        <section className="py-12 md:py-16 bg-white dark:bg-neutral-950 overflow-x-hidden px-4">
+          <PageHeader />
+          <div className="space-y-2">
+            {[1, 2, 3, 4, 5, 6].map((i) => ( 
+              <div key={i} className="h-40 w-full bg-gray-300 dark:bg-neutral-700 animate-pulse"></div>
+            ))}
+          </div>
+        </section>
+      );
+    }
+    
+    // Desktop loading: existing fancy card skeletons
     return (
-      // MODIFIED: Section has px-4 (changed from px-1)
       <section className="py-12 md:py-16 bg-white dark:bg-neutral-950 overflow-x-hidden px-8">
         <PageHeader />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
@@ -206,9 +222,9 @@ const RegionsGrid = () => {
   }
 
   if (destinationsToDisplay.length === 0) {
+    const paddingClass = isMobile ? 'px-4' : 'px-8';
     return (
-      // MODIFIED: Section has px-4 (changed from px-1)
-      <section className="py-12 md:py-16 bg-white dark:bg-neutral-950 px-8">
+      <section className={`py-12 md:py-16 bg-white dark:bg-neutral-950 ${paddingClass}`}>
         <PageHeader />
         <div className="w-full">
           <p className="text-gray-600 dark:text-gray-400 text-lg text-center mt-4">
@@ -219,8 +235,47 @@ const RegionsGrid = () => {
     );
   }
 
+  // Get first 6 destinations for mobile
+  const mobileDestinations = destinationsToDisplay.slice(0, 6);
+
+  if (isMobile) {
+    // Mobile: Simple tile layout
+    return (
+      <section className="py-12 md:py-16 bg-white dark:bg-neutral-950 overflow-x-hidden px-4">
+        <PageHeader />
+        {/* Mobile Tiles */}
+        <div className="space-y-2">
+          {mobileDestinations.map((destination) => (
+            <div
+              key={destination.id}
+              className="relative w-full h-40 cursor-pointer overflow-hidden"
+              onClick={() => handleDestinationCardClick(destination.slug)}
+            >
+              {/* Background Image */}
+              <img
+                src={destination.src}
+                alt={destination.title}
+                className="w-full h-full object-cover"
+              />
+              
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/20" />
+              
+              {/* Text Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <h3 className="text-white text-2xl font-serif font-semibold tracking-wide">
+                  {destination.title}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop: Original fancy cards layout
   return (
-    // MODIFIED: Section has px-4 (changed from px-1)
     <section className="py-12 md:py-16 bg-white dark:bg-neutral-950 overflow-x-hidden px-8">
       <PageHeader />
       <DestinationCardsDisplay cards={destinationsToDisplay} onCardClick={handleDestinationCardClick} />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { supabase } from '@/utils/supabaseClient';
 import { ArrowLeft } from 'lucide-react';
 import ProgressiveImage from '@/components/ui/ProgressiveImage';
@@ -28,6 +29,7 @@ const RegionCountries = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const fetchRegionAndCountries = async () => {
@@ -115,7 +117,7 @@ const RegionCountries = () => {
 
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+      <div className={`container mx-auto ${isMobile ? 'px-4' : 'px-4'}`}>
         {/* Back button */}
         <Link 
           to="/destinations" 
@@ -129,11 +131,21 @@ const RegionCountries = () => {
           <div className="animate-pulse">
             <div className="h-12 bg-gray-200 rounded w-1/3 mb-4"></div>
             <div className="h-6 bg-gray-200 rounded w-2/3 mb-12"></div>
-            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-              {[...Array(4)].map((_, index) => (
-                <div key={index} className="h-80 bg-gray-200 rounded"></div>
-              ))}
-            </div>
+            {isMobile ? (
+              // Mobile loading: rectangular tile skeletons
+              <div className="space-y-2">
+                {[...Array(4)].map((_, index) => (
+                  <div key={index} className="h-40 w-full bg-gray-200 animate-pulse"></div>
+                ))}
+              </div>
+            ) : (
+              // Desktop loading: existing grid
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+                {[...Array(4)].map((_, index) => (
+                  <div key={index} className="h-80 bg-gray-200 rounded"></div>
+                ))}
+              </div>
+            )}
           </div>
         ) : region ? (
           <>
@@ -146,7 +158,7 @@ const RegionCountries = () => {
 
             {countries.length > 0 ? (
               <div className="grid-container">
-                {/* Desktop layout - 2 columns of equal large tiles */}
+                {/* Desktop layout - Keep existing 2 columns */}
                 <div className="hidden md:grid grid-cols-2 gap-5">
                   {countries.map((country) => (
                     <div
@@ -171,24 +183,27 @@ const RegionCountries = () => {
                   ))}
                 </div>
                 
-                {/* Mobile Layout - 1 column of equal-sized tiles */}
-                <div className="grid md:hidden grid-cols-1 gap-4">
+                {/* Mobile Layout - New Rectangular Tiles */}
+                <div className="md:hidden space-y-2">
                   {countries.map((country) => (
                     <div
                       key={country.id}
-                      className="relative overflow-hidden rounded-lg cursor-pointer aspect-[4/3]"
+                      className="relative w-full h-40 cursor-pointer overflow-hidden"
                       onClick={() => handleCountryClick(country)}
                     >
-                      <ProgressiveImage
+                      {/* Background Image */}
+                      <img
                         src={country.featured_image || `https://source.unsplash.com/featured/?${country.name},travel`}
                         alt={country.name}
-                        className="w-full h-full"
-                        optimization={ImagePresets.cardMedium}
-                        placeholder="shimmer"
-                        loading="lazy"
+                        className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
-                        <h3 className="text-white font-serif text-2xl font-medium text-center px-2">
+                      
+                      {/* Dark Overlay */}
+                      <div className="absolute inset-0 bg-black/20" />
+                      
+                      {/* Text Overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <h3 className="text-white text-2xl font-serif font-semibold tracking-wide">
                           {country.name}
                         </h3>
                       </div>

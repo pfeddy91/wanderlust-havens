@@ -1,0 +1,166 @@
+/* Premium Gallery Animations - Add to your global CSS or import in main app */
+
+/* Enhanced shimmer effect for image loading */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+/* Ken Burns zoom in effect */
+@keyframes kenBurnsZoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+/* Ken Burns zoom out effect */
+@keyframes kenBurnsZoomOut {
+  0% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Ken Burns pan left effect */
+@keyframes kenBurnsPanLeft {
+  0% {
+    transform: translateX(0) scale(1.05);
+  }
+  100% {
+    transform: translateX(-30px) scale(1.1);
+  }
+}
+
+/* Ken Burns pan right effect */
+@keyframes kenBurnsPanRight {
+  0% {
+    transform: translateX(0) scale(1.05);
+  }
+  100% {
+    transform: translateX(30px) scale(1.1);
+  }
+}
+
+/* Radial gradient for subtle vignette effect */
+.bg-radial-gradient {
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.02) 100%
+  );
+}
+
+/* Optimized transitions for smooth performance */
+.gallery-image {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* Premium image container optimizations */
+.premium-image-container {
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+/* High-performance blur for LQIP */
+.premium-blur {
+  filter: blur(8px);
+  transform: scale(1.1);
+  will-change: filter, transform;
+}
+
+/* Smooth scale transitions */
+.premium-scale-transition {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Luxury hover effects */
+.luxury-hover {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-hover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Elegant border glow effect */
+.border-glow {
+  box-shadow: 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .gallery-image {
+    transform-style: flat;
+    -webkit-transform-style: flat;
+  }
+  
+  /* Reduce motion for better mobile performance */
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-image,
+    .premium-scale-transition,
+    .luxury-hover {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+/* Preload optimization classes */
+.preload-critical {
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px 800px;
+}
+
+/* Loading state optimizations */
+.loading-placeholder {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Luxury typography for captions */
+.caption-luxury {
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.05em;
+}
+
+/* Intersection Observer optimization */
+.io-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.io-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, opacity;
+} 
