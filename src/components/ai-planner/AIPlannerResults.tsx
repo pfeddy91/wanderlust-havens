@@ -94,10 +94,10 @@ const AIPlannerResults: React.FC = () => {
       <div className="container mx-auto py-10 px-4 pt-28">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-4xl font-bold mb-4 font-serif">
+          <h1 className="text-2xl md:text-4xl font-serif font-bold mb-4">
             Your Perfect Honeymoon Matches
           </h1>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg font-serif max-w-2xl mx-auto" style={{ color: '#6b7280' }}>
             Based on your preferences, we've found these exceptional experiences crafted just for you. Remember, our travel advisors will be able to fully customize any of these tours to your liking. 
           </p>
         </div>

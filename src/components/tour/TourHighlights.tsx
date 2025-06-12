@@ -24,7 +24,7 @@ const TourHighlights = ({ tour }: TourHighlightsProps) => {
   return (
     <div className="space-y-16">
       <div>
-        <h2 className="mb-12 font-serif text-3xl font-bold uppercase tracking-wide">
+        <h2 className="mb-12 font-serif text-xl md:text-3xl font-bold uppercase tracking-wide">
           Tour Highlights
         </h2>
         
@@ -35,9 +35,9 @@ const TourHighlights = ({ tour }: TourHighlightsProps) => {
                 <span className="text-primary font-medium">{index + 1}</span>
               </div>
               <div>
-                <p className="font-serif font-medium text-2xl">{highlight.title}</p>
+                <p className="font-serif font-medium text-lg md:text-2xl">{highlight.title}</p>
                 {highlight.description && (
-                  <p className="text-gray-600 mt-1 text-lg">{highlight.description}</p>
+                  <p className="text-gray-600 mt-1 text-sm md:text-base font-serif">{highlight.description}</p>
                 )}
               </div>
             </div>

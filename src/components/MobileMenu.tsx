@@ -36,63 +36,60 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-100">
-          <Link 
-            to="/" 
-            className="font-serif text-3xl font-medium"
-            onClick={onClose}
+        <div className="flex justify-between items-center p-6 border-b border-gray-100">
+          <h2 
+            className="font-serif text-lg md:text-3xl font-medium"
           >
             MOONS
-          </Link>
+          </h2>
           <button 
             onClick={onClose}
-            className="rounded-full h-8 w-8 flex items-center justify-center"
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <X className="h-4 w-4" />
+            <X className="h-6 w-6" />
           </button>
         </div>
         
         {/* Simplified menu without scrolling concerns */}
-        <div className="p-6 flex-1">
-          <nav>
-            <div className="space-y-1">
-              <Link 
-                to="/planner"
-                className="block py-5 text-2xl font-serif border-b border-gray-100"
-                onClick={onClose}
-              >
-                Bespoke Planner
-              </Link>
-              {/* Direct link to destinations page */}
-              <Link 
-                to="/destinations"
-                className="block py-5 text-2xl font-serif border-b border-gray-100"
-                onClick={onClose}
-              >
-                Destinations
-              </Link>
-              
-              <Link 
-                to="/collections"
-                className="block py-5 text-2xl font-serif border-b border-gray-100"
-                onClick={onClose}
-              >
-                Collections
-              </Link>
-            </div>
-          </nav>
-        </div>
+        <nav className="flex-1 overflow-y-auto py-6">
+          <div className="space-y-0">
+            <Link 
+              to="/destinations" 
+              onClick={onClose}
+              className="block py-5 text-lg md:text-2xl font-serif border-b border-gray-100"
+              style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
+            >
+              Destinations
+            </Link>
+            <Link 
+              to="/planner" 
+              onClick={onClose}
+              className="block py-5 text-lg md:text-2xl font-serif border-b border-gray-100"
+              style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
+            >
+              Bespoke Planner
+            </Link>
+            <Link 
+              to="/collections" 
+              onClick={onClose}
+              className="block py-5 text-lg md:text-2xl font-serif border-b border-gray-100"
+              style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
+            >
+              Collections
+            </Link>
+          </div>
+        </nav>
         
         {/* Footer */}
-        <div className="p-6 border-t border-gray-100 bg-white">
-          <button 
-            className="w-full bg-travel-burgundy text-white py-4 rounded-md text-xl font-serif"
+        <div className="p-6 border-t border-gray-100">
+          <button
             onClick={() => {
               navigate('/contact');
               onClose();
             }}
+            className="w-full bg-travel-burgundy text-white py-4 rounded-md text-base md:text-xl font-serif"
           >
-            Enquire Now
+            Get In Touch
           </button>
         </div>
       </div>

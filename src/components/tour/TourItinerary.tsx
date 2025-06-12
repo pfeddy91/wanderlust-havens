@@ -185,7 +185,7 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
 
   return (
     <div>
-      <h2 className="mb-8 font-serif text-3xl font-bold uppercase tracking-wide">
+      <h2 className="mb-8 font-serif text-xl md:text-3xl font-bold uppercase tracking-wide">
         Itinerary idea in detail
       </h2>
       
@@ -200,71 +200,61 @@ const TourItinerary = ({ tour }: TourItineraryProps) => {
                 className="w-full h-full"
               />
             ) : (
-              <div className="flex items-center justify-center h-full bg-gray-100">
-                <MapPin className="w-12 h-12 text-gray-400" />
-                <p className="text-gray-400 ml-2">Map loading or not available</p>
+              <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                  <p className="text-gray-600">Loading map...</p>
+                </div>
               </div>
             )}
           </div>
         </div>
-        
-        {/* Itinerary Sections Column */}
-        <div className="space-y-0 h-[600px] overflow-auto">
+
+        {/* Itinerary Column */}
+        <div className="space-y-4">
           {itineraryLoading ? (
-            <div className="text-center py-8">
-              <p className="text-gray-500">Loading itinerary...</p>
+            <div className="space-y-4">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="animate-pulse bg-gray-200 h-24 rounded"></div>
+              ))}
             </div>
-          ) : itinerarySections.length > 0 ? (
-            itinerarySections.map((section, index) => (
-              <Card 
-                key={`section-${index}`} 
-                className="overflow-hidden border-0 shadow-md transition-all duration-300 hover:shadow-lg rounded-none"
-              >
-                <div 
-                  className={`px-6 py-4 cursor-pointer transition-colors duration-200 ${
-                    expandedSection === index ? 'bg-primary/20' : 'bg-primary/10 hover:bg-primary/15'
-                  }`}
-                  onClick={() => toggleSection(index)}
-                >
-                  <div className="flex items-center justify-between">
+          ) : (
+            <>
+              {itinerarySections.map((section, index) => (
+                <div key={index} className="border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(index)}
+                    className="w-full p-4 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                  >
                     <div className="flex-1 overflow-hidden">
                       <div className="flex items-baseline">
-                        <span className="text-primary font-serif text-lg font-bold uppercase tracking-wide whitespace-nowrap inline-block w-[110px] flex-shrink-0">
+                        <span className="text-primary font-serif text-sm md:text-lg font-bold uppercase tracking-wide whitespace-nowrap inline-block w-[110px] flex-shrink-0">
                           Days {section.days}:
                         </span>
-                        <span className="text-primary font-serif text-lg font-bold uppercase tracking-wide">
+                        <span className="text-primary font-serif text-sm md:text-lg font-bold uppercase tracking-wide">
                           {section.title}
                         </span>
                       </div>
                     </div>
                     <div className="ml-4 flex-shrink-0">
-                      {expandedSection === index ? 
-                        <ChevronUp className="w-5 h-5 text-primary" /> : 
-                        <ChevronDown className="w-5 h-5 text-primary" />
-                      }
+                      {expandedSection === index ? (
+                        <ChevronUp className="w-5 h-5 text-gray-500" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-gray-500" />
+                      )}
                     </div>
-                  </div>
-                </div>
-                
-                <div 
-                  className={`transition-all duration-300 overflow-hidden ${
-                    expandedSection === index ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <CardContent className="p-8">
-                    <div className="prose prose-lg max-w-none font-serif text-gray-700 whitespace-pre-line">
-                      {section.content}
+                  </button>
+                  
+                  {expandedSection === index && (
+                    <div className="border-t bg-gray-50 p-4">
+                      <div className="text-gray-700 leading-relaxed whitespace-pre-line font-serif text-sm md:text-base">
+                        {section.content}
+                      </div>
                     </div>
-                  </CardContent>
+                  )}
                 </div>
-                
-                {index < itinerarySections.length - 1 && <Separator />}
-              </Card>
-            ))
-          ) : (
-            <div className="text-center py-8">
-              <p className="text-gray-500">No itinerary information available for this tour.</p>
-            </div>
+              ))}
+            </>
           )}
         </div>
       </div>

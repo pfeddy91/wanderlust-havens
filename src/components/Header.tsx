@@ -40,43 +40,43 @@ const Header = ({ hideNavigation = false }: HeaderProps) => {
           <span className="font-serif text-[2rem] font-medium text-black tracking-wider">MOONS</span>
         </Link>
 
-          {/* Desktop Navigation - Center */}
-          {!isMobile && !hideNavigation && (
-            <nav className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-10">
-              <Link 
-                to="/planner" 
-                className="nav-item font-serif text-black tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors"
-              >
-                Bespoke Planner
-              </Link>
-              <button 
-                onClick={toggleDestinations} 
-                className="nav-item text-black font-serif tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors flex items-center gap-1"
-              >
-                Destinations
-                <ChevronDown className="h-4 w-4" />
-              </button>
-              <Link 
-                to="/collections" 
-                className="nav-item font-serif text-black tracking-wide capitalize text-2xl hover:text-travel-gray transition-colors"
-              >
-                Collections
-              </Link>
-            </nav>
-          )}
+                      {/* Desktop Navigation - Center */}
+            {!isMobile && !hideNavigation && (
+              <nav className="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-10">
+                <Link 
+                  to="/planner" 
+                  className="nav-item font-serif text-black tracking-wide capitalize text-lg md:text-2xl hover:text-travel-gray transition-colors"
+                >
+                  Bespoke Planner
+                </Link>
+                <button 
+                  onClick={toggleDestinations} 
+                  className="nav-item text-black font-serif tracking-wide capitalize text-lg md:text-2xl hover:text-travel-gray transition-colors flex items-center gap-1"
+                >
+                  Destinations
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+                <Link 
+                  to="/collections" 
+                  className="nav-item font-serif text-black tracking-wide capitalize text-lg md:text-2xl hover:text-travel-gray transition-colors"
+                >
+                  Collections
+                </Link>
+              </nav>
+            )}
 
           {/* Desktop Actions - Extreme Right aligned */}
-          {!isMobile && (
-            <div className="flex items-center space-x-4 pr-0">
-              <Button 
-                className="text-white font-serif rounded-[10px] px-10 h-12 capitalize text-lg font-normal tracking-wide"
-                style={{ backgroundColor: '#00395c' }}
-                onClick={() => handleNavigation('/contact')}
-              >
-                Get In Touch
-              </Button>
-            </div>
-          )}
+                      {!isMobile && (
+              <div className="flex items-center space-x-4 pr-0">
+                <Button 
+                  className="text-white font-serif rounded-[10px] px-10 h-12 capitalize text-sm md:text-lg font-normal tracking-wide"
+                  style={{ backgroundColor: '#00395c' }}
+                  onClick={() => handleNavigation('/contact')}
+                >
+                  Get In Touch
+                </Button>
+              </div>
+            )}
 
           {/* Mobile header actions */}
           {isMobile && (

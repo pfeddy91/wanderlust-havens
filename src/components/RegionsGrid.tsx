@@ -74,7 +74,7 @@ const DestinationCard = React.memo(
           onClick={onClick}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative cursor-pointer w-[56vmin] h-[56vmin] rounded-xl overflow-hidden mx-auto"
+          className="relative cursor-pointer w-[51.8vmin] h-[51.8vmin] rounded-xl overflow-hidden mx-auto"
           style={{
             transform: "scale(1) rotateX(0deg)",
             transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -166,19 +166,19 @@ const RegionsGrid = () => {
     navigate(`/destinations/${slug}`);
   };
 
-  // MODIFIED: Header structure changed
+  // PageHeader component with consistent typography
   const PageHeader = () => (
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-8 lg:mb-12">
         <div className="max-w-[60%] mx-auto">
-          <span className="text-3xl md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
+          <span className="text-lg md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
             Dream Destinations
           </span>
-          <h2 className="text-lg md:text-xl font-sans mt-2 leading-tight" style={{ color: '#161618' }}>
+          <h2 className="text-base md:text-lg font-serif mt-2 leading-tight" style={{ color: '#161618' }}>
             Explore Our Favourite Destinations. You can find the full list {' '}
             <button
               onClick={() => navigate('/destinations')}
-              className="font-sans underline hover:no-underline transition-all"
+              className="font-serif underline hover:no-underline transition-all"
               style={{ color: '#00395c' }}
             >
               here
@@ -261,12 +261,12 @@ const RegionsGrid = () => {
               {/* Dark Overlay */}
               <div className="absolute inset-0 bg-black/20" />
               
-              {/* Text Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-white text-2xl font-serif font-semibold tracking-wide">
-                  {destination.title}
-                </h3>
-              </div>
+                          {/* Text Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <h3 className="text-white text-lg md:text-2xl font-serif font-semibold tracking-wide">
+                {destination.title}
+              </h3>
+            </div>
             </div>
           ))}
         </div>

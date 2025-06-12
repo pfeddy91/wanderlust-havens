@@ -304,10 +304,10 @@ const FeaturedV2 = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4 lg:mb-4">
           <div className={`${isMobile ? 'max-w-[90%]' : 'max-w-[60%]'} mx-auto`}>
-            <span className="font-serif text-3xl md:text-3xl font-semibold mb-2 block" style={{ color: '#161618' }}>
+            <span className="font-serif text-lg md:text-3xl font-semibold mb-2 block" style={{ color: '#161618' }}>
               Explore Our Moons
             </span>
-            <p className={`${isMobile ? 'text-lg' : 'text-xl md:text-xl'} font-sans mt-2 leading-tight`} style={{ color: '#161618' }}>
+            <p className={`${isMobile ? 'text-base' : 'text-base md:text-lg'} font-serif mt-2 leading-tight`} style={{ color: '#161618' }}>
             These are not just destinations; they are intimate encounters with the world's most breathtaking and secluded wonders, curated with passion and unparalleled care for the first, most magical chapter of your life together.
             </p>
           </div>

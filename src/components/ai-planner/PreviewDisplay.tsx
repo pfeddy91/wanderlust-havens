@@ -46,7 +46,7 @@ const PreviewDisplay: React.FC<PreviewDisplayProps> = ({ itineraryPreview }) => 
 
       {/* Top Content - Category and Title */}
       <div className="relative z-30">
-        <p className="text-left font-sans text-xs font-medium uppercase tracking-wider text-white/80 md:text-sm">
+        <p className="text-left font-serif text-xs font-medium uppercase tracking-wider text-white/80 md:text-sm">
           {formatCountriesForCategory()}
         </p>
         <p className="mt-1 max-w-xs text-left font-serif text-lg [text-wrap:balance] text-white md:text-2xl">
