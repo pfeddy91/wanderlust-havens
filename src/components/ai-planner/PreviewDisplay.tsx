@@ -36,7 +36,7 @@ const PreviewDisplay: React.FC<PreviewDisplayProps> = ({ itineraryPreview }) => 
   return (
     <button
       onClick={handleNavigateToTour}
-      className="relative z-10 flex h-[23rem] w-64 flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 p-6 shadow-lg transition-all hover:shadow-xl md:h-[35rem] md:w-[20.9rem] dark:bg-neutral-900"
+      className="relative z-10 flex h-[420px] w-[210px] md:h-[35rem] md:w-[20.9rem] flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 p-6 shadow-lg transition-all hover:shadow-xl dark:bg-neutral-900"
     >
       {/* Top Gradient Overlay */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-2/3 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
@@ -56,7 +56,7 @@ const PreviewDisplay: React.FC<PreviewDisplayProps> = ({ itineraryPreview }) => 
 
       {/* Bottom Content - View Moon Button */}
       <div className="relative z-30">
-        <div className="inline-block border border-white/80 px-4 py-2 rounded-lg tracking-wider font-serif text-lg font-medium text-white backdrop-blur-sm bg-white/10 transition-all hover:bg-white/20 hover:border-white">
+        <div className="inline-block border border-white/80 px-4 py-2 rounded-lg tracking-wider font-serif text-sm md:text-lg font-medium text-white backdrop-blur-sm bg-white/10 transition-all hover:bg-white/20 hover:border-white">
           Explore Moon
         </div>
       </div>

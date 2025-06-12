@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ItineraryPreview } from '@/types/aiPlanner';
 import { getPlannerSession } from '@/utils/plannerSessionStorage';
@@ -7,11 +7,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HoneymoonInfo from '@/components/HoneymoonInfo';
 import { ArrowLeft } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const AIPlannerResults: React.FC = () => {
   const [recommendedTours, setRecommendedTours] = useState<ItineraryPreview[] | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const sessionData = getPlannerSession();
@@ -25,6 +28,26 @@ const AIPlannerResults: React.FC = () => {
     setRecommendedTours(sessionData.recommendedTours);
     setLoading(false);
   }, [navigate]);
+
+  // Scroll to center the 2nd tile on mobile
+  useEffect(() => {
+    if (recommendedTours && recommendedTours.length >= 2 && isMobile && scrollContainerRef.current) {
+      const tileWidth = 210; // w-[210px]
+      const tilePadding = 2; // gap between tiles
+      const previewWidth = tileWidth * 0.15; // 15% of tile width
+      
+      // Calculate scroll position to center on 2nd tile (index 1)
+      // We want to show: 15% of 1st tile + full 2nd tile + 15% of 3rd tile
+      const scrollPosition = tileWidth + tilePadding - previewWidth;
+      
+      setTimeout(() => {
+        scrollContainerRef.current?.scrollTo({
+          left: scrollPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
+  }, [recommendedTours, isMobile]);
 
   const handleStartOver = () => {
     navigate('/planner/questionnaire');
@@ -71,23 +94,47 @@ const AIPlannerResults: React.FC = () => {
       <div className="container mx-auto py-10 px-4 pt-28">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 font-serif">
+          <h1 className="text-2xl md:text-4xl font-bold mb-4 font-serif">
             Your Perfect Honeymoon Matches
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Based on your preferences, we've found these exceptional experiences crafted just for you. Remember, our travel advisors will be able to fully customize any of these tours to your liking. 
           </p>
         </div>
 
         {/* Results Grid */}
-        <div className="flex flex-wrap justify-center gap-6 xl:gap-8 mb-12">
-          {recommendedTours.map((preview) => (
-            <PreviewDisplay
-              key={preview.id}
-              itineraryPreview={preview}
-            />
-          ))}
-        </div>
+        {isMobile ? (
+          // Mobile: Horizontal scrolling layout
+          <div className="w-full overflow-hidden mb-12">
+            <div 
+              ref={scrollContainerRef}
+              className="flex gap-2 overflow-x-auto scrollbar-hide py-4 px-4"
+              style={{ 
+                scrollbarWidth: 'none', 
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              {recommendedTours.map((preview) => (
+                <div key={preview.id} className="flex-shrink-0">
+                  <PreviewDisplay
+                    itineraryPreview={preview}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          // Desktop: Original flex layout
+          <div className="flex flex-wrap justify-center gap-6 xl:gap-8 mb-12">
+            {recommendedTours.map((preview) => (
+              <PreviewDisplay
+                key={preview.id}
+                itineraryPreview={preview}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Honeymoon Info Section */}
@@ -98,14 +145,14 @@ const AIPlannerResults: React.FC = () => {
         <div className="flex gap-3">
           <button
             onClick={handleStartOver}
-            className="inline-flex items-center justify-center px-6 py-3 border border-muted-foreground text-muted-foreground bg-white rounded-lg hover:bg-muted transition-colors text-lg font-serif font-normal"
+            className="inline-flex items-center justify-center px-6 py-3 border border-muted-foreground text-muted-foreground bg-white rounded-lg hover:bg-muted transition-colors text-sm md:text-base font-serif font-normal min-w-[140px]"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-4 h-4 mr-2 hidden md:inline" />
             Start New Search
           </button>
           <button
             onClick={handleSpeakToExpert}
-            className="inline-flex items-center justify-center px-6 py-3 text-white rounded-lg transition-colors text-lg font-serif font-normal hover:opacity-90"
+            className="inline-flex items-center justify-center px-6 py-3 text-white rounded-lg transition-colors text-sm md:text-base font-serif font-normal hover:opacity-90 min-w-[140px]"
             style={{ backgroundColor: '#00395c' }}
           >
             Speak to An Expert
