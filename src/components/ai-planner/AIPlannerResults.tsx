@@ -8,7 +8,6 @@ import Footer from '@/components/Footer';
 import HoneymoonInfo from '@/components/HoneymoonInfo';
 import { ArrowLeft } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { TYPOGRAPHY } from '@/utils/typography';
 
 const AIPlannerResults: React.FC = () => {
   const [recommendedTours, setRecommendedTours] = useState<ItineraryPreview[] | null>(null);
@@ -73,8 +72,8 @@ const AIPlannerResults: React.FC = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center max-w-md px-4">
-          <h2 className={`${TYPOGRAPHY.h3} mb-4`}>No Recommendations Found</h2>
-          <p className={`${TYPOGRAPHY.body} text-muted-foreground mb-6`}>
+          <h2 className="text-2xl font-semibold mb-4">No Recommendations Found</h2>
+          <p className="text-muted-foreground mb-6">
             We couldn't find any matching tours. Please try the questionnaire again with different preferences.
           </p>
           <button
@@ -95,10 +94,10 @@ const AIPlannerResults: React.FC = () => {
       <div className="container mx-auto py-10 px-4 pt-28">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className={`${TYPOGRAPHY.h1} mb-4`}>
+          <h1 className="text-2xl md:text-4xl font-bold mb-4 font-serif">
             Your Perfect Honeymoon Matches
           </h1>
-          <p className={`${TYPOGRAPHY.lead} text-muted-foreground max-w-2xl mx-auto`}>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Based on your preferences, we've found these exceptional experiences crafted just for you. Remember, our travel advisors will be able to fully customize any of these tours to your liking. 
           </p>
         </div>

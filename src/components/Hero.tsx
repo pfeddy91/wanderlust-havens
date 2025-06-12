@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown } from "lucide-react";
 import { getBackgroundImages } from '@/services/backgroundService';
 import { useIsMobile } from "@/hooks/use-mobile";
-import { TouchButton } from '@/components/ui/TouchButton';
-import { TYPOGRAPHY } from '@/utils/typography';
 
 // Type for background images from database
 interface BackgroundImage {
@@ -87,8 +85,8 @@ const Hero = () => {
     return (
       <div className="relative w-full h-screen bg-gray-200 flex items-center justify-center">
         <div className="text-center">
-          <h1 className={`${TYPOGRAPHY.hero} text-black leading-tight mb-8`}>
-            Your love story deserves the perfect honeymoon
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-black leading-tight mb-8">
+            {isMobile ? "Plan the honeymoon of a lifetime" : "Plan the honeymoon of a lifetime"}
           </h1>
         </div>
       </div>
@@ -112,35 +110,22 @@ const Hero = () => {
       {/* Overlay */}
       <div className="absolute inset-0 hero-overlay"></div>
       
-      {/* Text Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-20 px-4">
-        {/* Hero Title */}
-        <h1 className={`${TYPOGRAPHY.hero} text-white leading-tight mb-8`}>
-          Your love story deserves the perfect honeymoon
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 sm:px-6 lg:px-8">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-center leading-tight mb-8 hero-text-animation">
+          {isMobile ? "Plan the honeymoon of a lifetime" : "Plan the honeymoon of a lifetime"}
         </h1>
-
-        {/* CTA Button */}
-        <TouchButton 
-          variant="primary"
-          size="lg"
-          className="text-white px-8 py-4 rounded-lg font-medium transition-colors duration-200"
-          style={{ backgroundColor: '#00395c' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#002a42'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#00395c'}
-        >
-          Start Planning
-        </TouchButton>
       </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center">
-        <p className={`${TYPOGRAPHY.caption} text-white uppercase tracking-widest mb-2`}>LEARN MORE</p>
+      
+      {/* Learn More button */}
+      <div className="absolute bottom-10 left-0 right-0 z-10 flex flex-col items-center">
+        <p className="text-white uppercase text-base tracking-widest mb-2">LEARN MORE</p>
         <button 
           onClick={scrollToExplore}
           aria-label="Learn more" 
-          className="flex items-center justify-center text-white transition-opacity hover:opacity-80"
+          className="flex items-center justify-center w-10 h-10 text-white transition-opacity hover:opacity-80"
         >
-          <ChevronDown className="w-6 h-6 animate-bounce" />
+          <ChevronDown className="h-6 w-6" />
         </button>
       </div>
     </div>
