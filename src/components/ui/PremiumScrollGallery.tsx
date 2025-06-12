@@ -198,13 +198,9 @@ const PremiumScrollGallery: React.FC = () => {
       ref={galleryRef}
       className="py-6 bg-gradient-to-b from-white to-gray-50/30"
     >
-      {/* Scrollable Container with Padding */}
+      {/* Natural Flow Container */}
       <div 
-        className="max-w-4xl mx-auto overflow-y-auto"
-        style={{ 
-          padding: '10px',
-          maxHeight: '80vh' // Make it scrollable if needed
-        }}
+        className="max-w-4xl mx-auto px-4"
       >
         {/* CSS Columns Masonry Layout */}
         <div 

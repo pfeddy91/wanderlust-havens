@@ -1,9 +1,9 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { TourLocation, TourMap } from '@/types/tour';
 import { Loader2 } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Initialize with the Mapbox token
 mapboxgl.accessToken = 'pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw';
@@ -29,6 +29,7 @@ const TourLocationMap: React.FC<TourLocationMapProps> = ({
   const map = useRef<mapboxgl.Map | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -45,6 +46,11 @@ const TourLocationMap: React.FC<TourLocationMapProps> = ({
           pitch: 0, // Flat 2D map as shown in the screenshot
           attributionControl: true,
         });
+
+        // Disable scroll zoom on mobile to avoid scroll hijacking
+        if (isMobile) {
+          map.current.scrollZoom.disable();
+        }
 
         // Add navigation controls
         map.current.addControl(
@@ -186,9 +192,14 @@ const TourLocationMap: React.FC<TourLocationMapProps> = ({
         bounds.extend([location.longitude, location.latitude]);
       });
       
+      // Use responsive padding to ensure visibility on mobile
+      const padding = isMobile
+        ? { top: 60, bottom: 60, left: 40, right: 40 } // Reduced padding for mobile
+        : { top: 50, bottom: 50, left: 50, right: 50 }; // Original padding for desktop
+      
       // Fit the map to the bounds with padding
       map.current.fitBounds(bounds, {
-        padding: { top: 50, bottom: 50, left: 50, right: 50 },
+        padding: padding,
         maxZoom: 9
       });
     };
@@ -257,7 +268,7 @@ const TourLocationMap: React.FC<TourLocationMapProps> = ({
         map.current = null;
       }
     };
-  }, [tourLocations, tourMap]);
+  }, [tourLocations, tourMap, isMobile]);
 
   return (
     <div className={`relative ${className}`}>

@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { TourLocation } from '@/types/tour';
 import { Loader2 } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Initialize with the Mapbox token
 mapboxgl.accessToken = 'pk.eyJ1IjoicGZlZGVsZTkxIiwiYSI6ImNtOG1hZ2EyaDFiM3AyanNlb2FoYXM0ZXQifQ.RaqIl8lhNGGIMw56nXxIQw';
@@ -36,6 +37,7 @@ const TourMap: React.FC<TourMapProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [tokenError, setTokenError] = useState(false);
   const [tokenInput, setTokenInput] = useState('');
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -67,6 +69,11 @@ const TourMap: React.FC<TourMapProps> = ({
           fadeDuration: 100,
           interactive: true,
         });
+
+        // Disable scroll zoom on mobile to avoid scroll hijacking
+        if (isMobile) {
+          map.current.scrollZoom.disable();
+        }
 
         // Add navigation controls
         map.current.addControl(
@@ -148,7 +155,7 @@ const TourMap: React.FC<TourMapProps> = ({
         map.current = null;
       }
     };
-  }, [tourLocations, routeGeoJson, staticMapUrl, mapStyle]);
+  }, [tourLocations, routeGeoJson, staticMapUrl, mapStyle, isMobile]);
 
   // Function to add locations with markers and connecting lines
   const addLocationsToMap = (locations: TourLocation[]) => {
@@ -384,8 +391,12 @@ const TourMap: React.FC<TourMapProps> = ({
         map.current.on('click', 'route-points', (e) => {
           if (!e.features || !e.features[0] || !e.features[0].properties) return;
           
-          const coordinates = e.features[0].geometry.coordinates.slice();
-          const properties = e.features[0].properties;
+          const feature = e.features[0];
+          // The 'route-points' layer is filtered for 'Point' types, but this is a good safety check
+          if (feature.geometry.type !== 'Point') return;
+
+          const coordinates = feature.geometry.coordinates.slice();
+          const properties = feature.properties;
           
           // Create popup content
           let popupContent = '';
@@ -596,9 +607,14 @@ const TourMap: React.FC<TourMapProps> = ({
       bounds.extend([location.longitude, location.latitude]);
     });
     
+    // Use responsive padding to ensure visibility on mobile
+    const padding = isMobile
+      ? { top: 60, bottom: 60, left: 40, right: 40 } // Reduced padding for mobile
+      : { top: 70, bottom: 70, left: 70, right: 70 }; // Original padding for desktop
+
     // Fit the map to the bounds with padding and adjusted maxZoom
     map.current.fitBounds(bounds, {
-      padding: { top: 70, bottom: 70, left: 70, right: 70 },
+      padding: padding,
       maxZoom: 12, // Increase from 9 to 12 for better detail
       duration: 1500 // Smoother animation
     });

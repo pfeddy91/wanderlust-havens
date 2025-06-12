@@ -105,12 +105,12 @@ const ExploreV2 = () => {
       <section id="explore-v2" className="pt-4 pb-16 md:py-20 bg-white px-4">
         {/* Header Section - Mobile */}
         <div className="max-w-4xl mx-auto text-center mb-8">
-          <span className="text-lg md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
+          <h2 className="text-2xl md:text-4xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
             Choosing Your Honeymoon
-          </span>
-          <h2 className="text-base md:text-lg font-serif mt-2 leading-tight" style={{ color: '#161618' }}>
-            The first step: find your perfect itinerary
           </h2>
+          <p className="text-lg md:text-xl font-serif mt-2 leading-tight" style={{ color: '#161618' }}>
+            The first step: find your perfect itinerary
+          </p>
         </div>
 
         {/* Mobile Tiles */}
@@ -134,7 +134,7 @@ const ExploreV2 = () => {
               
               {/* Text Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-white text-lg md:text-2xl font-serif font-semibold tracking-wide">
+                <h3 className="text-white text-xl md:text-3xl font-serif font-semibold tracking-wide">
                   {tile.title}
                 </h3>
               </div>
@@ -151,12 +151,12 @@ const ExploreV2 = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <div className="max-w-[60%] mx-auto">
-            <span className="text-lg md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
+            <h2 className="text-2xl md:text-4xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
               Choosing Your Honeymoon
-            </span>
-            <h2 className="text-base md:text-lg font-serif mt-2 leading-tight" style={{ color: '#161618' }}>
-              Through a curated list of destination and collections, as well as through our bespoke planner, we make it easy to create a honeymoon that is truly unique and tailored to your dreams.
             </h2>
+            <p className="text-lg md:text-xl font-serif mt-2 leading-tight" style={{ color: '#161618' }}>
+              Through a curated list of destination and collections, as well as through our bespoke planner, we make it easy to create a honeymoon that is truly unique and tailored to your dreams.
+            </p>
           </div>
         </div>
       </div>

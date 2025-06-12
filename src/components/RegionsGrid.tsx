@@ -100,7 +100,7 @@ const DestinationCard = React.memo(
           
           {/* Always visible country name */}
           <div className="absolute inset-0 flex items-center justify-center text-center p-6">
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-semibold text-white">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-white">
               {card.title}
             </h3>
           </div>
@@ -171,11 +171,11 @@ const RegionsGrid = () => {
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-8 lg:mb-12">
         <div className="max-w-[60%] mx-auto">
-          <span className="text-lg md:text-3xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
+          <h2 className="text-2xl md:text-4xl font-serif font-semibold mb-2 block" style={{ color: '#161618' }}>
             Dream Destinations
-          </span>
-          <h2 className="text-base md:text-lg font-serif mt-2 leading-tight" style={{ color: '#161618' }}>
-            Explore Our Favourite Destinations. You can find the full list {' '}
+          </h2>
+          <p className="text-lg md:text-xl font-serif mt-2 leading-tight" style={{ color: '#161618' }}>
+            Explore Our Favourite Destinations. You can find the full list{' '}
             <button
               onClick={() => navigate('/destinations')}
               className="font-serif underline hover:no-underline transition-all"
@@ -184,7 +184,7 @@ const RegionsGrid = () => {
               here
             </button>
             .
-          </h2>
+          </p>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@ const RegionsGrid = () => {
               
                           {/* Text Overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <h3 className="text-white text-lg md:text-2xl font-serif font-semibold tracking-wide">
+              <h3 className="text-white text-xl md:text-3xl font-serif font-semibold tracking-wide">
                 {destination.title}
               </h3>
             </div>

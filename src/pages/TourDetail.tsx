@@ -65,7 +65,7 @@ const TourDetail = () => {
       
       <Separator />
       
-      <section id="highlights" className="py-16 bg-gray-50">
+      <section id="highlights" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <TourHighlights tour={tour} />
         </div>
