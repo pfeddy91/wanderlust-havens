@@ -59,9 +59,7 @@ const Destination = () => {
       <DestinationHero country={country} />
       
       {/* Tours Section */}
-      <section id="tours" className="bg-gray-50 py-16">
-        <DestinationTours tours={tours} country={country} />
-      </section>
+      <DestinationTours tours={tours} country={country} />
     </main>
   );
 };

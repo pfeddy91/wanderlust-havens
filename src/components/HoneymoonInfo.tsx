@@ -27,7 +27,7 @@ const HoneymoonInfo = () => {
           
           {/* Description - Evocative expertise text */}
           <p className="text-base md:text-lg font-serif leading-relaxed mb-8 max-w-2xl mx-auto" style={{ color: '#161618' }}>
-            With over a decade curating bespoke honeymoons across 25 countries, we craft intimate escapes that capture your unique love story. From hidden Mediterranean gems to exotic Asian retreats, our expertise transforms dreams into unforgettable journeys.
+            We are a team of travel and technology enthusiasts specialised in creating unforgettable honeymoons. Through our partners and our AI enhabled platform, we are able to offer unique experiences which are bespoke to you. We are also able to offer a range of honeymoon packages including honeymoon registry, hotel upgrades, restaurant reservations and more which are designed to be a one stop shop for your honeymoon.
           </p>
           
           {/* Get in Touch Button - Brand color #00395c */}
@@ -43,18 +43,20 @@ const HoneymoonInfo = () => {
           </TouchButton>
           
           {/* Customer Testimonial Section */}
-          <div className="mt-16 md:mt-20 max-w-3xl mx-auto">
+          <div className="mt-10 md:mt-14 max-w-3xl mx-auto">
             {/* Testimonial Text */}
-            <blockquote className="text-center mb-8">
-              <p className="text-lg md:text-2xl font-serif font-medium leading-relaxed tracking-wide uppercase" style={{ color: '#161618' }}>
-                "Hands down it was the most amazing experience our family has ever done"
+            <blockquote className="text-center mb-4">
+              <p className="text-lg md:text-xl font-serif font-medium leading-relaxed uppercase" style={{ color: '#161618' }}>
+                "Our Moon in Thailand was an incredible experience. From crafting the itinerary 
+                <br />
+                <span>to the amazing hotels & room upgrades, we couldn't have asked for a better travel agent.</span>"
               </p>
             </blockquote>
             
             {/* Attribution */}
             <div className="text-center mb-4">
               <cite className="text-base md:text-xl font-serif italic not-italic" style={{ color: '#7FB3B3' }}>
-                Isabella & Marco, Tuscany
+                Tiziana & Marc, Zurich
               </cite>
             </div>
           </div>

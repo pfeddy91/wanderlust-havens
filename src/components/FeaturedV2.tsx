@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useCarouselSwipe } from '@/hooks/useSwipeGesture';
 import { supabase } from '@/utils/supabaseClient'; // Assuming this path is correct
-import { Carousel, Card, CardType as AppleCardDataType } from '@/components/ui/apple-cards-carousel'; // Import new carousel
+import { Carousel } from '@/components/ui/apple-cards-carousel'; // Import carousel component
 import { Button } from '@/components/ui/button'; // For a "View Itinerary" button
 import { optimizeImageUrl, ImagePresets } from '@/utils/imageOptimization';
+import ProgressiveImage from '@/components/ui/ProgressiveImage';
+import { Link } from 'react-router-dom';
 
 // Interface for your tour data from Supabase (as in Featured.tsx)
 interface Tour {
@@ -18,69 +20,59 @@ interface Tour {
   country_names: string[];
   is_featured?: boolean;
   description?: string; // Add if you have descriptions
+  guide_price?: number; // Add price field
 }
 
-// Component to display detailed content when a card is opened
-const TourDetailContent = ({ tour, onNavigate }: { tour: Tour; onNavigate: (slug: string) => void; }) => {
+// Custom Tour Card Component matching DestinationTours.tsx design
+const CustomTourCard = ({ tour }: { tour: Tour }) => {
   return (
-    <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
-      <p className="text-lg">
-        Embark on a {tour.duration}-night journey through {tour.country_names.join(' & ')}.
-      </p>
-      {/* You can add more tour details here, e.g., tour.description */}
-      {tour.description && <p>{tour.description}</p>}
-      <p>Discover breathtaking landscapes and create unforgettable memories.</p>
-      <Button 
-        onClick={() => onNavigate(tour.slug)}
-        className="mt-6 w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white" // Example styling
-      >
-        View Full Itinerary
-      </Button>
-    </div>
-  );
-};
-
-
-// Mobile Carousel Card Component
-const MobileCarouselCard = ({ tour, onClick }: { tour: Tour; onClick: () => void }) => {
-  return (
-    <div 
-      className="flex-shrink-0 w-[210px] h-[420px] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-      onClick={onClick}
+    <Link 
+      to={`/tours/${tour.slug}`} 
+      className="relative z-10 flex h-[26rem] w-64 flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 shadow-lg transition-all hover:shadow-xl md:h-[39rem] md:w-[20.9rem] dark:bg-neutral-900"
     >
-      {/* Background Image */}
-      <img
-        src={tour.featured_image || optimizeImageUrl('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', ImagePresets.cardLarge)}
-        alt={tour.title}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {/* Top Gradient Overlay */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-2/3 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
       
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />
-      
-      {/* Content */}
-      <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
-        {/* Country Label */}
-        <div className="text-xs font-medium uppercase tracking-widest opacity-90">
-          {tour.country_names.join(' • ') || 'Multiple Destinations'}
-        </div>
-        
-        {/* Title at Bottom */}
-        <div className="space-y-2">
-          <h3 className="text-2xl font-serif leading-tight">
-            {tour.title}
-          </h3>
-          <p className="text-sm opacity-90">
-            {tour.duration} nights
-          </p>
+      {/* Bottom Gradient Overlay - Made darker for better text visibility */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+      {/* Top Content - Category and Title */}
+      <div className="relative z-30 p-6">
+        <p className="text-left font-sans text-xs font-medium uppercase tracking-wider text-white/80 md:text-sm">
+          {tour.country_names.join(' & ') || 'Multiple Destinations'}
+        </p>
+        <p className="mt-1 max-w-xs text-left font-serif text-lg font-semibold [text-wrap:balance] text-white md:text-2xl">
+          {tour.title}
+        </p>
+      </div>
+
+      {/* Bottom Content - Price, Duration and Button */}
+      <div className="relative z-30 p-6 space-y-3">
+        <p className="text-left text-base font-bold text-white font-serif">
+          {tour.guide_price ? `From £${tour.guide_price.toLocaleString()} per person | ` : ''}{tour.duration} Nights
+        </p>
+        <div className="inline-block border border-white/80 px-4 py-2 rounded-lg uppercase tracking-wider font-serif text-lg font-medium text-white backdrop-blur-sm bg-white/10 transition-all hover:bg-white/20 hover:border-white">
+          Explore Moon
         </div>
       </div>
-    </div>
+
+      {/* Background Image */}
+      <div className="absolute inset-0 z-10">
+        <ProgressiveImage
+          src={tour.featured_image || optimizeImageUrl('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', ImagePresets.cardLarge)}
+          alt={tour.title}
+          className="w-full h-full"
+          optimization={ImagePresets.destinationCard}
+          placeholder="shimmer"
+          loading="lazy"
+        />
+      </div>
+    </Link>
   );
 };
 
-// Mobile Infinite Carousel Component
-const MobileInfiniteCarousel = ({ tours, onTourClick }: { tours: Tour[]; onTourClick: (slug: string) => void }) => {
+// Mobile Infinite Carousel Component with new card design
+const MobileInfiniteCarousel = ({ tours }: { tours: Tour[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   
@@ -94,7 +86,7 @@ const MobileInfiniteCarousel = ({ tours, onTourClick }: { tours: Tour[]; onTourC
 
   const scrollToIndex = (index: number) => {
     if (carouselRef.current) {
-      const cardWidth = 210 + 16; // card width + gap
+      const cardWidth = 256 + 16; // card width (w-64 = 256px) + gap
       carouselRef.current.scrollTo({
         left: index * cardWidth,
         behavior: 'smooth'
@@ -112,7 +104,7 @@ const MobileInfiniteCarousel = ({ tours, onTourClick }: { tours: Tour[]; onTourC
       setTimeout(() => {
         setCurrentIndex(tours.length);
         if (carouselRef.current) {
-          const cardWidth = 210 + 16;
+          const cardWidth = 256 + 16;
           carouselRef.current.scrollTo({
             left: tours.length * cardWidth,
             behavior: 'auto'
@@ -132,7 +124,7 @@ const MobileInfiniteCarousel = ({ tours, onTourClick }: { tours: Tour[]; onTourC
       setTimeout(() => {
         setCurrentIndex(tours.length * 2 - 1);
         if (carouselRef.current) {
-          const cardWidth = 210 + 16;
+          const cardWidth = 256 + 16;
           carouselRef.current.scrollTo({
             left: (tours.length * 2 - 1) * cardWidth,
             behavior: 'auto'
@@ -154,11 +146,9 @@ const MobileInfiniteCarousel = ({ tours, onTourClick }: { tours: Tour[]; onTourC
         {...swipeHandlers}
       >
         {infiniteTours.map((tour, index) => (
-          <MobileCarouselCard
-            key={`${tour.id}-${index}`}
-            tour={tour}
-            onClick={() => onTourClick(tour.slug)}
-          />
+          <div key={`${tour.id}-${index}`} className="flex-shrink-0">
+            <CustomTourCard tour={tour} />
+          </div>
         ))}
       </div>
       
@@ -207,7 +197,8 @@ const FeaturedV2 = () => {
             slug,
             countries, 
             is_featured,
-            description 
+            description,
+            guide_price
           `)
           .eq('is_featured', true)
           .limit(10);
@@ -261,6 +252,7 @@ const FeaturedV2 = () => {
           country_names: (tour.countries || []).map(id => countryMap.get(id) || 'Unknown').filter(name => name !== 'Unknown'),
           is_featured: tour.is_featured,
           description: tour.description || `Discover the magic of ${tour.title}, a curated experience designed for unforgettable memories.`, // Fallback description
+          guide_price: tour.guide_price,
         }));
 
         setOriginalTours(toursWithDetails);
@@ -276,35 +268,12 @@ const FeaturedV2 = () => {
     fetchFeaturedToursAndCountries();
   }, []);
 
-  const handleNavigateToTour = (slug: string) => {
-    navigate(`/tours/${slug}`);
-  };
-
-  const formatCountryNameForCard = (tour: Tour) => {
-    const names = tour.country_names;
-    if (!names || names.length === 0) return 'Multiple Destinations';
-    if (names.length === 1) return names[0];
-    return `${names[0]} & More`; // Keep it concise for card category
-  };
-
-  // Map your tour data to the structure expected by AppleCardsCarousel
-  const carouselCards = originalTours.map((tour, index) => {
-    const cardData: AppleCardDataType = {
-      src: tour.featured_image || optimizeImageUrl('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', ImagePresets.cardLarge), // Ensure fallback with optimization
-      title: tour.title,
-      category: formatCountryNameForCard(tour),
-      content: <TourDetailContent tour={tour} onNavigate={handleNavigateToTour} />,
-      slug: tour.slug,
-    };
-    return <Card key={`${tour.id}-${index}`} card={cardData} index={index} layout={true} />;
-  });
-
   const TitleSection = () => {
     return (
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4 lg:mb-4">
           <div className={`${isMobile ? 'max-w-[90%]' : 'max-w-[60%]'} mx-auto`}>
-            <span className="font-serif text-lg md:text-3xl font-semibold mb-2 block" style={{ color: '#161618' }}>
+            <span className="font-serif text-2xl md:text-4xl font-semibold mb-2 block" style={{ color: '#161618' }}>
               Explore Our Moons
             </span>
             <p className={`${isMobile ? 'text-base' : 'text-base md:text-lg'} font-serif mt-2 leading-tight`} style={{ color: '#161618' }}>
@@ -323,7 +292,7 @@ const FeaturedV2 = () => {
         <TitleSection />
         <div className="flex space-x-4 overflow-hidden py-8 md:py-14 justify-center">
           {[1, 2, 3].map((i) => (
-            <div key={i} className={`${isMobile ? 'w-[210px] h-[420px]' : 'w-[17rem] md:w-[22rem] h-[26rem] md:h-[39rem]'} bg-gray-200 dark:bg-neutral-800 animate-pulse rounded-xl flex-shrink-0`}></div>
+            <div key={i} className={`${isMobile ? 'w-64 h-[26rem]' : 'w-[20.9rem] h-[39rem]'} bg-gray-200 dark:bg-neutral-800 animate-pulse rounded-xl flex-shrink-0`}></div>
           ))}
         </div>
       </section>
@@ -342,7 +311,7 @@ const FeaturedV2 = () => {
     );
   }
 
-  if (carouselCards.length === 0) {
+  if (originalTours.length === 0) {
     const paddingClass = isMobile ? 'px-4' : 'px-8';
     return (
       <section className={`py-16 bg-white dark:bg-travel-charcoal text-neutral-800 dark:text-white ${paddingClass}`}>
@@ -357,20 +326,26 @@ const FeaturedV2 = () => {
   const paddingClass = isMobile ? 'px-4' : 'px-8';
 
   if (isMobile) {
-    // Mobile: Custom infinite carousel
+    // Mobile: Custom infinite carousel with new card design
     return (
       <section className={`py-8 md:py-16 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-white overflow-x-hidden ${paddingClass}`}>
         <TitleSection />
-        <MobileInfiniteCarousel tours={originalTours} onTourClick={handleNavigateToTour} />
+        <MobileInfiniteCarousel tours={originalTours} />
       </section>
     );
   }
 
-  // Desktop: Original AppleCardsCarousel
+  // Desktop: Custom carousel with new card design
+  const customCards = originalTours.map((tour, index) => (
+    <CustomTourCard key={`${tour.id}-${index}`} tour={tour} />
+  ));
+
   return (
     <section className={`py-8 md:py-16 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-white overflow-x-hidden ${paddingClass}`}>
       <TitleSection />
-      <Carousel items={carouselCards} />
+      <div className="w-full min-w-[1200px]">
+        <Carousel items={customCards} />
+      </div>
     </section>
   );
 };

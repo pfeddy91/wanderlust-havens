@@ -205,7 +205,7 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
           <div className="flex flex-col md:flex-row justify-between gap-6">
             {/* When */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#063737" }}>
+              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#004A78" }}>
                 WHEN
               </h3>
               <p className="font-sans text-lg font-light">{bestPeriod}</p>
@@ -213,7 +213,7 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
             
             {/* Distance */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#A25524" }}>
+              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#004A78" }}>
                 DISTANCE
               </h3>
               <p className="font-sans text-lg font-light">{distance}</p>
@@ -221,7 +221,7 @@ const DestinationHero = ({ country }: DestinationHeroProps) => {
             
             {/* Comfort */}
             <div className="flex-1 text-center">
-              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#808000" }}>
+              <h3 className="text-xl font-serif font-bold mb-2" style={{ color: "#004A78" }}>
                 COMFORT
               </h3>
               <p className="font-sans text-lg font-light">{comfort}</p>

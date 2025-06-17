@@ -68,13 +68,13 @@ const DestinationCard = React.memo(
     };
 
     return (
-      <div className="[perspective:1200px] [transform-style:preserve-3d]">
+      <div className="[perspective:1200px] [transform-style:preserve-3d] w-[95%]">
         <div
           ref={cardRef}
           onClick={onClick}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative cursor-pointer w-[51.8vmin] h-[51.8vmin] rounded-xl overflow-hidden mx-auto"
+          className="relative cursor-pointer w-full aspect-square rounded-xl overflow-hidden"
           style={{
             transform: "scale(1) rotateX(0deg)",
             transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -115,8 +115,8 @@ DestinationCard.displayName = "DestinationCard";
 // Updated Cards Display Component with increased spacing
 const DestinationCardsDisplay = ({ cards, onCardClick }: { cards: FocusCardData[]; onCardClick: (slug: string) => void; }) => {
   return (
-          // No horizontal gap, some vertical gap
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-4 lg:gap-y-10 w-full justify-items-center">
+          // Equal horizontal and vertical gaps for desktop
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-10 w-full justify-items-center">
       {cards.map((card) => (
         <DestinationCard
           key={card.id}

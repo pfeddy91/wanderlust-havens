@@ -142,8 +142,8 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
   ));
 
   return (
-    <div className="py-16" style={{ backgroundColor: '#B7B7A4' }}>
-      <div className="max-w-7l ml-14 mr-auto">
+    <div className="pt-16 pb-0" style={{ backgroundColor: '#E4EDF3' }}>
+      <div className="max-w-7l p-8 md:ml-14 md:mr-auto md:p-0">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
           <div className="lg:col-span-1">
             <h2 className="text-3xl font-serif font-bold mb-4 uppercase">

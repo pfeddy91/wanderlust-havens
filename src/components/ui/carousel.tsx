@@ -168,87 +168,45 @@ interface CarouselProps {
   startIndex?: number;
 }
 
-export function Carousel({ slides: originalSlides, startIndex = 0 }: CarouselProps) {
-  const [slides, setSlides] = useState<SlideData[]>([]);
-  const [current, setCurrent] = useState(0);
+export function Carousel({ slides: originalSlides, startIndex = 1 }: CarouselProps) {
+  const [current, setCurrent] = useState(startIndex);
   const carouselListRef = useRef<HTMLUListElement>(null);
-  const isJumpingRef = useRef(false);
   const transitionDuration = 500; // ms
 
   useEffect(() => {
-    if (originalSlides && originalSlides.length > 1) {
-      const augmentedSlides = [
-        originalSlides[originalSlides.length - 1],
-        ...originalSlides,
-        originalSlides[0],
-      ];
-      setSlides(augmentedSlides);
-      // Validate the start index and adjust for the prepended clone
-      const validStartIndex =
-        startIndex >= 0 && startIndex < originalSlides.length ? startIndex : 0;
-      setCurrent(validStartIndex + 1);
-    } else if (originalSlides) {
-      setSlides(originalSlides);
-      setCurrent(0);
-    }
+    // Validate the start index
+    const validStartIndex = 
+      startIndex >= 0 && startIndex < originalSlides.length ? startIndex : 1;
+    setCurrent(validStartIndex);
   }, [originalSlides, startIndex]);
 
-  // Effect to re-enable transitions after a seamless jump
-  useEffect(() => {
-    if (isJumpingRef.current) {
-      // A jump just occurred. We use a timeout to re-apply the transition
-      // after the browser has painted the jumped state.
-      const timer = setTimeout(() => {
-        if (carouselListRef.current) {
-          carouselListRef.current.style.transition = `transform ${transitionDuration}ms ease-in-out`;
-          isJumpingRef.current = false;
-        }
-      }, 50); // A small delay is sufficient
-      return () => clearTimeout(timer);
-    }
-  }, [current]);
-
   const handlePreviousClick = () => {
-    if (isJumpingRef.current) return;
-    setCurrent((prev) => prev - 1);
+    setCurrent((prev) => Math.max(0, prev - 1));
   };
 
   const handleNextClick = () => {
-    if (isJumpingRef.current) return;
-    setCurrent((prev) => prev + 1);
+    setCurrent((prev) => Math.min(originalSlides.length - 1, prev + 1));
   };
 
   const handleSlideClick = (index: number) => {
-    if (isJumpingRef.current || current === index) return;
+    if (current === index) return;
     setCurrent(index);
-  };
-
-  const handleTransitionEnd = () => {
-    if (current === 0) { // On the prepended clone
-      isJumpingRef.current = true;
-      if (carouselListRef.current) carouselListRef.current.style.transition = 'none';
-      setCurrent(slides.length - 2); // Jump to the real last slide
-    } else if (current === slides.length - 1) { // On the appended clone
-      isJumpingRef.current = true;
-      if (carouselListRef.current) carouselListRef.current.style.transition = 'none';
-      setCurrent(1); // Jump to the real first slide
-    }
   };
 
   const id = useId();
 
-  if (!slides || originalSlides.length < 1) {
+  if (!originalSlides || originalSlides.length < 1) {
     return null; // Return nothing if there are no slides
   }
 
-  // If there's only one slide, no need for controls or looping logic
+  // If there's only one slide, no need for controls
   if (originalSlides.length === 1) {
     return (
       <div className="relative w-[56vmin] h-[56vmin] mx-auto">
         <ul>
           <Slide
             key={0}
-            slide={slides[0]}
+            slide={originalSlides[0]}
             index={0}
             current={0}
             handleSlideClick={() => {}}
@@ -257,6 +215,9 @@ export function Carousel({ slides: originalSlides, startIndex = 0 }: CarouselPro
       </div>
     )
   }
+
+  // Calculate the slide width including margins (56vmin + 8vmin margins)
+  const slideWidth = 64; // 56vmin + 4vmin margin on each side
 
   return (
     <div
@@ -267,12 +228,11 @@ export function Carousel({ slides: originalSlides, startIndex = 0 }: CarouselPro
         ref={carouselListRef}
         className="absolute flex mx-[-4vmin]"
         style={{
-          transform: `translateX(-${current * (100 / slides.length)}%)`,
+          transform: `translateX(-${current * slideWidth}vmin)`,
           transition: `transform ${transitionDuration}ms ease-in-out`,
         }}
-        onTransitionEnd={handleTransitionEnd}
       >
-        {slides.map((slide, index) => (
+        {originalSlides.map((slide, index) => (
           <Slide
             key={index}
             slide={slide}

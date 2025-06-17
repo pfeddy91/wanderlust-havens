@@ -38,7 +38,7 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-gray-100">
           <h2 
-            className="font-serif text-lg md:text-3xl font-medium"
+            className="font-serif text-[2rem] font-medium text-black tracking-wider"
           >
             MOONS
           </h2>
@@ -56,7 +56,7 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             <Link 
               to="/destinations" 
               onClick={onClose}
-              className="block py-5 text-lg md:text-2xl font-serif border-b border-gray-100"
+              className="block py-5 text-xl md:text-3xl font-serif border-b border-gray-100"
               style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
             >
               Destinations
@@ -64,7 +64,7 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             <Link 
               to="/planner" 
               onClick={onClose}
-              className="block py-5 text-lg md:text-2xl font-serif border-b border-gray-100"
+              className="block py-5 text-xl md:text-3xl font-serif border-b border-gray-100"
               style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
             >
               Bespoke Planner
@@ -72,7 +72,7 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
             <Link 
               to="/collections" 
               onClick={onClose}
-              className="block py-5 text-lg md:text-2xl font-serif border-b border-gray-100"
+              className="block py-5 text-xl md:text-3xl font-serif border-b border-gray-100"
               style={{ paddingLeft: '1.5rem', paddingRight: '1.5rem' }}
             >
               Collections
@@ -87,7 +87,8 @@ const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               navigate('/contact');
               onClose();
             }}
-            className="w-full bg-travel-burgundy text-white py-4 rounded-md text-base md:text-xl font-serif"
+            className="w-full text-white py-4 rounded-md text-lg md:text-2xl font-serif"
+            style={{ backgroundColor: '#00395c' }}
           >
             Get In Touch
           </button>
