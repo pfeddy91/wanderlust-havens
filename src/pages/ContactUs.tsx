@@ -147,9 +147,32 @@ const ContactUs: React.FC<ContactUsProps> = ({ tours = [] }) => {
   };
 
   const onSubmit = async (data: FormData) => {
-    console.log("Form data submitted:", data);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    alert("Thank you for your inquiry! We will be in touch shortly.");
+    try {
+      // Get Supabase URL from environment or use default
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://ydcggawwxohbcpcjyhdk.supabase.co';
+      
+      // Call the Supabase Edge Function
+      const response = await fetch(`${supabaseUrl}/functions/v1/contact-inquiry`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        alert("Thank you for your inquiry! We've received your request and will be in touch within 24 hours.");
+        // Optionally reset the form or redirect to a thank you page
+        window.location.href = '/';
+      } else {
+        throw new Error(result.error || 'Failed to submit inquiry');
+      }
+    } catch (error) {
+      console.error('Error submitting inquiry:', error);
+      alert("We're sorry, there was an error submitting your inquiry. Please try again or contact us directly at info@gomoons.com.");
+    }
   };
 
   return (
