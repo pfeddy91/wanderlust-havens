@@ -20,6 +20,7 @@ interface Country {
   slug: string;
   description?: string;
   featured_image?: string;
+  mobile_image_url?: string;
   region_id: string;
 }
 
@@ -51,7 +52,7 @@ const RegionCountries = () => {
         // Fetch countries in this region
         const { data: countriesData, error: countriesError } = await supabase
           .from('countries')
-          .select('id, name, slug, description, featured_image, region_id')
+          .select('id, name, slug, description, featured_image, mobile_image_url, region_id')
           .eq('region_id', regionData.id)
           .order('name');
 
@@ -193,7 +194,7 @@ const RegionCountries = () => {
                     >
                       {/* Background Image */}
                       <img
-                        src={country.featured_image || `https://source.unsplash.com/featured/?${country.name},travel`}
+                        src={country.mobile_image_url || country.featured_image || `https://source.unsplash.com/featured/?${country.name},travel`}
                         alt={country.name}
                         className="w-full h-full object-cover"
                       />

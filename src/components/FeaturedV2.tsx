@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useCarouselSwipe } from '@/hooks/useSwipeGesture';
 import { supabase } from '@/utils/supabaseClient'; // Assuming this path is correct
 import { Carousel } from '@/components/ui/apple-cards-carousel'; // Import carousel component
 import { Button } from '@/components/ui/button'; // For a "View Itinerary" button
@@ -28,7 +27,7 @@ const CustomTourCard = ({ tour }: { tour: Tour }) => {
   return (
     <Link 
       to={`/tours/${tour.slug}`} 
-      className="relative z-10 flex h-[26rem] w-64 flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 shadow-lg transition-all hover:shadow-xl md:h-[39rem] md:w-[20.9rem] dark:bg-neutral-900"
+      className="relative z-10 flex h-[26rem] w-[218px] flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 shadow-lg transition-all hover:shadow-xl md:h-[39rem] md:w-[20.9rem] dark:bg-neutral-900"
     >
       {/* Top Gradient Overlay */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-2/3 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
@@ -71,105 +70,23 @@ const CustomTourCard = ({ tour }: { tour: Tour }) => {
   );
 };
 
-// Mobile Infinite Carousel Component with new card design
-const MobileInfiniteCarousel = ({ tours }: { tours: Tour[] }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  
-  // Create infinite array by tripling the tours
-  const infiniteTours = [...tours, ...tours, ...tours];
-  const startIndex = tours.length; // Start in the middle set
-  
-  useEffect(() => {
-    setCurrentIndex(startIndex);
-  }, [startIndex]);
-
-  const scrollToIndex = (index: number) => {
-    if (carouselRef.current) {
-      const cardWidth = 256 + 16; // card width (w-64 = 256px) + gap
-      carouselRef.current.scrollTo({
-        left: index * cardWidth,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const handleNext = () => {
-    const newIndex = currentIndex + 1;
-    setCurrentIndex(newIndex);
-    scrollToIndex(newIndex);
-    
-    // Reset to middle when reaching end
-    if (newIndex >= tours.length * 2) {
-      setTimeout(() => {
-        setCurrentIndex(tours.length);
-        if (carouselRef.current) {
-          const cardWidth = 256 + 16;
-          carouselRef.current.scrollTo({
-            left: tours.length * cardWidth,
-            behavior: 'auto'
-          });
-        }
-      }, 300);
-    }
-  };
-
-  const handlePrev = () => {
-    const newIndex = currentIndex - 1;
-    setCurrentIndex(newIndex);
-    scrollToIndex(newIndex);
-    
-    // Reset to middle when reaching start
-    if (newIndex < tours.length) {
-      setTimeout(() => {
-        setCurrentIndex(tours.length * 2 - 1);
-        if (carouselRef.current) {
-          const cardWidth = 256 + 16;
-          carouselRef.current.scrollTo({
-            left: (tours.length * 2 - 1) * cardWidth,
-            behavior: 'auto'
-          });
-        }
-      }, 300);
-    }
-  };
-
-  const swipeHandlers = useCarouselSwipe(handlePrev, handleNext);
-
+// Simple Mobile Carousel Component with smooth scrolling (matching DestinationTours.tsx)
+const MobileCarousel = ({ tours }: { tours: Tour[] }) => {
   return (
-    <div className="relative">
-      {/* Carousel Container */}
+    <div className="md:hidden">
       <div 
-        ref={carouselRef}
-        className="flex gap-4 overflow-x-auto scrollbar-hide py-4"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        {...swipeHandlers}
+        className="flex gap-4 overflow-x-auto scrollbar-hide py-4 scroll-smooth px-4"
+        style={{ 
+          scrollbarWidth: 'none', 
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch'
+        }}
       >
-        {infiniteTours.map((tour, index) => (
+        {tours.map((tour, index) => (
           <div key={`${tour.id}-${index}`} className="flex-shrink-0">
             <CustomTourCard tour={tour} />
           </div>
         ))}
-      </div>
-      
-      {/* Navigation Arrows */}
-      <div className="flex justify-center mt-6 space-x-4">
-        <button
-          onClick={handlePrev}
-          className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={handleNext}
-          className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
       </div>
     </div>
   );
@@ -330,7 +247,7 @@ const FeaturedV2 = () => {
     return (
       <section className={`py-8 md:py-16 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-white overflow-x-hidden ${paddingClass}`}>
         <TitleSection />
-        <MobileInfiniteCarousel tours={originalTours} />
+        <MobileCarousel tours={originalTours} />
       </section>
     );
   }

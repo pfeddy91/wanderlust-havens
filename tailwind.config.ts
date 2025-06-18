@@ -159,7 +159,7 @@ export default {
 				'image-rotate': 'image-rotate 8s ease-in-out forwards'
 			},
 			fontFamily: {
-				sans: ['"Instrument Serif"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				sans: ['"Roboto Condensed"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
 				mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
 			}

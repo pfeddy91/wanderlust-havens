@@ -22,7 +22,7 @@ interface Tour {
 }
 
 interface ContactUsProps {
-  tours: Tour[];
+  tours?: Tour[];
 }
 
 // Define Zod schema for validation
@@ -36,7 +36,14 @@ const months = [
 const phoneCountryCodeOptions = [
   { value: "+44", label: "United Kingdom (+44)" },
   { value: "+1", label: "United States (+1)" },
-  // Add more country codes as needed
+  { value: "+61", label: "Australia (+61)" },
+  { value: "+33", label: "France (+33)" },
+  { value: "+49", label: "Germany (+49)" },
+  { value: "+39", label: "Italy (+39)" },
+  { value: "+34", label: "Spain (+34)" },
+  { value: "+81", label: "Japan (+81)" },
+  { value: "+65", label: "Singapore (+65)" },
+  { value: "+971", label: "United Arab Emirates (+971)" },
 ];
 
 const preferredContactMethodOptions = [
@@ -45,7 +52,7 @@ const preferredContactMethodOptions = [
   { value: "text", label: "Text Message" },
 ];
 
-// Mocked data - replace with actual data fetching for regions
+// Region options - replace with actual data fetching for regions
 const regionOptions = [
   { value: "europe", label: "Europe" },
   { value: "asia", label: "Asia" },
@@ -54,7 +61,6 @@ const regionOptions = [
   { value: "north_america", label: "North America" },
   { value: "oceania", label: "Oceania (Australia & Pacific)" },
   { value: "open_to_suggestions", label: "Open to suggestions" },
-  // Consider fetching these from your database: public.regions.name
 ];
 
 const seasonOptions = [
@@ -73,19 +79,19 @@ const formSchema = z.object({
   tourOfInterest: z.string().optional(),
   comments: z.string().optional(),
   
-  // Section 2: Your Details - Updated as per the new screenshot
+  // Section 2: Your Details
   firstName: z.string().min(1, { message: "First name is required." }),
   lastName: z.string().min(1, { message: "Last name is required." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   confirmEmail: z.string().email({ message: "Please confirm your email address." }),
   phoneCountryCode: z.string().min(1, { message: "Please select a country code." }),
-  phoneNumber: z.string().min(5, { message: "Please enter a valid phone number." }), // Basic validation
+  phoneNumber: z.string().min(5, { message: "Please enter a valid phone number." }),
   preferredContactMethods: z.array(z.string()).refine(value => value.some(item => item), {
     message: "You have to select at least one contact method.",
   }),
 }).refine(data => data.email === data.confirmEmail, {
   message: "Email addresses do not match.",
-  path: ["confirmEmail"], // Point error to the confirmEmail field
+  path: ["confirmEmail"],
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -101,9 +107,7 @@ const budgetMarks = [
 const minBudget = budgetMarks[0].value;
 const maxBudget = budgetMarks[budgetMarks.length - 1].value;
 
-const peopleOptions = Array.from({ length: 10 }, (_, i) => (i + 1).toString());
-
-const ContactUs: React.FC<ContactUsProps> = ({ tours }) => {
+const ContactUs: React.FC<ContactUsProps> = ({ tours = [] }) => {
   const {
     register,
     handleSubmit,
@@ -125,7 +129,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ tours }) => {
       lastName: "",
       email: "",
       confirmEmail: "",
-      phoneCountryCode: "+44", // Default to UK
+      phoneCountryCode: "+44",
       phoneNumber: "",
       preferredContactMethods: ["email"],
     }
@@ -149,324 +153,363 @@ const ContactUs: React.FC<ContactUsProps> = ({ tours }) => {
   };
 
   return (
-    <main className="bg-white text-black py-16 md:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 bg-gray-50 p-6 md:p-10 rounded-lg shadow-sm border border-gray-200">
-          
-          {/* Section 1: Your Trip */}
-          <section className="bg-white p-6 md:p-8 rounded-md shadow">
-            <div className="flex justify-between items-center mb-6 border-b pb-4">
-              <h2 className="text-2xl font-semibold text-gray-700 tracking-wide font-serif">YOUR TRIP</h2>
+    <div className="min-h-screen bg-white">
+      {/* Fixed container with padding top to account for header */}
+      <div className="pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Page Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
+              Plan Your Dream Honeymoon
+            </h1>
+            <p className="text-2xl font-serif text-gray-600 max-w-2xl mx-auto">
+              Tell us about your perfect honeymoon. We'll create a bespoke itinerary just for you.
+            </p>
+          </div>
+
+          {/* Form Container */}
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+            
+            {/* Section 1: Your Trip */}
+            <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+              <h2 className="text-3xl font-bold text-gray-700 font-serif mb-6 border-b border-gray-200 pb-4">
+                Your Trip Details
+              </h2>
+              
+              <div className="space-y-6">
+                <div>
+                  <Label htmlFor="destinations" className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Where would you like to go?*
+                  </Label>
+                  <Controller
+                    name="destinations"
+                    control={control}
+                    render={({ field }) => (
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a destination or 'Open to suggestions'" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {regionOptions.map(option => (
+                            <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                  {errors.destinations && <p className="text-red-600 text-sm mt-1">{errors.destinations.message}</p>}
+                </div>
+
+                <div>
+                  <Label htmlFor="tourOfInterest" className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Is there a specific tour that caught your attention?
+                  </Label>
+                  <Controller
+                    name="tourOfInterest"
+                    control={control}
+                    render={({ field }) => (
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a tour" />
+                        </SelectTrigger>
+                        <SelectContent className="max-h-56">
+                          <SelectItem value="None in particular">None in particular</SelectItem>
+                          {tours.map(tour => (
+                            <SelectItem key={tour.title} value={tour.title}>{tour.title}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                  {errors.tourOfInterest && <p className="text-red-600 text-sm mt-1">{errors.tourOfInterest.message}</p>}
+                </div>
+
+                <div>
+                  <Label className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    When would you like to go?*
+                  </Label>
+                  <Controller
+                    name="travelSeason"
+                    control={control}
+                    render={({ field }) => (
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a season" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {seasonOptions.map(season => (
+                            <SelectItem key={season.value} value={season.value}>{season.label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                  {errors.travelSeason && <p className="text-red-600 text-sm mt-1">{errors.travelSeason.message}</p>}
+                </div>
+                
+                <div>
+                  <Label htmlFor="duration" className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    How long would you like your honeymoon to be?*
+                  </Label>
+                  <Input 
+                    id="duration" 
+                    {...register("duration")} 
+                    placeholder="e.g., 10 days, 2 weeks"
+                    className="mt-2"
+                  />
+                  {errors.duration && <p className="text-red-600 text-sm mt-1">{errors.duration.message}</p>}
+                </div>
+
+                <div>
+                  <Label className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Budget per person (£)
+                  </Label>
+                  <p className="text-base font-light mb-4">
+                    £{budgetValue[0].toLocaleString()} - £{budgetValue[1].toLocaleString()}{budgetValue[1] === maxBudget ? '+' : ''}
+                  </p>
+                  <Controller
+                    name="budgetRange"
+                    control={control}
+                    render={({ field }) => {
+                      const trackRef = useRef<HTMLDivElement>(null);
+
+                      const getClampedValue = useCallback((clientX: number) => {
+                        if (!trackRef.current) return 0;
+                        const rect = trackRef.current.getBoundingClientRect();
+                        const percent = (clientX - rect.left) / rect.width;
+                        const clampedPercent = Math.max(0, Math.min(1, percent));
+                        return minBudget + clampedPercent * (maxBudget - minBudget);
+                      }, []);
+
+                      const handleInteractionStart = useCallback((
+                        e: React.MouseEvent | React.TouchEvent,
+                        thumb: 'min' | 'max'
+                      ) => {
+                        e.preventDefault();
+
+                        const moveHandler = (moveEvent: MouseEvent | TouchEvent) => {
+                          const clientX = 'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX;
+                          const rawValue = getClampedValue(clientX);
+                          const value = Math.round(rawValue / 100) * 100;
+                          
+                          const [minVal, maxVal] = field.value;
+
+                          if (thumb === 'min') {
+                            const newMin = Math.min(value, maxVal - 100);
+                            field.onChange([newMin, maxVal]);
+                          } else {
+                            const newMax = Math.max(value, minVal + 100);
+                            field.onChange([minVal, newMax]);
+                          }
+                        };
+
+                        const endHandler = () => {
+                          window.removeEventListener('mousemove', moveHandler);
+                          window.removeEventListener('mouseup', endHandler);
+                          window.removeEventListener('touchmove', moveHandler);
+                          window.removeEventListener('touchend', endHandler);
+                        };
+
+                        window.addEventListener('mousemove', moveHandler);
+                        window.addEventListener('mouseup', endHandler);
+                        window.addEventListener('touchmove', moveHandler);
+                        window.addEventListener('touchend', endHandler);
+                      }, [field, getClampedValue]);
+
+                      const minPos = ((field.value[0] - minBudget) / (maxBudget - minBudget)) * 100;
+                      const maxPos = ((field.value[1] - minBudget) / (maxBudget - minBudget)) * 100;
+
+                      return (
+                        <div className="relative flex items-center h-10">
+                          <div
+                            ref={trackRef}
+                            className="relative w-full h-1.5 rounded-full bg-gray-200"
+                          >
+                            <div
+                              className="absolute h-full rounded-full bg-[#00395c]"
+                              style={{ left: `${minPos}%`, right: `${100 - maxPos}%` }}
+                            />
+                            <div
+                              className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#00395c] cursor-pointer shadow-sm"
+                              style={{
+                                left: `${minPos}%`,
+                                top: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                zIndex: 1,
+                              }}
+                              onMouseDown={(e) => handleInteractionStart(e, 'min')}
+                              onTouchStart={(e) => handleInteractionStart(e, 'min')}
+                            />
+                            <div
+                              className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#00395c] cursor-pointer shadow-sm"
+                              style={{
+                                left: `${maxPos}%`,
+                                top: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                zIndex: 1,
+                              }}
+                              onMouseDown={(e) => handleInteractionStart(e, 'max')}
+                              onTouchStart={(e) => handleInteractionStart(e, 'max')}
+                            />
+                          </div>
+                        </div>
+                      );
+                    }}
+                  />
+                  {errors.budgetRange && <p className="text-red-600 text-sm mt-1">{errors.budgetRange.message}</p>}
+                </div>
+
+                <div>
+                  <Label htmlFor="comments" className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Tell us about your dream honeymoon
+                  </Label>
+                  <Textarea
+                    id="comments"
+                    {...register("comments")}
+                    placeholder="Share your vision - whether you're looking for adventure, relaxation, cultural experiences, luxury resorts, or a mix of everything..."
+                    rows={4}
+                    className="mt-2"
+                  />
+                  {errors.comments && <p className="text-red-600 text-lg mt-1">{errors.comments.message}</p>}
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Your Details */}
+            <div className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+              <h2 className="text-3xl font-bold text-gray-700 font-serif mb-6 border-b border-gray-200 pb-4">
+                Your Contact Details
+              </h2>
+              <div className="space-y-6">
+                <div>
+                  <Label className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Your names*
+                  </Label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Input 
+                        id="firstName" 
+                        {...register("firstName")} 
+                        placeholder="First name"
+                      />
+                      {errors.firstName && <p className="text-red-600 text-sm mt-1">{errors.firstName.message}</p>}
+                    </div>
+                    <div>
+                      <Input 
+                        id="lastName" 
+                        {...register("lastName")} 
+                        placeholder="Last name"
+                      />
+                      {errors.lastName && <p className="text-red-600 text-sm mt-1">{errors.lastName.message}</p>}
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <Label htmlFor="email" className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Email address*
+                  </Label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    {...register("email")} 
+                    placeholder="your@email.com"
+                  />
+                  {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>}
+                </div>
+
+                <div>
+                  <Label htmlFor="confirmEmail" className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Confirm email address*
+                  </Label>
+                  <Input 
+                    id="confirmEmail" 
+                    type="email" 
+                    {...register("confirmEmail")} 
+                    placeholder="Confirm your email"
+                  />
+                  {errors.confirmEmail && <p className="text-red-600 text-sm mt-1">{errors.confirmEmail.message}</p>}
+                </div>
+                
+                <div>
+                  <Label className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    Phone number*
+                  </Label>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="md:col-span-1">
+                      <Controller
+                        name="phoneCountryCode"
+                        control={control}
+                        render={({ field }) => (
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Country Code" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {phoneCountryCodeOptions.map(option => (
+                                <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        )}
+                      />
+                      {errors.phoneCountryCode && <p className="text-red-600 text-sm mt-1">{errors.phoneCountryCode.message}</p>}
+                    </div>
+                    <div className="md:col-span-2">
+                      <Input 
+                        id="phoneNumber" 
+                        type="tel" 
+                        {...register("phoneNumber")} 
+                        placeholder="Phone number"
+                      />
+                      {errors.phoneNumber && <p className="text-red-600 text-sm mt-1">{errors.phoneNumber.message}</p>}
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <Label className="!text-xl md:!text-2xl font-serif font-semibold text-gray-700 mb-3 block">
+                    How should we contact you?*
+                  </Label>
+                  <div className="flex flex-wrap gap-4 pt-2">
+                    {preferredContactMethodOptions.map((option) => (
+                      <div key={option.value} className="flex items-center">
+                        <Checkbox
+                          id={option.value}
+                          checked={contactMethods.includes(option.value)}
+                          onCheckedChange={() => handleContactMethodChange(option.value)}
+                        />
+                        <Label htmlFor={option.value} className="ml-2 text-base text-gray-700">
+                          {option.label}
+                        </Label>
+                      </div>
+                    ))}
+                  </div>
+                  {errors.preferredContactMethods && <p className="text-red-600 text-sm mt-1">{errors.preferredContactMethods.message}</p>}
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="text-center pt-6">
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="text-white font-serif rounded-[10px] px-10 h-12 capitalize text-sm md:text-lg font-normal tracking-wide transition-colors duration-200"
+                style={{ backgroundColor: '#00395c' }}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Enquiry'}
+              </Button>
             </div>
             
-            <div className="space-y-6">
-              <div>
-                <Label htmlFor="destinations" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Where would you like to go?*</Label>
-                <Controller
-                  name="destinations"
-                  control={control}
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className="w-full bg-white border-gray-300 text-sm focus:ring-travel-coral focus:border-travel-coral">
-                        <SelectValue placeholder="Select a destination or 'Open to suggestions'" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {regionOptions.map(option => (
-                          <SelectItem key={option.value} value={option.value} className="text-sm">{option.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                {errors.destinations && <p className="text-xs text-red-600 mt-1">{errors.destinations.message}</p>}
-              </div>
-
-              <div>
-                <Label htmlFor="tourOfInterest" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Is there a Moon that caught your attention?</Label>
-                <Controller
-                  name="tourOfInterest"
-                  control={control}
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className="w-full bg-white border-gray-300 text-sm focus:ring-travel-coral focus:border-travel-coral">
-                        <SelectValue placeholder="Select a tour" />
-                      </SelectTrigger>
-                      <SelectContent className="max-h-56" side="bottom">
-                        <SelectItem value="None in particular">None in particular</SelectItem>
-                        {tours.map(tour => (
-                          <SelectItem key={tour.title} value={tour.title} className="text-sm">{tour.title}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                {errors.tourOfInterest && <p className="text-xs text-red-600 mt-1">{errors.tourOfInterest.message}</p>}
-              </div>
-
-              <div>
-                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">When would you like to go?*</Label>
-                <Controller
-                  name="travelSeason"
-                  control={control}
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className="w-full bg-white border-gray-300 text-sm focus:ring-travel-coral focus:border-travel-coral">
-                        <SelectValue placeholder="Select a season" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {seasonOptions.map(season => (
-                          <SelectItem key={season.value} value={season.value} className="text-sm">{season.label}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                {errors.travelSeason && <p className="text-xs text-red-600 mt-1">{errors.travelSeason.message}</p>}
-              </div>
-              
-              <div>
-                <Label htmlFor="duration" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">How long for?*</Label>
-                <Input 
-                  id="duration" 
-                  {...register("duration")} 
-                  placeholder="Duration of trip (e.g., 7 nights)"
-                  className="bg-white border-gray-300 focus:ring-travel-coral focus:border-travel-coral text-sm"
-                />
-                {errors.duration && <p className="text-xs text-red-600 mt-1">{errors.duration.message}</p>}
-              </div>
-
-              <div>
-                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">How much would you like to spend per person?</Label>
-                <p className="text-lg text-gray-900 font-medium mb-4">£{budgetValue[0].toLocaleString()} - £{budgetValue[1].toLocaleString()}{budgetValue[1] === maxBudget ? '+' : ''}</p>
-                <Controller
-                  name="budgetRange"
-                  control={control}
-                  render={({ field }) => {
-                    const trackRef = useRef<HTMLDivElement>(null);
-
-                    const getClampedValue = useCallback((clientX: number) => {
-                      if (!trackRef.current) return 0;
-                      const rect = trackRef.current.getBoundingClientRect();
-                      const percent = (clientX - rect.left) / rect.width;
-                      const clampedPercent = Math.max(0, Math.min(1, percent));
-                      return minBudget + clampedPercent * (maxBudget - minBudget);
-                    }, [minBudget, maxBudget]);
-
-                    const handleInteractionStart = useCallback((
-                      e: React.MouseEvent | React.TouchEvent,
-                      thumb: 'min' | 'max'
-                    ) => {
-                      e.preventDefault();
-
-                      const moveHandler = (moveEvent: MouseEvent | TouchEvent) => {
-                        const clientX = 'touches' in moveEvent ? moveEvent.touches[0].clientX : moveEvent.clientX;
-                        const rawValue = getClampedValue(clientX);
-                        const value = Math.round(rawValue / 100) * 100;
-                        
-                        const [minVal, maxVal] = field.value;
-
-                        if (thumb === 'min') {
-                          const newMin = Math.min(value, maxVal - 100);
-                          field.onChange([newMin, maxVal]);
-                        } else {
-                          const newMax = Math.max(value, minVal + 100);
-                          field.onChange([minVal, newMax]);
-                        }
-                      };
-
-                      const endHandler = () => {
-                        window.removeEventListener('mousemove', moveHandler);
-                        window.removeEventListener('mouseup', endHandler);
-                        window.removeEventListener('touchmove', moveHandler);
-                        window.removeEventListener('touchend', endHandler);
-                      };
-
-                      window.addEventListener('mousemove', moveHandler);
-                      window.addEventListener('mouseup', endHandler);
-                      window.addEventListener('touchmove', moveHandler);
-                      window.addEventListener('touchend', endHandler);
-                    }, [field, getClampedValue]);
-
-                    const minPos = ((field.value[0] - minBudget) / (maxBudget - minBudget)) * 100;
-                    const maxPos = ((field.value[1] - minBudget) / (maxBudget - minBudget)) * 100;
-
-                    return (
-                      <div className="relative flex items-center h-10">
-                        <div
-                          ref={trackRef}
-                          className="relative w-full h-1.5 rounded-full bg-gray-200"
-                        >
-                          <div
-                            className="absolute h-full rounded-full bg-[#A72424]"
-                            style={{ left: `${minPos}%`, right: `${100 - maxPos}%` }}
-                          />
-                          <div
-                            className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#A72424] cursor-pointer"
-                            style={{
-                              left: `${minPos}%`,
-                              top: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              zIndex: 1,
-                            }}
-                            onMouseDown={(e) => handleInteractionStart(e, 'min')}
-                            onTouchStart={(e) => handleInteractionStart(e, 'min')}
-                          />
-                          <div
-                            className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#A72424] cursor-pointer"
-                            style={{
-                              left: `${maxPos}%`,
-                              top: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              zIndex: 1,
-                            }}
-                            onMouseDown={(e) => handleInteractionStart(e, 'max')}
-                            onTouchStart={(e) => handleInteractionStart(e, 'max')}
-                          />
-                        </div>
-                      </div>
-                    );
-                  }}
-                />
-                {errors.budgetRange && <p className="text-xs text-red-600 mt-1">{errors.budgetRange.message}</p>}
-              </div>
-
-              <div>
-                <Label htmlFor="comments" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Tell us more about what you are looking for</Label>
-                <Textarea
-                  id="comments"
-                  {...register("comments")}
-                  placeholder="E.g. 'We are thinking about Italy or Japan as our preferred destinations', 'We would love to do 1 week of resort relaxation and 1 week of adventure'"
-                  rows={4}
-                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Section 2: Your Details */}
-          <section className="bg-white p-6 md:p-8 rounded-md shadow">
-            <h2 className="text-xl font-semibold text-gray-700 tracking-wide mb-6 border-b pb-3 font-serif">YOUR DETAILS</h2>
-            <div className="space-y-5">
-              <div>
-                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Your name*</Label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Input 
-                      id="firstName" 
-                      {...register("firstName")} 
-                      placeholder="First name*" 
-                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400" 
-                    />
-                    {errors.firstName && <p className="text-xs text-red-600 mt-1">{errors.firstName.message}</p>}
-                  </div>
-                  <div>
-                    <Input 
-                      id="lastName" 
-                      {...register("lastName")} 
-                      placeholder="Last name*"
-                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
-                    />
-                    {errors.lastName && <p className="text-xs text-red-600 mt-1">{errors.lastName.message}</p>}
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <Label htmlFor="email" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Email address*</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  {...register("email")} 
-                  placeholder="example@email.com"
-                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
-                />
-                {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email.message}</p>}
-              </div>
-
-              <div>
-                <Label htmlFor="confirmEmail" className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Confirm email address*</Label>
-                <Input 
-                  id="confirmEmail" 
-                  type="email" 
-                  {...register("confirmEmail")} 
-                  placeholder="example@email.com"
-                  className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
-                />
-                {errors.confirmEmail && <p className="text-xs text-red-600 mt-1">{errors.confirmEmail.message}</p>}
-              </div>
-              
-              <div>
-                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">Telephone*</Label>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="md:col-span-1">
-                    <Controller
-                      name="phoneCountryCode"
-                      control={control}
-                      render={({ field }) => (
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <SelectTrigger className="w-full bg-white border-gray-300 text-base placeholder-gray-400">
-                            <SelectValue placeholder="Country Code*" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {phoneCountryCodeOptions.map(option => (
-                              <SelectItem key={option.value} value={option.value} className="text-sm">{option.label}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      )}
-                    />
-                    {errors.phoneCountryCode && <p className="text-xs text-red-600 mt-1">{errors.phoneCountryCode.message}</p>}
-                  </div>
-                  <div className="md:col-span-2">
-                    <Input 
-                      id="phoneNumber" 
-                      type="tel" 
-                      {...register("phoneNumber")} 
-                      placeholder="Phone number"
-                      className="bg-white border-gray-300 focus:ring-pink-500 focus:border-pink-500 text-base placeholder-gray-400"
-                    />
-                    {errors.phoneNumber && <p className="text-xs text-red-600 mt-1">{errors.phoneNumber.message}</p>}
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <Label className="block font-medium text-gray-700 mb-1 text-lg md:text-xl font-serif">How should we follow up?*</Label>
-                <div className="flex items-center space-x-4 pt-2">
-                  {preferredContactMethodOptions.map((option) => (
-                    <div key={option.value} className="flex items-center">
-                       <Checkbox
-                        id={option.value}
-                        checked={contactMethods.includes(option.value)}
-                        onCheckedChange={() => handleContactMethodChange(option.value)}
-                      />
-                      <Label htmlFor={option.value} className="ml-2 text-base font-normal text-gray-700">
-                        {option.label}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-                {errors.preferredContactMethods && <p className="text-xs text-red-600 mt-1">{errors.preferredContactMethods.message}</p>}
-              </div>
-            </div>
-          </section>
-
-          <div className="pt-8 text-center">
-            <Button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="bg-travel-burgundy hover:bg-travel-burgundy/90 text-white font-serif rounded-[10px] px-10 h-12 capitalize text-lg font-medium tracking-wide w-full md:w-auto transition-colors duration-300 ease-in-out shadow-md hover:shadow-lg"
-            >
-              {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
-            </Button>
-          </div>
-          <p className="text-xs text-gray-500 text-center mt-3">
-            By proceeding, I understand that the personal data I provide will be used to deal with my request in accordance with the <a href="/privacy-policy" className="underline hover:text-pink-600">privacy policy</a>.
-          </p>
-        </form>
+            <p className="text-sm text-gray-500 text-center mt-4">
+              By proceeding, I understand that the personal data I provide will be used to deal with my request in accordance with our privacy policy.
+            </p>
+          </form>
+        </div>
       </div>
-    </main>
+    </div>
   );
 };
 
-export default ContactUs; 
+export default ContactUs;

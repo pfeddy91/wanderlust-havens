@@ -15,12 +15,10 @@ const Layout: React.FC = () => {
   // const hideLayout = pathsToHideLayout.includes(location.pathname);
 
   return (
-    // The main div doesn't need flex/min-h-screen if Planner handles its own height
-    // and other pages rely on Header/Footer structure. Let's simplify.
     <> 
       {/* Conditionally render Header, Footer, and Toasters */}
       {!isPlannerPage && (
-        <>
+        <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow"> 
             <Outlet />
@@ -28,7 +26,7 @@ const Layout: React.FC = () => {
           <Footer />
           <Toaster /> 
           <Sonner /> 
-        </>
+        </div>
       )}
 
       {/* If it IS the planner page, render only the Outlet */}

@@ -54,7 +54,7 @@ export async function getCountries() {
 export async function getCountriesByFeaturedDestination() {
   const { data, error } = await supabase
     .from('countries')
-    .select('*') // Selects all columns, ensure 'id', 'name', 'slug', 'featured_image' are present
+    .select('id, name, slug, description, featured_image, mobile_image_url, region_id, created_at, updated_at')
     .eq('favourite_destination', true)
     .order('name');
   

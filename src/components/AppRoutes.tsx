@@ -12,6 +12,7 @@ import CollectionDetailPage from "../pages/CollectionDetailPage";
 import RegionCountriesPage from "../pages/RegionCountriesPage";
 import AiPlannerContainer from "./ai-planner/AiPlannerContainer";
 import ContactUs from "../pages/ContactUs"; // Import the ContactUs page
+// import ContactUs from "../pages/ContactUsSimple"; // Temporarily using simple version
 
 interface Tour {
   title: string;
@@ -34,18 +35,29 @@ export const AppRoutes = () => {
 
   useEffect(() => {
     const fetchTours = async () => {
-      const { data, error } = await supabase
-        .from('tours')
-        .select('title')
-        .order('title', { ascending: true });
-
-      if (error) {
-        console.error("Error fetching tours:", error);
-      } else {
-        setTours(data as Tour[]);
+      console.log("🚀 Attempting to fetch tours for contact form...");
+      try {
+        const { data, error } = await supabase
+          .from('tours')
+          .select('title')
+          .order('title', { ascending: true });
+        if (error) {
+          console.error("❌ Error fetching tours for contact form:", error);
+          setTours([]); // Ensure it's an empty array on error
+        } else {
+          console.log("✅ Successfully fetched tours data:", data);
+          if (Array.isArray(data)) {
+            setTours(data as Tour[]);
+          } else {
+            console.warn("⚠️ Fetched tours data is not an array. Setting to empty.", data);
+            setTours([]);
+          }
+        }
+      } catch (err) {
+        console.error("💥 Catastrophic error in fetchTours:", err);
+        setTours([]); // Also handle unexpected errors
       }
     };
-
     fetchTours();
   }, []);
 
@@ -85,6 +97,7 @@ export const AppRoutes = () => {
           <Route path="/collections" element={<CollectionsPage />} />
           <Route path="/collections/:slug" element={<CollectionDetailPage />} />
           <Route path="/about" element={<NotFound />} />
+          {/* Updated Route with tours prop */}
           <Route path="/contact" element={<ContactUs tours={tours} />} />
           <Route path="/destinations/regions/:slug" element={<RegionCountriesPage />} />
           {/* Catch-all for routes within Layout */}

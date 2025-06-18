@@ -144,12 +144,34 @@ const RegionsGrid = () => {
       try {
         const countriesData = await getCountriesByFeaturedDestination();
         
-        const formattedDestinations: FocusCardData[] = countriesData.map((country: any) => ({
-          id: country.id,
-          slug: country.slug,
-          title: country.name,
-          src: country.featured_image || `https://via.placeholder.com/600x400?text=${encodeURIComponent(country.name)}`, 
-        }));
+        // Debug logging to check mobile_image_URL availability
+        console.log('🔍 Countries data:', countriesData.map(c => ({ 
+          name: c.name, 
+          featured_image: c.featured_image ? '✅ has featured' : '❌ no featured', 
+          mobile_image_url: c.mobile_image_url ? '✅ has mobile' : '❌ no mobile',
+          isMobile 
+        })));
+        
+        const formattedDestinations: FocusCardData[] = countriesData.map((country: any) => {
+          // Explicitly check for mobile and mobile_image_url
+          let imageSrc = country.featured_image || `https://via.placeholder.com/600x400?text=${encodeURIComponent(country.name)}`;
+          
+          if (isMobile && country.mobile_image_url) {
+            imageSrc = country.mobile_image_url;
+            console.log(`📱 Using mobile image for ${country.name}:`, imageSrc);
+          } else if (isMobile) {
+            console.log(`⚠️ No mobile image found for ${country.name}, using featured_image`);
+          } else {
+            console.log(`🖥️ Desktop mode, using featured image for ${country.name}`);
+          }
+          
+          return {
+            id: country.id,
+            slug: country.slug,
+            title: country.name,
+            src: imageSrc
+          };
+        });
         
         setDestinationsToDisplay(formattedDestinations);
       } catch (error) {
@@ -160,7 +182,7 @@ const RegionsGrid = () => {
     };
 
     fetchAndPrepareDestinations();
-  }, []);
+  }, [isMobile]);
 
   const handleDestinationCardClick = (slug: string) => {
     navigate(`/destinations/${slug}`);

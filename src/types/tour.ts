@@ -49,6 +49,7 @@ export interface Country {
   slug: string;
   description: string | null;
   featured_image: string | null;
+  mobile_image_url?: string | null;
   map_image: string | null;
   region_id: string | null;
   created_at: string;

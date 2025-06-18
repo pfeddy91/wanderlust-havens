@@ -93,7 +93,7 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
     return (
       <Link 
         to={`/tours/${tour.slug}`} 
-        className="relative z-10 flex h-[26rem] w-64 flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 shadow-lg transition-all hover:shadow-xl md:h-[39rem] md:w-[20.9rem] dark:bg-neutral-900"
+        className="relative z-10 flex h-[26rem] w-[218px] flex-col items-start justify-between overflow-hidden rounded-xl bg-gray-100 shadow-lg transition-all hover:shadow-xl md:h-[39rem] md:w-[20.9rem] dark:bg-neutral-900"
       >
         {/* Top Gradient Overlay */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-2/3 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
@@ -136,6 +136,28 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
     );
   };
 
+  // Mobile carousel component with smooth scrolling
+  const MobileCarousel = ({ tours }: { tours: Tour[] }) => {
+    return (
+      <div className="md:hidden">
+        <div 
+          className="flex gap-4 overflow-x-auto scrollbar-hide py-4 scroll-smooth px-4"
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {tours.map((tour, index) => (
+            <div key={`${tour.id}-${index}`} className="flex-shrink-0">
+              <CustomTourCard tour={tour} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   // Create custom cards for our specific design
   const customCards = tours.map((tour, index) => (
     <CustomTourCard key={`${tour.id}-${index}`} tour={tour} />
@@ -144,29 +166,46 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
   return (
     <div className="pt-16 pb-0" style={{ backgroundColor: '#E4EDF3' }}>
       <div className="max-w-7l p-8 md:ml-14 md:mr-auto md:p-0">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-          <div className="lg:col-span-1">
-            <h2 className="text-3xl font-serif font-bold mb-4 uppercase">
-              EXAMPLE<br/>{country.name.toUpperCase()} HONEYMOONS
-            </h2>
-            <p className="text-base text-gray-700 mb-6 font-serif">
-              These luxury {country.name} honeymoons are simply suggestions for the kind of holiday you might have. 
-              Yours will be tailored, altered, and refined until it matches you completely.
-            </p>
-          </div>
-          
-          <div className="lg:col-span-3 -mt-10 md:-mt-20">
-            {tours && tours.length > 0 ? (
-              <div className="w-full min-w-[1200px]">
-                <Carousel items={customCards} />
-              </div>
-            ) : (
-              <div className="text-center text-gray-600 font-serif col-span-full">
-                No specific honeymoon suggestions currently available for {country.name}. Please contact us for tailored options.
-              </div>
-            )}
+        {/* Static Title Section - stays fixed */}
+        <div className="mb-8 md:mb-0">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+            <div className="lg:col-span-1">
+              <h2 className="text-3xl font-serif font-bold mb-4 uppercase">
+                EXAMPLE<br/>{country.name.toUpperCase()} HONEYMOONS
+              </h2>
+              <p className="text-base text-gray-700 mb-6 font-serif">
+                These luxury {country.name} honeymoons are simply suggestions for the kind of holiday you might have. 
+                Yours will be tailored, altered, and refined until it matches you completely.
+              </p>
+            </div>
           </div>
         </div>
+        
+        {/* Mobile Carousel */}
+        {tours && tours.length > 0 ? (
+          <>
+            <MobileCarousel tours={tours} />
+            
+            {/* Desktop Carousel - hidden on mobile */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+                <div className="lg:col-span-1">
+                  {/* Empty space to align with title */}
+                </div>
+                
+                <div className="lg:col-span-3 -mt-10 md:-mt-20">
+                  <div className="w-full min-w-[1200px]">
+                    <Carousel items={customCards} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="text-center text-gray-600 font-serif col-span-full">
+            No specific honeymoon suggestions currently available for {country.name}. Please contact us for tailored options.
+          </div>
+        )}
       </div>
     </div>
   );
