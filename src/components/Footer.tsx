@@ -161,8 +161,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-travel-green mr-3" />
-                <a href="mailto:info@wanderlusthavens.com" className="text-white hover:text-travel-green transition-colors">
-                  info@moons.com
+                <a href="mailto:infogomoons@gmail.com" className="text-white hover:text-travel-green transition-colors">
+                  infogomoons@gmail.com
                 </a>
               </li>
             </ul>

@@ -171,7 +171,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ tours = [] }) => {
       }
     } catch (error) {
       console.error('Error submitting inquiry:', error);
-      alert("We're sorry, there was an error submitting your inquiry. Please try again or contact us directly at info@gomoons.com.");
+      alert("We're sorry, there was an error submitting your inquiry. Please try again or contact us directly at infogomoons@gmail.com.");
     }
   };
 

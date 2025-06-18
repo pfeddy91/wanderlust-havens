@@ -140,7 +140,7 @@ serve(async (req) => {
 
     const emailPayload = {
       from: 'Moons Contact Form <noreply@gomoons.com>',
-      to: ['info@gomoons.com'],
+      to: ['infogomoons@gmail.com'],
       subject: `New Honeymoon Inquiry - ${formData.firstName} ${formData.lastName}`,
       html: emailHtml,
       reply_to: formData.email
