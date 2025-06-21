@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCountryBySlug, getToursByCountry } from '@/services/honeymoonService';
+import { DestinationSEO } from '@/components/SEO';
 import DestinationHero from '@/components/destination/DestinationHero';
 import DestinationTours from '@/components/destination/DestinationTours';
 import { Loader2 } from 'lucide-react';
@@ -55,6 +56,14 @@ const Destination = () => {
 
   return (
     <main className="pt-20">
+      <DestinationSEO 
+        countryName={country.name}
+        countrySlug={country.slug}
+        description={country.description || undefined}
+        image={country.featured_image || undefined}
+        tours={tours}
+      />
+      
       {/* Hero Section */}
       <DestinationHero country={country} />
       

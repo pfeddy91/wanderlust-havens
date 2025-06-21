@@ -10,7 +10,6 @@ import ContactUs from '@/pages/ContactUs';
 import PlannerPage from '@/pages/PlannerPage';
 import AllDestinationsPage from '@/pages/AllDestinationsPage';
 import CollectionsPage from '@/pages/CollectionsPage';
-import CountryPage from '@/pages/CountryPage';
 
 function App() {
   return (
@@ -19,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/destinations" element={<AllDestinationsPage />} />
-        <Route path="/destinations/:countrySlug" element={<CountryPage />} />
+        <Route path="/destinations/:slug" element={<Destination />} />
         <Route path="/tours/:tourSlug" element={<TourDetail />} />
         <Route path="/collections" element={<CollectionsPage />} />
         <Route path="/collections/:collectionSlug" element={<CollectionDetailPage />} />
