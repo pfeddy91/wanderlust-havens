@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from '@/components/ui/separator';
 import { Map, User, ClipboardList, Compass, MessageSquarePlus } from 'lucide-react';
+import { ContactSEO } from '@/components/SEO';
 
 interface Tour {
   title: string;
@@ -177,6 +178,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ tours = [] }) => {
 
   return (
     <div className="min-h-screen bg-white">
+      <ContactSEO />
       {/* Fixed container with padding top to account for header */}
       <div className="pt-24 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

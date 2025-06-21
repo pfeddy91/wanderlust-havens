@@ -166,46 +166,53 @@ const DestinationTours = ({ tours, country }: DestinationToursProps) => {
   return (
     <div className="pt-16 pb-0" style={{ backgroundColor: '#E4EDF3' }}>
       <div className="max-w-7l p-8 md:ml-14 md:mr-auto md:p-0">
-        {/* Static Title Section - stays fixed */}
-        <div className="mb-8 md:mb-0">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-            <div className="lg:col-span-1">
-              <h2 className="text-3xl font-serif font-bold mb-4 uppercase">
-                EXAMPLE<br/>{country.name.toUpperCase()} HONEYMOONS
-              </h2>
-              <p className="text-base text-gray-700 mb-6 font-serif">
-                These luxury {country.name} honeymoons are simply suggestions for the kind of holiday you might have. 
-                Yours will be tailored, altered, and refined until it matches you completely.
-              </p>
-            </div>
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          {/* Static Title Section - mobile only */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-serif font-bold mb-4 uppercase">
+              EXAMPLE<br/>{country.name.toUpperCase()} HONEYMOONS
+            </h2>
+            <p className="text-base text-gray-700 mb-6 font-serif">
+              These luxury {country.name} honeymoons are simply suggestions for the kind of holiday you might have. 
+              Yours will be tailored, altered, and refined until it matches you completely.
+            </p>
           </div>
+          {tours && tours.length > 0 ? (
+            <MobileCarousel tours={tours} />
+          ) : (
+            <div className="text-center text-gray-600 font-serif">
+              No specific honeymoon suggestions currently available for {country.name}. Please contact us for tailored options.
+            </div>
+          )}
         </div>
         
-        {/* Mobile Carousel */}
-        {tours && tours.length > 0 ? (
-          <>
-            <MobileCarousel tours={tours} />
-            
-            {/* Desktop Carousel - hidden on mobile */}
-            <div className="hidden md:block">
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-                <div className="lg:col-span-1">
-                  {/* Empty space to align with title */}
-                </div>
-                
-                <div className="lg:col-span-3 -mt-10 md:-mt-20">
-                  <div className="w-full min-w-[1200px]">
-                    <Carousel items={customCards} />
-                  </div>
+        {/* Desktop Layout - single grid */}
+        <div className="hidden md:block">
+          {tours && tours.length > 0 ? (
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+              <div className="lg:col-span-1">
+                <h2 className="text-3xl font-serif font-bold mb-4 uppercase">
+                  EXAMPLE<br/>{country.name.toUpperCase()} HONEYMOONS
+                </h2>
+                <p className="text-base text-gray-700 mb-6 font-serif">
+                  These luxury {country.name} honeymoons are simply suggestions for the kind of holiday you might have. 
+                  Yours will be tailored, altered, and refined until it matches you completely.
+                </p>
+              </div>
+              
+              <div className="lg:col-span-3">
+                <div className="w-full min-w-[1200px]">
+                  <Carousel items={customCards} />
                 </div>
               </div>
             </div>
-          </>
-        ) : (
-          <div className="text-center text-gray-600 font-serif col-span-full">
-            No specific honeymoon suggestions currently available for {country.name}. Please contact us for tailored options.
-          </div>
-        )}
+          ) : (
+            <div className="text-center text-gray-600 font-serif">
+              No specific honeymoon suggestions currently available for {country.name}. Please contact us for tailored options.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

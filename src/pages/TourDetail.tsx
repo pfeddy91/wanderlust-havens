@@ -1,66 +1,106 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTourBySlug } from '@/services/honeymoonService';
-import { Loader2 } from 'lucide-react';
+import { supabase } from '@/utils/supabaseClient';
+import { TourSEO } from '@/components/SEO';
 import TourHero from '@/components/tour/TourHero';
-import TourItinerary from '@/components/tour/TourItinerary';
-import TourHighlights from '@/components/tour/TourHighlights';
-import TourHotels from '@/components/tour/TourHotels';
 import TourImageGallery from '@/components/tour/TourImageGallery';
-import FloatingBackButton from '@/components/FloatingBackButton';
+import TourHighlights from '@/components/tour/TourHighlights';
+import TourItinerary from '@/components/tour/TourItinerary';
+import TourMap from '@/components/tour/TourMap';
 import { Tour } from '@/types/tour';
 import { Separator } from '@/components/ui/separator';
+import FloatingBackButton from '@/components/FloatingBackButton';
 
 const TourDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { tourSlug } = useParams<{ tourSlug: string }>();
   const [tour, setTour] = useState<Tour | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTour = async () => {
-      setLoading(true);
-      
-      if (slug) {
-        try {
-          const tourData = await getTourBySlug(slug);
-          console.log("Fetched tour data:", tourData);
-          
-          // Make sure the tour data is properly typed before setting state
-          if (tourData) {
-            // We know it meets the Tour interface because we've updated our types
-            setTour(tourData as Tour);
-          }
-        } catch (error) {
-          console.error('Error fetching tour data:', error);
-        } finally {
-          setLoading(false);
+      if (!tourSlug) return;
+
+      try {
+        setLoading(true);
+        setError(null);
+
+        const { data: tourData, error: tourError } = await supabase
+          .from('tours')
+          .select(`
+            *,
+            tour_images (
+              id,
+              image_url,
+              alt_text,
+              is_primary,
+              is_featured,
+              display_order
+            ),
+            tour_highlights (
+              id,
+              title,
+              description,
+              order
+            ),
+            tour_itineraries (
+              id,
+              day_range,
+              title,
+              content,
+              order_index
+            ),
+            tour_locations (
+              id,
+              name,
+              latitude,
+              longitude,
+              description,
+              order_index
+            )
+          `)
+          .eq('slug', tourSlug)
+          .single();
+
+        if (tourError) {
+          throw new Error(`Tour not found: ${tourError.message}`);
         }
+
+        setTour(tourData);
+      } catch (err) {
+        console.error('Error fetching tour:', err);
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchTour();
-  }, [slug]);
+  }, [tourSlug]);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-theme(spacing.20))]">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
-  if (!tour) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-theme(spacing.20))] pt-20">
-        <h1 className="text-2xl font-bold">Tour not found</h1>
-        <p className="mt-2 text-muted-foreground">We couldn't find the tour you're looking for.</p>
-        <a href="/" className="mt-4 text-primary hover:underline">Go back home</a>
-      </div>
-    );
+  if (error || !tour) {
+    return <div className="flex justify-center items-center h-screen text-red-600">Error: {error || 'Tour not found'}</div>;
   }
+
+  // Create tour object for SEO component with proper mapping
+  const tourForSEO = {
+    title: tour.name, // Map 'name' to 'title' for SEO component
+    slug: tour.slug,
+    summary: tour.summary,
+    description: tour.description,
+    guide_price: tour.guide_price,
+    duration: tour.duration,
+    countries: tour.country_details?.map(c => c.name) || [],
+    featured_image: tour.featured_image || undefined
+  };
 
   return (
     <main className="pb-16">
+      <TourSEO tour={tourForSEO} />
       <TourHero tour={tour} />
       
       <Separator />
@@ -74,7 +114,10 @@ const TourDetail = () => {
       {tour.tour_images && tour.tour_images.length > 0 && (
         <>
           <Separator />
-          <TourImageGallery images={tour.tour_images} title="Experience the Journey" />
+          <TourImageGallery 
+            images={tour.tour_images} 
+            title={`${tour.name} Gallery`} 
+          />
         </>
       )}
 
@@ -86,12 +129,13 @@ const TourDetail = () => {
         </div>
       </section>
 
-      {tour.hotels && tour.hotels.length > 0 && (
-        <>
-          <Separator />
-          <TourHotels hotels={tour.hotels} />
-        </>
-      )}
+      <Separator />
+      
+      <section id="map" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <TourMap tour={tour} />
+        </div>
+      </section>
 
       {/* Floating Back Button (conditional) */}
       <FloatingBackButton />

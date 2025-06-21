@@ -1,4 +1,5 @@
 import React from 'react';
+import { HomepageSEO } from '@/components/SEO';
 import Hero from '@/components/Hero';
 import HoneymoonInfo from '@/components/HoneymoonInfo';
 import RegionsGrid from '@/components/RegionsGrid';
@@ -11,6 +12,7 @@ import { Link } from 'react-router-dom';
 const Index = () => {
   return (
     <main>
+      <HomepageSEO />
       <Hero />
       <HoneymoonInfo />
       <div id="explore">

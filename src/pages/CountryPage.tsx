@@ -1,96 +1,107 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { supabase } from '@/utils/supabaseClient';
+import { DestinationSEO } from '@/components/SEO';
 import DestinationHero from '@/components/destination/DestinationHero';
 import DestinationTours from '@/components/destination/DestinationTours';
 import DestinationImages from '@/components/destination/DestinationImages';
-import { supabase } from '../../utils/supabaseClient';
+import { Tour } from '@/types/tour';
 
-// Add more component imports as needed
+interface Country {
+  id: string;
+  name: string;
+  slug: string;
+  featured_image: string | null;
+  description?: string | null;
+  rationale?: string | null;
+  region_id?: string | null;
+  best_period?: string | null;
+  distance?: string | null;
+  comfort?: string | null;
+}
 
 const CountryPage = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const [country, setCountry] = useState<any>(null);
-  const [tours, setTours] = useState<any[]>([]);
+  const { countrySlug } = useParams<{ countrySlug: string }>();
+  const [country, setCountry] = useState<Country | null>(null);
+  const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchCountry = async () => {
-      try {
-        // Fetch country data
-        const response = await fetch(`/api/countries/slug/${slug}`);
-        if (!response.ok) throw new Error('Country not found');
-        
-        const data = await response.json();
-        setCountry(data);
-        
-        // Fetch related tours
-        const toursResponse = await fetch(`/api/countries/${data.id}/tours`);
-        if (toursResponse.ok) {
-          const toursData = await toursResponse.json();
-          setTours(toursData);
-        }
-      } catch (error) {
-        console.error('Error fetching country:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const fetchCountryData = async () => {
+      if (!countrySlug) return;
 
-    if (slug) {
-      fetchCountry();
-    }
-  }, [slug]);
-
-  useEffect(() => {
-    const fetchImages = async () => {
       try {
         setLoading(true);
-        console.log(`Fetching images for country ID: ${country.id}`);
-        
-        // Debug Supabase
-        console.log('Supabase instance available:', !!supabase);
-        
-        // Query the destination_images table where country_id matches
-        const { data, error } = await supabase
-          .from('destination_images')
+        setError(null);
+
+        // Fetch country data
+        const { data: countryData, error: countryError } = await supabase
+          .from('countries')
           .select('*')
-          .eq('country_id', country.id);
-        
-        console.log('Raw Supabase response:', { data, error });
-        
-        // Rest of the function...
-      } catch (error) {
-        console.error('Error fetching images:', error);
+          .eq('slug', countrySlug)
+          .single();
+
+        if (countryError) {
+          throw new Error(`Country not found: ${countryError.message}`);
+        }
+
+        setCountry(countryData);
+
+        // Fetch tours for this country
+        const { data: toursData, error: toursError } = await supabase
+          .from('tours')
+          .select(`
+            *,
+            tour_images (
+              id,
+              image_url,
+              is_primary,
+              is_featured,
+              display_order
+            )
+          `)
+          .contains('countries', [countryData.name])
+          .order('recommendation_metric', { ascending: false });
+
+        if (toursError) {
+          console.error('Error fetching tours:', toursError);
+        } else {
+          setTours(toursData || []);
+        }
+
+      } catch (err) {
+        console.error('Error fetching country data:', err);
+        setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
         setLoading(false);
       }
     };
 
-    if (country) {
-      fetchImages();
-    }
-  }, [country]);
+    fetchCountryData();
+  }, [countrySlug]);
 
   if (loading) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
-  if (!country) {
-    return <div className="text-center p-12">Country not found</div>;
+  if (error || !country) {
+    return <div className="flex justify-center items-center h-screen text-red-600">Error: {error || 'Country not found'}</div>;
   }
 
-  console.log('Country data being passed to components:', { 
-    id: country.id,
-    name: country.name 
-  });
-
   return (
-    <div>
+    <main className="pt-20">
+      <DestinationSEO 
+        countryName={country.name}
+        countrySlug={country.slug}
+        description={country.description || undefined}
+        image={country.featured_image || undefined}
+        tours={tours}
+      />
       <DestinationHero country={country} />
       <DestinationImages countryId={country.id} countryName={country.name} />
       <DestinationTours tours={tours} country={country} />
-      {/* Add more components as needed */}
-    </div>
+    </main>
   );
 };
 

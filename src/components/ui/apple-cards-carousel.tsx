@@ -97,9 +97,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     <CarouselContext.Provider
       value={{ onCardClose: handleCardClose, currentIndex }}
     >
-      <div className="relative w-full">
+      <div className="relative w-full pb-6">
         <div
-          className="flex w-full overflow-x-auto overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
+          className="flex w-full overflow-x-auto overscroll-x-auto scroll-smooth py-0 pb-8 [scrollbar-width:none]"
           ref={carouselRef}
           onScroll={checkScrollability}
           {...swipeHandlers}
@@ -131,20 +131,20 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             ))}
           </div>
         </div>
-        <div className="flex justify-center gap-2 mt-4 md:mt-0 md:mr-10 md:justify-end">
+        <div className="flex justify-center gap-2 mt-6 md:mt-2 md:mr-4 md:justify-end">
           <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-700 disabled:opacity-50 hover:bg-gray-200 transition-colors"
+            className="relative z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gray-800 text-white disabled:opacity-50 hover:bg-gray-900 transition-colors shadow-lg"
             onClick={scrollLeft}
             disabled={!canScrollLeft}
           >
-            <IconArrowNarrowLeft className="h-6 w-6" />
+            <IconArrowNarrowLeft className="h-7 w-7" />
           </button>
           <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-700 disabled:opacity-50 hover:bg-gray-200 transition-colors"
+            className="relative z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gray-800 text-white disabled:opacity-50 hover:bg-gray-900 transition-colors shadow-lg"
             onClick={scrollRight}
             disabled={!canScrollRight}
           >
-            <IconArrowNarrowRight className="h-6 w-6" />
+            <IconArrowNarrowRight className="h-7 w-7" />
           </button>
         </div>
       </div>
