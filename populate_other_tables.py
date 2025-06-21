@@ -35,6 +35,34 @@ def custom_slugify(text: str) -> str:
     text = text.strip('-')
     return text
 
+def create_region_slug(region_name: str) -> str:
+    """
+    Create a simplified region slug in the format honeymoon-{region}.
+    Maps complex region names to simple ones.
+    """
+    region_slug_map = {
+        'African Adventures': 'africa',
+        'Asia': 'asia', 
+        'Asian Wonders': 'asia',
+        'Europe': 'europe',
+        'European Escapes': 'europe',
+        'North America & Hawaii': 'north-america',
+        'South America': 'south-america',
+        'Caribbean & Central America': 'caribbean',
+        'Oceania & Pacific': 'oceania'
+    }
+    
+    # Get simplified slug or fallback to custom_slugify
+    simple_name = region_slug_map.get(region_name, custom_slugify(region_name))
+    return f"honeymoon-{simple_name}"
+
+def create_country_slug(country_name: str) -> str:
+    """
+    Create a simplified country slug in the format honeymoon-{country}.
+    """
+    country_slug = custom_slugify(country_name)
+    return f"honeymoon-{country_slug}"
+
 def call_gemini_api(prompt: str) -> Optional[Dict[str, Any]]:
     """
     Call the Gemini API with a prompt and return the parsed JSON response.
@@ -169,7 +197,7 @@ def populate_regions(regions_to_populate: List[str]) -> Dict[str, str]:
         print(f"\nProcessing Region: {region_name}")
 
         # 1. Generate Slug
-        region_slug = custom_slugify(f"honeymoon-{region_name}")
+        region_slug = create_region_slug(region_name)
 
         # 2. Generate Content via Gemini
         prompt = generate_region_prompt(region_name)
@@ -252,7 +280,7 @@ def populate_countries(region_countries_map: Dict[str, List[str]], region_name_t
             print(f"  Processing Country: {country_name}")
 
             # 1. Generate Slug
-            country_slug = custom_slugify(f"honeymoon-{region_name}-{country_name}") # Include region for uniqueness
+            country_slug = create_country_slug(country_name)
 
             # 2. Generate Content via Gemini
             prompt = generate_country_prompt(country_name, region_name)

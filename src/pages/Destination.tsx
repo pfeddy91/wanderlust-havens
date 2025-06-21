@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCountryBySlug, getToursByCountry } from '@/services/honeymoonService';
-import { DestinationSEO } from '@/components/SEO';
 import DestinationHero from '@/components/destination/DestinationHero';
 import DestinationTours from '@/components/destination/DestinationTours';
+import SEO from '@/components/SEO';
 import { Loader2 } from 'lucide-react';
 
 const Destination = () => {
   const { slug } = useParams<{ slug: string }>();
   const [country, setCountry] = useState<any>(null);
+  const [region, setRegion] = useState<any>(null);
   const [tours, setTours] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,6 +21,11 @@ const Destination = () => {
         try {
           const countryData = await getCountryBySlug(slug);
           setCountry(countryData);
+          
+          // Extract region data if available (from the join in honeymoonService)
+          if (countryData?.regions) {
+            setRegion(countryData.regions);
+          }
           
           if (countryData?.id) {
             const toursData = await getToursByCountry(countryData.id);
@@ -56,12 +62,13 @@ const Destination = () => {
 
   return (
     <main className="pt-20">
-      <DestinationSEO 
+      <SEO 
+        isDestination={true}
         countryName={country.name}
-        countrySlug={country.slug}
-        description={country.description || undefined}
-        image={country.featured_image || undefined}
-        tours={tours}
+        regionName={region?.name}
+        description={country.description}
+        canonicalUrl={`/destinations/${country.slug}`}
+        ogImage={country.featured_image}
       />
       
       {/* Hero Section */}

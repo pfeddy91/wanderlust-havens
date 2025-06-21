@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase } from '@/utils/supabaseClient';
 import { Loader2 } from 'lucide-react';
 import { Tour } from '@/types/tour';
+import SEO from '@/components/SEO';
 
 // Interface for the dedicated collections table data
 interface CollectionDetails {
@@ -101,6 +102,12 @@ const CollectionDetailPage = () => {
 
   return (
     <main className="pt-20">
+      <SEO 
+        title={`${collectionDetails.name} | Honeymoon Collection`}
+        description={collectionDetails.description || `Explore our curated '${collectionDetails.name}' honeymoon collection. Find unique tours and experiences tailored to your travel style.`}
+        keywords={`${collectionDetails.name}, honeymoon collection, luxury travel, romantic getaways, ${collectionDetails.name} honeymoons`}
+        canonicalUrl={`/collections/${collectionDetails.slug}`}
+      />
       {/* Collection Hero Section (Example) */}
       <section className="py-16 bg-gray-100 text-center">
           <div className="container mx-auto px-4">
@@ -125,7 +132,7 @@ const CollectionDetailPage = () => {
                 <div className="w-full h-64 relative overflow-hidden">
                   <img
                     src={getTourImage(tour)}
-                    alt={tour.title} // Use title
+                    alt={tour.name} // Use name
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80'; }}
                   />
@@ -136,7 +143,7 @@ const CollectionDetailPage = () => {
                 <div className="p-4 bg-white">
                    {/* You might need country names here - requires fetching countries based on tour.countries */}
                   {/* <p className="uppercase text-xs tracking-wider mb-1 text-gray-500">{formatCountryName(tour)}</p> */}
-                  <h3 className="text-lg font-semibold font-serif mb-2 text-gray-800 group-hover:text-travel-burgundy transition-colors">{tour.title}</h3>
+                  <h3 className="text-lg font-semibold font-serif mb-2 text-gray-800 group-hover:text-travel-burgundy transition-colors">{tour.name}</h3>
                   <p className="text-sm text-gray-600">From £{tour.guide_price?.toLocaleString() || 'N/A'} per person</p>
                 </div>
               </Link>

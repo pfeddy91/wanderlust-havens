@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from '@/components/ui/separator';
 import { Map, User, ClipboardList, Compass, MessageSquarePlus } from 'lucide-react';
-import { ContactSEO } from '@/components/SEO';
+import SEO from '@/components/SEO';
 
 interface Tour {
   title: string;
@@ -178,7 +178,12 @@ const ContactUs: React.FC<ContactUsProps> = ({ tours = [] }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <ContactSEO />
+      <SEO 
+        title="Contact Us - Plan Your Custom Honeymoon"
+        description="Get in touch with our honeymoon experts to start planning your bespoke romantic getaway. Fill out our form and we'll create a tailored itinerary for you."
+        keywords="Contact us, honeymoon planning, bespoke travel, custom honeymoon, luxury travel agent, travel inquiry"
+        canonicalUrl="/contact"
+      />
       {/* Fixed container with padding top to account for header */}
       <div className="pt-24 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

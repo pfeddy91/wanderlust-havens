@@ -1,0 +1,206 @@
+{
+  "completed": [
+    "71c34ff8-1576-416e-ae57-3146104f01c8",
+    "6088e9ed-7901-462f-ad6c-4f98dc1ff1a3",
+    "a7e09df6-1707-45d3-9f6c-f596e31eeb9a",
+    "a9cecd8a-24d4-49c0-b648-74f8e61087ff",
+    "103510b0-0f3b-4703-8226-9e3a747de7d7",
+    "9eca2944-7d39-472e-8fb4-2ab60cf9f8a6",
+    "f7010955-610a-4a6b-91d9-437a5860594f",
+    "4743147f-795c-44b4-b3e9-9e030b2225c2",
+    "f4a95b4a-dbf3-43d7-9fb3-0fdc69fffa9f",
+    "19aad089-389b-4f06-b8f7-804d7bee2fdc",
+    "7bf9cd57-9f6a-4aa2-8069-0bbd8c23e539",
+    "410ce48b-f709-4732-84a6-f125d9f3396b",
+    "ffd10cf5-688f-496f-8881-15732614aea5",
+    "1f67e404-3533-4d7c-ac31-5e34e52607eb",
+    "95dcf380-44e3-420a-af19-6d371d110e93",
+    "eef4187d-61f6-470a-ba03-94270df4eddc",
+    "2a710e98-3520-4883-b1fb-8dd67e95e3f4",
+    "36dc9f1e-3780-40a1-a5ca-c64b5d5e7041",
+    "78fb8501-0e56-4a12-b0ca-7c44289f2f8a",
+    "2f3150ea-061d-4bce-b59c-ca04f20c805f",
+    "3a6e2d98-1c36-416f-803a-202c5e3d3a6a",
+    "525bfcde-8cd2-48c5-9ef4-deee346cb724",
+    "dce9afdb-329c-445e-818a-303a13b39ac8",
+    "bb5f7e07-4127-451a-84d8-c5ef1b6a59eb",
+    "bb484a9e-a94d-4055-ab4a-0663033960aa",
+    "d6bc341c-19d9-4260-82df-1afd3e077d19",
+    "2c8e7997-92da-4aa3-9152-b5429552165a",
+    "a3172bb3-0287-473b-8429-8fd199496e9e",
+    "470a96db-c97b-4d58-a126-a700f9dd606f",
+    "9224646e-9e50-45d6-8353-3c52caeae361",
+    "717320c6-7e1f-448e-a9fd-99d2ec2bf6af",
+    "276acbd5-b6f7-4671-99f1-062d68b28e43",
+    "af9274d2-421a-44ed-b6fa-a89a6e71b994",
+    "3bccc494-2487-4cc0-a40b-638e6e67fc4e",
+    "95b1dbae-d4bd-4642-811f-97884c1201ac",
+    "ea7a253c-4984-4c63-8010-c2e33b2c0c1c",
+    "767dba6a-bafa-4be8-836e-efd6008f14f3",
+    "5127cf52-b651-458d-b8c3-5f77fd21f25a",
+    "0635a53e-1fac-43d4-9d7a-ab4b4ccb15b6",
+    "0cdbafe7-2ed5-4518-8739-3df92a37755f",
+    "13d844c0-1873-4346-a020-9e92fd1fb3e5"
+  ],
+  "failed": [
+    {
+      "tour_id": "bb5f7e07-4127-451a-84d8-c5ef1b6a59eb",
+      "tour_name": "Outback Adventure",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-20T17:39:02.989989"
+    },
+    {
+      "tour_id": "bb484a9e-a94d-4055-ab4a-0663033960aa",
+      "tour_name": "Maldivian Dreams & Overwater Bliss",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:03:00.570071"
+    },
+    {
+      "tour_id": "d6bc341c-19d9-4260-82df-1afd3e077d19",
+      "tour_name": "Brazilian Rhythm & Rainforest",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:03:21.188735"
+    },
+    {
+      "tour_id": "717320c6-7e1f-448e-a9fd-99d2ec2bf6af",
+      "tour_name": "Tropical Paradise",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:03:42.069690"
+    },
+    {
+      "tour_id": "ea7a253c-4984-4c63-8010-c2e33b2c0c1c",
+      "tour_name": "Greek Islands Private Yacht Charter",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:04:02.930444"
+    },
+    {
+      "tour_id": "13d844c0-1873-4346-a020-9e92fd1fb3e5",
+      "tour_name": "Colombian Coffee & Caribbean Charm",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:04:22.889261"
+    },
+    {
+      "tour_id": "c135721d-a624-4cc3-8289-83bb3fdb3887",
+      "tour_name": "Spice Route Heritage",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:04:43.509586"
+    },
+    {
+      "tour_id": "38badf47-b621-4b87-af4d-ecae38449d03",
+      "tour_name": "Wild Atlantic Way",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:05:03.359134"
+    },
+    {
+      "tour_id": "915bd51d-b7ea-4b88-a692-d8052fa5d78f",
+      "tour_name": "Danish Design & Coastal Living",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:05:24.955559"
+    },
+    {
+      "tour_id": "49fe78fc-789e-42f4-8042-1a6f9c27ad13",
+      "tour_name": "Sahara Desert Romance",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:05:44.747809"
+    },
+    {
+      "tour_id": "b9878873-6085-4cd5-b21c-7ddda14722b0",
+      "tour_name": "Italian Truffle & Wine Ultra",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:06:05.719692"
+    },
+    {
+      "tour_id": "72aeda9a-113d-4d69-b2b4-5c352a78148f",
+      "tour_name": "Mediterranean Grand Tour",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:06:26.377334"
+    },
+    {
+      "tour_id": "b7570040-b0c6-46e4-b26b-7c68772686f5",
+      "tour_name": "New Zealand Private Heli-Wine Tour",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:06:46.295779"
+    },
+    {
+      "tour_id": "d91b0119-139f-4fb5-b2d4-cb6a686a671d",
+      "tour_name": "Ryokan Experience",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:07:06.514689"
+    },
+    {
+      "tour_id": "f3173c1e-046d-4665-854d-ff65b2505f2a",
+      "tour_name": "Andean Heritage Route",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:07:26.452806"
+    },
+    {
+      "tour_id": "fa9bed45-dc34-4843-91a6-cdd6f961f52a",
+      "tour_name": "French Riviera Ultra",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:07:46.400427"
+    },
+    {
+      "tour_id": "1220adb8-05d5-48c9-a4ea-e83027daa282",
+      "tour_name": "Rwanda Gorilla Ultra Experience",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:08:07.912684"
+    },
+    {
+      "tour_id": "e221e4eb-41fc-4d64-9991-54ec9ae7c14c",
+      "tour_name": "South African Coastal Adventure",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:08:28.305331"
+    },
+    {
+      "tour_id": "dd81868b-8ec9-4fa6-8457-b7680cb48f38",
+      "tour_name": "Barcelona Beach & Culture",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:08:50.306932"
+    },
+    {
+      "tour_id": "7159e97f-ab92-4db5-91ea-69087f9a6cce",
+      "tour_name": "Tanzania Private Conservation",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:09:10.858697"
+    },
+    {
+      "tour_id": "ed3d6841-9f6d-404a-84ce-c6d47d0bd688",
+      "tour_name": "Indochina Grand Tour",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:09:30.715224"
+    },
+    {
+      "tour_id": "144ba8bc-a504-46cd-baf9-e5017a85d02a",
+      "tour_name": "Pacific Cultural Bridge",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:09:51.239152"
+    },
+    {
+      "tour_id": "a2aa6099-388d-4008-8e5e-18ea90f0414d",
+      "tour_name": "European Christmas Markets Luxury",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:10:13.032808"
+    },
+    {
+      "tour_id": "d05605ac-2da7-460f-97bb-b1ab068ef834",
+      "tour_name": "Orient Express European Grand Tour",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:10:32.964319"
+    },
+    {
+      "tour_id": "fd81d832-5c34-49c2-9658-d837d6999108",
+      "tour_name": "New York Ultra Luxury",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:10:54.581111"
+    },
+    {
+      "tour_id": "fdf211b7-4d5d-4480-8646-564b695a3197",
+      "tour_name": "Hawaiian Paradise Mini",
+      "error": "Image processing failed",
+      "timestamp": "2025-06-21T01:11:14.957675"
+    }
+  ],
+  "current_batch": 3,
+  "started_at": "2025-06-20T15:04:20.455422",
+  "last_updated": "2025-06-21T12:54:55.478044"
+}

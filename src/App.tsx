@@ -1,33 +1,22 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Index from '@/pages/Index';
-import Destination from '@/pages/Destination';
-import TourDetail from '@/pages/TourDetail';
-import CollectionDetailPage from '@/pages/CollectionDetailPage';
-import ContactUs from '@/pages/ContactUs';
-import PlannerPage from '@/pages/PlannerPage';
-import AllDestinationsPage from '@/pages/AllDestinationsPage';
-import CollectionsPage from '@/pages/CollectionsPage';
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./components/AppRoutes";
 
-function App() {
+const queryClient = new QueryClient();
+
+const App = () => {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/destinations" element={<AllDestinationsPage />} />
-        <Route path="/destinations/:slug" element={<Destination />} />
-        <Route path="/tours/:tourSlug" element={<TourDetail />} />
-        <Route path="/collections" element={<CollectionsPage />} />
-        <Route path="/collections/:collectionSlug" element={<CollectionDetailPage />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/planner" element={<PlannerPage />} />
-      </Routes>
-      <Footer />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </TooltipProvider>
+      <Sonner />
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;

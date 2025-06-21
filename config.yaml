@@ -1,0 +1,132 @@
+# Tour Expansion Pipeline Configuration
+# Configuration file for expanding from 100 to 250 tours
+
+project:
+  name: "Extension to 250 Tours"
+  version: "1.0"
+  target_total_tours: 250
+  current_tours: 148
+  new_tours_to_add: 148
+
+# API Configuration
+apis:
+  gemini:
+    api_key: "AIzaSyBHQrWXW6ix1Me5ufjfc70b01W20hbgZKc"
+    model: "gemini-2.5-pro"
+    timeout_seconds: 60
+    max_retries: 3
+    rate_limit_delay: 3
+  
+  supabase:
+    url: "https://ydcggawwxohbcpcjyhdk.supabase.co"
+    anon_key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkY2dnYXd3eG9oYmNwY2p5aGRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyNjk3NjUsImV4cCI6MjA1ODg0NTc2NX0.FHSkH2qML9w5Li6VfG8jWbcu-DV4HQCLTK0wu6J3VV0"
+  
+  unsplash:
+    access_key: "x49l7PRQ_Du5MyKVvAK_Y4FTjcWXEzUgMtnp4SQeG8s"
+    secret_key: "ERPUpyD7d2CB3iDoN3mpX0v4YuNi3WfeYOoVanht11Y"
+  
+  google_places:
+    api_key: "AIzaSyDJM5cxN5GBULkR-cUA22NYYPYRSAT8qrM"
+
+# Processing Configuration
+processing:
+  batch_size: 5                     # Reduced from 15 due to 3x API calls per tour
+  max_concurrent_tours: 1           # Reduced from 3 due to increased API load
+  max_concurrent_images: 2          # Parallel image processing limit
+  enable_resumability: true         # Allow resuming from failures
+  progress_file: "expansion_progress.json"
+  images_progress_file: "tour_images_progress.json"
+  
+  # Image processing settings (for future use)
+  images:
+    per_tour_target: 15
+    quality_threshold: 7.5          # Minimum AI validation score (1-10)
+    storage_bucket: "tour-images"
+    max_width: 1920
+    max_height: 1280
+    compression_quality: 90
+
+# Content Generation Guidelines (Gemini determines actual numbers dynamically)
+content:
+  tour_highlights:
+    target_count: 6                 # Target number, Gemini can adjust
+    title_max_words: 5
+    description_max_words: 50
+  
+  tour_itineraries:
+    # Number of sections determined by Gemini based on tour duration and complexity
+    min_words_per_section: 100
+    max_words_per_section: 200
+  
+  tour_locations:
+    # Number of locations determined by Gemini based on tour scope
+    require_coordinates: true
+
+# File Paths
+paths:
+  input:
+    tours_csv: "incipit_v2.csv"
+    existing_tours: "tours_input.csv"
+  
+  output:
+    logs: "logs/"
+    results: "results/"
+    progress: "expansion_progress.json"
+    error_reports: "error_reports/"
+
+# Quality Assurance
+quality:
+  validation:
+    check_duplicates: true
+    validate_embeddings: true
+    verify_images: true
+    test_questionnaire_matching: true
+  
+  manual_review:
+    required_for_ultra_luxury: true
+    sample_percentage: 10           # % of tours for manual QA
+
+# Infrastructure Setup
+infrastructure:
+  setup_required:
+    add_mauritius: true
+    update_region_images: true
+    backup_existing_data: true
+  
+  cleanup:
+    remove_deprecated_destinations: true
+    update_country_mappings: true
+
+# Monitoring and Alerts
+monitoring:
+  enable_progress_tracking: true
+  send_completion_alerts: false    # Set to true if you want notifications
+  log_level: "INFO"               # DEBUG, INFO, WARNING, ERROR
+  
+  failure_thresholds:
+    max_failed_tours_per_batch: 3
+    max_consecutive_api_failures: 5
+    max_image_validation_failures: 10
+
+# Database Configuration
+database:
+  tables:
+    tours:
+      auto_generate_slugs: true
+      require_embeddings: true
+    
+    tour_highlights:
+      validate_content: true
+      require_images: false
+    
+    tour_itineraries:
+      validate_day_ranges: true
+      require_hotels: false
+    
+    tour_images:
+      validate_urls: true
+      check_duplicates: true
+    
+    tour_locations:
+      validate_coordinates: true
+      require_descriptions: true 

@@ -80,40 +80,12 @@ const RegionCountries = () => {
     }
   }, [slug]);
 
-  // Completely revised URL construction logic
+  // Simplified URL construction logic
   const handleCountryClick = (country: Country) => {
-    if (!region || !country) return;
+    if (!country) return;
     
-    // Debug logging to see what we're working with
-    console.log("Original region slug:", region.slug);
-    console.log("Original country slug:", country.slug);
-    
-    // Extract the base region name (without any prefixes)
-    // First, remove any "honeymoon-" prefix
-    let baseRegionSlug = region.slug.replace(/^honeymoon-/, '');
-    
-    // Extract the base country name (without any region prefixes)
-    let baseCountrySlug = country.slug;
-    
-    // Check if country slug starts with region slug and remove it
-    if (baseCountrySlug.startsWith(`${baseRegionSlug}-`)) {
-      baseCountrySlug = baseCountrySlug.substring(baseRegionSlug.length + 1);
-    }
-    
-    // Check if country slug starts with "honeymoon-region-" pattern
-    const honeymoonRegionPrefix = `honeymoon-${baseRegionSlug}-`;
-    if (baseCountrySlug.startsWith(honeymoonRegionPrefix)) {
-      baseCountrySlug = baseCountrySlug.substring(honeymoonRegionPrefix.length);
-    }
-    
-    // Construct the final URL with the correct format
-    const destinationUrl = `/destinations/honeymoon-${baseRegionSlug}-${baseCountrySlug}`;
-    
-    console.log("Clean region slug:", baseRegionSlug);
-    console.log("Clean country slug:", baseCountrySlug);
-    console.log("Final destination URL:", destinationUrl);
-    
-    navigate(destinationUrl);
+    // With the new simplified slug format, we can navigate directly to the country slug
+    navigate(`/destinations/${country.slug}`);
   };
 
   return (

@@ -104,12 +104,8 @@ const DestinationsPopup = ({ onClose }: DestinationsPopupProps) => {
   const handleNavigate = (path: string) => {
     onClose();
     
-    // Fix region URLs to include destinations prefix
-    if (path.startsWith('/regions/')) {
-      navigate(`/destinations${path}`);
-    } else {
-      navigate(path);
-    }
+    // Navigate directly to the path - slugs are now simplified
+    navigate(path);
   };
 
   const handleRegionHover = (region: any) => {

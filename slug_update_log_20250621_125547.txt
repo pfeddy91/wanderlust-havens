@@ -1,0 +1,127 @@
+[2025-06-21 12:55:47] 🚀 Starting Slug Update Process
+[2025-06-21 12:55:47] ==================================================
+[2025-06-21 12:55:47] === UPDATING REGION SLUGS ===
+[2025-06-21 12:55:47] ✅ Region 'North America & Hawaii': honeymoon-north-america-hawaii → honeymoon-north-america
+[2025-06-21 12:55:47] ⏭️  Region 'Caribbean & Central America': honeymoon-caribbean-central-america (no change needed)
+[2025-06-21 12:55:47] ✅ Region 'Asia': honeymoon-asian-wonders → honeymoon-asia
+[2025-06-21 12:55:47] ⏭️  Region 'Oceania & Pacific': honeymoon-oceania-pacific (no change needed)
+[2025-06-21 12:55:47] ⏭️  Region 'South America': honeymoon-south-america (no change needed)
+[2025-06-21 12:55:47] ✅ Region 'Europe': honeymoon-european-escapes → honeymoon-europe
+[2025-06-21 12:55:47] ✅ Region 'Africa': honeymoon-african-adventures → honeymoon-africa
+[2025-06-21 12:55:47] Region updates completed: 4 changes made
+[2025-06-21 12:55:47] 
+=== UPDATING COUNTRY SLUGS ===
+[2025-06-21 12:55:48] ✅ Country 'French Polynesia': honeymoon-oceania-pacific-french-polynesia → honeymoon-french-polynesia
+[2025-06-21 12:55:48] ✅ Country 'Japan': honeymoon-asian-wonders-japan → honeymoon-japan
+[2025-06-21 12:55:48] ✅ Country 'Greece': honeymoon-european-escapes-greece → honeymoon-greece
+[2025-06-21 12:55:48] ✅ Country 'United States': honeymoon-north-america-hawaii-united-states → honeymoon-united-states
+[2025-06-21 12:55:48] ✅ Country 'Spain': honeymoon-european-escapes-spain → honeymoon-spain
+[2025-06-21 12:55:48] ✅ Country 'Morocco': honeymoon-african-adventures-morocco → honeymoon-morocco
+[2025-06-21 12:55:48] ✅ Country 'Italy': honeymoon-european-escapes-italy → honeymoon-italy
+[2025-06-21 12:55:48] ✅ Country 'Chile': honeymoon-south-america-chile → honeymoon-chile
+[2025-06-21 12:55:48] ✅ Country 'Turkey': honeymoon-european-escapes-turkey → honeymoon-turkey
+[2025-06-21 12:55:48] ✅ Country 'Argentina': honeymoon-south-america-argentina → honeymoon-argentina
+[2025-06-21 12:55:49] ✅ Country 'Thailand': honeymoon-asian-wonders-thailand → honeymoon-thailand
+[2025-06-21 12:55:49] ✅ Country 'Bhutan': honeymoon-asian-wonders-bhutan → honeymoon-bhutan
+[2025-06-21 12:55:49] ✅ Country 'India': honeymoon-asian-wonders-india → honeymoon-india
+[2025-06-21 12:55:49] ✅ Country 'Malaysia': honeymoon-asian-wonders-malaysia → honeymoon-malaysia
+[2025-06-21 12:55:49] ✅ Country 'Namibia': honeymoon-african-adventures-namibia → honeymoon-namibia
+[2025-06-21 12:55:49] ✅ Country 'Botswana': honeymoon-african-adventures-botswana → honeymoon-botswana
+[2025-06-21 12:55:49] ✅ Country 'Colombia': honeymoon-caribbean-central-america-colombia → honeymoon-colombia
+[2025-06-21 12:55:49] ✅ Country 'South Africa': honeymoon-african-adventures-south-africa → honeymoon-south-africa
+[2025-06-21 12:55:49] ✅ Country 'China': honeymoon-asian-wonders-china → honeymoon-china
+[2025-06-21 12:55:49] ✅ Country 'Maldives': honeymoon-asian-wonders-maldives → honeymoon-maldives
+[2025-06-21 12:55:49] ✅ Country 'Kenya': honeymoon-african-adventures-kenya → honeymoon-kenya
+[2025-06-21 12:55:49] ✅ Country 'Mauritius': honeymoon-african-adventures-mauritius → honeymoon-mauritius
+[2025-06-21 12:55:49] ✅ Country 'Singapore': honeymoon-asian-wonders-singapore → honeymoon-singapore
+[2025-06-21 12:55:50] ✅ Country 'France': honeymoon-european-escapes-france → honeymoon-france
+[2025-06-21 12:55:50] ✅ Country 'Hawaii': honeymoon-north-america-hawaii-usa-hawaii → honeymoon-usa-hawaii
+[2025-06-21 12:55:50] ✅ Country 'Seychelles': honeymoon-asian-wonders-seychelles → honeymoon-seychelles
+[2025-06-21 12:55:50] ✅ Country 'Zimbabwe': honeymoon-african-adventures-zimbabwe → honeymoon-zimbabwe
+[2025-06-21 12:55:50] ✅ Country 'New Zealand': honeymoon-oceania-pacific-new-zealand → honeymoon-new-zealand
+[2025-06-21 12:55:50] ✅ Country 'Curacao': honeymoon-caribbean-central-america-curacao → honeymoon-curacao
+[2025-06-21 12:55:50] ✅ Country 'Mexico': honeymoon-caribbean-central-america-mexico → honeymoon-mexico
+[2025-06-21 12:55:50] ✅ Country 'Bahamas': honeymoon-caribbean-central-america-bahamas → honeymoon-bahamas
+[2025-06-21 12:55:50] ✅ Country 'St. Lucia': honeymoon-caribbean-central-america-st-lucia → honeymoon-st-lucia
+[2025-06-21 12:55:50] ✅ Country 'Iceland': honeymoon-european-escapes-iceland → honeymoon-iceland
+[2025-06-21 12:55:50] ✅ Country 'Cook Islands': honeymoon-oceania-pacific-cook-islands → honeymoon-cook-islands
+[2025-06-21 12:55:50] ✅ Country 'Netherlands': honeymoon-european-escapes-netherlands → honeymoon-netherlands
+[2025-06-21 12:55:50] ✅ Country 'Jordan': honeymoon-asian-wonders-jordan → honeymoon-jordan
+[2025-06-21 12:55:50] ✅ Country 'Sri Lanka': honeymoon-asian-wonders-sri-lanka → honeymoon-sri-lanka
+[2025-06-21 12:55:50] ✅ Country 'Indonesia': honeymoon-asian-wonders-indonesia → honeymoon-indonesia
+[2025-06-21 12:55:51] ✅ Country 'Peru': honeymoon-south-america-peru → honeymoon-peru
+[2025-06-21 12:55:51] ✅ Country 'Samoa': honeymoon-oceania-pacific-samoa → honeymoon-samoa
+[2025-06-21 12:55:51] ✅ Country 'Hong Kong': honeymoon-asian-wonders-hong-kong → honeymoon-hong-kong
+[2025-06-21 12:55:51] ✅ Country 'Guatemala': honeymoon-caribbean-central-america-guatemala → honeymoon-guatemala
+[2025-06-21 12:55:51] ✅ Country 'Croatia': honeymoon-european-escapes-croatia → honeymoon-croatia
+[2025-06-21 12:55:51] ✅ Country 'Turks & Caicos Islands': honeymoon-caribbean-central-america-turks-caicos-islands → honeymoon-turks-caicos-islands
+[2025-06-21 12:55:51] ✅ Country 'Portugal': honeymoon-european-escapes-portugal → honeymoon-portugal
+[2025-06-21 12:55:51] ✅ Country 'Australia': honeymoon-oceania-pacific-australia → honeymoon-australia
+[2025-06-21 12:55:51] ✅ Country 'Fiji': honeymoon-oceania-pacific-fiji → honeymoon-fiji
+[2025-06-21 12:55:51] ✅ Country 'Switzerland': honeymoon-european-escapes-switzerland → honeymoon-switzerland
+[2025-06-21 12:55:51] ✅ Country 'United Kingdom': honeymoon-european-escapes-united-kingdom → honeymoon-united-kingdom
+[2025-06-21 12:55:51] ✅ Country 'Tanzania': honeymoon-african-adventures-tanzania → honeymoon-tanzania
+[2025-06-21 12:55:51] ✅ Country 'Egypt': honeymoon-african-adventures-egypt → honeymoon-egypt
+[2025-06-21 12:55:51] ✅ Country 'United Arab Emirates': honeymoon-asian-wonders-united-arab-emirates → honeymoon-united-arab-emirates
+[2025-06-21 12:55:51] ✅ Country 'Ireland': honeymoon-european-escapes-ireland → honeymoon-ireland
+[2025-06-21 12:55:51] ✅ Country 'Norway': honeymoon-european-escapes-norway → honeymoon-norway
+[2025-06-21 12:55:51] ✅ Country 'Germany': honeymoon-european-escapes-germany → honeymoon-germany
+[2025-06-21 12:55:52] ✅ Country 'Denmark': honeymoon-european-escapes-denmark → honeymoon-denmark
+[2025-06-21 12:55:52] ✅ Country 'Panama': honeymoon-caribbean-central-america-panama → honeymoon-panama
+[2025-06-21 12:55:52] ✅ Country 'Finland': honeymoon-european-escapes-finland → honeymoon-finland
+[2025-06-21 12:55:52] ✅ Country 'Cambodia': honeymoon-asian-wonders-cambodia → honeymoon-cambodia
+[2025-06-21 12:55:52] ✅ Country 'Rwanda': honeymoon-african-adventures-rwanda → honeymoon-rwanda
+[2025-06-21 12:55:52] ✅ Country 'Austria': honeymoon-european-escapes-austria → honeymoon-austria
+[2025-06-21 12:55:52] ✅ Country 'Bolivia': honeymoon-south-america-bolivia → honeymoon-bolivia
+[2025-06-21 12:55:52] ✅ Country 'Brazil': honeymoon-south-america-brazil → honeymoon-brazil
+[2025-06-21 12:55:52] ✅ Country 'Montenegro': honeymoon-european-escapes-montenegro → honeymoon-montenegro
+[2025-06-21 12:55:52] ✅ Country 'Madagascar': honeymoon-african-adventures-madagascar → honeymoon-madagascar
+[2025-06-21 12:55:52] ✅ Country 'Oman': honeymoon-asian-wonders-oman → honeymoon-oman
+[2025-06-21 12:55:52] ✅ Country 'Mongolia': honeymoon-asian-wonders-mongolia → honeymoon-mongolia
+[2025-06-21 12:55:52] ✅ Country 'Vietnam': honeymoon-asian-wonders-vietnam → honeymoon-vietnam
+[2025-06-21 12:55:52] ✅ Country 'Costa Rica': honeymoon-caribbean-central-america-costa-rica → honeymoon-costa-rica
+[2025-06-21 12:55:52] ✅ Country 'Sweden': honeymoon-european-escapes-sweden → honeymoon-sweden
+[2025-06-21 12:55:52] ✅ Country 'Ecuador': honeymoon-south-america-ecuador → honeymoon-ecuador
+[2025-06-21 12:55:52] ✅ Country 'Canada': honeymoon-north-america-hawaii-canada → honeymoon-canada
+[2025-06-21 12:55:52] Country updates completed: 72 changes made
+[2025-06-21 12:55:52] 
+=== UPDATING FRONTEND REFERENCES ===
+[2025-06-21 12:55:52] ⏭️  src/components/RegionCountries.tsx: no changes needed
+[2025-06-21 12:55:53] ⏭️  src/services/honeymoonService.ts: no changes needed
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-north-america-hawaii → honeymoon-north-america
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-asian-wonders → honeymoon-asia
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-european-escapes → honeymoon-europe
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-african-adventures → honeymoon-africa
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-oceania-pacific-french-polynesia → honeymoon-french-polynesia
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-south-america-chile → honeymoon-chile
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-south-america-argentina → honeymoon-argentina
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-colombia → honeymoon-colombia
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-oceania-pacific-new-zealand → honeymoon-new-zealand
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-curacao → honeymoon-curacao
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-mexico → honeymoon-mexico
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-bahamas → honeymoon-bahamas
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-st-lucia → honeymoon-st-lucia
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-oceania-pacific-cook-islands → honeymoon-cook-islands
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-south-america-peru → honeymoon-peru
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-oceania-pacific-samoa → honeymoon-samoa
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-guatemala → honeymoon-guatemala
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-turks-caicos-islands → honeymoon-turks-caicos-islands
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-oceania-pacific-australia → honeymoon-australia
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-oceania-pacific-fiji → honeymoon-fiji
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-panama → honeymoon-panama
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-south-america-bolivia → honeymoon-bolivia
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-south-america-brazil → honeymoon-brazil
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-caribbean-central-america-costa-rica → honeymoon-costa-rica
+[2025-06-21 12:55:53]   📝 public/sitemap.xml: honeymoon-south-america-ecuador → honeymoon-ecuador
+[2025-06-21 12:55:53] ✅ Updated public/sitemap.xml (25 replacements)
+[2025-06-21 12:55:53] 
+=== GENERATING UPDATED SITEMAP ===
+[2025-06-21 12:55:53] ✅ Generated updated sitemap with 7 regions and 72 countries
+[2025-06-21 12:55:53] 
+==================================================
+[2025-06-21 12:55:53] 🎉 SLUG UPDATE COMPLETED SUCCESSFULLY
+[2025-06-21 12:55:53] 📊 Summary:
+[2025-06-21 12:55:53]    - Region slugs updated: 4
+[2025-06-21 12:55:53]    - Country slugs updated: 72
+[2025-06-21 12:55:53]    - Total changes: 76
+[2025-06-21 12:55:53] ==================================================
