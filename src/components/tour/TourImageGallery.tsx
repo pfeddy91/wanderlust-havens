@@ -133,7 +133,8 @@ const TourImageGallery: React.FC<TourImageGalleryProps> = ({ images, title }) =>
 
   const displayIndices = getDisplayIndices();
 
-  if (numImages === 1) {
+  if (numImages < 3) {
+    // Fallback for 1 or 2 images to a simpler carousel
     return (
       <section className="py-8 md:py-12 bg-white">
         <div className="container mx-auto px-4">
@@ -142,15 +143,40 @@ const TourImageGallery: React.FC<TourImageGalleryProps> = ({ images, title }) =>
               {title}
             </h2>
           )}
-          <div className="flex justify-center items-center">
-            <div className="w-full md:w-2/3 lg:w-1/2 aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
+          <div className="relative w-full md:w-2/3 lg:w-1/2 mx-auto">
+            <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-xl bg-gray-100">
               <img
-                src={optimizeImageUrl(images[0].image_url, ImagePresets.galleryMain)}
-                alt={images[0].alt_text || `Tour image 1`}
-                className="w-full h-full object-cover"
+                key={currentIndex}
+                src={optimizeImageUrl(images[currentIndex].image_url, ImagePresets.galleryMain)}
+                alt={images[currentIndex].alt_text || `Tour image ${currentIndex + 1}`}
+                className="w-full h-full object-cover transition-opacity duration-300"
                 loading="lazy"
               />
             </div>
+            {numImages > 1 && (
+              <>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={goToPrevious}
+                  disabled={isTransitioning}
+                  className="absolute top-1/2 -translate-y-1/2 left-4 z-10 rounded-full bg-white/80 hover:bg-white"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-6 w-6 text-gray-700" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={goToNext}
+                  disabled={isTransitioning}
+                  className="absolute top-1/2 -translate-y-1/2 right-4 z-10 rounded-full bg-white/80 hover:bg-white"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-6 w-6 text-gray-700" />
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -166,59 +192,59 @@ const TourImageGallery: React.FC<TourImageGalleryProps> = ({ images, title }) =>
           </h2>
         )}
         
-        <div className="relative flex items-center justify-center space-x-4 overflow-hidden">
-          {/* Previous Image */}
-          <div className="w-[27.5%] aspect-[4/3] opacity-60 transform transition-all duration-700 ease-out rounded-lg overflow-hidden shadow-lg">
-            <img
-              src={optimizeImageUrl(images[displayIndices[0]].image_url, ImagePresets.galleryThumb)}
-              alt={images[displayIndices[0]].alt_text || `Tour image preview`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+        <div className="relative group">
+          <div className="flex items-center justify-center space-x-4">
+            {/* Previous Image */}
+            <div className="w-[27.5%] aspect-[4/3] opacity-60 transform transition-all duration-700 ease-out rounded-lg overflow-hidden shadow-lg">
+              <img
+                src={optimizeImageUrl(images[displayIndices[0]].image_url, ImagePresets.galleryThumb)}
+                alt={images[displayIndices[0]].alt_text || `Tour image preview`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Current (Main) Image */}
+            <div className="w-[45%] aspect-[4/3] rounded-lg overflow-hidden shadow-2xl z-10 transform transition-all duration-700 ease-out">
+              <img
+                src={optimizeImageUrl(images[displayIndices[1]].image_url, ImagePresets.galleryMain)}
+                alt={images[displayIndices[1]].alt_text || `Tour image ${currentIndex + 1}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Next Image */}
+            <div className="w-[27.5%] aspect-[4/3] opacity-60 transform transition-all duration-700 ease-out rounded-lg overflow-hidden shadow-lg">
+              <img
+                src={optimizeImageUrl(images[displayIndices[2]].image_url, ImagePresets.galleryThumb)}
+                alt={images[displayIndices[2]].alt_text || `Tour image preview`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
 
-          {/* Current (Main) Image */}
-          <div className="w-[45%] aspect-[4/3] rounded-lg overflow-hidden shadow-2xl z-10 transform transition-all duration-700 ease-out">
-            <img
-              src={optimizeImageUrl(images[displayIndices[1]].image_url, ImagePresets.galleryMain)}
-              alt={images[displayIndices[1]].alt_text || `Tour image ${currentIndex + 1}`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Next Image */}
-          <div className="w-[27.5%] aspect-[4/3] opacity-60 transform transition-all duration-700 ease-out rounded-lg overflow-hidden shadow-lg">
-            <img
-              src={optimizeImageUrl(images[displayIndices[2]].image_url, ImagePresets.galleryThumb)}
-              alt={images[displayIndices[2]].alt_text || `Tour image preview`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        </div>
-
-        {/* Navigation Buttons */}
-        <div className="flex justify-center mt-8 space-x-4">
+          {/* Navigation Buttons */}
           <Button
             variant="outline"
             size="icon"
             onClick={goToPrevious}
             disabled={isTransitioning}
-            className="rounded-full bg-white hover:bg-gray-100 border-gray-300 shadow"
+            className="absolute top-1/2 -translate-y-1/2 left-8 z-20 rounded-full bg-white/70 hover:bg-white border-gray-300 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             aria-label="Previous image"
           >
-            <ChevronLeft className="h-6 w-6 text-gray-600" />
+            <ChevronLeft className="h-6 w-6 text-gray-700" />
           </Button>
           <Button
             variant="outline"
             size="icon"
             onClick={goToNext}
             disabled={isTransitioning}
-            className="rounded-full bg-white hover:bg-gray-100 border-gray-300 shadow"
+            className="absolute top-1/2 -translate-y-1/2 right-8 z-20 rounded-full bg-white/70 hover:bg-white border-gray-300 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             aria-label="Next image"
           >
-            <ChevronRight className="h-6 w-6 text-gray-600" />
+            <ChevronRight className="h-6 w-6 text-gray-700" />
           </Button>
         </div>
       </div>

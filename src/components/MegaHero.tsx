@@ -32,7 +32,7 @@ const MegaHero = () => {
           {/* Logo Placeholder */}
           <a href="#" className="flex items-center space-x-2 text-gray-800 dark:text-white">
             <Briefcase className="h-7 w-7 md:h-8 md:w-8 text-sky-600" />
-            <span className="font-bold text-xl md:text-2xl hidden sm:inline">Wanderlust</span>
+            <span className="font-bold text-xl md:text-2xl hidden sm:inline">Moons</span>
           </a>
 
           {/* Desktop Nav Links */}

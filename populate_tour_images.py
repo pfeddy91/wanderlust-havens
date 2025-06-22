@@ -30,11 +30,11 @@ import numpy as np
 CONFIG_FILE = "config.yaml"
 
 class TourImagesPipeline:
-    def __init__(self, config_path: str = CONFIG_FILE):
+    def __init__(self, config_path: str = CONFIG_FILE, gemini_model: str = None):
         """Initialize the pipeline with configuration."""
         self.config = self.load_config(config_path)
         self.setup_logging()
-        self.setup_apis()
+        self.setup_apis(gemini_model)
         self.progress_file = self.config['processing'].get('images_progress_file', 'tour_images_progress.json')
         self.load_progress()
         
@@ -91,7 +91,7 @@ class TourImagesPipeline:
         )
         self.logger = logging.getLogger(__name__)
         
-    def setup_apis(self):
+    def setup_apis(self, gemini_model: str = None):
         """Initialize API clients."""
         # Supabase
         supabase_config = self.config['apis']['supabase']
@@ -103,7 +103,7 @@ class TourImagesPipeline:
         # Gemini API settings
         gemini_config = self.config['apis']['gemini']
         self.gemini_api_key = gemini_config['api_key']
-        self.gemini_model = gemini_config['model']
+        self.gemini_model = gemini_model or gemini_config['model']  # Use command line arg if provided
         self.gemini_timeout = gemini_config['timeout_seconds']
         self.gemini_max_retries = gemini_config['max_retries']
         self.gemini_rate_limit = gemini_config['rate_limit_delay']
@@ -1306,11 +1306,12 @@ Examples:
     parser.add_argument('--api-source', type=str, choices=['pexels', 'unsplash', 'boosted'], default='boosted', 
                         help='Image API source(s) to use (pexels, unsplash, or boosted), default: boosted')
     parser.add_argument('--quality-review', action='store_true', help='Enable human quality review before uploading images')
+    parser.add_argument('--gemini-model', type=str, help='Gemini model to use (overrides config file)')
     
     args = parser.parse_args()
     
     try:
-        pipeline = TourImagesPipeline(args.config)
+        pipeline = TourImagesPipeline(args.config, args.gemini_model)
         
         if args.tour_id:
             # Process single tour

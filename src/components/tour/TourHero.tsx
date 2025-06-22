@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tour, Country as TourCountry } from '@/types/tour'; // Assuming Country type is also in tour.ts or imported there
 import { Link } from 'react-router-dom';
-import { ChevronRight, Home, Calendar, Clock, DollarSign } from 'lucide-react';
+import { ChevronRight, Home, Calendar, Clock, PoundSterling } from 'lucide-react';
 import { Button } from '@/components/ui/button'; // For Enquire Now button
 // Assuming a type for Region, if not already in your types
 interface Region {
@@ -122,7 +122,7 @@ const TourHero = ({ tour }: TourHeroProps) => {
         </div>
 
         {/* Tour Details (Metrics) */}
-        {(tour.duration || tour.best_time || formattedPrice) && (
+        {(tour.duration || tour.best_time_to_travel || formattedPrice) && (
           <div className="mb-8 md:mb-10">
             <ul className="space-y-5">
               {tour.duration && (
@@ -134,22 +134,22 @@ const TourHero = ({ tour }: TourHeroProps) => {
                   </div>
                 </li>
               )}
-              {tour.best_time && (
+              {tour.best_time_to_travel && (
                 <li className="flex items-center">
                   <Calendar className="h-6 w-6 text-primary mr-3 shrink-0" />
                   <div>
                     <h3 className="text-base font-serif font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Best time to travel</h3>
-                    <p className="font-sans text-lg font-light text-gray-800">{tour.best_time}</p>
+                    <p className="font-sans text-lg font-light text-gray-800">{tour.best_time_to_travel}</p>
                   </div>
                 </li>
               )}
               {formattedPrice && (
                  <li className="flex items-center">
-                  <DollarSign className="h-6 w-6 text-primary mr-3 shrink-0" />
+                  <PoundSterling className="h-6 w-6 text-primary mr-3 shrink-0" />
                   <div>
                     <h3 className="text-base font-serif font-semibold uppercase text-gray-500 mb-0.5 tracking-wider">Guide Price from</h3>
                     <p className="font-sans text-lg font-light text-gray-800">
-                      ${formattedPrice} <span className="text-sm text-gray-600">pp</span>
+                      £{formattedPrice} <span className="text-sm text-gray-600">pp</span>
                     </p>
                   </div>
                 </li>
