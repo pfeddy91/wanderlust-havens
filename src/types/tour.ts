@@ -102,6 +102,7 @@ import { Hotel } from './hotel'; // Or '@/types/hotel' if you have path aliases 
 export interface Tour {
   id: string;
   name: string;
+  title?: string;
   slug: string;
   duration: number;
   guide_price: number;

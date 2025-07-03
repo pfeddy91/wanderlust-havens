@@ -40,7 +40,7 @@ const SEO: React.FC<SEOProps> = ({
   const siteName = 'Moons';
   const defaultDescription = 'Plan your dream honeymoon with Moons. We offer curated luxury travel packages and a bespoke AI-powered planner for unforgettable romantic getaways.';
   const defaultKeywords = 'Honeymoon Planning, Travel Agency for Honeymoons, Luxury Honeymoons, Romantic Getaways, Bespoke Travel, Honeymoons in Italy, Honeymoons in Amalfi Coast, Premium Honeymoon Packages';
-  const defaultOgImage = 'https://cdn.cosmos.so/d4afcd36-2082-413b-9304-8a2a8a2f037f?format=jpeg';
+  const defaultOgImage = 'https://cdn.cosmos.so/4eeb18b7-1baa-442e-a603-ab5ca2ba4689?format=jpeg';
   const siteUrl = 'https://www.gomoons.com';
 
   const generateDestinationKeywords = (country: string, region?: string) => {

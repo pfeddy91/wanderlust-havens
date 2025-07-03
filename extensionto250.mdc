@@ -87,6 +87,7 @@ alwaysApply: false
 - Caribbean escapes (Barbados, St. Lucia)
 - Asian getaways (Singapore, Hong Kong)
 - Domestic luxury (Scotland Highlands, Cornwall)
+- Major capitals of the world (New York, Dubai)
 
 #### 2. Ultra Luxury Collection - Target: 15-20 tours
 - Private island resorts (Maldives, Seychelles)
@@ -94,6 +95,7 @@ alwaysApply: false
 - Luxury train journeys (Orient Express routes)
 - Private yacht charters (Greek Islands, Croatia)
 - Michelin-starred culinary tours (France, Japan)
+- The great islands of the Mediterrean (Sardinia, Formentera, Mykonos)
 
 #### 3. Extended Road Trips - Target: 13 additional tours
 - European Grand Tours (Germany-Austria-Switzerland)
@@ -195,8 +197,7 @@ To efficiently manage the data population for 150 new tours, the existing Python
 
 | Script Name                     | Key Role                                                                            | Priority for 250 Tours Project | Necessity                                                                                   |
 | ------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------- |
-| `populate_tours.py`             | Creates core tour records in the `tours` table from a CSV input.                    | **High**                       | **Critical**. This is the foundational step for adding any new tour.                          |
-| `questions_vectors_tours.py`    | Generates AI embeddings for the questionnaire's semantic search feature.            | **High**                       | **Critical**. Without embeddings, the new tours will not appear in AI recommendations.      |
+| `populate_tours.py`             | Creates core tour records in the `tours` table from a CSV input.                    | **High**                       | **Critical**. This is the foundational step for adding any new tour.      
 | `populate_tour_highlights.py`   | Populates the `tour_highlights` table with AI-generated content for each tour.      | **High**                       | **Essential**. Required for displaying key features on tour detail pages.                   |
 | `migrate_tour_itineraries.py`   | Generates detailed day-by-day itineraries for the `tour_itineraries` table.         | **High**                       | **Essential**. Core content for what the user is purchasing.                                |
 | `tour_maps.py`                  | Generates GPS coordinates for key locations within a tour for map rendering.        | **High**                       | **Essential**. Required for the interactive map feature on tour pages.                      |
