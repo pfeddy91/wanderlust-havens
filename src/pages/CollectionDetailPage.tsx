@@ -206,7 +206,15 @@ const CollectionDetailPage = () => {
   // Get primary country name for display
   const getPrimaryCountryName = (tour: TourWithCountries) => {
     if (tour.country_names && tour.country_names.length > 0) {
-      return tour.country_names[0]; // Use first country as primary
+      // Join multiple countries with ' & ' for better display
+      if (tour.country_names.length === 1) {
+        return tour.country_names[0];
+      } else if (tour.country_names.length === 2) {
+        return `${tour.country_names[0]} & ${tour.country_names[1]}`;
+      } else {
+        // For 3+ countries, show first two with "& More" or all with commas and final &
+        return tour.country_names.slice(0, -1).join(', ') + ' & ' + tour.country_names[tour.country_names.length - 1];
+      }
     }
     return 'Destination'; // Fallback
   };
